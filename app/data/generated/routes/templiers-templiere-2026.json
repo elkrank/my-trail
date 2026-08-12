@@ -1,0 +1,3100 @@
+{
+  "sourceUrl": "https://tracedetrail.fr/fr/trace/325080",
+  "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325080&format=gpx",
+  "localFile": "gpx/2026/templiers/templiere.gpx",
+  "sha256": "e4271f46201cb25f4936367b1b50f6341eed9ef218ed031a68f3f6509670d36b",
+  "segments": [
+    [
+      {
+        "lat": 44.11355,
+        "lon": 3.08695,
+        "ele": 359,
+        "distanceKm": 0
+      },
+      {
+        "lat": 44.11372,
+        "lon": 3.08699,
+        "ele": 359,
+        "distanceKm": 0.019
+      },
+      {
+        "lat": 44.11378,
+        "lon": 3.0869,
+        "ele": 359,
+        "distanceKm": 0.029
+      },
+      {
+        "lat": 44.11379,
+        "lon": 3.08674,
+        "ele": 359,
+        "distanceKm": 0.042
+      },
+      {
+        "lat": 44.11385,
+        "lon": 3.08667,
+        "ele": 360,
+        "distanceKm": 0.051
+      },
+      {
+        "lat": 44.11417,
+        "lon": 3.0867,
+        "ele": 360,
+        "distanceKm": 0.086
+      },
+      {
+        "lat": 44.11449,
+        "lon": 3.08678,
+        "ele": 360,
+        "distanceKm": 0.122
+      },
+      {
+        "lat": 44.1149,
+        "lon": 3.08696,
+        "ele": 360,
+        "distanceKm": 0.17
+      },
+      {
+        "lat": 44.11527,
+        "lon": 3.08718,
+        "ele": 360,
+        "distanceKm": 0.215
+      },
+      {
+        "lat": 44.11563,
+        "lon": 3.0874,
+        "ele": 360,
+        "distanceKm": 0.259
+      },
+      {
+        "lat": 44.116,
+        "lon": 3.08762,
+        "ele": 360,
+        "distanceKm": 0.303
+      },
+      {
+        "lat": 44.11637,
+        "lon": 3.08784,
+        "ele": 360,
+        "distanceKm": 0.348
+      },
+      {
+        "lat": 44.117,
+        "lon": 3.08822,
+        "ele": 360,
+        "distanceKm": 0.424
+      },
+      {
+        "lat": 44.1174,
+        "lon": 3.08856,
+        "ele": 360,
+        "distanceKm": 0.476
+      },
+      {
+        "lat": 44.11763,
+        "lon": 3.08883,
+        "ele": 360,
+        "distanceKm": 0.51
+      },
+      {
+        "lat": 44.11781,
+        "lon": 3.08905,
+        "ele": 360,
+        "distanceKm": 0.537
+      },
+      {
+        "lat": 44.118,
+        "lon": 3.08927,
+        "ele": 360,
+        "distanceKm": 0.564
+      },
+      {
+        "lat": 44.11818,
+        "lon": 3.08954,
+        "ele": 360,
+        "distanceKm": 0.593
+      },
+      {
+        "lat": 44.11835,
+        "lon": 3.08974,
+        "ele": 360,
+        "distanceKm": 0.618
+      },
+      {
+        "lat": 44.11861,
+        "lon": 3.09011,
+        "ele": 360,
+        "distanceKm": 0.66
+      },
+      {
+        "lat": 44.11886,
+        "lon": 3.09049,
+        "ele": 360,
+        "distanceKm": 0.701
+      },
+      {
+        "lat": 44.11912,
+        "lon": 3.09086,
+        "ele": 361,
+        "distanceKm": 0.742
+      },
+      {
+        "lat": 44.11945,
+        "lon": 3.09134,
+        "ele": 361,
+        "distanceKm": 0.795
+      },
+      {
+        "lat": 44.11972,
+        "lon": 3.09179,
+        "ele": 362,
+        "distanceKm": 0.842
+      },
+      {
+        "lat": 44.11986,
+        "lon": 3.09209,
+        "ele": 363,
+        "distanceKm": 0.87
+      },
+      {
+        "lat": 44.12002,
+        "lon": 3.09243,
+        "ele": 365,
+        "distanceKm": 0.903
+      },
+      {
+        "lat": 44.12015,
+        "lon": 3.09263,
+        "ele": 365,
+        "distanceKm": 0.924
+      },
+      {
+        "lat": 44.12031,
+        "lon": 3.0928,
+        "ele": 365,
+        "distanceKm": 0.947
+      },
+      {
+        "lat": 44.12045,
+        "lon": 3.09303,
+        "ele": 365,
+        "distanceKm": 0.971
+      },
+      {
+        "lat": 44.12059,
+        "lon": 3.09319,
+        "ele": 364,
+        "distanceKm": 0.991
+      },
+      {
+        "lat": 44.1207,
+        "lon": 3.09338,
+        "ele": 365,
+        "distanceKm": 1.01
+      },
+      {
+        "lat": 44.12084,
+        "lon": 3.0936,
+        "ele": 365,
+        "distanceKm": 1.034
+      },
+      {
+        "lat": 44.12106,
+        "lon": 3.094,
+        "ele": 366,
+        "distanceKm": 1.074
+      },
+      {
+        "lat": 44.12128,
+        "lon": 3.0944,
+        "ele": 366,
+        "distanceKm": 1.114
+      },
+      {
+        "lat": 44.12151,
+        "lon": 3.09481,
+        "ele": 365,
+        "distanceKm": 1.156
+      },
+      {
+        "lat": 44.12174,
+        "lon": 3.09523,
+        "ele": 365,
+        "distanceKm": 1.198
+      },
+      {
+        "lat": 44.12197,
+        "lon": 3.09553,
+        "ele": 365,
+        "distanceKm": 1.233
+      },
+      {
+        "lat": 44.12223,
+        "lon": 3.09583,
+        "ele": 365,
+        "distanceKm": 1.271
+      },
+      {
+        "lat": 44.12248,
+        "lon": 3.09613,
+        "ele": 365,
+        "distanceKm": 1.307
+      },
+      {
+        "lat": 44.1228,
+        "lon": 3.0965,
+        "ele": 365,
+        "distanceKm": 1.354
+      },
+      {
+        "lat": 44.12297,
+        "lon": 3.09676,
+        "ele": 365,
+        "distanceKm": 1.382
+      },
+      {
+        "lat": 44.12325,
+        "lon": 3.09709,
+        "ele": 365,
+        "distanceKm": 1.422
+      },
+      {
+        "lat": 44.12349,
+        "lon": 3.09745,
+        "ele": 365,
+        "distanceKm": 1.462
+      },
+      {
+        "lat": 44.12364,
+        "lon": 3.09775,
+        "ele": 364,
+        "distanceKm": 1.491
+      },
+      {
+        "lat": 44.1238,
+        "lon": 3.09818,
+        "ele": 364,
+        "distanceKm": 1.53
+      },
+      {
+        "lat": 44.12394,
+        "lon": 3.09866,
+        "ele": 366,
+        "distanceKm": 1.571
+      },
+      {
+        "lat": 44.12401,
+        "lon": 3.099,
+        "ele": 366,
+        "distanceKm": 1.599
+      },
+      {
+        "lat": 44.12413,
+        "lon": 3.09929,
+        "ele": 366,
+        "distanceKm": 1.626
+      },
+      {
+        "lat": 44.12426,
+        "lon": 3.09956,
+        "ele": 366,
+        "distanceKm": 1.652
+      },
+      {
+        "lat": 44.12451,
+        "lon": 3.09993,
+        "ele": 366,
+        "distanceKm": 1.692
+      },
+      {
+        "lat": 44.12473,
+        "lon": 3.10012,
+        "ele": 366,
+        "distanceKm": 1.721
+      },
+      {
+        "lat": 44.12503,
+        "lon": 3.10033,
+        "ele": 366,
+        "distanceKm": 1.758
+      },
+      {
+        "lat": 44.12534,
+        "lon": 3.10049,
+        "ele": 364,
+        "distanceKm": 1.795
+      },
+      {
+        "lat": 44.12563,
+        "lon": 3.10055,
+        "ele": 364,
+        "distanceKm": 1.828
+      },
+      {
+        "lat": 44.1261,
+        "lon": 3.10065,
+        "ele": 365,
+        "distanceKm": 1.881
+      },
+      {
+        "lat": 44.12631,
+        "lon": 3.10067,
+        "ele": 365,
+        "distanceKm": 1.904
+      },
+      {
+        "lat": 44.12662,
+        "lon": 3.10066,
+        "ele": 366,
+        "distanceKm": 1.939
+      },
+      {
+        "lat": 44.12718,
+        "lon": 3.10063,
+        "ele": 365,
+        "distanceKm": 2.001
+      },
+      {
+        "lat": 44.12734,
+        "lon": 3.10061,
+        "ele": 367,
+        "distanceKm": 2.019
+      },
+      {
+        "lat": 44.12751,
+        "lon": 3.10059,
+        "ele": 365,
+        "distanceKm": 2.038
+      },
+      {
+        "lat": 44.1277,
+        "lon": 3.10056,
+        "ele": 365,
+        "distanceKm": 2.059
+      },
+      {
+        "lat": 44.12807,
+        "lon": 3.10049,
+        "ele": 366,
+        "distanceKm": 2.1
+      },
+      {
+        "lat": 44.12844,
+        "lon": 3.10042,
+        "ele": 373,
+        "distanceKm": 2.142
+      },
+      {
+        "lat": 44.1288,
+        "lon": 3.10034,
+        "ele": 376,
+        "distanceKm": 2.183
+      },
+      {
+        "lat": 44.12929,
+        "lon": 3.10025,
+        "ele": 377,
+        "distanceKm": 2.237
+      },
+      {
+        "lat": 44.12938,
+        "lon": 3.10026,
+        "ele": 380,
+        "distanceKm": 2.248
+      },
+      {
+        "lat": 44.12943,
+        "lon": 3.10031,
+        "ele": 381,
+        "distanceKm": 2.254
+      },
+      {
+        "lat": 44.12946,
+        "lon": 3.10044,
+        "ele": 382,
+        "distanceKm": 2.265
+      },
+      {
+        "lat": 44.12946,
+        "lon": 3.1006,
+        "ele": 384,
+        "distanceKm": 2.278
+      },
+      {
+        "lat": 44.1294,
+        "lon": 3.1007,
+        "ele": 384,
+        "distanceKm": 2.288
+      },
+      {
+        "lat": 44.12927,
+        "lon": 3.10081,
+        "ele": 387,
+        "distanceKm": 2.305
+      },
+      {
+        "lat": 44.12916,
+        "lon": 3.10089,
+        "ele": 386,
+        "distanceKm": 2.319
+      },
+      {
+        "lat": 44.12903,
+        "lon": 3.10095,
+        "ele": 391,
+        "distanceKm": 2.334
+      },
+      {
+        "lat": 44.12895,
+        "lon": 3.10106,
+        "ele": 393,
+        "distanceKm": 2.347
+      },
+      {
+        "lat": 44.12891,
+        "lon": 3.10117,
+        "ele": 393,
+        "distanceKm": 2.357
+      },
+      {
+        "lat": 44.12891,
+        "lon": 3.10126,
+        "ele": 395,
+        "distanceKm": 2.364
+      },
+      {
+        "lat": 44.12895,
+        "lon": 3.10137,
+        "ele": 395,
+        "distanceKm": 2.374
+      },
+      {
+        "lat": 44.12916,
+        "lon": 3.1017,
+        "ele": 398,
+        "distanceKm": 2.409
+      },
+      {
+        "lat": 44.12927,
+        "lon": 3.10194,
+        "ele": 400,
+        "distanceKm": 2.432
+      },
+      {
+        "lat": 44.1294,
+        "lon": 3.10215,
+        "ele": 402,
+        "distanceKm": 2.454
+      },
+      {
+        "lat": 44.12962,
+        "lon": 3.10228,
+        "ele": 402,
+        "distanceKm": 2.48
+      },
+      {
+        "lat": 44.12967,
+        "lon": 3.10234,
+        "ele": 404,
+        "distanceKm": 2.488
+      },
+      {
+        "lat": 44.12966,
+        "lon": 3.10241,
+        "ele": 405,
+        "distanceKm": 2.493
+      },
+      {
+        "lat": 44.12963,
+        "lon": 3.10249,
+        "ele": 405,
+        "distanceKm": 2.501
+      },
+      {
+        "lat": 44.1294,
+        "lon": 3.10247,
+        "ele": 408,
+        "distanceKm": 2.526
+      },
+      {
+        "lat": 44.12903,
+        "lon": 3.10244,
+        "ele": 413,
+        "distanceKm": 2.567
+      },
+      {
+        "lat": 44.12887,
+        "lon": 3.10247,
+        "ele": 413,
+        "distanceKm": 2.585
+      },
+      {
+        "lat": 44.12863,
+        "lon": 3.10261,
+        "ele": 418,
+        "distanceKm": 2.614
+      },
+      {
+        "lat": 44.12853,
+        "lon": 3.10276,
+        "ele": 420,
+        "distanceKm": 2.631
+      },
+      {
+        "lat": 44.12848,
+        "lon": 3.10293,
+        "ele": 422,
+        "distanceKm": 2.645
+      },
+      {
+        "lat": 44.1285,
+        "lon": 3.10297,
+        "ele": 423,
+        "distanceKm": 2.649
+      },
+      {
+        "lat": 44.12854,
+        "lon": 3.10298,
+        "ele": 423,
+        "distanceKm": 2.654
+      },
+      {
+        "lat": 44.12873,
+        "lon": 3.10285,
+        "ele": 426,
+        "distanceKm": 2.677
+      },
+      {
+        "lat": 44.12891,
+        "lon": 3.10282,
+        "ele": 427,
+        "distanceKm": 2.697
+      },
+      {
+        "lat": 44.12911,
+        "lon": 3.10283,
+        "ele": 428,
+        "distanceKm": 2.72
+      },
+      {
+        "lat": 44.12923,
+        "lon": 3.1029,
+        "ele": 430,
+        "distanceKm": 2.734
+      },
+      {
+        "lat": 44.12932,
+        "lon": 3.10298,
+        "ele": 428,
+        "distanceKm": 2.746
+      },
+      {
+        "lat": 44.12951,
+        "lon": 3.10306,
+        "ele": 427,
+        "distanceKm": 2.768
+      },
+      {
+        "lat": 44.12975,
+        "lon": 3.10314,
+        "ele": 428,
+        "distanceKm": 2.796
+      },
+      {
+        "lat": 44.13001,
+        "lon": 3.10323,
+        "ele": 430,
+        "distanceKm": 2.825
+      },
+      {
+        "lat": 44.13024,
+        "lon": 3.10333,
+        "ele": 433,
+        "distanceKm": 2.852
+      },
+      {
+        "lat": 44.13053,
+        "lon": 3.1034,
+        "ele": 433,
+        "distanceKm": 2.885
+      },
+      {
+        "lat": 44.13095,
+        "lon": 3.1035,
+        "ele": 434,
+        "distanceKm": 2.932
+      },
+      {
+        "lat": 44.13122,
+        "lon": 3.10353,
+        "ele": 433,
+        "distanceKm": 2.962
+      },
+      {
+        "lat": 44.13159,
+        "lon": 3.10358,
+        "ele": 433,
+        "distanceKm": 3.004
+      },
+      {
+        "lat": 44.13194,
+        "lon": 3.10357,
+        "ele": 433,
+        "distanceKm": 3.043
+      },
+      {
+        "lat": 44.13206,
+        "lon": 3.10358,
+        "ele": 432,
+        "distanceKm": 3.056
+      },
+      {
+        "lat": 44.13213,
+        "lon": 3.1036,
+        "ele": 435,
+        "distanceKm": 3.064
+      },
+      {
+        "lat": 44.13239,
+        "lon": 3.10377,
+        "ele": 437,
+        "distanceKm": 3.096
+      },
+      {
+        "lat": 44.13257,
+        "lon": 3.10384,
+        "ele": 440,
+        "distanceKm": 3.117
+      },
+      {
+        "lat": 44.13278,
+        "lon": 3.10386,
+        "ele": 440,
+        "distanceKm": 3.14
+      },
+      {
+        "lat": 44.13308,
+        "lon": 3.1039,
+        "ele": 447,
+        "distanceKm": 3.174
+      },
+      {
+        "lat": 44.13324,
+        "lon": 3.10389,
+        "ele": 450,
+        "distanceKm": 3.191
+      },
+      {
+        "lat": 44.13338,
+        "lon": 3.1039,
+        "ele": 452,
+        "distanceKm": 3.207
+      },
+      {
+        "lat": 44.13348,
+        "lon": 3.10393,
+        "ele": 459,
+        "distanceKm": 3.218
+      },
+      {
+        "lat": 44.13358,
+        "lon": 3.104,
+        "ele": 464,
+        "distanceKm": 3.231
+      },
+      {
+        "lat": 44.13357,
+        "lon": 3.10404,
+        "ele": 464,
+        "distanceKm": 3.234
+      },
+      {
+        "lat": 44.13348,
+        "lon": 3.10406,
+        "ele": 463,
+        "distanceKm": 3.244
+      },
+      {
+        "lat": 44.13348,
+        "lon": 3.1041,
+        "ele": 466,
+        "distanceKm": 3.247
+      },
+      {
+        "lat": 44.13351,
+        "lon": 3.10414,
+        "ele": 467,
+        "distanceKm": 3.252
+      },
+      {
+        "lat": 44.13366,
+        "lon": 3.10412,
+        "ele": 468,
+        "distanceKm": 3.269
+      },
+      {
+        "lat": 44.13378,
+        "lon": 3.10415,
+        "ele": 471,
+        "distanceKm": 3.282
+      },
+      {
+        "lat": 44.13392,
+        "lon": 3.10442,
+        "ele": 477,
+        "distanceKm": 3.309
+      },
+      {
+        "lat": 44.13398,
+        "lon": 3.10458,
+        "ele": 478,
+        "distanceKm": 3.323
+      },
+      {
+        "lat": 44.13403,
+        "lon": 3.1048,
+        "ele": 479,
+        "distanceKm": 3.342
+      },
+      {
+        "lat": 44.13419,
+        "lon": 3.10497,
+        "ele": 479,
+        "distanceKm": 3.364
+      },
+      {
+        "lat": 44.13452,
+        "lon": 3.10515,
+        "ele": 479,
+        "distanceKm": 3.404
+      },
+      {
+        "lat": 44.13484,
+        "lon": 3.10534,
+        "ele": 481,
+        "distanceKm": 3.442
+      },
+      {
+        "lat": 44.1354,
+        "lon": 3.10565,
+        "ele": 485,
+        "distanceKm": 3.509
+      },
+      {
+        "lat": 44.13566,
+        "lon": 3.10578,
+        "ele": 486,
+        "distanceKm": 3.54
+      },
+      {
+        "lat": 44.13601,
+        "lon": 3.10596,
+        "ele": 486,
+        "distanceKm": 3.581
+      },
+      {
+        "lat": 44.13627,
+        "lon": 3.10611,
+        "ele": 487,
+        "distanceKm": 3.613
+      },
+      {
+        "lat": 44.1366,
+        "lon": 3.10634,
+        "ele": 488,
+        "distanceKm": 3.654
+      },
+      {
+        "lat": 44.1365,
+        "lon": 3.10666,
+        "ele": 489,
+        "distanceKm": 3.682
+      },
+      {
+        "lat": 44.13621,
+        "lon": 3.10674,
+        "ele": 490,
+        "distanceKm": 3.715
+      },
+      {
+        "lat": 44.13575,
+        "lon": 3.10686,
+        "ele": 491,
+        "distanceKm": 3.767
+      },
+      {
+        "lat": 44.13558,
+        "lon": 3.10697,
+        "ele": 492,
+        "distanceKm": 3.787
+      },
+      {
+        "lat": 44.1354,
+        "lon": 3.10715,
+        "ele": 495,
+        "distanceKm": 3.812
+      },
+      {
+        "lat": 44.1351,
+        "lon": 3.10744,
+        "ele": 498,
+        "distanceKm": 3.853
+      },
+      {
+        "lat": 44.13488,
+        "lon": 3.10773,
+        "ele": 504,
+        "distanceKm": 3.886
+      },
+      {
+        "lat": 44.1347,
+        "lon": 3.10782,
+        "ele": 508,
+        "distanceKm": 3.908
+      },
+      {
+        "lat": 44.13448,
+        "lon": 3.10784,
+        "ele": 510,
+        "distanceKm": 3.932
+      },
+      {
+        "lat": 44.13423,
+        "lon": 3.1079,
+        "ele": 516,
+        "distanceKm": 3.96
+      },
+      {
+        "lat": 44.13391,
+        "lon": 3.10814,
+        "ele": 519,
+        "distanceKm": 4.001
+      },
+      {
+        "lat": 44.13377,
+        "lon": 3.10821,
+        "ele": 524,
+        "distanceKm": 4.017
+      },
+      {
+        "lat": 44.1336,
+        "lon": 3.10819,
+        "ele": 523,
+        "distanceKm": 4.036
+      },
+      {
+        "lat": 44.13323,
+        "lon": 3.10808,
+        "ele": 527,
+        "distanceKm": 4.078
+      },
+      {
+        "lat": 44.13306,
+        "lon": 3.10798,
+        "ele": 526,
+        "distanceKm": 4.099
+      },
+      {
+        "lat": 44.13286,
+        "lon": 3.1078,
+        "ele": 527,
+        "distanceKm": 4.125
+      },
+      {
+        "lat": 44.13251,
+        "lon": 3.1075,
+        "ele": 529,
+        "distanceKm": 4.171
+      },
+      {
+        "lat": 44.13227,
+        "lon": 3.10695,
+        "ele": 538,
+        "distanceKm": 4.222
+      },
+      {
+        "lat": 44.13204,
+        "lon": 3.10662,
+        "ele": 540,
+        "distanceKm": 4.259
+      },
+      {
+        "lat": 44.13194,
+        "lon": 3.10656,
+        "ele": 543,
+        "distanceKm": 4.271
+      },
+      {
+        "lat": 44.1318,
+        "lon": 3.1066,
+        "ele": 544,
+        "distanceKm": 4.287
+      },
+      {
+        "lat": 44.13145,
+        "lon": 3.1069,
+        "ele": 546,
+        "distanceKm": 4.333
+      },
+      {
+        "lat": 44.1312,
+        "lon": 3.10725,
+        "ele": 547,
+        "distanceKm": 4.372
+      },
+      {
+        "lat": 44.13109,
+        "lon": 3.10734,
+        "ele": 548,
+        "distanceKm": 4.386
+      },
+      {
+        "lat": 44.13094,
+        "lon": 3.1074,
+        "ele": 545,
+        "distanceKm": 4.404
+      },
+      {
+        "lat": 44.13084,
+        "lon": 3.10751,
+        "ele": 547,
+        "distanceKm": 4.418
+      },
+      {
+        "lat": 44.13077,
+        "lon": 3.10773,
+        "ele": 545,
+        "distanceKm": 4.437
+      },
+      {
+        "lat": 44.13079,
+        "lon": 3.10786,
+        "ele": 542,
+        "distanceKm": 4.448
+      },
+      {
+        "lat": 44.13085,
+        "lon": 3.10807,
+        "ele": 545,
+        "distanceKm": 4.466
+      },
+      {
+        "lat": 44.13092,
+        "lon": 3.10849,
+        "ele": 548,
+        "distanceKm": 4.5
+      },
+      {
+        "lat": 44.13093,
+        "lon": 3.10866,
+        "ele": 550,
+        "distanceKm": 4.514
+      },
+      {
+        "lat": 44.13088,
+        "lon": 3.10894,
+        "ele": 548,
+        "distanceKm": 4.537
+      },
+      {
+        "lat": 44.13076,
+        "lon": 3.10924,
+        "ele": 548,
+        "distanceKm": 4.564
+      },
+      {
+        "lat": 44.1307,
+        "lon": 3.10954,
+        "ele": 548,
+        "distanceKm": 4.589
+      },
+      {
+        "lat": 44.13068,
+        "lon": 3.10985,
+        "ele": 549,
+        "distanceKm": 4.614
+      },
+      {
+        "lat": 44.13068,
+        "lon": 3.11017,
+        "ele": 553,
+        "distanceKm": 4.639
+      },
+      {
+        "lat": 44.13066,
+        "lon": 3.11024,
+        "ele": 554,
+        "distanceKm": 4.645
+      },
+      {
+        "lat": 44.13055,
+        "lon": 3.11036,
+        "ele": 552,
+        "distanceKm": 4.661
+      },
+      {
+        "lat": 44.13046,
+        "lon": 3.11042,
+        "ele": 558,
+        "distanceKm": 4.672
+      },
+      {
+        "lat": 44.13042,
+        "lon": 3.11028,
+        "ele": 552,
+        "distanceKm": 4.684
+      },
+      {
+        "lat": 44.13046,
+        "lon": 3.10999,
+        "ele": 548,
+        "distanceKm": 4.708
+      },
+      {
+        "lat": 44.13042,
+        "lon": 3.10959,
+        "ele": 541,
+        "distanceKm": 4.74
+      },
+      {
+        "lat": 44.13042,
+        "lon": 3.10929,
+        "ele": 536,
+        "distanceKm": 4.764
+      },
+      {
+        "lat": 44.13032,
+        "lon": 3.10898,
+        "ele": 531,
+        "distanceKm": 4.791
+      },
+      {
+        "lat": 44.13021,
+        "lon": 3.10872,
+        "ele": 526,
+        "distanceKm": 4.815
+      },
+      {
+        "lat": 44.13009,
+        "lon": 3.10858,
+        "ele": 521,
+        "distanceKm": 4.832
+      },
+      {
+        "lat": 44.13002,
+        "lon": 3.10827,
+        "ele": 517,
+        "distanceKm": 4.858
+      },
+      {
+        "lat": 44.12983,
+        "lon": 3.10796,
+        "ele": 510,
+        "distanceKm": 4.891
+      },
+      {
+        "lat": 44.12969,
+        "lon": 3.10768,
+        "ele": 506,
+        "distanceKm": 4.918
+      },
+      {
+        "lat": 44.12955,
+        "lon": 3.10738,
+        "ele": 500,
+        "distanceKm": 4.947
+      },
+      {
+        "lat": 44.12943,
+        "lon": 3.10723,
+        "ele": 497,
+        "distanceKm": 4.965
+      },
+      {
+        "lat": 44.12924,
+        "lon": 3.10717,
+        "ele": 493,
+        "distanceKm": 4.986
+      },
+      {
+        "lat": 44.12899,
+        "lon": 3.10709,
+        "ele": 487,
+        "distanceKm": 5.015
+      },
+      {
+        "lat": 44.12875,
+        "lon": 3.10696,
+        "ele": 483,
+        "distanceKm": 5.043
+      },
+      {
+        "lat": 44.12849,
+        "lon": 3.10674,
+        "ele": 479,
+        "distanceKm": 5.077
+      },
+      {
+        "lat": 44.12818,
+        "lon": 3.10644,
+        "ele": 472,
+        "distanceKm": 5.119
+      },
+      {
+        "lat": 44.12794,
+        "lon": 3.10604,
+        "ele": 466,
+        "distanceKm": 5.161
+      },
+      {
+        "lat": 44.12782,
+        "lon": 3.10571,
+        "ele": 461,
+        "distanceKm": 5.19
+      },
+      {
+        "lat": 44.12768,
+        "lon": 3.10531,
+        "ele": 454,
+        "distanceKm": 5.226
+      },
+      {
+        "lat": 44.12753,
+        "lon": 3.10495,
+        "ele": 446,
+        "distanceKm": 5.259
+      },
+      {
+        "lat": 44.12758,
+        "lon": 3.10472,
+        "ele": 444,
+        "distanceKm": 5.278
+      },
+      {
+        "lat": 44.12755,
+        "lon": 3.1046,
+        "ele": 442,
+        "distanceKm": 5.288
+      },
+      {
+        "lat": 44.12748,
+        "lon": 3.10445,
+        "ele": 443,
+        "distanceKm": 5.303
+      },
+      {
+        "lat": 44.12747,
+        "lon": 3.104,
+        "ele": 440,
+        "distanceKm": 5.339
+      },
+      {
+        "lat": 44.12732,
+        "lon": 3.10366,
+        "ele": 433,
+        "distanceKm": 5.371
+      },
+      {
+        "lat": 44.12715,
+        "lon": 3.10347,
+        "ele": 432,
+        "distanceKm": 5.395
+      },
+      {
+        "lat": 44.12704,
+        "lon": 3.10326,
+        "ele": 427,
+        "distanceKm": 5.416
+      },
+      {
+        "lat": 44.12675,
+        "lon": 3.10324,
+        "ele": 427,
+        "distanceKm": 5.448
+      },
+      {
+        "lat": 44.12649,
+        "lon": 3.10327,
+        "ele": 427,
+        "distanceKm": 5.477
+      },
+      {
+        "lat": 44.12617,
+        "lon": 3.10331,
+        "ele": 429,
+        "distanceKm": 5.513
+      },
+      {
+        "lat": 44.12572,
+        "lon": 3.10334,
+        "ele": 428,
+        "distanceKm": 5.563
+      },
+      {
+        "lat": 44.12548,
+        "lon": 3.10338,
+        "ele": 427,
+        "distanceKm": 5.59
+      },
+      {
+        "lat": 44.12507,
+        "lon": 3.10357,
+        "ele": 427,
+        "distanceKm": 5.638
+      },
+      {
+        "lat": 44.12482,
+        "lon": 3.10356,
+        "ele": 428,
+        "distanceKm": 5.665
+      },
+      {
+        "lat": 44.12464,
+        "lon": 3.10348,
+        "ele": 427,
+        "distanceKm": 5.686
+      },
+      {
+        "lat": 44.12459,
+        "lon": 3.10341,
+        "ele": 429,
+        "distanceKm": 5.694
+      },
+      {
+        "lat": 44.12427,
+        "lon": 3.10336,
+        "ele": 440,
+        "distanceKm": 5.73
+      },
+      {
+        "lat": 44.12402,
+        "lon": 3.1032,
+        "ele": 450,
+        "distanceKm": 5.761
+      },
+      {
+        "lat": 44.12392,
+        "lon": 3.10311,
+        "ele": 451,
+        "distanceKm": 5.774
+      },
+      {
+        "lat": 44.12389,
+        "lon": 3.10291,
+        "ele": 456,
+        "distanceKm": 5.79
+      },
+      {
+        "lat": 44.12391,
+        "lon": 3.10269,
+        "ele": 459,
+        "distanceKm": 5.808
+      },
+      {
+        "lat": 44.12383,
+        "lon": 3.10235,
+        "ele": 467,
+        "distanceKm": 5.836
+      },
+      {
+        "lat": 44.12357,
+        "lon": 3.10219,
+        "ele": 472,
+        "distanceKm": 5.868
+      },
+      {
+        "lat": 44.12318,
+        "lon": 3.10195,
+        "ele": 481,
+        "distanceKm": 5.915
+      },
+      {
+        "lat": 44.12313,
+        "lon": 3.10186,
+        "ele": 478,
+        "distanceKm": 5.925
+      },
+      {
+        "lat": 44.12302,
+        "lon": 3.10189,
+        "ele": 481,
+        "distanceKm": 5.937
+      },
+      {
+        "lat": 44.12292,
+        "lon": 3.10184,
+        "ele": 482,
+        "distanceKm": 5.949
+      },
+      {
+        "lat": 44.12279,
+        "lon": 3.10173,
+        "ele": 485,
+        "distanceKm": 5.966
+      },
+      {
+        "lat": 44.12251,
+        "lon": 3.10157,
+        "ele": 488,
+        "distanceKm": 5.999
+      },
+      {
+        "lat": 44.12205,
+        "lon": 3.1013,
+        "ele": 495,
+        "distanceKm": 6.055
+      },
+      {
+        "lat": 44.12173,
+        "lon": 3.10108,
+        "ele": 501,
+        "distanceKm": 6.095
+      },
+      {
+        "lat": 44.12154,
+        "lon": 3.10101,
+        "ele": 503,
+        "distanceKm": 6.116
+      },
+      {
+        "lat": 44.12138,
+        "lon": 3.10081,
+        "ele": 507,
+        "distanceKm": 6.14
+      },
+      {
+        "lat": 44.12124,
+        "lon": 3.10077,
+        "ele": 508,
+        "distanceKm": 6.156
+      },
+      {
+        "lat": 44.12116,
+        "lon": 3.10073,
+        "ele": 508,
+        "distanceKm": 6.166
+      },
+      {
+        "lat": 44.12106,
+        "lon": 3.10064,
+        "ele": 510,
+        "distanceKm": 6.179
+      },
+      {
+        "lat": 44.12102,
+        "lon": 3.10047,
+        "ele": 510,
+        "distanceKm": 6.193
+      },
+      {
+        "lat": 44.12096,
+        "lon": 3.10038,
+        "ele": 511,
+        "distanceKm": 6.203
+      },
+      {
+        "lat": 44.12077,
+        "lon": 3.10019,
+        "ele": 512,
+        "distanceKm": 6.229
+      },
+      {
+        "lat": 44.12056,
+        "lon": 3.09994,
+        "ele": 512,
+        "distanceKm": 6.26
+      },
+      {
+        "lat": 44.12022,
+        "lon": 3.09965,
+        "ele": 512,
+        "distanceKm": 6.304
+      },
+      {
+        "lat": 44.1201,
+        "lon": 3.09957,
+        "ele": 511,
+        "distanceKm": 6.319
+      },
+      {
+        "lat": 44.12001,
+        "lon": 3.09954,
+        "ele": 512,
+        "distanceKm": 6.329
+      },
+      {
+        "lat": 44.11989,
+        "lon": 3.09947,
+        "ele": 513,
+        "distanceKm": 6.344
+      },
+      {
+        "lat": 44.11971,
+        "lon": 3.09932,
+        "ele": 512,
+        "distanceKm": 6.367
+      },
+      {
+        "lat": 44.11948,
+        "lon": 3.09912,
+        "ele": 511,
+        "distanceKm": 6.397
+      },
+      {
+        "lat": 44.11913,
+        "lon": 3.09875,
+        "ele": 510,
+        "distanceKm": 6.446
+      },
+      {
+        "lat": 44.11894,
+        "lon": 3.0983,
+        "ele": 506,
+        "distanceKm": 6.488
+      },
+      {
+        "lat": 44.11869,
+        "lon": 3.09783,
+        "ele": 504,
+        "distanceKm": 6.534
+      },
+      {
+        "lat": 44.11851,
+        "lon": 3.09757,
+        "ele": 504,
+        "distanceKm": 6.563
+      },
+      {
+        "lat": 44.11832,
+        "lon": 3.09729,
+        "ele": 504,
+        "distanceKm": 6.594
+      },
+      {
+        "lat": 44.11815,
+        "lon": 3.09678,
+        "ele": 505,
+        "distanceKm": 6.639
+      },
+      {
+        "lat": 44.11792,
+        "lon": 3.09651,
+        "ele": 508,
+        "distanceKm": 6.672
+      },
+      {
+        "lat": 44.11784,
+        "lon": 3.09638,
+        "ele": 508,
+        "distanceKm": 6.686
+      },
+      {
+        "lat": 44.11776,
+        "lon": 3.09618,
+        "ele": 508,
+        "distanceKm": 6.704
+      },
+      {
+        "lat": 44.11761,
+        "lon": 3.09604,
+        "ele": 509,
+        "distanceKm": 6.724
+      },
+      {
+        "lat": 44.11749,
+        "lon": 3.09587,
+        "ele": 508,
+        "distanceKm": 6.743
+      },
+      {
+        "lat": 44.11735,
+        "lon": 3.09567,
+        "ele": 508,
+        "distanceKm": 6.766
+      },
+      {
+        "lat": 44.11717,
+        "lon": 3.0955,
+        "ele": 505,
+        "distanceKm": 6.79
+      },
+      {
+        "lat": 44.11711,
+        "lon": 3.09548,
+        "ele": 508,
+        "distanceKm": 6.797
+      },
+      {
+        "lat": 44.11705,
+        "lon": 3.09542,
+        "ele": 508,
+        "distanceKm": 6.805
+      },
+      {
+        "lat": 44.11693,
+        "lon": 3.09511,
+        "ele": 502,
+        "distanceKm": 6.833
+      },
+      {
+        "lat": 44.1168,
+        "lon": 3.09493,
+        "ele": 499,
+        "distanceKm": 6.853
+      },
+      {
+        "lat": 44.11667,
+        "lon": 3.09471,
+        "ele": 496,
+        "distanceKm": 6.876
+      },
+      {
+        "lat": 44.11648,
+        "lon": 3.0944,
+        "ele": 488,
+        "distanceKm": 6.909
+      },
+      {
+        "lat": 44.11646,
+        "lon": 3.09425,
+        "ele": 486,
+        "distanceKm": 6.921
+      },
+      {
+        "lat": 44.11637,
+        "lon": 3.09401,
+        "ele": 481,
+        "distanceKm": 6.942
+      },
+      {
+        "lat": 44.11627,
+        "lon": 3.09376,
+        "ele": 475,
+        "distanceKm": 6.965
+      },
+      {
+        "lat": 44.11628,
+        "lon": 3.0936,
+        "ele": 473,
+        "distanceKm": 6.978
+      },
+      {
+        "lat": 44.11626,
+        "lon": 3.09345,
+        "ele": 468,
+        "distanceKm": 6.99
+      },
+      {
+        "lat": 44.11621,
+        "lon": 3.09333,
+        "ele": 466,
+        "distanceKm": 7.001
+      },
+      {
+        "lat": 44.11621,
+        "lon": 3.09325,
+        "ele": 463,
+        "distanceKm": 7.008
+      },
+      {
+        "lat": 44.11628,
+        "lon": 3.09321,
+        "ele": 463,
+        "distanceKm": 7.016
+      },
+      {
+        "lat": 44.11631,
+        "lon": 3.09312,
+        "ele": 461,
+        "distanceKm": 7.024
+      },
+      {
+        "lat": 44.11629,
+        "lon": 3.09302,
+        "ele": 460,
+        "distanceKm": 7.032
+      },
+      {
+        "lat": 44.11624,
+        "lon": 3.0929,
+        "ele": 458,
+        "distanceKm": 7.043
+      },
+      {
+        "lat": 44.11611,
+        "lon": 3.09267,
+        "ele": 456,
+        "distanceKm": 7.067
+      },
+      {
+        "lat": 44.11603,
+        "lon": 3.09256,
+        "ele": 455,
+        "distanceKm": 7.079
+      },
+      {
+        "lat": 44.11586,
+        "lon": 3.09243,
+        "ele": 453,
+        "distanceKm": 7.101
+      },
+      {
+        "lat": 44.11568,
+        "lon": 3.09219,
+        "ele": 448,
+        "distanceKm": 7.129
+      },
+      {
+        "lat": 44.11544,
+        "lon": 3.09216,
+        "ele": 446,
+        "distanceKm": 7.155
+      },
+      {
+        "lat": 44.1155,
+        "lon": 3.09196,
+        "ele": 442,
+        "distanceKm": 7.173
+      },
+      {
+        "lat": 44.11568,
+        "lon": 3.09201,
+        "ele": 444,
+        "distanceKm": 7.193
+      },
+      {
+        "lat": 44.11588,
+        "lon": 3.09205,
+        "ele": 441,
+        "distanceKm": 7.216
+      },
+      {
+        "lat": 44.1161,
+        "lon": 3.09222,
+        "ele": 441,
+        "distanceKm": 7.244
+      },
+      {
+        "lat": 44.11636,
+        "lon": 3.0924,
+        "ele": 437,
+        "distanceKm": 7.276
+      },
+      {
+        "lat": 44.11662,
+        "lon": 3.09258,
+        "ele": 433,
+        "distanceKm": 7.308
+      },
+      {
+        "lat": 44.11698,
+        "lon": 3.09282,
+        "ele": 431,
+        "distanceKm": 7.352
+      },
+      {
+        "lat": 44.11679,
+        "lon": 3.09249,
+        "ele": 427,
+        "distanceKm": 7.386
+      },
+      {
+        "lat": 44.1166,
+        "lon": 3.09227,
+        "ele": 427,
+        "distanceKm": 7.414
+      },
+      {
+        "lat": 44.11639,
+        "lon": 3.09203,
+        "ele": 427,
+        "distanceKm": 7.444
+      },
+      {
+        "lat": 44.11608,
+        "lon": 3.0918,
+        "ele": 427,
+        "distanceKm": 7.483
+      },
+      {
+        "lat": 44.11577,
+        "lon": 3.09158,
+        "ele": 421,
+        "distanceKm": 7.522
+      },
+      {
+        "lat": 44.11526,
+        "lon": 3.09121,
+        "ele": 418,
+        "distanceKm": 7.586
+      },
+      {
+        "lat": 44.11501,
+        "lon": 3.09096,
+        "ele": 410,
+        "distanceKm": 7.62
+      },
+      {
+        "lat": 44.11457,
+        "lon": 3.09051,
+        "ele": 410,
+        "distanceKm": 7.681
+      },
+      {
+        "lat": 44.11418,
+        "lon": 3.0902,
+        "ele": 407,
+        "distanceKm": 7.73
+      },
+      {
+        "lat": 44.11418,
+        "lon": 3.09011,
+        "ele": 409,
+        "distanceKm": 7.738
+      },
+      {
+        "lat": 44.11407,
+        "lon": 3.0899,
+        "ele": 404,
+        "distanceKm": 7.758
+      },
+      {
+        "lat": 44.11402,
+        "lon": 3.08986,
+        "ele": 404,
+        "distanceKm": 7.765
+      },
+      {
+        "lat": 44.11395,
+        "lon": 3.08967,
+        "ele": 399,
+        "distanceKm": 7.782
+      },
+      {
+        "lat": 44.11396,
+        "lon": 3.0896,
+        "ele": 399,
+        "distanceKm": 7.788
+      },
+      {
+        "lat": 44.11406,
+        "lon": 3.08952,
+        "ele": 396,
+        "distanceKm": 7.8
+      },
+      {
+        "lat": 44.11411,
+        "lon": 3.08943,
+        "ele": 394,
+        "distanceKm": 7.809
+      },
+      {
+        "lat": 44.1142,
+        "lon": 3.08937,
+        "ele": 391,
+        "distanceKm": 7.821
+      },
+      {
+        "lat": 44.11427,
+        "lon": 3.08918,
+        "ele": 386,
+        "distanceKm": 7.838
+      },
+      {
+        "lat": 44.11447,
+        "lon": 3.08915,
+        "ele": 386,
+        "distanceKm": 7.86
+      },
+      {
+        "lat": 44.11465,
+        "lon": 3.08919,
+        "ele": 384,
+        "distanceKm": 7.88
+      },
+      {
+        "lat": 44.11477,
+        "lon": 3.08924,
+        "ele": 386,
+        "distanceKm": 7.894
+      },
+      {
+        "lat": 44.1148,
+        "lon": 3.08935,
+        "ele": 387,
+        "distanceKm": 7.904
+      },
+      {
+        "lat": 44.11479,
+        "lon": 3.08942,
+        "ele": 390,
+        "distanceKm": 7.909
+      },
+      {
+        "lat": 44.11462,
+        "lon": 3.08953,
+        "ele": 393,
+        "distanceKm": 7.93
+      },
+      {
+        "lat": 44.11431,
+        "lon": 3.08951,
+        "ele": 395,
+        "distanceKm": 7.965
+      },
+      {
+        "lat": 44.11422,
+        "lon": 3.08953,
+        "ele": 395,
+        "distanceKm": 7.975
+      },
+      {
+        "lat": 44.11421,
+        "lon": 3.08955,
+        "ele": 395,
+        "distanceKm": 7.977
+      }
+    ]
+  ],
+  "elevationProfile": [
+    {
+      "distanceKm": 0,
+      "elevationM": 359
+    },
+    {
+      "distanceKm": 0.019,
+      "elevationM": 359
+    },
+    {
+      "distanceKm": 0.029,
+      "elevationM": 359
+    },
+    {
+      "distanceKm": 0.042,
+      "elevationM": 359
+    },
+    {
+      "distanceKm": 0.051,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.086,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.122,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.17,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.215,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.259,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.303,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.348,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.424,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.476,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.51,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.537,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.564,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.593,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.618,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.66,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.701,
+      "elevationM": 360
+    },
+    {
+      "distanceKm": 0.742,
+      "elevationM": 361
+    },
+    {
+      "distanceKm": 0.795,
+      "elevationM": 361
+    },
+    {
+      "distanceKm": 0.842,
+      "elevationM": 362
+    },
+    {
+      "distanceKm": 0.87,
+      "elevationM": 363
+    },
+    {
+      "distanceKm": 0.903,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 0.924,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 0.947,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 0.971,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 0.991,
+      "elevationM": 364
+    },
+    {
+      "distanceKm": 1.01,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.034,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.074,
+      "elevationM": 366
+    },
+    {
+      "distanceKm": 1.114,
+      "elevationM": 366
+    },
+    {
+      "distanceKm": 1.156,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.198,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.233,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.271,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.307,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.354,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.382,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.422,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.462,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.491,
+      "elevationM": 364
+    },
+    {
+      "distanceKm": 1.53,
+      "elevationM": 364
+    },
+    {
+      "distanceKm": 1.571,
+      "elevationM": 366
+    },
+    {
+      "distanceKm": 1.599,
+      "elevationM": 366
+    },
+    {
+      "distanceKm": 1.626,
+      "elevationM": 366
+    },
+    {
+      "distanceKm": 1.652,
+      "elevationM": 366
+    },
+    {
+      "distanceKm": 1.692,
+      "elevationM": 366
+    },
+    {
+      "distanceKm": 1.721,
+      "elevationM": 366
+    },
+    {
+      "distanceKm": 1.758,
+      "elevationM": 366
+    },
+    {
+      "distanceKm": 1.795,
+      "elevationM": 364
+    },
+    {
+      "distanceKm": 1.828,
+      "elevationM": 364
+    },
+    {
+      "distanceKm": 1.881,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.904,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 1.939,
+      "elevationM": 366
+    },
+    {
+      "distanceKm": 2.001,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 2.019,
+      "elevationM": 367
+    },
+    {
+      "distanceKm": 2.038,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 2.059,
+      "elevationM": 365
+    },
+    {
+      "distanceKm": 2.1,
+      "elevationM": 366
+    },
+    {
+      "distanceKm": 2.142,
+      "elevationM": 373
+    },
+    {
+      "distanceKm": 2.183,
+      "elevationM": 376
+    },
+    {
+      "distanceKm": 2.237,
+      "elevationM": 377
+    },
+    {
+      "distanceKm": 2.248,
+      "elevationM": 380
+    },
+    {
+      "distanceKm": 2.254,
+      "elevationM": 381
+    },
+    {
+      "distanceKm": 2.265,
+      "elevationM": 382
+    },
+    {
+      "distanceKm": 2.278,
+      "elevationM": 384
+    },
+    {
+      "distanceKm": 2.288,
+      "elevationM": 384
+    },
+    {
+      "distanceKm": 2.305,
+      "elevationM": 387
+    },
+    {
+      "distanceKm": 2.319,
+      "elevationM": 386
+    },
+    {
+      "distanceKm": 2.334,
+      "elevationM": 391
+    },
+    {
+      "distanceKm": 2.347,
+      "elevationM": 393
+    },
+    {
+      "distanceKm": 2.357,
+      "elevationM": 393
+    },
+    {
+      "distanceKm": 2.364,
+      "elevationM": 395
+    },
+    {
+      "distanceKm": 2.374,
+      "elevationM": 395
+    },
+    {
+      "distanceKm": 2.409,
+      "elevationM": 398
+    },
+    {
+      "distanceKm": 2.432,
+      "elevationM": 400
+    },
+    {
+      "distanceKm": 2.454,
+      "elevationM": 402
+    },
+    {
+      "distanceKm": 2.48,
+      "elevationM": 402
+    },
+    {
+      "distanceKm": 2.488,
+      "elevationM": 404
+    },
+    {
+      "distanceKm": 2.493,
+      "elevationM": 405
+    },
+    {
+      "distanceKm": 2.501,
+      "elevationM": 405
+    },
+    {
+      "distanceKm": 2.526,
+      "elevationM": 408
+    },
+    {
+      "distanceKm": 2.567,
+      "elevationM": 413
+    },
+    {
+      "distanceKm": 2.585,
+      "elevationM": 413
+    },
+    {
+      "distanceKm": 2.614,
+      "elevationM": 418
+    },
+    {
+      "distanceKm": 2.631,
+      "elevationM": 420
+    },
+    {
+      "distanceKm": 2.645,
+      "elevationM": 422
+    },
+    {
+      "distanceKm": 2.649,
+      "elevationM": 423
+    },
+    {
+      "distanceKm": 2.654,
+      "elevationM": 423
+    },
+    {
+      "distanceKm": 2.677,
+      "elevationM": 426
+    },
+    {
+      "distanceKm": 2.697,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 2.72,
+      "elevationM": 428
+    },
+    {
+      "distanceKm": 2.734,
+      "elevationM": 430
+    },
+    {
+      "distanceKm": 2.746,
+      "elevationM": 428
+    },
+    {
+      "distanceKm": 2.768,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 2.796,
+      "elevationM": 428
+    },
+    {
+      "distanceKm": 2.825,
+      "elevationM": 430
+    },
+    {
+      "distanceKm": 2.852,
+      "elevationM": 433
+    },
+    {
+      "distanceKm": 2.885,
+      "elevationM": 433
+    },
+    {
+      "distanceKm": 2.932,
+      "elevationM": 434
+    },
+    {
+      "distanceKm": 2.962,
+      "elevationM": 433
+    },
+    {
+      "distanceKm": 3.004,
+      "elevationM": 433
+    },
+    {
+      "distanceKm": 3.043,
+      "elevationM": 433
+    },
+    {
+      "distanceKm": 3.056,
+      "elevationM": 432
+    },
+    {
+      "distanceKm": 3.064,
+      "elevationM": 435
+    },
+    {
+      "distanceKm": 3.096,
+      "elevationM": 437
+    },
+    {
+      "distanceKm": 3.117,
+      "elevationM": 440
+    },
+    {
+      "distanceKm": 3.14,
+      "elevationM": 440
+    },
+    {
+      "distanceKm": 3.174,
+      "elevationM": 447
+    },
+    {
+      "distanceKm": 3.191,
+      "elevationM": 450
+    },
+    {
+      "distanceKm": 3.207,
+      "elevationM": 452
+    },
+    {
+      "distanceKm": 3.218,
+      "elevationM": 459
+    },
+    {
+      "distanceKm": 3.231,
+      "elevationM": 464
+    },
+    {
+      "distanceKm": 3.234,
+      "elevationM": 464
+    },
+    {
+      "distanceKm": 3.244,
+      "elevationM": 463
+    },
+    {
+      "distanceKm": 3.247,
+      "elevationM": 466
+    },
+    {
+      "distanceKm": 3.252,
+      "elevationM": 467
+    },
+    {
+      "distanceKm": 3.269,
+      "elevationM": 468
+    },
+    {
+      "distanceKm": 3.282,
+      "elevationM": 471
+    },
+    {
+      "distanceKm": 3.309,
+      "elevationM": 477
+    },
+    {
+      "distanceKm": 3.323,
+      "elevationM": 478
+    },
+    {
+      "distanceKm": 3.342,
+      "elevationM": 479
+    },
+    {
+      "distanceKm": 3.364,
+      "elevationM": 479
+    },
+    {
+      "distanceKm": 3.404,
+      "elevationM": 479
+    },
+    {
+      "distanceKm": 3.442,
+      "elevationM": 481
+    },
+    {
+      "distanceKm": 3.509,
+      "elevationM": 485
+    },
+    {
+      "distanceKm": 3.54,
+      "elevationM": 486
+    },
+    {
+      "distanceKm": 3.581,
+      "elevationM": 486
+    },
+    {
+      "distanceKm": 3.613,
+      "elevationM": 487
+    },
+    {
+      "distanceKm": 3.654,
+      "elevationM": 488
+    },
+    {
+      "distanceKm": 3.682,
+      "elevationM": 489
+    },
+    {
+      "distanceKm": 3.715,
+      "elevationM": 490
+    },
+    {
+      "distanceKm": 3.767,
+      "elevationM": 491
+    },
+    {
+      "distanceKm": 3.787,
+      "elevationM": 492
+    },
+    {
+      "distanceKm": 3.812,
+      "elevationM": 495
+    },
+    {
+      "distanceKm": 3.853,
+      "elevationM": 498
+    },
+    {
+      "distanceKm": 3.886,
+      "elevationM": 504
+    },
+    {
+      "distanceKm": 3.908,
+      "elevationM": 508
+    },
+    {
+      "distanceKm": 3.932,
+      "elevationM": 510
+    },
+    {
+      "distanceKm": 3.96,
+      "elevationM": 516
+    },
+    {
+      "distanceKm": 4.001,
+      "elevationM": 519
+    },
+    {
+      "distanceKm": 4.017,
+      "elevationM": 524
+    },
+    {
+      "distanceKm": 4.036,
+      "elevationM": 523
+    },
+    {
+      "distanceKm": 4.078,
+      "elevationM": 527
+    },
+    {
+      "distanceKm": 4.099,
+      "elevationM": 526
+    },
+    {
+      "distanceKm": 4.125,
+      "elevationM": 527
+    },
+    {
+      "distanceKm": 4.171,
+      "elevationM": 529
+    },
+    {
+      "distanceKm": 4.222,
+      "elevationM": 538
+    },
+    {
+      "distanceKm": 4.259,
+      "elevationM": 540
+    },
+    {
+      "distanceKm": 4.271,
+      "elevationM": 543
+    },
+    {
+      "distanceKm": 4.287,
+      "elevationM": 544
+    },
+    {
+      "distanceKm": 4.333,
+      "elevationM": 546
+    },
+    {
+      "distanceKm": 4.372,
+      "elevationM": 547
+    },
+    {
+      "distanceKm": 4.386,
+      "elevationM": 548
+    },
+    {
+      "distanceKm": 4.404,
+      "elevationM": 545
+    },
+    {
+      "distanceKm": 4.418,
+      "elevationM": 547
+    },
+    {
+      "distanceKm": 4.437,
+      "elevationM": 545
+    },
+    {
+      "distanceKm": 4.448,
+      "elevationM": 542
+    },
+    {
+      "distanceKm": 4.466,
+      "elevationM": 545
+    },
+    {
+      "distanceKm": 4.5,
+      "elevationM": 548
+    },
+    {
+      "distanceKm": 4.514,
+      "elevationM": 550
+    },
+    {
+      "distanceKm": 4.537,
+      "elevationM": 548
+    },
+    {
+      "distanceKm": 4.564,
+      "elevationM": 548
+    },
+    {
+      "distanceKm": 4.589,
+      "elevationM": 548
+    },
+    {
+      "distanceKm": 4.614,
+      "elevationM": 549
+    },
+    {
+      "distanceKm": 4.639,
+      "elevationM": 553
+    },
+    {
+      "distanceKm": 4.645,
+      "elevationM": 554
+    },
+    {
+      "distanceKm": 4.661,
+      "elevationM": 552
+    },
+    {
+      "distanceKm": 4.672,
+      "elevationM": 558
+    },
+    {
+      "distanceKm": 4.684,
+      "elevationM": 552
+    },
+    {
+      "distanceKm": 4.708,
+      "elevationM": 548
+    },
+    {
+      "distanceKm": 4.74,
+      "elevationM": 541
+    },
+    {
+      "distanceKm": 4.764,
+      "elevationM": 536
+    },
+    {
+      "distanceKm": 4.791,
+      "elevationM": 531
+    },
+    {
+      "distanceKm": 4.815,
+      "elevationM": 526
+    },
+    {
+      "distanceKm": 4.832,
+      "elevationM": 521
+    },
+    {
+      "distanceKm": 4.858,
+      "elevationM": 517
+    },
+    {
+      "distanceKm": 4.891,
+      "elevationM": 510
+    },
+    {
+      "distanceKm": 4.918,
+      "elevationM": 506
+    },
+    {
+      "distanceKm": 4.947,
+      "elevationM": 500
+    },
+    {
+      "distanceKm": 4.965,
+      "elevationM": 497
+    },
+    {
+      "distanceKm": 4.986,
+      "elevationM": 493
+    },
+    {
+      "distanceKm": 5.015,
+      "elevationM": 487
+    },
+    {
+      "distanceKm": 5.043,
+      "elevationM": 483
+    },
+    {
+      "distanceKm": 5.077,
+      "elevationM": 479
+    },
+    {
+      "distanceKm": 5.119,
+      "elevationM": 472
+    },
+    {
+      "distanceKm": 5.161,
+      "elevationM": 466
+    },
+    {
+      "distanceKm": 5.19,
+      "elevationM": 461
+    },
+    {
+      "distanceKm": 5.226,
+      "elevationM": 454
+    },
+    {
+      "distanceKm": 5.259,
+      "elevationM": 446
+    },
+    {
+      "distanceKm": 5.278,
+      "elevationM": 444
+    },
+    {
+      "distanceKm": 5.288,
+      "elevationM": 442
+    },
+    {
+      "distanceKm": 5.303,
+      "elevationM": 443
+    },
+    {
+      "distanceKm": 5.339,
+      "elevationM": 440
+    },
+    {
+      "distanceKm": 5.371,
+      "elevationM": 433
+    },
+    {
+      "distanceKm": 5.395,
+      "elevationM": 432
+    },
+    {
+      "distanceKm": 5.416,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 5.448,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 5.477,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 5.513,
+      "elevationM": 429
+    },
+    {
+      "distanceKm": 5.563,
+      "elevationM": 428
+    },
+    {
+      "distanceKm": 5.59,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 5.638,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 5.665,
+      "elevationM": 428
+    },
+    {
+      "distanceKm": 5.686,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 5.694,
+      "elevationM": 429
+    },
+    {
+      "distanceKm": 5.73,
+      "elevationM": 440
+    },
+    {
+      "distanceKm": 5.761,
+      "elevationM": 450
+    },
+    {
+      "distanceKm": 5.774,
+      "elevationM": 451
+    },
+    {
+      "distanceKm": 5.79,
+      "elevationM": 456
+    },
+    {
+      "distanceKm": 5.808,
+      "elevationM": 459
+    },
+    {
+      "distanceKm": 5.836,
+      "elevationM": 467
+    },
+    {
+      "distanceKm": 5.868,
+      "elevationM": 472
+    },
+    {
+      "distanceKm": 5.915,
+      "elevationM": 481
+    },
+    {
+      "distanceKm": 5.925,
+      "elevationM": 478
+    },
+    {
+      "distanceKm": 5.937,
+      "elevationM": 481
+    },
+    {
+      "distanceKm": 5.949,
+      "elevationM": 482
+    },
+    {
+      "distanceKm": 5.966,
+      "elevationM": 485
+    },
+    {
+      "distanceKm": 5.999,
+      "elevationM": 488
+    },
+    {
+      "distanceKm": 6.055,
+      "elevationM": 495
+    },
+    {
+      "distanceKm": 6.095,
+      "elevationM": 501
+    },
+    {
+      "distanceKm": 6.116,
+      "elevationM": 503
+    },
+    {
+      "distanceKm": 6.14,
+      "elevationM": 507
+    },
+    {
+      "distanceKm": 6.156,
+      "elevationM": 508
+    },
+    {
+      "distanceKm": 6.166,
+      "elevationM": 508
+    },
+    {
+      "distanceKm": 6.179,
+      "elevationM": 510
+    },
+    {
+      "distanceKm": 6.193,
+      "elevationM": 510
+    },
+    {
+      "distanceKm": 6.203,
+      "elevationM": 511
+    },
+    {
+      "distanceKm": 6.229,
+      "elevationM": 512
+    },
+    {
+      "distanceKm": 6.26,
+      "elevationM": 512
+    },
+    {
+      "distanceKm": 6.304,
+      "elevationM": 512
+    },
+    {
+      "distanceKm": 6.319,
+      "elevationM": 511
+    },
+    {
+      "distanceKm": 6.329,
+      "elevationM": 512
+    },
+    {
+      "distanceKm": 6.344,
+      "elevationM": 513
+    },
+    {
+      "distanceKm": 6.367,
+      "elevationM": 512
+    },
+    {
+      "distanceKm": 6.397,
+      "elevationM": 511
+    },
+    {
+      "distanceKm": 6.446,
+      "elevationM": 510
+    },
+    {
+      "distanceKm": 6.488,
+      "elevationM": 506
+    },
+    {
+      "distanceKm": 6.534,
+      "elevationM": 504
+    },
+    {
+      "distanceKm": 6.563,
+      "elevationM": 504
+    },
+    {
+      "distanceKm": 6.594,
+      "elevationM": 504
+    },
+    {
+      "distanceKm": 6.639,
+      "elevationM": 505
+    },
+    {
+      "distanceKm": 6.672,
+      "elevationM": 508
+    },
+    {
+      "distanceKm": 6.686,
+      "elevationM": 508
+    },
+    {
+      "distanceKm": 6.704,
+      "elevationM": 508
+    },
+    {
+      "distanceKm": 6.724,
+      "elevationM": 509
+    },
+    {
+      "distanceKm": 6.743,
+      "elevationM": 508
+    },
+    {
+      "distanceKm": 6.766,
+      "elevationM": 508
+    },
+    {
+      "distanceKm": 6.79,
+      "elevationM": 505
+    },
+    {
+      "distanceKm": 6.797,
+      "elevationM": 508
+    },
+    {
+      "distanceKm": 6.805,
+      "elevationM": 508
+    },
+    {
+      "distanceKm": 6.833,
+      "elevationM": 502
+    },
+    {
+      "distanceKm": 6.853,
+      "elevationM": 499
+    },
+    {
+      "distanceKm": 6.876,
+      "elevationM": 496
+    },
+    {
+      "distanceKm": 6.909,
+      "elevationM": 488
+    },
+    {
+      "distanceKm": 6.921,
+      "elevationM": 486
+    },
+    {
+      "distanceKm": 6.942,
+      "elevationM": 481
+    },
+    {
+      "distanceKm": 6.965,
+      "elevationM": 475
+    },
+    {
+      "distanceKm": 6.978,
+      "elevationM": 473
+    },
+    {
+      "distanceKm": 6.99,
+      "elevationM": 468
+    },
+    {
+      "distanceKm": 7.001,
+      "elevationM": 466
+    },
+    {
+      "distanceKm": 7.008,
+      "elevationM": 463
+    },
+    {
+      "distanceKm": 7.016,
+      "elevationM": 463
+    },
+    {
+      "distanceKm": 7.024,
+      "elevationM": 461
+    },
+    {
+      "distanceKm": 7.032,
+      "elevationM": 460
+    },
+    {
+      "distanceKm": 7.043,
+      "elevationM": 458
+    },
+    {
+      "distanceKm": 7.067,
+      "elevationM": 456
+    },
+    {
+      "distanceKm": 7.079,
+      "elevationM": 455
+    },
+    {
+      "distanceKm": 7.101,
+      "elevationM": 453
+    },
+    {
+      "distanceKm": 7.129,
+      "elevationM": 448
+    },
+    {
+      "distanceKm": 7.155,
+      "elevationM": 446
+    },
+    {
+      "distanceKm": 7.173,
+      "elevationM": 442
+    },
+    {
+      "distanceKm": 7.193,
+      "elevationM": 444
+    },
+    {
+      "distanceKm": 7.216,
+      "elevationM": 441
+    },
+    {
+      "distanceKm": 7.244,
+      "elevationM": 441
+    },
+    {
+      "distanceKm": 7.276,
+      "elevationM": 437
+    },
+    {
+      "distanceKm": 7.308,
+      "elevationM": 433
+    },
+    {
+      "distanceKm": 7.352,
+      "elevationM": 431
+    },
+    {
+      "distanceKm": 7.386,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 7.414,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 7.444,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 7.483,
+      "elevationM": 427
+    },
+    {
+      "distanceKm": 7.522,
+      "elevationM": 421
+    },
+    {
+      "distanceKm": 7.586,
+      "elevationM": 418
+    },
+    {
+      "distanceKm": 7.62,
+      "elevationM": 410
+    },
+    {
+      "distanceKm": 7.681,
+      "elevationM": 410
+    },
+    {
+      "distanceKm": 7.73,
+      "elevationM": 407
+    },
+    {
+      "distanceKm": 7.738,
+      "elevationM": 409
+    },
+    {
+      "distanceKm": 7.758,
+      "elevationM": 404
+    },
+    {
+      "distanceKm": 7.765,
+      "elevationM": 404
+    },
+    {
+      "distanceKm": 7.782,
+      "elevationM": 399
+    },
+    {
+      "distanceKm": 7.788,
+      "elevationM": 399
+    },
+    {
+      "distanceKm": 7.8,
+      "elevationM": 396
+    },
+    {
+      "distanceKm": 7.809,
+      "elevationM": 394
+    },
+    {
+      "distanceKm": 7.821,
+      "elevationM": 391
+    },
+    {
+      "distanceKm": 7.838,
+      "elevationM": 386
+    },
+    {
+      "distanceKm": 7.86,
+      "elevationM": 386
+    },
+    {
+      "distanceKm": 7.88,
+      "elevationM": 384
+    },
+    {
+      "distanceKm": 7.894,
+      "elevationM": 386
+    },
+    {
+      "distanceKm": 7.904,
+      "elevationM": 387
+    },
+    {
+      "distanceKm": 7.909,
+      "elevationM": 390
+    },
+    {
+      "distanceKm": 7.93,
+      "elevationM": 393
+    },
+    {
+      "distanceKm": 7.965,
+      "elevationM": 395
+    },
+    {
+      "distanceKm": 7.975,
+      "elevationM": 395
+    },
+    {
+      "distanceKm": 7.977,
+      "elevationM": 395
+    }
+  ],
+  "computed": {
+    "distanceKm": 7.98,
+    "elevationGainM": 308,
+    "elevationLossM": 274,
+    "minElevationM": 359,
+    "maxElevationM": 558,
+    "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+  }
+}

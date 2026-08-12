@@ -1,0 +1,1920 @@
+{
+  "generatedAt": "2026-08-12T13:46:30.445Z",
+  "year": 2026,
+  "event": {
+    "id": "templiers",
+    "name": "Festival des Templiers",
+    "slug": "templiers",
+    "country": "France",
+    "region": "Occitanie",
+    "city": "Millau",
+    "officialWebsite": "https://www.festivaldestempliers.com"
+  },
+  "status": "PARTIAL",
+  "sourceErrors": [],
+  "races": [
+    {
+      "event": {
+        "id": "templiers",
+        "name": "Festival des Templiers",
+        "slug": "templiers",
+        "country": "France",
+        "region": "Occitanie",
+        "city": "Millau",
+        "officialWebsite": "https://www.festivaldestempliers.com"
+      },
+      "race": {
+        "id": "templiers-endurance-trail",
+        "eventId": "templiers",
+        "name": "Endurance Trail",
+        "shortName": "Endurance Trail"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-16",
+        "startTime": "04:00",
+        "distanceKm": 99.5,
+        "elevationGainM": 4304,
+        "elevationLossM": null,
+        "startLocation": "Millau",
+        "finishLocation": "Millau",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": null,
+        "gpxUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325091&format=gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://tracedetrail.fr/fr/trace/325091",
+          "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325091&format=gpx",
+          "downloadMethod": "POST",
+          "downloadParams": {
+            "traceID": "325091",
+            "format": "gpx",
+            "trace": "1",
+            "pi": "0",
+            "waytypes": "0",
+            "devneg": "0",
+            "devpos": "0",
+            "distance": "0",
+            "dir": "0",
+            "download": "1"
+          },
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "trace-de-trail",
+          "retrievedAt": "2026-08-12T13:46:21.327Z",
+          "localFile": "gpx/2026/templiers/endurance-trail.gpx",
+          "routeAsset": "generated/routes/templiers-endurance-trail-2026.json",
+          "sha256": "f3788b8312d50eaa25e794bd8c427ff47feccc87e0f4f5f43f607a1b80a29c8f",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 4634,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 100.94,
+            "elevationGainM": 5751,
+            "elevationLossM": 5716,
+            "minElevationM": 359,
+            "maxElevationM": 899,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.festivaldestempliers.com/wp-content/uploads/2025/12/GregAlric-.jpg",
+          "alt": "Festival des Templiers - Endurance Trail",
+          "sourceUrl": "https://www.festivaldestempliers.com/l/"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [
+          {
+            "name": "Le Rozier",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Parking Vautours ACCES INTERDIT : route fermée au Rozier – accès vélo autorisé – pas de navette bus) – assistance ravitaillement interdit",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": false,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Saint-André-de-Vézines",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "La Salvage",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Le Cade",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.festivaldestempliers.com/l/",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:20.195Z",
+            "event": "Festival des Templiers",
+            "race": "Endurance Trail"
+          },
+          {
+            "url": "https://www.festivaldestempliers.com/infos_pratiques/",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "event": "Festival des Templiers",
+            "race": "Endurance Trail"
+          },
+          {
+            "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325091&format=gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:46:21.327Z",
+            "event": "Festival des Templiers",
+            "race": "Endurance Trail"
+          },
+          {
+            "url": "https://tracedetrail.fr/fr/trace/325091",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-12T13:46:21.327Z",
+            "event": "Festival des Templiers",
+            "race": "Endurance Trail"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 43.26,
+        "kmEffort": 142.54
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
+          "Official page lists aid stations but their distances require a separate linked detail page.",
+          "GPX_CHANGED: Le GPX officiel de Festival des Templiers Endurance Trail 2026 a changé depuis la dernière collecte.",
+          "GPX_ELEVATION_GAIN_MISMATCH: official=4304 computed=5751",
+          "Barriers/checkpoints not found in official source.",
+          "Aid station distance unknown: Le Rozier",
+          "Aid station distance unknown: Parking Vautours ACCES INTERDIT : route fermée au Rozier – accès vélo autorisé – pas de navette bus) – assistance ravitaillement interdit",
+          "Aid station distance unknown: Saint-André-de-Vézines",
+          "Aid station distance unknown: La Salvage",
+          "Aid station distance unknown: Le Cade"
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "templiers",
+        "name": "Festival des Templiers",
+        "slug": "templiers",
+        "country": "France",
+        "region": "Occitanie",
+        "city": "Millau",
+        "officialWebsite": "https://www.festivaldestempliers.com"
+      },
+      "race": {
+        "id": "templiers-integrale-des-causses",
+        "eventId": "templiers",
+        "name": "Integrale des Causses",
+        "shortName": "Integrale des Causses"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-16",
+        "startTime": "06:30",
+        "distanceKm": 62,
+        "elevationGainM": 2695,
+        "elevationLossM": null,
+        "startLocation": "Millau",
+        "finishLocation": "Millau",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325089&format=gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://tracedetrail.fr/fr/trace/325089",
+          "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325089&format=gpx",
+          "downloadMethod": "POST",
+          "downloadParams": {
+            "traceID": "325089",
+            "format": "gpx",
+            "trace": "1",
+            "pi": "0",
+            "waytypes": "0",
+            "devneg": "0",
+            "devpos": "0",
+            "distance": "0",
+            "dir": "0",
+            "download": "1"
+          },
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "trace-de-trail",
+          "retrievedAt": "2026-08-12T13:46:21.965Z",
+          "localFile": "gpx/2026/templiers/integrale-des-causses.gpx",
+          "routeAsset": "generated/routes/templiers-integrale-des-causses-2026.json",
+          "sha256": "f57401399fe2a713fcc70e6c1d983438fcd434a06f7578c8f8cbeb196086f6e4",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 2839,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 60.27,
+            "elevationGainM": 3357,
+            "elevationLossM": 3388,
+            "minElevationM": 366,
+            "maxElevationM": 899,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.festivaldestempliers.com/wp-content/uploads/2025/12/GregAlric-7409164.jpg",
+          "alt": "Festival des Templiers - Integrale des Causses",
+          "sourceUrl": "https://www.festivaldestempliers.com/lintegrale-des-causses/"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [
+          {
+            "name": "St André de Vézines",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "La Salvage",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Le Cade",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.festivaldestempliers.com/lintegrale-des-causses/",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:20.266Z",
+            "event": "Festival des Templiers",
+            "race": "Integrale des Causses"
+          },
+          {
+            "url": "https://www.festivaldestempliers.com/infos_pratiques/",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "event": "Festival des Templiers",
+            "race": "Integrale des Causses"
+          },
+          {
+            "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325089&format=gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:46:21.965Z",
+            "event": "Festival des Templiers",
+            "race": "Integrale des Causses"
+          },
+          {
+            "url": "https://tracedetrail.fr/fr/trace/325089",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-12T13:46:21.965Z",
+            "event": "Festival des Templiers",
+            "race": "Integrale des Causses"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 43.47,
+        "kmEffort": 88.95
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page lists aid stations but their distances require a separate linked detail page.",
+          "GPX_CHANGED: Le GPX officiel de Festival des Templiers Integrale des Causses 2026 a changé depuis la dernière collecte.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid station distance unknown: St André de Vézines",
+          "Aid station distance unknown: La Salvage",
+          "Aid station distance unknown: Le Cade"
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "templiers",
+        "name": "Festival des Templiers",
+        "slug": "templiers",
+        "country": "France",
+        "region": "Occitanie",
+        "city": "Millau",
+        "officialWebsite": "https://www.festivaldestempliers.com"
+      },
+      "race": {
+        "id": "templiers-marathon-du-larzac",
+        "eventId": "templiers",
+        "name": "Marathon du Larzac",
+        "shortName": "Marathon du Larzac"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-16",
+        "startTime": "07:00",
+        "distanceKm": 33.3,
+        "elevationGainM": 1400,
+        "elevationLossM": null,
+        "startLocation": "Millau",
+        "finishLocation": "Millau",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325087&format=gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://tracedetrail.fr/fr/trace/325087",
+          "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325087&format=gpx",
+          "downloadMethod": "POST",
+          "downloadParams": {
+            "traceID": "325087",
+            "format": "gpx",
+            "trace": "1",
+            "pi": "0",
+            "waytypes": "0",
+            "devneg": "0",
+            "devpos": "0",
+            "distance": "0",
+            "dir": "0",
+            "download": "1"
+          },
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "trace-de-trail",
+          "retrievedAt": "2026-08-12T13:46:22.397Z",
+          "localFile": "gpx/2026/templiers/marathon-du-larzac.gpx",
+          "routeAsset": "generated/routes/templiers-marathon-du-larzac-2026.json",
+          "sha256": "19ce0e01d22a8112ce6ce4a2d897949219a31403c53cef8d27c3f7845bad7f42",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 1170,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 32.91,
+            "elevationGainM": 1475,
+            "elevationLossM": 1815,
+            "minElevationM": 366,
+            "maxElevationM": 858,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.festivaldestempliers.com/wp-content/uploads/2019/12/photo-marathon-du-Larzac-2-2020-a.jpg",
+          "alt": "Festival des Templiers - Marathon du Larzac",
+          "sourceUrl": "https://www.festivaldestempliers.com/marathon-du-larzac-3/"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [
+          {
+            "name": "Mas de Bru",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Le Cade",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.festivaldestempliers.com/marathon-du-larzac-3/",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:20.353Z",
+            "event": "Festival des Templiers",
+            "race": "Marathon du Larzac"
+          },
+          {
+            "url": "https://www.festivaldestempliers.com/infos_pratiques/",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "event": "Festival des Templiers",
+            "race": "Marathon du Larzac"
+          },
+          {
+            "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325087&format=gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:46:22.397Z",
+            "event": "Festival des Templiers",
+            "race": "Marathon du Larzac"
+          },
+          {
+            "url": "https://tracedetrail.fr/fr/trace/325087",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-12T13:46:22.397Z",
+            "event": "Festival des Templiers",
+            "race": "Marathon du Larzac"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 42.04,
+        "kmEffort": 47.3
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page lists aid stations but their distances require a separate linked detail page.",
+          "GPX_CHANGED: Le GPX officiel de Festival des Templiers Marathon du Larzac 2026 a changé depuis la dernière collecte.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid station distance unknown: Mas de Bru",
+          "Aid station distance unknown: Le Cade"
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "templiers",
+        "name": "Festival des Templiers",
+        "slug": "templiers",
+        "country": "France",
+        "region": "Occitanie",
+        "city": "Millau",
+        "officialWebsite": "https://www.festivaldestempliers.com"
+      },
+      "race": {
+        "id": "templiers-boffi-fifty",
+        "eventId": "templiers",
+        "name": "Boffi Fifty",
+        "shortName": "Boffi Fifty"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-17",
+        "startTime": "06:40",
+        "distanceKm": 47.3,
+        "elevationGainM": 2208,
+        "elevationLossM": null,
+        "startLocation": "Millau",
+        "finishLocation": "Millau",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325088&format=gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://tracedetrail.fr/fr/trace/325088",
+          "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325088&format=gpx",
+          "downloadMethod": "POST",
+          "downloadParams": {
+            "traceID": "325088",
+            "format": "gpx",
+            "trace": "1",
+            "pi": "0",
+            "waytypes": "0",
+            "devneg": "0",
+            "devpos": "0",
+            "distance": "0",
+            "dir": "0",
+            "download": "1"
+          },
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "trace-de-trail",
+          "retrievedAt": "2026-08-12T13:46:22.679Z",
+          "localFile": "gpx/2026/templiers/boffi-fifty.gpx",
+          "routeAsset": "generated/routes/templiers-boffi-fifty-2026.json",
+          "sha256": "7d1156e766f9d99815da124c53909053a1bd7fe2dac7e3810b4d4607c7ddc488",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 2315,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 47.64,
+            "elevationGainM": 2587,
+            "elevationLossM": 2551,
+            "minElevationM": 359,
+            "maxElevationM": 858,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.festivaldestempliers.com/wp-content/uploads/2026/03/Banniere-2048x400-1-1024x200.jpg",
+          "alt": "Festival des Templiers - Boffi Fifty",
+          "sourceUrl": "https://www.festivaldestempliers.com/boffi-fifty/"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [
+          {
+            "name": "Lauglanou",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Le Cade",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.festivaldestempliers.com/boffi-fifty/",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:20.430Z",
+            "event": "Festival des Templiers",
+            "race": "Boffi Fifty"
+          },
+          {
+            "url": "https://www.festivaldestempliers.com/infos_pratiques/",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "event": "Festival des Templiers",
+            "race": "Boffi Fifty"
+          },
+          {
+            "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325088&format=gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:46:22.679Z",
+            "event": "Festival des Templiers",
+            "race": "Boffi Fifty"
+          },
+          {
+            "url": "https://tracedetrail.fr/fr/trace/325088",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-12T13:46:22.679Z",
+            "event": "Festival des Templiers",
+            "race": "Boffi Fifty"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 46.68,
+        "kmEffort": 69.38
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
+          "Official page lists aid stations but their distances require a separate linked detail page.",
+          "GPX_CHANGED: Le GPX officiel de Festival des Templiers Boffi Fifty 2026 a changé depuis la dernière collecte.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid station distance unknown: Lauglanou",
+          "Aid station distance unknown: Le Cade"
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "templiers",
+        "name": "Festival des Templiers",
+        "slug": "templiers",
+        "country": "France",
+        "region": "Occitanie",
+        "city": "Millau",
+        "officialWebsite": "https://www.festivaldestempliers.com"
+      },
+      "race": {
+        "id": "templiers-dourbie-formi",
+        "eventId": "templiers",
+        "name": "Dourbie Formi",
+        "shortName": "Dourbie Formi"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-17",
+        "startTime": "07:10",
+        "distanceKm": 23.1,
+        "elevationGainM": 1229,
+        "elevationLossM": null,
+        "startLocation": "Millau",
+        "finishLocation": "Millau",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325084&format=gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://tracedetrail.fr/fr/trace/325084",
+          "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325084&format=gpx",
+          "downloadMethod": "POST",
+          "downloadParams": {
+            "traceID": "325084",
+            "format": "gpx",
+            "trace": "1",
+            "pi": "0",
+            "waytypes": "0",
+            "devneg": "0",
+            "devpos": "0",
+            "distance": "0",
+            "dir": "0",
+            "download": "1"
+          },
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "trace-de-trail",
+          "retrievedAt": "2026-08-12T13:46:23.044Z",
+          "localFile": "gpx/2026/templiers/dourbie-formi.gpx",
+          "routeAsset": "generated/routes/templiers-dourbie-formi-2026.json",
+          "sha256": "77982de716ff6a3d2399070f6de4c7b9de835f915838cb7a819aa4dc3af29306",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 1488,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 22.76,
+            "elevationGainM": 1565,
+            "elevationLossM": 1533,
+            "minElevationM": 357,
+            "maxElevationM": 764,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.festivaldestempliers.com/wp-content/uploads/2023/09/FB_IMG_1671010167580.jpeg",
+          "alt": "Festival des Templiers - Dourbie Formi",
+          "sourceUrl": "https://www.festivaldestempliers.com/dourbie-formi-2/"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [
+          {
+            "name": "Massebiau",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.festivaldestempliers.com/dourbie-formi-2/",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:20.510Z",
+            "event": "Festival des Templiers",
+            "race": "Dourbie Formi"
+          },
+          {
+            "url": "https://www.festivaldestempliers.com/infos_pratiques/",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "event": "Festival des Templiers",
+            "race": "Dourbie Formi"
+          },
+          {
+            "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325084&format=gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:46:23.044Z",
+            "event": "Festival des Templiers",
+            "race": "Dourbie Formi"
+          },
+          {
+            "url": "https://tracedetrail.fr/fr/trace/325084",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-12T13:46:23.044Z",
+            "event": "Festival des Templiers",
+            "race": "Dourbie Formi"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 53.2,
+        "kmEffort": 35.39
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
+          "Official page lists aid stations but their distances require a separate linked detail page.",
+          "GPX_CHANGED: Le GPX officiel de Festival des Templiers Dourbie Formi 2026 a changé depuis la dernière collecte.",
+          "GPX_ELEVATION_GAIN_MISMATCH: official=1229 computed=1565",
+          "Barriers/checkpoints not found in official source.",
+          "Aid station distance unknown: Massebiau"
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "templiers",
+        "name": "Festival des Templiers",
+        "slug": "templiers",
+        "country": "France",
+        "region": "Occitanie",
+        "city": "Millau",
+        "officialWebsite": "https://www.festivaldestempliers.com"
+      },
+      "race": {
+        "id": "templiers-monna-lisa",
+        "eventId": "templiers",
+        "name": "Monna Lisa",
+        "shortName": "Monna Lisa"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-17",
+        "startTime": "09:25",
+        "distanceKm": 30,
+        "elevationGainM": 1175,
+        "elevationLossM": null,
+        "startLocation": "Millau",
+        "finishLocation": "Millau",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325085&format=gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://tracedetrail.fr/fr/trace/325085",
+          "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325085&format=gpx",
+          "downloadMethod": "POST",
+          "downloadParams": {
+            "traceID": "325085",
+            "format": "gpx",
+            "trace": "1",
+            "pi": "0",
+            "waytypes": "0",
+            "devneg": "0",
+            "devpos": "0",
+            "distance": "0",
+            "dir": "0",
+            "download": "1"
+          },
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "trace-de-trail",
+          "retrievedAt": "2026-08-12T13:46:23.368Z",
+          "localFile": "gpx/2026/templiers/monna-lisa.gpx",
+          "routeAsset": "generated/routes/templiers-monna-lisa-2026.json",
+          "sha256": "3bb2535365ea48a7bbab21cd50c80972f5c16eef2b05ca3abad616d906fb57a1",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 1120,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 31.82,
+            "elevationGainM": 1222,
+            "elevationLossM": 1182,
+            "minElevationM": 359,
+            "maxElevationM": 842,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.festivaldestempliers.com/wp-content/uploads/2019/12/photo-Monna-Lisa-2020-a.jpg",
+          "alt": "Festival des Templiers - Monna Lisa",
+          "sourceUrl": "https://www.festivaldestempliers.com/la-monna-lisa-trail/"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [
+          {
+            "name": "Betpaumes",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Lauglanou",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.festivaldestempliers.com/la-monna-lisa-trail/",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:20.582Z",
+            "event": "Festival des Templiers",
+            "race": "Monna Lisa"
+          },
+          {
+            "url": "https://www.festivaldestempliers.com/infos_pratiques/",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "event": "Festival des Templiers",
+            "race": "Monna Lisa"
+          },
+          {
+            "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325085&format=gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:46:23.368Z",
+            "event": "Festival des Templiers",
+            "race": "Monna Lisa"
+          },
+          {
+            "url": "https://tracedetrail.fr/fr/trace/325085",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-12T13:46:23.368Z",
+            "event": "Festival des Templiers",
+            "race": "Monna Lisa"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 39.17,
+        "kmEffort": 41.75
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
+          "Official page lists aid stations but their distances require a separate linked detail page.",
+          "GPX_CHANGED: Le GPX officiel de Festival des Templiers Monna Lisa 2026 a changé depuis la dernière collecte.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid station distance unknown: Betpaumes",
+          "Aid station distance unknown: Lauglanou"
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "templiers",
+        "name": "Festival des Templiers",
+        "slug": "templiers",
+        "country": "France",
+        "region": "Occitanie",
+        "city": "Millau",
+        "officialWebsite": "https://www.festivaldestempliers.com"
+      },
+      "race": {
+        "id": "templiers-marathon-des-causses",
+        "eventId": "templiers",
+        "name": "Marathon des Causses",
+        "shortName": "Marathon des Causses"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-17",
+        "startTime": "12:10",
+        "distanceKm": 34.1,
+        "elevationGainM": 1581,
+        "elevationLossM": null,
+        "startLocation": "Millau",
+        "finishLocation": "Millau",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325087&format=gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://tracedetrail.fr/fr/trace/325087",
+          "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325087&format=gpx",
+          "downloadMethod": "POST",
+          "downloadParams": {
+            "traceID": "325087",
+            "format": "gpx",
+            "trace": "1",
+            "pi": "0",
+            "waytypes": "0",
+            "devneg": "0",
+            "devpos": "0",
+            "distance": "0",
+            "dir": "0",
+            "download": "1"
+          },
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "trace-de-trail",
+          "retrievedAt": "2026-08-12T13:46:23.624Z",
+          "localFile": "gpx/2026/templiers/marathon-des-causses.gpx",
+          "routeAsset": "generated/routes/templiers-marathon-des-causses-2026.json",
+          "sha256": "62c9c2c0b20cb1479242ecb51840df981cee6a6990ac5bd56e96cac8083ed7fe",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 1170,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 32.91,
+            "elevationGainM": 1475,
+            "elevationLossM": 1815,
+            "minElevationM": 366,
+            "maxElevationM": 858,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.festivaldestempliers.com/wp-content/uploads/2023/08/DSC00873.jpg",
+          "alt": "Festival des Templiers - Marathon des Causses",
+          "sourceUrl": "https://www.festivaldestempliers.com/le-marathon-des-causses/"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [
+          {
+            "name": "Lauglanou",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Le Cade",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.festivaldestempliers.com/le-marathon-des-causses/",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:20.666Z",
+            "event": "Festival des Templiers",
+            "race": "Marathon des Causses"
+          },
+          {
+            "url": "https://www.festivaldestempliers.com/infos_pratiques/",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "event": "Festival des Templiers",
+            "race": "Marathon des Causses"
+          },
+          {
+            "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325087&format=gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:46:23.624Z",
+            "event": "Festival des Templiers",
+            "race": "Marathon des Causses"
+          },
+          {
+            "url": "https://tracedetrail.fr/fr/trace/325087",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-12T13:46:23.624Z",
+            "event": "Festival des Templiers",
+            "race": "Marathon des Causses"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 46.36,
+        "kmEffort": 49.91
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
+          "Official page lists aid stations but their distances require a separate linked detail page.",
+          "GPX_CHANGED: Le GPX officiel de Festival des Templiers Marathon des Causses 2026 a changé depuis la dernière collecte.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid station distance unknown: Lauglanou",
+          "Aid station distance unknown: Le Cade"
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "templiers",
+        "name": "Festival des Templiers",
+        "slug": "templiers",
+        "country": "France",
+        "region": "Occitanie",
+        "city": "Millau",
+        "officialWebsite": "https://www.festivaldestempliers.com"
+      },
+      "race": {
+        "id": "templiers-troubadours",
+        "eventId": "templiers",
+        "name": "Trail des Troubadours",
+        "shortName": "Troubadours"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-17",
+        "startTime": "14:30",
+        "distanceKm": 11.8,
+        "elevationGainM": 530,
+        "elevationLossM": null,
+        "startLocation": "Millau",
+        "finishLocation": "Millau",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325081&format=gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://tracedetrail.fr/fr/trace/325081",
+          "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325081&format=gpx",
+          "downloadMethod": "POST",
+          "downloadParams": {
+            "traceID": "325081",
+            "format": "gpx",
+            "trace": "1",
+            "pi": "0",
+            "waytypes": "0",
+            "devneg": "0",
+            "devpos": "0",
+            "distance": "0",
+            "dir": "0",
+            "download": "1"
+          },
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "trace-de-trail",
+          "retrievedAt": "2026-08-12T13:46:23.924Z",
+          "localFile": "gpx/2026/templiers/troubadours.gpx",
+          "routeAsset": "generated/routes/templiers-troubadours-2026.json",
+          "sha256": "8c1ffd516def80890a3f40a9496c1443676b1aba1656efa3109120d951788532",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 471,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 12.09,
+            "elevationGainM": 568,
+            "elevationLossM": 535,
+            "minElevationM": 360,
+            "maxElevationM": 627,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.festivaldestempliers.com/wp-content/uploads/2023/09/DSC01015.jpeg",
+          "alt": "Festival des Templiers - Troubadours",
+          "sourceUrl": "https://www.festivaldestempliers.com/troubadours/"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.festivaldestempliers.com/troubadours/",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:20.733Z",
+            "event": "Festival des Templiers",
+            "race": "Troubadours"
+          },
+          {
+            "url": "https://www.festivaldestempliers.com/infos_pratiques/",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "event": "Festival des Templiers",
+            "race": "Troubadours"
+          },
+          {
+            "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325081&format=gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:46:23.924Z",
+            "event": "Festival des Templiers",
+            "race": "Troubadours"
+          },
+          {
+            "url": "https://tracedetrail.fr/fr/trace/325081",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-12T13:46:23.924Z",
+            "event": "Festival des Templiers",
+            "race": "Troubadours"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 44.92,
+        "kmEffort": 17.1
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page states no eliminating time for this race.",
+          "GPX_CHANGED: Le GPX officiel de Festival des Templiers Troubadours 2026 a changé depuis la dernière collecte.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "templiers",
+        "name": "Festival des Templiers",
+        "slug": "templiers",
+        "country": "France",
+        "region": "Occitanie",
+        "city": "Millau",
+        "officialWebsite": "https://www.festivaldestempliers.com"
+      },
+      "race": {
+        "id": "templiers-vo2-trail",
+        "eventId": "templiers",
+        "name": "VO2 Trail",
+        "shortName": "VO2 Trail"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-17",
+        "startTime": "16:00",
+        "distanceKm": 17.1,
+        "elevationGainM": 695,
+        "elevationLossM": null,
+        "startLocation": "Millau",
+        "finishLocation": "Millau",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325083&format=gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://tracedetrail.fr/fr/trace/325083",
+          "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325083&format=gpx",
+          "downloadMethod": "POST",
+          "downloadParams": {
+            "traceID": "325083",
+            "format": "gpx",
+            "trace": "1",
+            "pi": "0",
+            "waytypes": "0",
+            "devneg": "0",
+            "devpos": "0",
+            "distance": "0",
+            "dir": "0",
+            "download": "1"
+          },
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "trace-de-trail",
+          "retrievedAt": "2026-08-12T13:46:24.134Z",
+          "localFile": "gpx/2026/templiers/vo2-trail.gpx",
+          "routeAsset": "generated/routes/templiers-vo2-trail-2026.json",
+          "sha256": "718bee59593365b7e0a918d29bd94ddc7db41e06e5149a34ca38124c1ee94374",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 761,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 17.68,
+            "elevationGainM": 778,
+            "elevationLossM": 745,
+            "minElevationM": 359,
+            "maxElevationM": 845,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.festivaldestempliers.com/wp-content/uploads/2026/03/Banniere-2048x400-1.jpg",
+          "alt": "Festival des Templiers - VO2 Trail",
+          "sourceUrl": "https://www.festivaldestempliers.com/vo2-trail/"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [
+          {
+            "name": "Lauglanou",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.festivaldestempliers.com/vo2-trail/",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:20.815Z",
+            "event": "Festival des Templiers",
+            "race": "VO2 Trail"
+          },
+          {
+            "url": "https://www.festivaldestempliers.com/infos_pratiques/",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "event": "Festival des Templiers",
+            "race": "VO2 Trail"
+          },
+          {
+            "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325083&format=gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:46:24.134Z",
+            "event": "Festival des Templiers",
+            "race": "VO2 Trail"
+          },
+          {
+            "url": "https://tracedetrail.fr/fr/trace/325083",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-12T13:46:24.134Z",
+            "event": "Festival des Templiers",
+            "race": "VO2 Trail"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 40.64,
+        "kmEffort": 24.05
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
+          "Official page lists aid stations but their distances require a separate linked detail page.",
+          "GPX_CHANGED: Le GPX officiel de Festival des Templiers VO2 Trail 2026 a changé depuis la dernière collecte.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid station distance unknown: Lauglanou"
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "templiers",
+        "name": "Festival des Templiers",
+        "slug": "templiers",
+        "country": "France",
+        "region": "Occitanie",
+        "city": "Millau",
+        "officialWebsite": "https://www.festivaldestempliers.com"
+      },
+      "race": {
+        "id": "templiers-templiere",
+        "eventId": "templiers",
+        "name": "La Templiere",
+        "shortName": "Templiere"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-17",
+        "startTime": "13:45",
+        "distanceKm": 7.7,
+        "elevationGainM": 288,
+        "elevationLossM": null,
+        "startLocation": "Millau",
+        "finishLocation": "Millau",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325080&format=gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://tracedetrail.fr/fr/trace/325080",
+          "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325080&format=gpx",
+          "downloadMethod": "POST",
+          "downloadParams": {
+            "traceID": "325080",
+            "format": "gpx",
+            "trace": "1",
+            "pi": "0",
+            "waytypes": "0",
+            "devneg": "0",
+            "devpos": "0",
+            "distance": "0",
+            "dir": "0",
+            "download": "1"
+          },
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "trace-de-trail",
+          "retrievedAt": "2026-08-12T13:46:24.342Z",
+          "localFile": "gpx/2026/templiers/templiere.gpx",
+          "routeAsset": "generated/routes/templiers-templiere-2026.json",
+          "sha256": "e4271f46201cb25f4936367b1b50f6341eed9ef218ed031a68f3f6509670d36b",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 308,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 7.98,
+            "elevationGainM": 308,
+            "elevationLossM": 274,
+            "minElevationM": 359,
+            "maxElevationM": 558,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.festivaldestempliers.com/wp-content/uploads/2014/11/boxTempliere.jpg",
+          "alt": "Festival des Templiers - Templiere",
+          "sourceUrl": "https://www.festivaldestempliers.com/templiere/"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.festivaldestempliers.com/templiere/",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:20.890Z",
+            "event": "Festival des Templiers",
+            "race": "Templiere"
+          },
+          {
+            "url": "https://www.festivaldestempliers.com/infos_pratiques/",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "event": "Festival des Templiers",
+            "race": "Templiere"
+          },
+          {
+            "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325080&format=gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:46:24.342Z",
+            "event": "Festival des Templiers",
+            "race": "Templiere"
+          },
+          {
+            "url": "https://tracedetrail.fr/fr/trace/325080",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-12T13:46:24.342Z",
+            "event": "Festival des Templiers",
+            "race": "Templiere"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 37.4,
+        "kmEffort": 10.58
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page states no eliminating time for this race.",
+          "GPX_CHANGED: Le GPX officiel de Festival des Templiers Templiere 2026 a changé depuis la dernière collecte.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "templiers",
+        "name": "Festival des Templiers",
+        "slug": "templiers",
+        "country": "France",
+        "region": "Occitanie",
+        "city": "Millau",
+        "officialWebsite": "https://www.festivaldestempliers.com"
+      },
+      "race": {
+        "id": "templiers-grand-trail",
+        "eventId": "templiers",
+        "name": "Grand Trail des Templiers",
+        "shortName": "Grand Trail"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-18",
+        "startTime": "05:10",
+        "distanceKm": 80.7,
+        "elevationGainM": 3443,
+        "elevationLossM": null,
+        "startLocation": "Millau",
+        "finishLocation": "Millau",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": null,
+        "gpxUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325090&format=gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://tracedetrail.fr/fr/trace/325090",
+          "downloadUrl": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325090&format=gpx",
+          "downloadMethod": "POST",
+          "downloadParams": {
+            "traceID": "325090",
+            "format": "gpx",
+            "trace": "1",
+            "pi": "0",
+            "waytypes": "0",
+            "devneg": "0",
+            "devpos": "0",
+            "distance": "0",
+            "dir": "0",
+            "download": "1"
+          },
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "trace-de-trail",
+          "retrievedAt": "2026-08-12T13:46:24.534Z",
+          "localFile": "gpx/2026/templiers/grand-trail.gpx",
+          "routeAsset": "generated/routes/templiers-grand-trail-2026.json",
+          "sha256": "b9b32d1a45cd03b93390398756112121f42aac57cc55f68c91de93678c0e0020",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 3468,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 79.08,
+            "elevationGainM": 4040,
+            "elevationLossM": 4004,
+            "minElevationM": 360,
+            "maxElevationM": 899,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.festivaldestempliers.com/wp-content/uploads/2025/12/Templiers2025_J3_GSalem_HD-66.jpg",
+          "alt": "Festival des Templiers - Grand Trail",
+          "sourceUrl": "https://www.festivaldestempliers.com/grand-trail-des-templiers/"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [
+          {
+            "name": "Peyreleau ASSISTANCE INTERDITE",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": false,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Saint-André-de-Vézines",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "La Salvage",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Ferme du Cade",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.festivaldestempliers.com/grand-trail-des-templiers/",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:20.972Z",
+            "event": "Festival des Templiers",
+            "race": "Grand Trail"
+          },
+          {
+            "url": "https://www.festivaldestempliers.com/infos_pratiques/",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "event": "Festival des Templiers",
+            "race": "Grand Trail"
+          },
+          {
+            "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325090&format=gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:46:24.534Z",
+            "event": "Festival des Templiers",
+            "race": "Grand Trail"
+          },
+          {
+            "url": "https://tracedetrail.fr/fr/trace/325090",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-12T13:46:24.534Z",
+            "event": "Festival des Templiers",
+            "race": "Grand Trail"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 42.66,
+        "kmEffort": 115.13
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
+          "Official page lists aid stations but their distances require a separate linked detail page.",
+          "GPX_CHANGED: Le GPX officiel de Festival des Templiers Grand Trail 2026 a changé depuis la dernière collecte.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid station distance unknown: Peyreleau ASSISTANCE INTERDITE",
+          "Aid station distance unknown: Saint-André-de-Vézines",
+          "Aid station distance unknown: La Salvage",
+          "Aid station distance unknown: Ferme du Cade"
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints"
+        ]
+      }
+    }
+  ]
+}

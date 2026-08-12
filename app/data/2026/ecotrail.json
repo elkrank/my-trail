@@ -1,0 +1,308 @@
+{
+  "generatedAt": "2026-08-12T13:46:30.445Z",
+  "year": 2026,
+  "event": {
+    "id": "ecotrail",
+    "name": "EcoTrail Paris",
+    "slug": "ecotrail",
+    "country": "France",
+    "region": "Ile-de-France",
+    "city": "Paris",
+    "officialWebsite": "https://www.ecotrailparis.com"
+  },
+  "status": "PARTIAL",
+  "sourceErrors": [],
+  "races": [
+    {
+      "event": {
+        "id": "ecotrail",
+        "name": "EcoTrail Paris",
+        "slug": "ecotrail",
+        "country": "France",
+        "region": "Ile-de-France",
+        "city": "Paris",
+        "officialWebsite": "https://www.ecotrailparis.com"
+      },
+      "race": {
+        "id": "ecotrail-80-km-automne",
+        "eventId": "ecotrail",
+        "name": "Trail 80 km Automne",
+        "shortName": "80 km Automne"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-17",
+        "startTime": "11:00",
+        "distanceKm": 80,
+        "elevationGainM": 1100,
+        "elevationLossM": null,
+        "startLocation": "Ile de Loisirs de Cergy-Pontoise",
+        "finishLocation": "Secteur Bois de Boulogne",
+        "maxDurationMinutes": 720,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": null,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/68230b77200c97103cc051bb/69e795ad739c45d264f1e559_ECOTRAIL%202026-6L9A9109.jpg",
+          "alt": "EcoTrail Paris - 80 km Automne",
+          "sourceUrl": "https://www.ecotrailparis.com/course/trail-80-km-automne"
+        },
+        "terrainDescription": "Une aventure entre nature, patrimoine et défi sportif\n\nPensé pour les trailers en quête d'une expérience complète, le Trail 80km de l'édition automne prend son envol depuis l'Île de Loisirs de Cergy et son axe majeur, avant de plonger dans les grands espaces naturels du Nord-Ouest francilien. Forêt domaniale de Saint-Germain, Domaine de Marly, Domaine National de Saint-Cloud... autant de joyaux traversés avant une arrivée dans l'Ouest parisien.",
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": "full",
+          "lottery": null,
+          "maxParticipants": 2000,
+          "qualificationRequired": "Licence FFA 2026-2027 ou attestation PPS"
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [
+          "Réserve d'eau minimum",
+          "Réserve alimentaire",
+          "Gobelet 15cl minimum",
+          "Lampe frontale",
+          "Brassard réfléchissant",
+          "Couverture de survie",
+          "Téléphone mobile",
+          "Pièce d'identité",
+          "Moyen de paiement"
+        ],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": 1.5
+        },
+        "sources": [
+          {
+            "url": "https://www.ecotrailparis.com/course/trail-80-km-automne",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:24.889Z",
+            "event": "EcoTrail Paris",
+            "race": "80 km Automne"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 13.75,
+        "kmEffort": 91
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page links a roadbook/FAQ for practical details; cutoff and aid station tables were not found in the race page.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "ecotrail",
+        "name": "EcoTrail Paris",
+        "slug": "ecotrail",
+        "country": "France",
+        "region": "Ile-de-France",
+        "city": "Paris",
+        "officialWebsite": "https://www.ecotrailparis.com"
+      },
+      "race": {
+        "id": "ecotrail-50-km-automne",
+        "eventId": "ecotrail",
+        "name": "Trail 50 km Automne",
+        "shortName": "50 km Automne"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-17",
+        "startTime": "09:30",
+        "distanceKm": 50,
+        "elevationGainM": 800,
+        "elevationLossM": null,
+        "startLocation": "Domaine national du château de Saint-Germain-en-Laye",
+        "finishLocation": "Secteur Bois de Boulogne",
+        "maxDurationMinutes": 540,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": null,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/68230b77200c97103cc051bb/69e888a7035cd40f0f7ca97a_20260321_ECOTRAIL_Morgan-BOVE_142.jpg",
+          "alt": "EcoTrail Paris - 50 km Automne",
+          "sourceUrl": "https://www.ecotrailparis.com/course/trail-50-km-automne"
+        },
+        "terrainDescription": "Une aventure entre nature, patrimoine et défi sportif\n\nAvec son départ depuis le Domaine national du Château de Saint-Germain-en-Laye et sa mythique Terrasse aux panoramas sur la capitale, le Trail 50km offre un voyage au cœur des plus beaux domaines du Nord-Ouest francilien. Forêt domaniale de Saint-Germain, Domaine de Marly, Domaine National de Saint-Cloud... un enchaînement de paysages d'exception avant une arrivée dans l'Ouest parisien.",
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": "full",
+          "lottery": null,
+          "maxParticipants": 2000,
+          "qualificationRequired": "Licence FFA 2026-2027 ou attestation PPS"
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [
+          "Réserve d'eau minimum",
+          "Réserve alimentaire",
+          "Gobelet 15cl minimum",
+          "Couverture de survie",
+          "Téléphone mobile",
+          "Pièce d'identité",
+          "Moyen de paiement"
+        ],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": 1
+        },
+        "sources": [
+          {
+            "url": "https://www.ecotrailparis.com/course/trail-50-km-automne",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:25.138Z",
+            "event": "EcoTrail Paris",
+            "race": "50 km Automne"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 16,
+        "kmEffort": 58
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page links a roadbook/FAQ for practical details; cutoff and aid station tables were not found in the race page.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "ecotrail",
+        "name": "EcoTrail Paris",
+        "slug": "ecotrail",
+        "country": "France",
+        "region": "Ile-de-France",
+        "city": "Paris",
+        "officialWebsite": "https://www.ecotrailparis.com"
+      },
+      "race": {
+        "id": "ecotrail-20-km-automne",
+        "eventId": "ecotrail",
+        "name": "Trail 20 km Automne",
+        "shortName": "20 km Automne"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-10-17",
+        "startTime": "10:00",
+        "distanceKm": 20,
+        "elevationGainM": 200,
+        "elevationLossM": null,
+        "startLocation": "Tennis & golf des Haras de Jardy",
+        "finishLocation": "Secteur Bois de Boulogne",
+        "maxDurationMinutes": 240,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": null,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/68230b77200c97103cc051bb/69e88d7d0863b69d835bc8ad_ECOTRAIL%202026-6L9A0856.jpg",
+          "alt": "EcoTrail Paris - 20 km Automne",
+          "sourceUrl": "https://www.ecotrailparis.com/course/trail-20-km-automne"
+        },
+        "terrainDescription": "Une aventure entre nature, patrimoine et défi sportif\n\nDepuis les Haras de Jardy, ce Trail 20km invite à une immersion nature à travers le Domaine National de Saint-Cloud et les sentiers de l'Ouest parisien. Un parcours accessible, généreux en paysages, parfait pour découvrir ou retrouver les plaisirs du trail en forêt.",
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": "open",
+          "lottery": null,
+          "maxParticipants": 2000,
+          "qualificationRequired": "Licence FFA 2026-2027 ou attestation PPS"
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [
+          "Gobelet 15cl minimum",
+          "Couverture de survie",
+          "Téléphone mobile",
+          "Pièce d'identité",
+          "Moyen de paiement"
+        ],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.ecotrailparis.com/course/trail-20-km-automne",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:25.240Z",
+            "event": "EcoTrail Paris",
+            "race": "20 km Automne"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 10,
+        "kmEffort": 22
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page links a roadbook/FAQ for practical details; cutoff and aid station tables were not found in the race page.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    }
+  ]
+}

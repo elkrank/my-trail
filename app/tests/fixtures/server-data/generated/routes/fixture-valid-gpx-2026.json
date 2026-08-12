@@ -1,0 +1,49 @@
+{
+  "sourceUrl": "https://example.test/race",
+  "downloadUrl": "https://example.test/valid.gpx",
+  "localFile": "gpx/2026/fixture/valid-gpx.gpx",
+  "sha256": "test-sha",
+  "segments": [
+    [
+      {
+        "lat": 45.92,
+        "lon": 6.86,
+        "ele": 100,
+        "distanceKm": 0
+      },
+      {
+        "lat": 45.925,
+        "lon": 6.87,
+        "ele": 120,
+        "distanceKm": 0.91
+      },
+      {
+        "lat": 45.93,
+        "lon": 6.88,
+        "ele": 115,
+        "distanceKm": 1.82
+      }
+    ]
+  ],
+  "elevationProfile": [
+    {
+      "distanceKm": 0,
+      "elevationM": 100
+    },
+    {
+      "distanceKm": 0.91,
+      "elevationM": 120
+    },
+    {
+      "distanceKm": 1.82,
+      "elevationM": 115
+    }
+  ],
+  "computed": {
+    "distanceKm": 1.82,
+    "elevationGainM": 20,
+    "elevationLossM": 5,
+    "minElevationM": 100,
+    "maxElevationM": 120
+  }
+}

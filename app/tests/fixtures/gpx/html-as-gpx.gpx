@@ -1,0 +1,5 @@
+<!doctype html>
+<html>
+  <head><title>Login required</title></head>
+  <body><form action="/login">Not a GPX file</form></body>
+</html>

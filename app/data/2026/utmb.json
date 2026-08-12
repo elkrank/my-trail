@@ -1,0 +1,2231 @@
+{
+  "generatedAt": "2026-08-12T13:46:30.445Z",
+  "year": 2026,
+  "event": {
+    "id": "utmb",
+    "name": "UTMB Mont-Blanc",
+    "slug": "utmb",
+    "country": "France",
+    "region": "Auvergne-Rhone-Alpes",
+    "city": "Chamonix",
+    "officialWebsite": "https://montblanc.utmb.world"
+  },
+  "status": "SUCCESS",
+  "sourceErrors": [],
+  "races": [
+    {
+      "event": {
+        "id": "utmb",
+        "name": "UTMB Mont-Blanc",
+        "slug": "utmb",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://montblanc.utmb.world"
+      },
+      "race": {
+        "id": "utmb-utmb",
+        "eventId": "utmb",
+        "name": "UTMB",
+        "shortName": "UTMB"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-08-28",
+        "startTime": "17:45",
+        "distanceKm": 174,
+        "elevationGainM": 9900,
+        "elevationLossM": 9999,
+        "startLocation": "Chamonix",
+        "finishLocation": "Chamonix",
+        "maxDurationMinutes": 2805,
+        "raceType": null,
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1786442971/montblanc/Races/GPX/2026/UTMB_2026_25e2a492e6.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://montblanc.utmb.world/races/utmb",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1786442971/montblanc/Races/GPX/2026/UTMB_2026_25e2a492e6.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-race-page",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-12T13:45:59.896Z",
+          "localFile": "gpx/2026/utmb/utmb.gpx",
+          "routeAsset": "generated/routes/utmb-utmb-2026.json",
+          "sha256": "bd058ebdd47a5dec48681156e6bf4b622c6594323d3399e4dc90fd425e7d3dfe",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 14084,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 173.83,
+            "elevationGainM": 9994,
+            "elevationLossM": 9993,
+            "minElevationM": 805,
+            "maxElevationM": 2571,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://res.cloudinary.com/utmb-world/image/upload/q_auto/f_auto/c_fill,g_auto/if_w_gt_1920/c_scale,w_1920/if_end/v1/montblanc/Races/UTMB/utmb24_utmb_fo_00_0455_jpg_0_a5126190e0?_a=ATADJd80",
+          "alt": "UTMB Mont-Blanc - UTMB",
+          "sourceUrl": "https://montblanc.utmb.world/races/utmb"
+        },
+        "terrainDescription": "4 letters. 3 countries crossed. 1 extraordinary adventure, which is now the 100M finals of the UTMB World Series. This is the iconic race that has taken so many passionate runners on an extraordinary journey around the Mont-Blanc.",
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 479,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": "UTMB index valid in categories 100K or 100M"
+        },
+        "checkpoints": [
+          {
+            "name": "Saint-Gervais",
+            "distanceKm": 22.9,
+            "elevationGainFromStartM": 1027,
+            "cutoffDateTime": "2026-08-28T22:00:00",
+            "cutoffElapsedMinutes": 255,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Les Contamines",
+            "distanceKm": 32.5,
+            "elevationGainFromStartM": 1519,
+            "cutoffDateTime": "2026-08-29T00:00:00",
+            "cutoffElapsedMinutes": 375,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          },
+          {
+            "name": "La Balme",
+            "distanceKm": 41.2,
+            "elevationGainFromStartM": 2107,
+            "cutoffDateTime": "2026-08-29T02:00:00",
+            "cutoffElapsedMinutes": 495,
+            "aidStation": false,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Les Chapieux",
+            "distanceKm": 52.3,
+            "elevationGainFromStartM": 2905,
+            "cutoffDateTime": "2026-08-29T05:15:00",
+            "cutoffElapsedMinutes": 690,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Lac Combal",
+            "distanceKm": 69.5,
+            "elevationGainFromStartM": 4230,
+            "cutoffDateTime": "2026-08-29T10:00:00",
+            "cutoffElapsedMinutes": 975,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Courmayeur Forum Sport Center",
+            "distanceKm": 83.5,
+            "elevationGainFromStartM": 4727,
+            "cutoffDateTime": "2026-08-29T13:15:00",
+            "cutoffElapsedMinutes": 1170,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          },
+          {
+            "name": "Arnouvaz",
+            "distanceKm": 101.8,
+            "elevationGainFromStartM": 5978,
+            "cutoffDateTime": "2026-08-29T18:15:00",
+            "cutoffElapsedMinutes": 1470,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "La Fouly",
+            "distanceKm": 116.3,
+            "elevationGainFromStartM": 6818,
+            "cutoffDateTime": "2026-08-29T22:30:00",
+            "cutoffElapsedMinutes": 1725,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Champex-Lac",
+            "distanceKm": 130.5,
+            "elevationGainFromStartM": 7405,
+            "cutoffDateTime": "2026-08-30T02:30:00",
+            "cutoffElapsedMinutes": 1965,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          },
+          {
+            "name": "Plan de l'Au",
+            "distanceKm": 135.4,
+            "elevationGainFromStartM": 7476,
+            "cutoffDateTime": "2026-08-30T03:45:00",
+            "cutoffElapsedMinutes": 2040,
+            "aidStation": false,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Trient",
+            "distanceKm": 147.1,
+            "elevationGainFromStartM": 8252,
+            "cutoffDateTime": "2026-08-30T08:00:00",
+            "cutoffElapsedMinutes": 2295,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Vallorcine",
+            "distanceKm": 158.5,
+            "elevationGainFromStartM": 9040,
+            "cutoffDateTime": "2026-08-30T11:15:00",
+            "cutoffElapsedMinutes": 2490,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          },
+          {
+            "name": "La Flégère",
+            "distanceKm": 169.9,
+            "elevationGainFromStartM": 9990,
+            "cutoffDateTime": "2026-08-30T14:45:00",
+            "cutoffElapsedMinutes": 2700,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Chamonix",
+            "distanceKm": 176.9,
+            "elevationGainFromStartM": 10000,
+            "cutoffDateTime": "2026-08-30T16:30:00",
+            "cutoffElapsedMinutes": 2805,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "Chamonix",
+            "distanceKm": 0,
+            "elevationM": 1035,
+            "water": null,
+            "sportsDrink": false,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": true,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Les Houches",
+            "distanceKm": 9.1,
+            "elevationM": 1009,
+            "water": true,
+            "sportsDrink": false,
+            "solidFood": false,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Saint-Gervais",
+            "distanceKm": 22.9,
+            "elevationM": 809,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-28T22:00:00"
+          },
+          {
+            "name": "Les Contamines",
+            "distanceKm": 32.5,
+            "elevationM": 1148,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-29T00:00:00"
+          },
+          {
+            "name": "Les Chapieux",
+            "distanceKm": 52.3,
+            "elevationM": 1546,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-29T05:15:00"
+          },
+          {
+            "name": "Lac Combal",
+            "distanceKm": 69.5,
+            "elevationM": 1973,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-29T10:00:00"
+          },
+          {
+            "name": "Checrouit - Maison Vieille",
+            "distanceKm": 78.5,
+            "elevationM": 1961,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": false,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Courmayeur Forum Sport Center",
+            "distanceKm": 83.5,
+            "elevationM": 1194,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-29T13:15:00"
+          },
+          {
+            "name": "Refuge Bertone",
+            "distanceKm": 88.8,
+            "elevationM": 1972,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": false,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Arnouvaz",
+            "distanceKm": 101.8,
+            "elevationM": 1772,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-29T18:15:00"
+          },
+          {
+            "name": "La Fouly",
+            "distanceKm": 116.3,
+            "elevationM": 1604,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-29T22:30:00"
+          },
+          {
+            "name": "Champex-Lac",
+            "distanceKm": 130.5,
+            "elevationM": 1475,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-30T02:30:00"
+          },
+          {
+            "name": "Trient",
+            "distanceKm": 147.1,
+            "elevationM": 1303,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-30T08:00:00"
+          },
+          {
+            "name": "Vallorcine",
+            "distanceKm": 158.5,
+            "elevationM": 1260,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-30T11:15:00"
+          },
+          {
+            "name": "La Flégère",
+            "distanceKm": 169.9,
+            "elevationM": 1875,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": false,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-30T14:45:00"
+          },
+          {
+            "name": "Chamonix",
+            "distanceKm": 176.9,
+            "elevationM": 1036,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-30T16:30:00"
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": true,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://montblanc.utmb.world/races/utmb",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:45:57.453Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "UTMB"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "UTMB"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "UTMB"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1786442971/montblanc/Races/GPX/2026/UTMB_2026_25e2a492e6.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:45:57.453Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "UTMB"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 56.9,
+        "kmEffort": 273
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "utmb",
+        "name": "UTMB Mont-Blanc",
+        "slug": "utmb",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://montblanc.utmb.world"
+      },
+      "race": {
+        "id": "utmb-ccc",
+        "eventId": "utmb",
+        "name": "CCC",
+        "shortName": "CCC"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-08-28",
+        "startTime": "09:00",
+        "distanceKm": 101,
+        "elevationGainM": 6050,
+        "elevationLossM": 6199,
+        "startLocation": "Courmayeur",
+        "finishLocation": "Chamonix",
+        "maxDurationMinutes": 1590,
+        "raceType": null,
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1785143154/montblanc/Races/GPX/2026/CCC_2026_cd3cb129a5.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://montblanc.utmb.world/races/ccc",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1785143154/montblanc/Races/GPX/2026/CCC_2026_cd3cb129a5.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-race-page",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-12T13:46:04.909Z",
+          "localFile": "gpx/2026/utmb/ccc.gpx",
+          "routeAsset": "generated/routes/utmb-ccc-2026.json",
+          "sha256": "409971e2fb242aacc67b7cfc716a4c0f2122529ec7bf9586170292fec5979591",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 9064,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 99.36,
+            "elevationGainM": 6015,
+            "elevationLossM": 6199,
+            "minElevationM": 1035,
+            "maxElevationM": 2556,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://res.cloudinary.com/utmb-world/image/upload/q_auto/f_auto/c_fill,g_auto/if_w_gt_1920/c_scale,w_1920/if_end/v1/montblanc/Races/CCC/utmb23_ccc_gf_00_0081_5beab14929?_a=ATADJd80",
+          "alt": "UTMB Mont-Blanc - CCC",
+          "sourceUrl": "https://montblanc.utmb.world/races/ccc"
+        },
+        "terrainDescription": "The Final of the 100K category, the \"little sister\" of the UTMB takes you through a unique journey of ultra-endurance from Courmayeur to Chamonix.",
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 310,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": "UTMB index valid in categories 50K, 100K or 100M"
+        },
+        "checkpoints": [
+          {
+            "name": "Refuge Bertone",
+            "distanceKm": 13.7,
+            "elevationGainFromStartM": 1436,
+            "cutoffDateTime": "2026-08-28T13:45:00",
+            "cutoffElapsedMinutes": 285,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Arnouvaz",
+            "distanceKm": 26.6,
+            "elevationGainFromStartM": 1908,
+            "cutoffDateTime": "2026-08-28T16:30:00",
+            "cutoffElapsedMinutes": 450,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "La Fouly",
+            "distanceKm": 40.9,
+            "elevationGainFromStartM": 2774,
+            "cutoffDateTime": "2026-08-28T20:15:00",
+            "cutoffElapsedMinutes": 675,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Champex-Lac",
+            "distanceKm": 55.2,
+            "elevationGainFromStartM": 3373,
+            "cutoffDateTime": "2026-08-28T23:15:00",
+            "cutoffElapsedMinutes": 855,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          },
+          {
+            "name": "Plan de l'Au",
+            "distanceKm": 60,
+            "elevationGainFromStartM": 3444,
+            "cutoffDateTime": "2026-08-29T00:15:00",
+            "cutoffElapsedMinutes": 915,
+            "aidStation": false,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Trient",
+            "distanceKm": 71.8,
+            "elevationGainFromStartM": 4219,
+            "cutoffDateTime": "2026-08-29T04:00:00",
+            "cutoffElapsedMinutes": 1140,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Vallorcine",
+            "distanceKm": 82.9,
+            "elevationGainFromStartM": 5027,
+            "cutoffDateTime": "2026-08-29T07:15:00",
+            "cutoffElapsedMinutes": 1335,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          },
+          {
+            "name": "La Flégère",
+            "distanceKm": 94.3,
+            "elevationGainFromStartM": 5994,
+            "cutoffDateTime": "2026-08-29T10:45:00",
+            "cutoffElapsedMinutes": 1545,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Chamonix",
+            "distanceKm": 101.4,
+            "elevationGainFromStartM": 6015,
+            "cutoffDateTime": "2026-08-29T12:00:00",
+            "cutoffElapsedMinutes": 1620,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "Courmayeur",
+            "distanceKm": 0,
+            "elevationM": 1221,
+            "water": null,
+            "sportsDrink": false,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Refuge Bertone",
+            "distanceKm": 13.7,
+            "elevationM": 1980,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-28T13:45:00"
+          },
+          {
+            "name": "Arnouvaz",
+            "distanceKm": 26.6,
+            "elevationM": 1772,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-28T16:30:00"
+          },
+          {
+            "name": "La Fouly",
+            "distanceKm": 40.9,
+            "elevationM": 1604,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-28T20:15:00"
+          },
+          {
+            "name": "Champex-Lac",
+            "distanceKm": 55.2,
+            "elevationM": 1475,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-28T23:15:00"
+          },
+          {
+            "name": "Trient",
+            "distanceKm": 71.8,
+            "elevationM": 1304,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-29T04:00:00"
+          },
+          {
+            "name": "Vallorcine",
+            "distanceKm": 82.9,
+            "elevationM": 1260,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-29T07:15:00"
+          },
+          {
+            "name": "La Flégère",
+            "distanceKm": 94.3,
+            "elevationM": 1875,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": false,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-29T10:45:00"
+          },
+          {
+            "name": "Chamonix",
+            "distanceKm": 101.4,
+            "elevationM": 1035,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-29T12:00:00"
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": true,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://montblanc.utmb.world/races/ccc",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:45:57.634Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "CCC"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "CCC"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "CCC"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1785143154/montblanc/Races/GPX/2026/CCC_2026_cd3cb129a5.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:45:57.634Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "CCC"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 59.9,
+        "kmEffort": 161.5
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "utmb",
+        "name": "UTMB Mont-Blanc",
+        "slug": "utmb",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://montblanc.utmb.world"
+      },
+      "race": {
+        "id": "utmb-occ",
+        "eventId": "utmb",
+        "name": "OCC",
+        "shortName": "OCC"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-08-27",
+        "startTime": "08:15",
+        "distanceKm": 60,
+        "elevationGainM": 3500,
+        "elevationLossM": 3215,
+        "startLocation": "Orsières",
+        "finishLocation": "Chamonix",
+        "maxDurationMinutes": 870,
+        "raceType": null,
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127491/montblanc/Races/GPX/2026/OCC_2026_4ffbc4d07f.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://montblanc.utmb.world/races/occ",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127491/montblanc/Races/GPX/2026/OCC_2026_4ffbc4d07f.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-race-page",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-12T13:46:08.833Z",
+          "localFile": "gpx/2026/utmb/occ.gpx",
+          "routeAsset": "generated/routes/utmb-occ-2026.json",
+          "sha256": "b2fe8c72f404e90cec54693e495da78c0380260f5dc76657f3255a6f1488498f",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 5365,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 60.07,
+            "elevationGainM": 3336,
+            "elevationLossM": 3215,
+            "minElevationM": 889,
+            "maxElevationM": 2313,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://res.cloudinary.com/utmb-world/image/upload/q_auto/f_auto/c_fill,g_auto/if_w_gt_1920/c_scale,w_1920/if_end/v1/montblanc/Races/OCC/utmb23_occ_fo_00_0096_74641e06d3?_a=ATADJd80",
+          "alt": "UTMB Mont-Blanc - OCC",
+          "sourceUrl": "https://montblanc.utmb.world/races/occ"
+        },
+        "terrainDescription": "The ultimate challenge for mid-distance ultra-runners, the OCC is the 50K category final for the UTMB World Series.",
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 199,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": "UTMB index valid in categories 20K, 50K, 100K or 100M"
+        },
+        "checkpoints": [
+          {
+            "name": "Plan de l'Au",
+            "distanceKm": 12.2,
+            "elevationGainFromStartM": 680,
+            "cutoffDateTime": "2026-08-27T11:15:00",
+            "cutoffElapsedMinutes": 180,
+            "aidStation": false,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Trient",
+            "distanceKm": 23.8,
+            "elevationGainFromStartM": 1455,
+            "cutoffDateTime": "2026-08-27T14:15:00",
+            "cutoffElapsedMinutes": 360,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Col de Balme",
+            "distanceKm": 33.5,
+            "elevationGainFromStartM": 2509,
+            "cutoffDateTime": "2026-08-27T17:30:00",
+            "cutoffElapsedMinutes": 555,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Argentière",
+            "distanceKm": 50.2,
+            "elevationGainFromStartM": 3072,
+            "cutoffDateTime": "2026-08-27T21:15:00",
+            "cutoffElapsedMinutes": 780,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Chamonix",
+            "distanceKm": 61.1,
+            "elevationGainFromStartM": 3336,
+            "cutoffDateTime": "2026-08-27T23:30:00",
+            "cutoffElapsedMinutes": 915,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "Orsières",
+            "distanceKm": 0,
+            "elevationM": 915,
+            "water": null,
+            "sportsDrink": false,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": true,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Champex-Lac",
+            "distanceKm": 7.3,
+            "elevationM": 1469,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": false,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Trient",
+            "distanceKm": 23.8,
+            "elevationM": 1308,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-27T14:15:00"
+          },
+          {
+            "name": "Col de Balme",
+            "distanceKm": 33.5,
+            "elevationM": 2202,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": false,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-27T17:30:00"
+          },
+          {
+            "name": "Argentière",
+            "distanceKm": 50.2,
+            "elevationM": 1255,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-27T21:15:00"
+          },
+          {
+            "name": "Chamonix",
+            "distanceKm": 61.1,
+            "elevationM": 1035,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-27T23:30:00"
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": true,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://montblanc.utmb.world/races/occ",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:45:57.895Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "OCC"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "OCC"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "OCC"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127491/montblanc/Races/GPX/2026/OCC_2026_4ffbc4d07f.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:45:57.895Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "OCC"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 58.33,
+        "kmEffort": 95
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "utmb",
+        "name": "UTMB Mont-Blanc",
+        "slug": "utmb",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://montblanc.utmb.world"
+      },
+      "race": {
+        "id": "utmb-tds",
+        "eventId": "utmb",
+        "name": "TDS",
+        "shortName": "TDS"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-08-24",
+        "startTime": "23:50",
+        "distanceKm": 145,
+        "elevationGainM": 9500,
+        "elevationLossM": 9509,
+        "startLocation": "Courmayeur",
+        "finishLocation": "Chamonix",
+        "maxDurationMinutes": 2695,
+        "raceType": null,
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1786442970/montblanc/Races/GPX/2026/TDS_2026_098e06c78e.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://montblanc.utmb.world/races/tds",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1786442970/montblanc/Races/GPX/2026/TDS_2026_098e06c78e.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-race-page",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-12T13:46:10.177Z",
+          "localFile": "gpx/2026/utmb/tds.gpx",
+          "routeAsset": "generated/routes/utmb-tds-2026.json",
+          "sha256": "a97a53f5eebe71a3dd5e31deb4cb0b7ed58d4585f9d9ed7a528608d0202456e6",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 8211,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 148.19,
+            "elevationGainM": 9324,
+            "elevationLossM": 9512,
+            "minElevationM": 721,
+            "maxElevationM": 2589,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://res.cloudinary.com/utmb-world/image/upload/q_auto/f_auto/c_fill,g_auto/if_w_gt_1920/c_scale,w_1920/if_end/v1/montblanc/Races/TDS/utmb24_tds_gf_00_0047_411ce76408?_a=ATADJd80",
+          "alt": "UTMB Mont-Blanc - TDS",
+          "sourceUrl": "https://montblanc.utmb.world/races/tds"
+        },
+        "terrainDescription": "With its unique landscapes, its friendly and alpine atmosphere, the TDS is more than ever a world-class event.",
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 320,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": "UTMB index valid in categories 100K or 100M"
+        },
+        "checkpoints": [
+          {
+            "name": "Lac Combal",
+            "distanceKm": 16.6,
+            "elevationGainFromStartM": 1297,
+            "cutoffDateTime": "2026-08-25T03:30:00",
+            "cutoffElapsedMinutes": 220,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "La Thuile  - Petit St Bernard",
+            "distanceKm": 36.8,
+            "elevationGainFromStartM": 2397,
+            "cutoffDateTime": "2026-08-25T08:30:00",
+            "cutoffElapsedMinutes": 520,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Bourg St Maurice",
+            "distanceKm": 51.1,
+            "elevationGainFromStartM": 2428,
+            "cutoffDateTime": "2026-08-25T11:00:00",
+            "cutoffElapsedMinutes": 670,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          },
+          {
+            "name": "Fort de la Platte",
+            "distanceKm": 55.9,
+            "elevationGainFromStartM": 3588,
+            "cutoffDateTime": "2026-08-25T13:45:00",
+            "cutoffElapsedMinutes": 835,
+            "aidStation": false,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Cormet de Roselend",
+            "distanceKm": 66.2,
+            "elevationGainFromStartM": 4330,
+            "cutoffDateTime": "2026-08-25T17:15:00",
+            "cutoffElapsedMinutes": 1045,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "La Gittaz",
+            "distanceKm": 73.8,
+            "elevationGainFromStartM": 4697,
+            "cutoffDateTime": "2026-08-25T19:30:00",
+            "cutoffElapsedMinutes": 1180,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Beaufort",
+            "distanceKm": 92.4,
+            "elevationGainFromStartM": 5666,
+            "cutoffDateTime": "2026-08-26T03:00:00",
+            "cutoffElapsedMinutes": 1630,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          },
+          {
+            "name": "Hauteluce",
+            "distanceKm": 98.7,
+            "elevationGainFromStartM": 6159,
+            "cutoffDateTime": "2026-08-26T05:30:00",
+            "cutoffElapsedMinutes": 1780,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Le Signal",
+            "distanceKm": 115.5,
+            "elevationGainFromStartM": 7480,
+            "cutoffDateTime": "2026-08-26T11:15:00",
+            "cutoffElapsedMinutes": 2125,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Les Contamines",
+            "distanceKm": 123.2,
+            "elevationGainFromStartM": 7500,
+            "cutoffDateTime": "2026-08-26T13:15:00",
+            "cutoffElapsedMinutes": 2245,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          },
+          {
+            "name": "Bellevue",
+            "distanceKm": 137,
+            "elevationGainFromStartM": 9044,
+            "cutoffDateTime": "2026-08-26T18:15:00",
+            "cutoffElapsedMinutes": 2545,
+            "aidStation": false,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Les Houches",
+            "distanceKm": 141.6,
+            "elevationGainFromStartM": 9044,
+            "cutoffDateTime": "2026-08-26T19:15:00",
+            "cutoffElapsedMinutes": 2605,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Chamonix",
+            "distanceKm": 150.8,
+            "elevationGainFromStartM": 9322,
+            "cutoffDateTime": "2026-08-26T20:45:00",
+            "cutoffElapsedMinutes": 2695,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "Courmayeur",
+            "distanceKm": 0,
+            "elevationM": 1222,
+            "water": null,
+            "sportsDrink": false,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Checrouit - Maison Vieille",
+            "distanceKm": 7.8,
+            "elevationM": 1957,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": false,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Lac Combal",
+            "distanceKm": 16.6,
+            "elevationM": 1973,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-25T03:30:00"
+          },
+          {
+            "name": "La Thuile  - Petit St Bernard",
+            "distanceKm": 36.8,
+            "elevationM": 2187,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-25T08:30:00"
+          },
+          {
+            "name": "Seez",
+            "distanceKm": 47.7,
+            "elevationM": 892,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": false,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Bourg St Maurice",
+            "distanceKm": 51.1,
+            "elevationM": 831,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-25T11:00:00"
+          },
+          {
+            "name": "Cormet de Roselend",
+            "distanceKm": 66.2,
+            "elevationM": 1971,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-25T17:15:00"
+          },
+          {
+            "name": "La Gittaz",
+            "distanceKm": 73.8,
+            "elevationM": 1657,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-25T19:30:00"
+          },
+          {
+            "name": "Beaufort",
+            "distanceKm": 92.4,
+            "elevationM": 739,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-26T03:00:00"
+          },
+          {
+            "name": "Hauteluce",
+            "distanceKm": 98.7,
+            "elevationM": 1174,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-26T05:30:00"
+          },
+          {
+            "name": "Le Signal",
+            "distanceKm": 115.5,
+            "elevationM": 1876,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-26T11:15:00"
+          },
+          {
+            "name": "Les Contamines",
+            "distanceKm": 123.2,
+            "elevationM": 1157,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-26T13:15:00"
+          },
+          {
+            "name": "Les Houches",
+            "distanceKm": 141.6,
+            "elevationM": 1008,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-26T19:15:00"
+          },
+          {
+            "name": "Chamonix",
+            "distanceKm": 150.8,
+            "elevationM": 1035,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-26T20:45:00"
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": true,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://montblanc.utmb.world/races/tds",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:45:58.833Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "TDS"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "TDS"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "TDS"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1786442970/montblanc/Races/GPX/2026/TDS_2026_098e06c78e.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:45:58.833Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "TDS"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 65.52,
+        "kmEffort": 240
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "utmb",
+        "name": "UTMB Mont-Blanc",
+        "slug": "utmb",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://montblanc.utmb.world"
+      },
+      "race": {
+        "id": "utmb-mcc",
+        "eventId": "utmb",
+        "name": "MCC",
+        "shortName": "MCC"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-08-24",
+        "startTime": "10:00",
+        "distanceKm": 40,
+        "elevationGainM": 2350,
+        "elevationLossM": 1834,
+        "startLocation": "Martigny-Combe",
+        "finishLocation": "Chamonix",
+        "maxDurationMinutes": 600,
+        "raceType": null,
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127488/montblanc/Races/GPX/2026/MCC_2026_c1d5b84b2c.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://montblanc.utmb.world/races/mcc",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127488/montblanc/Races/GPX/2026/MCC_2026_c1d5b84b2c.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-race-page",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-12T13:46:11.741Z",
+          "localFile": "gpx/2026/utmb/mcc.gpx",
+          "routeAsset": "generated/routes/utmb-mcc-2026.json",
+          "sha256": "a32bd3f74624da03b2fcc339ed86053e931c0a57bc5b10a7f5d62f0214e91a8a",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 3451,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 37.99,
+            "elevationGainM": 2362,
+            "elevationLossM": 1832,
+            "minElevationM": 506,
+            "maxElevationM": 2222,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://res.cloudinary.com/utmb-world/image/upload/q_auto/f_auto/c_fill,g_auto/if_w_gt_1920/c_scale,w_1920/if_end/v1/montblanc/Races/MCC/utmb23_mcc_gf_00_0157_e4c8d753fe?_a=ATADJd80",
+          "alt": "UTMB Mont-Blanc - MCC",
+          "sourceUrl": "https://montblanc.utmb.world/races/mcc"
+        },
+        "terrainDescription": "From Martigny-Combe to Chamonix, the MCC is a 40 km race reserved primarily for UTMB volunteers, partners and local residents.",
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 105,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [
+          {
+            "name": "Col de la Forclaz",
+            "distanceKm": 7.6,
+            "elevationGainFromStartM": 1038,
+            "cutoffDateTime": "2026-08-24T12:30:00",
+            "cutoffElapsedMinutes": 150,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Col de Balme",
+            "distanceKm": 17.4,
+            "elevationGainFromStartM": 1966,
+            "cutoffDateTime": "2026-08-24T15:45:00",
+            "cutoffElapsedMinutes": 345,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Argentière",
+            "distanceKm": 27.8,
+            "elevationGainFromStartM": 2101,
+            "cutoffDateTime": "2026-08-24T18:00:00",
+            "cutoffElapsedMinutes": 480,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Chamonix",
+            "distanceKm": 38.7,
+            "elevationGainFromStartM": 2364,
+            "cutoffDateTime": "2026-08-24T20:30:00",
+            "cutoffElapsedMinutes": 630,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "Martigny-Combe",
+            "distanceKm": 0,
+            "elevationM": 506,
+            "water": null,
+            "sportsDrink": false,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Col de la Forclaz",
+            "distanceKm": 7.6,
+            "elevationM": 1532,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-24T12:30:00"
+          },
+          {
+            "name": "Col de Balme",
+            "distanceKm": 17.4,
+            "elevationM": 2202,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": false,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-24T15:45:00"
+          },
+          {
+            "name": "Argentière",
+            "distanceKm": 27.8,
+            "elevationM": 1255,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-24T18:00:00"
+          },
+          {
+            "name": "Chamonix",
+            "distanceKm": 38.7,
+            "elevationM": 1035,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-24T20:30:00"
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": true,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://montblanc.utmb.world/races/mcc",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:45:59.030Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "MCC"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "MCC"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "MCC"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127488/montblanc/Races/GPX/2026/MCC_2026_c1d5b84b2c.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:45:59.030Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "MCC"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 58.75,
+        "kmEffort": 63.5
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "utmb",
+        "name": "UTMB Mont-Blanc",
+        "slug": "utmb",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://montblanc.utmb.world"
+      },
+      "race": {
+        "id": "utmb-etc",
+        "eventId": "utmb",
+        "name": "ETC",
+        "shortName": "ETC"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-08-25",
+        "startTime": "14:00",
+        "distanceKm": 15,
+        "elevationGainM": 1200,
+        "elevationLossM": 1083,
+        "startLocation": "Courmayeur",
+        "finishLocation": "Courmayeur",
+        "maxDurationMinutes": 270,
+        "raceType": null,
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127487/montblanc/Races/GPX/2026/ETC_2026_ed5c8a96b4.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://montblanc.utmb.world/races/etc",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127487/montblanc/Races/GPX/2026/ETC_2026_ed5c8a96b4.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-race-page",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-12T13:46:12.472Z",
+          "localFile": "gpx/2026/utmb/etc.gpx",
+          "routeAsset": "generated/routes/utmb-etc-2026.json",
+          "sha256": "5985954852b4d53314749f89fc46cb5d2e68761ef8f2c79c212f217660a2c908",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 952,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 14.71,
+            "elevationGainM": 1164,
+            "elevationLossM": 1144,
+            "minElevationM": 1222,
+            "maxElevationM": 1955,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://res.cloudinary.com/utmb-world/image/upload/q_auto/f_auto/c_fill,g_auto/if_w_gt_1920/c_scale,w_1920/if_end/v1/montblanc/Races/ETC/utmb23_etc_mac_00_0138_0e817d7a93?_a=ATADJd80",
+          "alt": "UTMB Mont-Blanc - ETC",
+          "sourceUrl": "https://montblanc.utmb.world/races/etc"
+        },
+        "terrainDescription": "Take on the adventure of a 15km race with 1200 meters of elevation gain in the heart of the Italian Alps.",
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 69,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": true,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [
+          {
+            "name": "La Suche",
+            "distanceKm": 6.5,
+            "elevationGainFromStartM": 807,
+            "cutoffDateTime": "2026-08-25T16:55:00",
+            "cutoffElapsedMinutes": 175,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Courmayeur",
+            "distanceKm": 15.1,
+            "elevationGainFromStartM": 1103,
+            "cutoffDateTime": "2026-08-25T19:10:00",
+            "cutoffElapsedMinutes": 310,
+            "aidStation": true,
+            "personalAssistanceAllowed": true
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "Courmayeur",
+            "distanceKm": 0,
+            "elevationM": 1222,
+            "water": null,
+            "sportsDrink": false,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": true,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "La Suche",
+            "distanceKm": 6.5,
+            "elevationM": 1817,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": true,
+            "cutoffDateTime": "2026-08-25T16:55:00"
+          },
+          {
+            "name": "Courmayeur",
+            "distanceKm": 15.1,
+            "elevationM": 1240,
+            "water": true,
+            "sportsDrink": true,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": true,
+            "crewAccess": true,
+            "medical": true,
+            "cutoffDateTime": "2026-08-25T19:10:00"
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": true,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://montblanc.utmb.world/races/etc",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:45:59.250Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "ETC"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "ETC"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "ETC"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127487/montblanc/Races/GPX/2026/ETC_2026_ed5c8a96b4.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:45:59.250Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "ETC"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 80,
+        "kmEffort": 27
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "utmb",
+        "name": "UTMB Mont-Blanc",
+        "slug": "utmb",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://montblanc.utmb.world"
+      },
+      "race": {
+        "id": "utmb-ptl",
+        "eventId": "utmb",
+        "name": "PTL",
+        "shortName": "PTL"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-08-24",
+        "startTime": "08:00",
+        "distanceKm": 300,
+        "elevationGainM": 25000,
+        "elevationLossM": 27338,
+        "startLocation": "Chamonix",
+        "finishLocation": "Chamonix",
+        "maxDurationMinutes": 9060,
+        "raceType": null,
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1723798810/montblanc/Races/GPX/2024/track_5_53fd1bf5e0.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://montblanc.utmb.world/races/ptl",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1723798810/montblanc/Races/GPX/2024/track_5_53fd1bf5e0.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-race-page",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-12T13:46:12.908Z",
+          "localFile": "gpx/2026/utmb/ptl.gpx",
+          "routeAsset": "generated/routes/utmb-ptl-2026.json",
+          "sha256": "7a9ee3cfda9b66cfc0168349d34d4298822e2a441686c88441097c0195634808",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 13391,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 293.29,
+            "elevationGainM": 27331,
+            "elevationLossM": 27338,
+            "minElevationM": 876,
+            "maxElevationM": 3202,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://res.cloudinary.com/utmb-world/image/upload/q_auto/f_auto/c_fill,g_auto/if_w_gt_1920/c_scale,w_1920/if_end/v1/montblanc/Races/PTL/utmb22_ptl_pt_00_0043_e7fc2c4ed2?_a=ATADJd80",
+          "alt": "UTMB Mont-Blanc - PTL",
+          "sourceUrl": "https://montblanc.utmb.world/races/ptl"
+        },
+        "terrainDescription": "Mental toughness, team spirit, a sense of adventure, and core mountain values are essential to experience this adventure of a lifetime, a grand tour of the Mont-Blanc as a team.",
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 1650,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [
+          {
+            "name": "Chamonix",
+            "distanceKm": 0,
+            "elevationGainFromStartM": 0,
+            "cutoffDateTime": "2026-08-24T08:00:00",
+            "cutoffElapsedMinutes": 0,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Vallorcine",
+            "distanceKm": 41.3,
+            "elevationGainFromStartM": 4264,
+            "cutoffDateTime": "2026-08-25T03:00:00",
+            "cutoffElapsedMinutes": 1140,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Champex-Lac",
+            "distanceKm": 76.9,
+            "elevationGainFromStartM": 8201,
+            "cutoffDateTime": "2026-08-25T22:00:00",
+            "cutoffElapsedMinutes": 2280,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Orsières",
+            "distanceKm": 92.1,
+            "elevationGainFromStartM": 9628,
+            "cutoffDateTime": "2026-08-26T07:00:00",
+            "cutoffElapsedMinutes": 2820,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Fionnay",
+            "distanceKm": 122.2,
+            "elevationGainFromStartM": 13158,
+            "cutoffDateTime": "2026-08-27T00:30:00",
+            "cutoffElapsedMinutes": 3870,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Rifugio Champillon",
+            "distanceKm": 168.5,
+            "elevationGainFromStartM": 17048,
+            "cutoffDateTime": "2026-08-27T22:00:00",
+            "cutoffElapsedMinutes": 5160,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Saint Rhemy",
+            "distanceKm": 186.9,
+            "elevationGainFromStartM": 18187,
+            "cutoffDateTime": "2026-08-28T09:30:00",
+            "cutoffElapsedMinutes": 5850,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Courmayeur",
+            "distanceKm": 216.1,
+            "elevationGainFromStartM": 20308,
+            "cutoffDateTime": "2026-08-28T23:00:00",
+            "cutoffElapsedMinutes": 6660,
+            "aidStation": true,
+            "personalAssistanceAllowed": false
+          },
+          {
+            "name": "Les Contamines",
+            "distanceKm": 275.5,
+            "elevationGainFromStartM": 25144,
+            "cutoffDateTime": "2026-08-30T01:00:00",
+            "cutoffElapsedMinutes": 8220,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Chamonix",
+            "distanceKm": 304,
+            "elevationGainFromStartM": 27328,
+            "cutoffDateTime": "2026-08-30T15:00:00",
+            "cutoffElapsedMinutes": 9060,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "Vallorcine",
+            "distanceKm": 41.3,
+            "elevationM": 1361,
+            "water": true,
+            "sportsDrink": false,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-25T03:00:00"
+          },
+          {
+            "name": "Cabane du Trient",
+            "distanceKm": 66.9,
+            "elevationM": 3165,
+            "water": true,
+            "sportsDrink": false,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Champex-Lac",
+            "distanceKm": 76.9,
+            "elevationM": 1476,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": false,
+            "hotFood": false,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": "2026-08-25T22:00:00"
+          },
+          {
+            "name": "Orsières",
+            "distanceKm": 92.1,
+            "elevationM": 893,
+            "water": true,
+            "sportsDrink": false,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": true,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-26T07:00:00"
+          },
+          {
+            "name": "Fionnay",
+            "distanceKm": 122.2,
+            "elevationM": 1490,
+            "water": true,
+            "sportsDrink": false,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-27T00:30:00"
+          },
+          {
+            "name": "Cabane de Chanrion",
+            "distanceKm": 141.9,
+            "elevationM": 2459,
+            "water": true,
+            "sportsDrink": false,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Rifugio Champillon",
+            "distanceKm": 168.5,
+            "elevationM": 2423,
+            "water": true,
+            "sportsDrink": false,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-27T22:00:00"
+          },
+          {
+            "name": "Saint Rhemy",
+            "distanceKm": 186.9,
+            "elevationM": 1534,
+            "water": true,
+            "sportsDrink": false,
+            "solidFood": true,
+            "hotFood": true,
+            "dropBag": true,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-28T09:30:00"
+          },
+          {
+            "name": "Courmayeur",
+            "distanceKm": 216.1,
+            "elevationM": 1196,
+            "water": true,
+            "sportsDrink": false,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": "2026-08-28T23:00:00"
+          },
+          {
+            "name": "Refuge de la Croix du Bonhomme",
+            "distanceKm": 251,
+            "elevationM": 2440,
+            "water": true,
+            "sportsDrink": false,
+            "solidFood": true,
+            "hotFood": false,
+            "dropBag": false,
+            "crewAccess": false,
+            "medical": false,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": true,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://montblanc.utmb.world/races/ptl",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:45:59.521Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "PTL"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "PTL"
+          },
+          {
+            "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "PTL"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1723798810/montblanc/Races/GPX/2024/track_5_53fd1bf5e0.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-12T13:45:59.521Z",
+            "event": "UTMB Mont-Blanc",
+            "race": "PTL"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 83.33,
+        "kmEffort": 550
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [],
+        "missingFields": []
+      }
+    }
+  ]
+}

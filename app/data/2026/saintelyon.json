@@ -1,0 +1,836 @@
+{
+  "generatedAt": "2026-08-12T13:46:30.445Z",
+  "year": 2026,
+  "event": {
+    "id": "saintelyon",
+    "name": "Saintelyon",
+    "slug": "saintelyon",
+    "country": "France",
+    "region": "Auvergne-Rhone-Alpes",
+    "city": "Lyon",
+    "officialWebsite": "https://www.saintelyon.com"
+  },
+  "status": "PARTIAL",
+  "sourceErrors": [],
+  "races": [
+    {
+      "event": {
+        "id": "saintelyon",
+        "name": "Saintelyon",
+        "slug": "saintelyon",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Lyon",
+        "officialWebsite": "https://www.saintelyon.com"
+      },
+      "race": {
+        "id": "saintelyon-saintelyon",
+        "eventId": "saintelyon",
+        "name": "Saintelyon",
+        "shortName": "Saintelyon"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-11-28",
+        "startTime": "23:30",
+        "distanceKm": 80,
+        "elevationGainM": null,
+        "elevationLossM": null,
+        "startLocation": "Saint-Étienne",
+        "finishLocation": "Lyon",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6da61f2403585ef9fe29_SainteLyon2024-%C2%A9AlexisBerg-23-9786.jpg",
+          "alt": "Saintelyon - Saintelyon",
+          "sourceUrl": "https://www.saintelyon.com/races/80km-saintelyon"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.saintelyon.com/races/80km-saintelyon",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:18.774Z",
+            "event": "Saintelyon",
+            "race": "Saintelyon"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": null,
+        "kmEffort": null
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page does not expose elevation gain yet.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "elevationGain",
+          "maxDuration",
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "saintelyon",
+        "name": "Saintelyon",
+        "slug": "saintelyon",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Lyon",
+        "officialWebsite": "https://www.saintelyon.com"
+      },
+      "race": {
+        "id": "saintelyon-relais-2",
+        "eventId": "saintelyon",
+        "name": "Saintelyon Relais 2",
+        "shortName": "Relais 2"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-11-28",
+        "startTime": "23:30",
+        "distanceKm": 80,
+        "elevationGainM": null,
+        "elevationLossM": null,
+        "startLocation": "Saint-Étienne",
+        "finishLocation": "Lyon",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/69789440995f0f941ef6cef4_ASTL_25_2025%40barcus%20victor163.jpg",
+          "alt": "Saintelyon - Relais 2",
+          "sourceUrl": "https://www.saintelyon.com/races/80km-relais-2"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.saintelyon.com/races/80km-relais-2",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:18.908Z",
+            "event": "Saintelyon",
+            "race": "Relais 2"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": null,
+        "kmEffort": null
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page does not expose elevation gain yet.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "elevationGain",
+          "maxDuration",
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "saintelyon",
+        "name": "Saintelyon",
+        "slug": "saintelyon",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Lyon",
+        "officialWebsite": "https://www.saintelyon.com"
+      },
+      "race": {
+        "id": "saintelyon-relais-3",
+        "eventId": "saintelyon",
+        "name": "Saintelyon Relais 3",
+        "shortName": "Relais 3"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-11-28",
+        "startTime": "23:30",
+        "distanceKm": 80,
+        "elevationGainM": null,
+        "elevationLossM": null,
+        "startLocation": "Saint-Étienne",
+        "finishLocation": "Lyon",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6dff1d13644f376dfc8e_SainteLyon2024-%C2%A9AlexisBerg-05-1927.jpg",
+          "alt": "Saintelyon - Relais 3",
+          "sourceUrl": "https://www.saintelyon.com/races/80km-relais-3"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.saintelyon.com/races/80km-relais-3",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:18.973Z",
+            "event": "Saintelyon",
+            "race": "Relais 3"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": null,
+        "kmEffort": null
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page does not expose elevation gain yet.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "elevationGain",
+          "maxDuration",
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "saintelyon",
+        "name": "Saintelyon",
+        "slug": "saintelyon",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Lyon",
+        "officialWebsite": "https://www.saintelyon.com"
+      },
+      "race": {
+        "id": "saintelyon-relais-4",
+        "eventId": "saintelyon",
+        "name": "Saintelyon Relais 4",
+        "shortName": "Relais 4"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-11-28",
+        "startTime": "23:30",
+        "distanceKm": 80,
+        "elevationGainM": null,
+        "elevationLossM": null,
+        "startLocation": "",
+        "finishLocation": "Lyon",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c70c29c4702c2ffcc6496_ASTL_25_2025%40barcus%20victor214.jpg",
+          "alt": "Saintelyon - Relais 4",
+          "sourceUrl": "https://www.saintelyon.com/races/80km-relais-4"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.saintelyon.com/races/80km-relais-4",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:19.025Z",
+            "event": "Saintelyon",
+            "race": "Relais 4"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": null,
+        "kmEffort": null
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page does not expose elevation gain yet.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "elevationGain",
+          "maxDuration",
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "saintelyon",
+        "name": "Saintelyon",
+        "slug": "saintelyon",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Lyon",
+        "officialWebsite": "https://www.saintelyon.com"
+      },
+      "race": {
+        "id": "saintelyon-saintexpress",
+        "eventId": "saintelyon",
+        "name": "SaintExpress",
+        "shortName": "SaintExpress"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-11-28",
+        "startTime": "23:00",
+        "distanceKm": 45,
+        "elevationGainM": null,
+        "elevationLossM": null,
+        "startLocation": "Sainte-Catherine",
+        "finishLocation": "Lyon",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6fd60c97b389db30d6dd_ASTL24_EXTRASPORT_2024%40barcus%20victor53.jpg",
+          "alt": "Saintelyon - SaintExpress",
+          "sourceUrl": "https://www.saintelyon.com/races/45km-saint-express"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.saintelyon.com/races/45km-saint-express",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:19.109Z",
+            "event": "Saintelyon",
+            "race": "SaintExpress"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": null,
+        "kmEffort": null
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page does not expose elevation gain yet.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "elevationGain",
+          "maxDuration",
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "saintelyon",
+        "name": "Saintelyon",
+        "slug": "saintelyon",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Lyon",
+        "officialWebsite": "https://www.saintelyon.com"
+      },
+      "race": {
+        "id": "saintelyon-saintevia",
+        "eventId": "saintelyon",
+        "name": "SainteVia",
+        "shortName": "SainteVia"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-11-28",
+        "startTime": "22:30",
+        "distanceKm": 35,
+        "elevationGainM": null,
+        "elevationLossM": null,
+        "startLocation": "Mornant",
+        "finishLocation": "Lyon",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/69f0cddfd9fe5d05f600e00c_mxpstudio15.jpg",
+          "alt": "Saintelyon - SainteVia",
+          "sourceUrl": "https://www.saintelyon.com/races/saintevia"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.saintelyon.com/races/saintevia",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:19.164Z",
+            "event": "Saintelyon",
+            "race": "SainteVia"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": null,
+        "kmEffort": null
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page does not expose elevation gain yet.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "elevationGain",
+          "maxDuration",
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "saintelyon",
+        "name": "Saintelyon",
+        "slug": "saintelyon",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Lyon",
+        "officialWebsite": "https://www.saintelyon.com"
+      },
+      "race": {
+        "id": "saintelyon-saintesprint",
+        "eventId": "saintelyon",
+        "name": "SainteSprint",
+        "shortName": "SainteSprint"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-11-28",
+        "startTime": "23:00",
+        "distanceKm": 24,
+        "elevationGainM": null,
+        "elevationLossM": null,
+        "startLocation": "Soucieu-en-Jarrest",
+        "finishLocation": "Lyon",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6ed2b707d4e11b0e6c83_SAINTELYON_2025_%C2%A9_Infinity_Nine_Media-B.Seon-28.jpg",
+          "alt": "Saintelyon - SainteSprint",
+          "sourceUrl": "https://www.saintelyon.com/races/14km-saintesprint"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.saintelyon.com/races/14km-saintesprint",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:19.224Z",
+            "event": "Saintelyon",
+            "race": "SainteSprint"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": null,
+        "kmEffort": null
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page does not expose elevation gain yet.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "elevationGain",
+          "maxDuration",
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "saintelyon",
+        "name": "Saintelyon",
+        "slug": "saintelyon",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Lyon",
+        "officialWebsite": "https://www.saintelyon.com"
+      },
+      "race": {
+        "id": "saintelyon-saintetic",
+        "eventId": "saintelyon",
+        "name": "SainteTic",
+        "shortName": "SainteTic"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-11-28",
+        "startTime": "22:30",
+        "distanceKm": 13,
+        "elevationGainM": null,
+        "elevationLossM": null,
+        "startLocation": "Chaponost",
+        "finishLocation": "Lyon",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/697b5d475eadf62e6943325f_WOUJOW_ASL24_BD521.jpg",
+          "alt": "Saintelyon - SainteTic",
+          "sourceUrl": "https://www.saintelyon.com/races/13km-saintetic"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.saintelyon.com/races/13km-saintetic",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:19.272Z",
+            "event": "Saintelyon",
+            "race": "SainteTic"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": null,
+        "kmEffort": null
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page does not expose elevation gain yet.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "elevationGain",
+          "maxDuration",
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "saintelyon",
+        "name": "Saintelyon",
+        "slug": "saintelyon",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Lyon",
+        "officialWebsite": "https://www.saintelyon.com"
+      },
+      "race": {
+        "id": "saintelyon-lyon-saintelyon",
+        "eventId": "saintelyon",
+        "name": "Lyon Saintelyon",
+        "shortName": "Lyon Saintelyon"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-11-28",
+        "startTime": "09:00",
+        "distanceKm": 160,
+        "elevationGainM": null,
+        "elevationLossM": null,
+        "startLocation": "Halle Tony Garnier",
+        "finishLocation": "Lyon",
+        "maxDurationMinutes": null,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": null,
+        "gpx": null,
+        "illustration": {
+          "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/6978970c7fb53fc7007442d9_ASTL24_EXTRASPORT_2024%40barcus%20victor24.jpg",
+          "alt": "Saintelyon - Lyon Saintelyon",
+          "sourceUrl": "https://www.saintelyon.com/races/160km-lyon-saintelyon"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://www.saintelyon.com/races/160km-lyon-saintelyon",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T13:46:19.322Z",
+            "event": "Saintelyon",
+            "race": "Lyon Saintelyon"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": null,
+        "kmEffort": null
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page does not expose elevation gain yet.",
+          "GPX officiel non trouvé",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "elevationGain",
+          "maxDuration",
+          "price",
+          "gpx",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    }
+  ]
+}

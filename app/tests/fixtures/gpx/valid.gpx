@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="TrailCompare test">
+  <trk>
+    <name>Valid test track</name>
+    <trkseg>
+      <trkpt lat="45.9200" lon="6.8600"><ele>1000</ele></trkpt>
+      <trkpt lat="45.9250" lon="6.8700"><ele>1010</ele></trkpt>
+      <trkpt lat="45.9300" lon="6.8800"><ele>1004</ele></trkpt>
+      <trkpt lat="45.9350" lon="6.8900"><ele>1020</ele></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

@@ -1,0 +1,7 @@
+7 parcours seront programmes avec les distances et deniveles suivantes :
+- parcours de 13 kms avec 280 m de denivele positif. Depart a 8h
+- parcours de 30 kms autonomie complete avec 710 m de denivele positif: Depart a 4h
+- parcours de 115 kms avec 2150 m de denivele positif. Depart a 2h
+13 km: €26
+30 km: €42
+115 km: €105
