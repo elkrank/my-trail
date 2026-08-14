@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { assessGpxElevationQuality } from '../scrapers/common/gpx.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,7 +49,7 @@ function normalizeDataset(payload) {
       aidStations: edition.aidStations,
       mandatoryEquipment: edition.mandatoryEquipment,
       gpxUrl: edition.gpxUrl,
-      gpx: edition.gpx,
+      gpx: normalizeGpx(edition.gpx, edition),
       illustration: normalizeIllustration(edition.illustration),
       rawEdition: edition,
       checkpoints: normalizeCheckpoints(index + 1, edition.checkpoints),
@@ -175,6 +176,19 @@ function numberOrNull(value) {
   return Number.isFinite(number) ? number : null;
 }
 
+function normalizeGpx(value, edition) {
+  if (!value) return value ?? null;
+  const elevationQuality = value.elevationQuality ?? assessGpxElevationQuality({
+    gpxStatus: value.status,
+    officialGainM: edition?.elevationGainM,
+    computedGainM: value.computed?.elevationGainM,
+    hasElevation: value.hasElevation,
+  });
+  return {
+    ...value,
+    elevationQuality,
+  };
+}
 function normalizeIllustration(value) {
   const url = normalizeHttpUrl(value?.url);
   if (!url) return null;

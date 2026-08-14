@@ -103,6 +103,7 @@ app.get('/api/races/:id/gpx', async (request, response, next) => {
       localFile: race.gpx.localFile,
       sha256: race.gpx.sha256,
       computed: race.gpx.computed,
+      elevationQuality: race.gpx.elevationQuality,
       segments: asset.segments ?? [],
       points: flattenSegments(asset.segments ?? []),
       elevationProfile: asset.elevationProfile ?? [],

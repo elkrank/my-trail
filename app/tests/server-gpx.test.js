@@ -63,6 +63,9 @@ test('gpx endpoint serves generated local route assets without external fetches'
     assert.equal(response.body.points[0].distanceKm, 0);
     assert.equal(response.body.points[1].ele, 120);
     assert.equal(response.body.computed.distanceKm, 1.82);
+    assert.equal(response.body.elevationQuality.status, 'consistent');
+    assert.equal(response.body.elevationQuality.officialGainM, 20);
+    assert.equal(response.body.elevationQuality.computedGainM, 20);
   } finally {
     globalThis.fetch = previousFetch;
   }
@@ -80,6 +83,7 @@ test('races endpoint exposes event and start finish locations for explorer filte
   assert.equal(response.body.races[0].illustration.url, 'https://example.test/images/valid-gpx.jpg');
   assert.equal(response.body.races[0].illustration.alt, 'Fixture Trail - Valid GPX');
   assert.equal(response.body.races[0].registration.url, 'https://example.test/register');
+  assert.equal(response.body.races[0].gpx.elevationQuality.status, 'consistent');
   assert.equal(response.body.races[3].registration.url, null);
 });
 

@@ -47,31 +47,41 @@ export const VERTICALITY_LEVELS = Object.freeze({
 });
 
 function canCalculatePhysicalVolume(race) {
+  const distanceKm = finiteNumberOrNull(race?.distanceKm);
+  const elevationGainM = finiteNumberOrNull(race?.elevationGainM);
+
   return (
-    Number.isFinite(Number(race.distanceKm)) &&
-    Number(race.distanceKm) > 0 &&
-    Number.isFinite(Number(race.elevationGainM)) &&
-    Number(race.elevationGainM) >= 0
+    distanceKm !== null &&
+    distanceKm > 0 &&
+    elevationGainM !== null &&
+    elevationGainM >= 0
   );
 }
 
 function canCalculateRaceScores(race) {
+  const timeLimitMinutes = finiteNumberOrNull(race?.timeLimitMinutes);
+
   return (
     canCalculatePhysicalVolume(race) &&
-    Number.isFinite(Number(race.timeLimitMinutes)) &&
-    Number(race.timeLimitMinutes) > 0
+    timeLimitMinutes !== null &&
+    timeLimitMinutes > 0
   );
 }
 
 function canCalculateCheckpointScores(race, checkpoint) {
+  const distanceKm = finiteNumberOrNull(race?.distanceKm);
+  const timeLimitMinutes = finiteNumberOrNull(race?.timeLimitMinutes);
+  const checkpointDistanceKm = finiteNumberOrNull(checkpoint?.distanceKm);
+  const elapsedLimitMinutes = finiteNumberOrNull(checkpoint?.elapsedLimitMinutes);
+
   return (
     canCalculateRaceScores(race) &&
-    Number.isFinite(Number(checkpoint.distanceKm)) &&
-    Number(checkpoint.distanceKm) > 0 &&
-    Number(checkpoint.distanceKm) <= Number(race.distanceKm) &&
-    Number.isFinite(Number(checkpoint.elapsedLimitMinutes)) &&
-    Number(checkpoint.elapsedLimitMinutes) > 0 &&
-    Number(checkpoint.elapsedLimitMinutes) <= Number(race.timeLimitMinutes)
+    checkpointDistanceKm !== null &&
+    checkpointDistanceKm > 0 &&
+    checkpointDistanceKm <= distanceKm &&
+    elapsedLimitMinutes !== null &&
+    elapsedLimitMinutes > 0 &&
+    elapsedLimitMinutes <= timeLimitMinutes
   );
 }
 
@@ -107,7 +117,9 @@ export function estimateDifficultyScoreV1FromKmEffort(kmEffort) {
 
 export function estimateDifficultyScoreV1(race) {
   if (!canCalculatePhysicalVolume(race)) return null;
-  const kmEffort = calculateKmEffort(Number(race.distanceKm), Number(race.elevationGainM));
+  const distanceKm = finiteNumberOrNull(race.distanceKm);
+  const elevationGainM = finiteNumberOrNull(race.elevationGainM);
+  const kmEffort = calculateKmEffort(distanceKm, elevationGainM);
   return estimateDifficultyScoreV1FromKmEffort(kmEffort);
 }
 
@@ -140,9 +152,10 @@ export function calculateRequiredCheckpointSpeed(distanceKm, elapsedLimitMinutes
 }
 
 export function estimateDifficultyScoreV0(race) {
-  const distanceKm = Number(race.distanceKm);
-  const elevationGainM = Number(race.elevationGainM);
-  const timeLimitMinutes = Number(race.timeLimitMinutes);
+  if (!canCalculateRaceScores(race)) return null;
+  const distanceKm = finiteNumberOrNull(race.distanceKm);
+  const elevationGainM = finiteNumberOrNull(race.elevationGainM);
+  const timeLimitMinutes = finiteNumberOrNull(race.timeLimitMinutes);
 
   const kmEffort = calculateKmEffort(distanceKm, elevationGainM);
   const requiredAverageSpeed = calculateRequiredAverageSpeed(distanceKm, timeLimitMinutes);
@@ -156,21 +169,30 @@ export function estimateDifficultyScoreV0(race) {
 }
 
 export function estimateBarrierPressureScoreV0(race, checkpoint) {
-  const globalSpeed = calculateRequiredAverageSpeed(
-    Number(race.distanceKm),
-    Number(race.timeLimitMinutes),
-  );
-  const checkpointSpeed = calculateRequiredCheckpointSpeed(
-    Number(checkpoint.distanceKm),
-    Number(checkpoint.elapsedLimitMinutes),
-  );
+  const distanceKm = finiteNumberOrNull(race?.distanceKm);
+  const timeLimitMinutes = finiteNumberOrNull(race?.timeLimitMinutes);
+  const checkpointDistanceKm = finiteNumberOrNull(checkpoint?.distanceKm);
+  const elapsedLimitMinutes = finiteNumberOrNull(checkpoint?.elapsedLimitMinutes);
 
-  if (Number(checkpoint.distanceKm) > Number(race.distanceKm)) {
+  if (
+    !canCalculateRaceScores(race) ||
+    checkpointDistanceKm === null ||
+    checkpointDistanceKm <= 0 ||
+    elapsedLimitMinutes === null ||
+    elapsedLimitMinutes <= 0
+  ) {
+    return null;
+  }
+
+  if (checkpointDistanceKm > distanceKm) {
     throw new RangeError('checkpointDistanceKm must not exceed race distanceKm');
   }
-  if (Number(checkpoint.elapsedLimitMinutes) > Number(race.timeLimitMinutes)) {
+  if (elapsedLimitMinutes > timeLimitMinutes) {
     throw new RangeError('checkpoint elapsed limit must not exceed race time limit');
   }
+
+  const globalSpeed = calculateRequiredAverageSpeed(distanceKm, timeLimitMinutes);
+  const checkpointSpeed = calculateRequiredCheckpointSpeed(checkpointDistanceKm, elapsedLimitMinutes);
 
   // V0 experimental model:
   // 50 means the checkpoint asks for the same average speed as the full race.
@@ -180,28 +202,30 @@ export function estimateBarrierPressureScoreV0(race, checkpoint) {
 }
 
 export function enrichRaceWithScores(race, checkpoints = []) {
+  const distanceKm = finiteNumberOrNull(race?.distanceKm);
+  const elevationGainM = finiteNumberOrNull(race?.elevationGainM);
+  const timeLimitMinutes = finiteNumberOrNull(race?.timeLimitMinutes);
   const hasPhysicalVolume = canCalculatePhysicalVolume(race);
   const hasRaceScoresV0 = canCalculateRaceScores(race);
   const kmEffort = hasPhysicalVolume
-    ? calculateKmEffort(Number(race.distanceKm), Number(race.elevationGainM))
+    ? calculateKmEffort(distanceKm, elevationGainM)
     : null;
   const elevationDensityMPerKm = hasPhysicalVolume
-    ? calculateElevationDensity(Number(race.distanceKm), Number(race.elevationGainM))
+    ? calculateElevationDensity(distanceKm, elevationGainM)
     : null;
   const verticalityLevel = classifyVerticalityLevel(elevationDensityMPerKm);
   const requiredAverageSpeedKmh = hasRaceScoresV0
-    ? calculateRequiredAverageSpeed(Number(race.distanceKm), Number(race.timeLimitMinutes))
+    ? calculateRequiredAverageSpeed(distanceKm, timeLimitMinutes)
     : null;
   const difficultyScoreV0 = hasRaceScoresV0 ? estimateDifficultyScoreV0(race) : null;
   const difficultyScoreV1 = hasPhysicalVolume ? estimateDifficultyScoreV1(race) : null;
 
   const enrichedCheckpoints = checkpoints.map((checkpoint) => {
     const hasScores = canCalculateCheckpointScores(race, checkpoint);
+    const checkpointDistanceKm = finiteNumberOrNull(checkpoint?.distanceKm);
+    const elapsedLimitMinutes = finiteNumberOrNull(checkpoint?.elapsedLimitMinutes);
     const requiredCheckpointSpeedKmh = hasScores
-      ? calculateRequiredCheckpointSpeed(
-          Number(checkpoint.distanceKm),
-          Number(checkpoint.elapsedLimitMinutes),
-        )
+      ? calculateRequiredCheckpointSpeed(checkpointDistanceKm, elapsedLimitMinutes)
       : null;
     return {
       ...checkpoint,

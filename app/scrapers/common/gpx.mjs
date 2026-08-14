@@ -12,6 +12,8 @@ const USER_AGENT = "TrailCompareMVP/0.1 (+https://example.local; official-gpx-sc
 const MAP_POINT_TARGET = 700;
 const PROFILE_POINT_TARGET = 400;
 const ELEVATION_NOISE_THRESHOLD_M = 3;
+const GPX_ELEVATION_GAIN_MISMATCH_TOLERANCE_M = 250;
+const GPX_ELEVATION_GAIN_MISMATCH_TOLERANCE_RATIO = 0.25;
 const WEB_MERCATOR_RADIUS_M = 6378137;
 
 const SOURCE_PRIORITY = new Map([
@@ -89,6 +91,12 @@ export async function collectGpxForEntry(entry, {
     const gpxFilePath = join(outDir, localFile);
     const routeAssetPath = join(outDir, routeAsset);
     const downloadUrl = downloaded.displayDownloadUrl ?? downloaded.finalUrl;
+    const elevationQuality = assessGpxElevationQuality({
+      gpxStatus: "available",
+      officialGainM: entry.edition?.elevationGainM,
+      computedGainM: parsed.computed?.elevationGainM,
+      hasElevation: parsed.hasElevation,
+    });
     const routePayload = buildRouteAsset({
       parsed,
       sourceUrl: candidate.sourceUrl,
@@ -120,6 +128,7 @@ export async function collectGpxForEntry(entry, {
       pointCount: parsed.pointCount,
       hasElevation: parsed.hasElevation,
       computed: parsed.computed,
+      elevationQuality,
     };
 
     addOfficialGpxSource(entry, {
@@ -214,6 +223,12 @@ async function collectMultiStageGpxForEntry(entry, {
     const stageDownloadUrls = stages.map((stage) => stage.downloaded.displayDownloadUrl ?? stage.downloaded.finalUrl);
     const sourceUrl = stageSourceUrls[0];
     const downloadUrl = stageDownloadUrls[0];
+    const elevationQuality = assessGpxElevationQuality({
+      gpxStatus: "available",
+      officialGainM: entry.edition?.elevationGainM,
+      computedGainM: parsed.computed?.elevationGainM,
+      hasElevation: parsed.hasElevation,
+    });
     const routePayload = buildRouteAsset({
       parsed,
       sourceUrl,
@@ -249,6 +264,7 @@ async function collectMultiStageGpxForEntry(entry, {
       pointCount: parsed.pointCount,
       hasElevation: parsed.hasElevation,
       computed: parsed.computed,
+      elevationQuality,
     };
 
     addOfficialGpxSource(entry, { url: downloadUrl, retrievedAt });
@@ -1152,6 +1168,48 @@ function kmlPointToGpx(point) {
   return `      <trkpt lat="${point.lat}" lon="${point.lon}">${ele}\n      </trkpt>`;
 }
 
+export function assessGpxElevationQuality({
+  gpxStatus = "available",
+  officialGainM = null,
+  computedGainM = null,
+  hasElevation = null,
+} = {}) {
+  const officialGain = numberOrNull(officialGainM);
+  const computedGain = numberOrNull(computedGainM);
+  const base = {
+    status: "unavailable",
+    officialGainM: officialGain,
+    computedGainM: computedGain,
+    deltaM: null,
+    deltaPercent: null,
+  };
+
+  if (gpxStatus !== "available" || hasElevation === false || computedGain === null) {
+    return base;
+  }
+  if (officialGain === null) {
+    return { ...base, status: "unverified" };
+  }
+
+  const deltaM = Math.round(Math.abs(officialGain - computedGain));
+  const deltaPercent = officialGain > 0 ? round((deltaM / officialGain) * 100, 1) : null;
+  const tolerance = gpxElevationGainMismatchToleranceM(officialGain);
+  return {
+    status: deltaM > tolerance ? "inconsistent" : "consistent",
+    officialGainM: officialGain,
+    computedGainM: computedGain,
+    deltaM,
+    deltaPercent,
+  };
+}
+
+export function gpxElevationGainMismatchToleranceM(officialGainM) {
+  const officialGain = numberOrNull(officialGainM);
+  return Math.max(
+    GPX_ELEVATION_GAIN_MISMATCH_TOLERANCE_M,
+    (officialGain ?? 0) * GPX_ELEVATION_GAIN_MISMATCH_TOLERANCE_RATIO,
+  );
+}
 export function buildGpxQualityWarnings(entry, previousEntry = null) {
   const warnings = [];
   const gpx = entry.edition?.gpx;
@@ -1173,13 +1231,14 @@ export function buildGpxQualityWarnings(entry, previousEntry = null) {
     }
   }
 
-  const officialGain = numberOrNull(entry.edition.elevationGainM);
-  const computedGain = numberOrNull(gpx.computed?.elevationGainM);
-  if (officialGain && computedGain) {
-    const delta = Math.abs(officialGain - computedGain);
-    if (delta > Math.max(250, officialGain * 0.25)) {
-      warnings.push(`GPX_ELEVATION_GAIN_MISMATCH: official=${officialGain} computed=${computedGain}`);
-    }
+  const elevationQuality = assessGpxElevationQuality({
+    gpxStatus: gpx.status,
+    officialGainM: entry.edition.elevationGainM,
+    computedGainM: gpx.computed?.elevationGainM,
+    hasElevation: gpx.hasElevation,
+  });
+  if (elevationQuality.status === "inconsistent") {
+    warnings.push(`GPX_ELEVATION_GAIN_MISMATCH: official=${elevationQuality.officialGainM} computed=${elevationQuality.computedGainM}`);
   }
 
   return warnings;
@@ -1830,6 +1889,8 @@ function normalizedAbsoluteUrl(value) {
 }
 
 function numberOrNull(value) {
+  if (value === null || value === undefined) return null;
+  if (typeof value === "string" && value.trim() === "") return null;
   const number = Number(value);
   return Number.isFinite(number) ? number : null;
 }
@@ -1869,6 +1930,8 @@ function asArray(value) {
 
 function firstFiniteNumber(...values) {
   for (const value of values) {
+    if (value === null || value === undefined) continue;
+    if (typeof value === "string" && value.trim() === "") continue;
     const number = Number(value);
     if (Number.isFinite(number)) return number;
   }

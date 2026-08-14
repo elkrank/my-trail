@@ -587,6 +587,20 @@ function mapTemplate(race, variant, gpxData) {
   `;
 }
 
+function gpxElevationQualityStatus(gpxData) {
+  return gpxData?.elevationQuality?.status ?? null;
+}
+
+function gpxElevationQualityMessage(status) {
+  if (status === 'inconsistent') {
+    return 'Profil altimétrique non affiché : les altitudes du GPX sont incohérentes avec le D+ officiel.';
+  }
+  if (status === 'unverified') {
+    return 'Profil issu du GPX, non vérifié par rapport à un D+ officiel.';
+  }
+  return '';
+}
+
 function profileTemplate(race, variant, gpxData) {
   const gpxElevationPoints = Array.isArray(gpxData?.elevationProfile) && gpxData.elevationProfile.length
     ? gpxData.elevationProfile.map((point) => ({
@@ -603,18 +617,23 @@ function profileTemplate(race, variant, gpxData) {
   const elevationPoints = gpxElevationPoints?.length > 1
     ? simplifyPoints(gpxElevationPoints, 120)
     : [];
-  const hasProfile = elevationPoints.length > 1;
+  const elevationQualityStatus = gpxElevationQualityStatus(gpxData);
+  const elevationQualityMessage = gpxElevationQualityMessage(elevationQualityStatus);
+  const hasProfile = elevationQualityStatus !== 'inconsistent' && elevationPoints.length > 1;
   const polyline = hasProfile ? createPolyline(elevationPoints, 560, 134, 12) : '';
   const areaPath = hasProfile ? createAreaPath(elevationPoints, 560, 134, 12) : '';
   const altitudes = elevationPoints.map((point) => point.y);
   const minAltitude = hasProfile ? Math.min(...altitudes) : null;
   const maxAltitude = hasProfile ? Math.max(...altitudes) : null;
+  const profileHeadingMeta = hasProfile
+    ? `${formatAltitude(minAltitude)} - ${formatAltitude(maxAltitude)}${elevationQualityStatus === 'unverified' ? ' - non vérifié' : ''}`
+    : 'Données absentes';
 
   return `
     <section class="profile-block ${raceToneClass(variant)}" aria-label="Profil altimétrique">
       <div class="section-heading">
         <h3>Profil altimétrique</h3>
-        <span>${hasProfile ? `${formatAltitude(minAltitude)} - ${formatAltitude(maxAltitude)}` : 'Données absentes'}</span>
+        <span>${profileHeadingMeta}</span>
       </div>
       ${
         hasProfile
@@ -629,7 +648,7 @@ function profileTemplate(race, variant, gpxData) {
           `
           : `
             <div class="profile-empty">
-              <span>Profil GPX réel non disponible dans les données actuelles.</span>
+              <span>${escapeHtml(elevationQualityMessage || 'Profil GPX réel non disponible dans les données actuelles.')}</span>
             </div>
           `
       }

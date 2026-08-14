@@ -101,7 +101,7 @@ function viewLinkStub(view) {
   };
 }
 
-async function renderApp({ races, comparison = null, hash = '', storage = null }) {
+async function renderApp({ races, comparison = null, hash = '', storage = null, gpxPayloads = {} }) {
   const compareLink = viewLinkStub('compare');
   const explorerLink = viewLinkStub('explorer');
   const favoritesLink = viewLinkStub('favorites');
@@ -174,6 +174,12 @@ async function renderApp({ races, comparison = null, hash = '', storage = null }
       }
       if (String(url).startsWith('/api/compare')) {
         return jsonResponse(selectedComparison);
+      }
+      const urlText = String(url);
+      if (urlText.startsWith('/api/races/') && urlText.endsWith('/gpx')) {
+        const raceId = urlText.split('/')[3];
+        const payload = gpxPayloads[raceId];
+        return payload ? jsonResponse(payload) : jsonResponse({ error: 'not found' }, false);
       }
       return jsonResponse({ error: 'not found' }, false);
     },
@@ -329,6 +335,119 @@ test('frontend renders comparison cards with real values and empty states', asyn
   assert.match(html, /Aucun checkpoint de barri.re d.fini pour cette course/);
   assert.match(html, /Trac. GPX non disponible/);
   assert.match(html, /Profil GPX r.el non disponible/);
+});
+
+function gpxPayloadFixture(elevationQuality) {
+  return {
+    sourceUrl: 'https://example.test/route',
+    downloadUrl: 'https://example.test/route.gpx',
+    localFile: 'gpx/2026/fixture/route.gpx',
+    sha256: 'test-sha',
+    computed: {
+      distanceKm: 2,
+      elevationGainM: elevationQuality.computedGainM,
+    },
+    elevationQuality,
+    segments: [[
+      { lat: 45.1, lon: 6.1, ele: 100, distanceKm: 0 },
+      { lat: 45.2, lon: 6.2, ele: 140, distanceKm: 2 },
+    ]],
+    points: [
+      { lat: 45.1, lon: 6.1, ele: 100, distanceKm: 0 },
+      { lat: 45.2, lon: 6.2, ele: 140, distanceKm: 2 },
+    ],
+    elevationProfile: [
+      { distanceKm: 0, elevationM: 100 },
+      { distanceKm: 2, elevationM: 140 },
+    ],
+  };
+}
+
+test('frontend keeps map profile and download for a consistent GPX', async () => {
+  const raceA = raceFixture({
+    id: 1,
+    name: 'Consistent GPX Trail',
+    gpx: { status: 'available', localFile: 'gpx/2026/fixture/route.gpx' },
+  });
+  const raceB = raceFixture({ id: 2, name: 'No GPX Trail', gpx: null });
+
+  const { elements } = await renderApp({
+    races: [raceA, raceB],
+    comparison: { raceA, raceB },
+    gpxPayloads: {
+      1: gpxPayloadFixture({
+        status: 'consistent',
+        officialGainM: 6200,
+        computedGainM: 6400,
+        deltaM: 200,
+        deltaPercent: 3.2,
+      }),
+    },
+  });
+  const html = elements['#comparison'].innerHTML;
+
+  assert.equal(html.includes('route-map'), true);
+  assert.equal(html.includes('profile-chart'), true);
+  assert.equal(html.includes('/api/races/1/gpx/download'), true);
+  assert.equal(html.includes('Profil altimétrique non affiché'), false);
+});
+
+test('frontend hides inconsistent GPX elevation profile but keeps map and download', async () => {
+  const raceA = raceFixture({
+    id: 1,
+    name: 'Inconsistent GPX Trail',
+    gpx: { status: 'available', localFile: 'gpx/2026/fixture/route.gpx' },
+  });
+  const raceB = raceFixture({ id: 2, name: 'No GPX Trail', gpx: null });
+
+  const { elements } = await renderApp({
+    races: [raceA, raceB],
+    comparison: { raceA, raceB },
+    gpxPayloads: {
+      1: gpxPayloadFixture({
+        status: 'inconsistent',
+        officialGainM: 6200,
+        computedGainM: 37833,
+        deltaM: 31633,
+        deltaPercent: 510.2,
+      }),
+    },
+  });
+  const html = elements['#comparison'].innerHTML;
+
+  assert.equal(html.includes('route-map'), true);
+  assert.equal(html.includes('/api/races/1/gpx/download'), true);
+  assert.equal(html.includes('Profil altimétrique non affiché : les altitudes du GPX sont incohérentes avec le D+ officiel.'), true);
+  assert.equal(html.includes('profile-chart'), false);
+});
+
+test('frontend shows unverified GPX profile with a discrete indication', async () => {
+  const raceA = raceFixture({
+    id: 1,
+    name: 'Unverified GPX Trail',
+    elevationGainM: null,
+    gpx: { status: 'available', localFile: 'gpx/2026/fixture/route.gpx' },
+  });
+  const raceB = raceFixture({ id: 2, name: 'No GPX Trail', gpx: null });
+
+  const { elements } = await renderApp({
+    races: [raceA, raceB],
+    comparison: { raceA, raceB },
+    gpxPayloads: {
+      1: gpxPayloadFixture({
+        status: 'unverified',
+        officialGainM: null,
+        computedGainM: 6400,
+        deltaM: null,
+        deltaPercent: null,
+      }),
+    },
+  });
+  const html = elements['#comparison'].innerHTML;
+
+  assert.equal(html.includes('profile-chart'), true);
+  assert.equal(html.includes('non vérifié'), true);
+  assert.equal(html.includes('/api/races/1/gpx/download'), true);
 });
 
 test('explorer filters by date location elevation distance and gpx availability', async () => {

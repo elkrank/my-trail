@@ -6,6 +6,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 import {
   analyzeGpxBuffer,
+  assessGpxElevationQuality,
   buildRouteAsset,
   collectGpxForEntry,
   extractMapPlatformLinks,
@@ -66,6 +67,52 @@ test("extracts a GPX from a ZIP download", async () => {
 
   assert.equal(extracted.equals(gpx), true);
   assert.equal(parsed.pointCount, 4);
+});
+
+test("assesses GPX elevation quality against official elevation gain", () => {
+  assert.deepEqual(
+    assessGpxElevationQuality({
+      gpxStatus: "available",
+      officialGainM: 6200,
+      computedGainM: 6400,
+      hasElevation: true,
+    }),
+    {
+      status: "consistent",
+      officialGainM: 6200,
+      computedGainM: 6400,
+      deltaM: 200,
+      deltaPercent: 3.2,
+    },
+  );
+
+  assert.equal(
+    assessGpxElevationQuality({
+      gpxStatus: "available",
+      officialGainM: 6200,
+      computedGainM: 37833,
+      hasElevation: true,
+    }).status,
+    "inconsistent",
+  );
+  assert.equal(
+    assessGpxElevationQuality({
+      gpxStatus: "available",
+      officialGainM: null,
+      computedGainM: 6400,
+      hasElevation: true,
+    }).status,
+    "unverified",
+  );
+  assert.equal(
+    assessGpxElevationQuality({
+      gpxStatus: "available",
+      officialGainM: 6200,
+      computedGainM: null,
+      hasElevation: false,
+    }).status,
+    "unavailable",
+  );
 });
 
 test("builds compact frontend route assets", async () => {

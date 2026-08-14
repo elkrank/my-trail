@@ -126,6 +126,82 @@ test('estimateDifficultyScoreV1 keeps missing or invalid physical data unavailab
   assert.equal(estimateDifficultyScoreV1FromKmEffort(''), null);
 });
 
+test('estimateDifficultyScoreV1 rejects nullish physical data without coercing it to zero', () => {
+  assert.equal(
+    estimateDifficultyScoreV1({
+      distanceKm: 80,
+      elevationGainM: null,
+    }),
+    null,
+  );
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: null, elevationGainM: 1000 }), null);
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: undefined, elevationGainM: 1000 }), null);
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: '', elevationGainM: 1000 }), null);
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: '   ', elevationGainM: 1000 }), null);
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: NaN, elevationGainM: 1000 }), null);
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: -1, elevationGainM: 1000 }), null);
+
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: 80, elevationGainM: undefined }), null);
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: 80, elevationGainM: '' }), null);
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: 80, elevationGainM: '   ' }), null);
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: 80, elevationGainM: NaN }), null);
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: 80, elevationGainM: -1 }), null);
+  assert.equal(estimateDifficultyScoreV1({ distanceKm: 80, elevationGainM: 0 }), 52);
+});
+
+test('enrichRaceWithScores keeps all physical scores unavailable when elevation gain is null', () => {
+  const enriched = enrichRaceWithScores({
+    distanceKm: 80,
+    elevationGainM: null,
+    timeLimitMinutes: 990,
+  }, [
+    { name: 'Finish', distanceKm: 80, elapsedLimitMinutes: 990 },
+  ]);
+
+  assert.equal(enriched.kmEffort, null);
+  assert.equal(enriched.difficultyScoreV0, null);
+  assert.equal(enriched.difficultyScoreV1, null);
+  assert.equal(enriched.difficultyScore, null);
+  assert.equal(enriched.elevationDensityMPerKm, null);
+  assert.equal(enriched.verticalityLevel, null);
+  assert.equal(enriched.barrierPressureScoreV0, null);
+  assert.equal(enriched.criticalBarrier, null);
+  assert.equal(enriched.checkpoints[0].barrierPressureScoreV0, null);
+});
+
+test('enrichRaceWithScores rejects absent or invalid physical values but accepts zero elevation gain', () => {
+  const invalidRaces = [
+    { distanceKm: undefined, elevationGainM: 1000 },
+    { distanceKm: '', elevationGainM: 1000 },
+    { distanceKm: '   ', elevationGainM: 1000 },
+    { distanceKm: NaN, elevationGainM: 1000 },
+    { distanceKm: -1, elevationGainM: 1000 },
+    { distanceKm: 80, elevationGainM: undefined },
+    { distanceKm: 80, elevationGainM: '' },
+    { distanceKm: 80, elevationGainM: '   ' },
+    { distanceKm: 80, elevationGainM: NaN },
+    { distanceKm: 80, elevationGainM: -1 },
+  ];
+
+  for (const invalidRace of invalidRaces) {
+    const enriched = enrichRaceWithScores({ ...invalidRace, timeLimitMinutes: 990 });
+    assert.equal(enriched.kmEffort, null);
+    assert.equal(enriched.difficultyScoreV0, null);
+    assert.equal(enriched.difficultyScoreV1, null);
+    assert.equal(enriched.difficultyScore, null);
+    assert.equal(enriched.elevationDensityMPerKm, null);
+    assert.equal(enriched.verticalityLevel, null);
+    assert.equal(enriched.barrierPressureScoreV0, null);
+  }
+
+  const flat = enrichRaceWithScores({ distanceKm: 80, elevationGainM: 0, timeLimitMinutes: 990 });
+  assert.equal(flat.kmEffort, 80);
+  assert.equal(flat.elevationDensityMPerKm, 0);
+  assert.equal(flat.verticalityLevel, 'rolling');
+  assert.equal(flat.difficultyScoreV1, 52);
+  assert.equal(flat.difficultyScore, 52);
+});
+
 test('verticality density and levels are calculated independently', () => {
   assert.equal(calculateElevationDensity(42, 1000), 23.8);
   assert.equal(classifyVerticalityLevel(14.9), 'rolling');
