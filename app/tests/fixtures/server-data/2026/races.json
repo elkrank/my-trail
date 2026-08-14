@@ -8,7 +8,7 @@
       "slug": "fixture",
       "name": "Fixture Trail",
       "status": "PARTIAL",
-      "raceCount": 2
+      "raceCount": 4
     }
   ],
   "races": [
@@ -75,6 +75,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://example.test/register",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -170,6 +171,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -205,6 +207,176 @@
         "missingFields": [
           "gpx"
         ]
+      }
+    },
+    {
+      "event": {
+        "id": "fixture",
+        "slug": "fixture",
+        "name": "Fixture Trail",
+        "country": "France",
+        "region": "Test",
+        "city": "Test",
+        "officialWebsite": "https://example.test"
+      },
+      "race": {
+        "id": "fixture-missing-file",
+        "eventId": "fixture",
+        "name": "Missing GPX File",
+        "shortName": "Missing GPX File"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-09-12",
+        "startTime": "08:00",
+        "distanceKm": 3,
+        "elevationGainM": 30,
+        "elevationLossM": null,
+        "startLocation": "Start",
+        "finishLocation": "Finish",
+        "maxDurationMinutes": 150,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://example.test/missing.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://example.test/missing",
+          "downloadUrl": "https://example.test/missing.gpx",
+          "sourceType": "official-race-page",
+          "retrievedAt": "2026-08-12T10:00:00.000Z",
+          "localFile": "gpx/2026/fixture/missing.gpx",
+          "routeAsset": "generated/routes/missing-route.json",
+          "sha256": "missing-sha",
+          "computed": {
+            "distanceKm": 3,
+            "elevationGainM": 30
+          }
+        },
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "url": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://example.test/missing",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T10:00:00.000Z",
+            "event": "Fixture Trail",
+            "race": "Missing GPX File"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 10,
+        "kmEffort": 3.3
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "fixture",
+        "slug": "fixture",
+        "name": "Fixture Trail",
+        "country": "France",
+        "region": "Test",
+        "city": "Test",
+        "officialWebsite": "https://example.test"
+      },
+      "race": {
+        "id": "fixture-invalid-path",
+        "eventId": "fixture",
+        "name": "Invalid GPX Path",
+        "shortName": "Invalid GPX Path"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-09-13",
+        "startTime": "08:00",
+        "distanceKm": 4,
+        "elevationGainM": 40,
+        "elevationLossM": null,
+        "startLocation": "Start",
+        "finishLocation": "Finish",
+        "maxDurationMinutes": 180,
+        "raceType": "trail",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://example.test/invalid.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://example.test/invalid",
+          "downloadUrl": "https://example.test/invalid.gpx",
+          "sourceType": "official-race-page",
+          "retrievedAt": "2026-08-12T10:00:00.000Z",
+          "localFile": "../outside.gpx",
+          "routeAsset": "../outside.json",
+          "sha256": "invalid-sha",
+          "computed": {
+            "distanceKm": 4,
+            "elevationGainM": 40
+          }
+        },
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "url": "javascript:alert(1)",
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://example.test/invalid",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-12T10:00:00.000Z",
+            "event": "Fixture Trail",
+            "race": "Invalid GPX Path"
+          }
+        ]
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 10,
+        "kmEffort": 4.4
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [],
+        "missingFields": []
       }
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T13:46:30.445Z",
+  "generatedAt": "2026-08-14T13:01:22.546Z",
   "year": 2026,
   "event": {
     "id": "utmb",
@@ -52,7 +52,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-12T13:45:59.896Z",
+          "retrievedAt": "2026-08-14T13:00:14.869Z",
           "localFile": "gpx/2026/utmb/utmb.gpx",
           "routeAsset": "generated/routes/utmb-utmb-2026.json",
           "sha256": "bd058ebdd47a5dec48681156e6bf4b622c6594323d3399e4dc90fd425e7d3dfe",
@@ -83,6 +83,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
           "maxParticipants": null,
           "qualificationRequired": "UTMB index valid in categories 100K or 100M"
         },
@@ -435,28 +436,28 @@
           {
             "url": "https://montblanc.utmb.world/races/utmb",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:45:57.453Z",
+            "retrievedAt": "2026-08-14T13:00:13.741Z",
             "event": "UTMB Mont-Blanc",
             "race": "UTMB"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "retrievedAt": "2026-08-14T13:00:13.286Z",
             "event": "UTMB Mont-Blanc",
             "race": "UTMB"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "retrievedAt": "2026-08-14T13:00:13.590Z",
             "event": "UTMB Mont-Blanc",
             "race": "UTMB"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1786442971/montblanc/Races/GPX/2026/UTMB_2026_25e2a492e6.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:45:57.453Z",
+            "retrievedAt": "2026-08-14T13:00:13.741Z",
             "event": "UTMB Mont-Blanc",
             "race": "UTMB"
           }
@@ -512,7 +513,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-12T13:46:04.909Z",
+          "retrievedAt": "2026-08-14T13:00:15.286Z",
           "localFile": "gpx/2026/utmb/ccc.gpx",
           "routeAsset": "generated/routes/utmb-ccc-2026.json",
           "sha256": "409971e2fb242aacc67b7cfc716a4c0f2122529ec7bf9586170292fec5979591",
@@ -543,6 +544,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
           "maxParticipants": null,
           "qualificationRequired": "UTMB index valid in categories 50K, 100K or 100M"
         },
@@ -759,28 +761,28 @@
           {
             "url": "https://montblanc.utmb.world/races/ccc",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:45:57.634Z",
+            "retrievedAt": "2026-08-14T13:00:13.869Z",
             "event": "UTMB Mont-Blanc",
             "race": "CCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "retrievedAt": "2026-08-14T13:00:13.286Z",
             "event": "UTMB Mont-Blanc",
             "race": "CCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "retrievedAt": "2026-08-14T13:00:13.590Z",
             "event": "UTMB Mont-Blanc",
             "race": "CCC"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1785143154/montblanc/Races/GPX/2026/CCC_2026_cd3cb129a5.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:45:57.634Z",
+            "retrievedAt": "2026-08-14T13:00:13.869Z",
             "event": "UTMB Mont-Blanc",
             "race": "CCC"
           }
@@ -836,7 +838,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-12T13:46:08.833Z",
+          "retrievedAt": "2026-08-14T13:00:15.533Z",
           "localFile": "gpx/2026/utmb/occ.gpx",
           "routeAsset": "generated/routes/utmb-occ-2026.json",
           "sha256": "b2fe8c72f404e90cec54693e495da78c0380260f5dc76657f3255a6f1488498f",
@@ -867,6 +869,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
           "maxParticipants": null,
           "qualificationRequired": "UTMB index valid in categories 20K, 50K, 100K or 100M"
         },
@@ -1008,28 +1011,28 @@
           {
             "url": "https://montblanc.utmb.world/races/occ",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:45:57.895Z",
+            "retrievedAt": "2026-08-14T13:00:14.031Z",
             "event": "UTMB Mont-Blanc",
             "race": "OCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "retrievedAt": "2026-08-14T13:00:13.286Z",
             "event": "UTMB Mont-Blanc",
             "race": "OCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "retrievedAt": "2026-08-14T13:00:13.590Z",
             "event": "UTMB Mont-Blanc",
             "race": "OCC"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127491/montblanc/Races/GPX/2026/OCC_2026_4ffbc4d07f.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:45:57.895Z",
+            "retrievedAt": "2026-08-14T13:00:14.031Z",
             "event": "UTMB Mont-Blanc",
             "race": "OCC"
           }
@@ -1085,7 +1088,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-12T13:46:10.177Z",
+          "retrievedAt": "2026-08-14T13:00:15.778Z",
           "localFile": "gpx/2026/utmb/tds.gpx",
           "routeAsset": "generated/routes/utmb-tds-2026.json",
           "sha256": "a97a53f5eebe71a3dd5e31deb4cb0b7ed58d4585f9d9ed7a528608d0202456e6",
@@ -1116,6 +1119,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
           "maxParticipants": null,
           "qualificationRequired": "UTMB index valid in categories 100K or 100M"
         },
@@ -1433,28 +1437,28 @@
           {
             "url": "https://montblanc.utmb.world/races/tds",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:45:58.833Z",
+            "retrievedAt": "2026-08-14T13:00:14.140Z",
             "event": "UTMB Mont-Blanc",
             "race": "TDS"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "retrievedAt": "2026-08-14T13:00:13.286Z",
             "event": "UTMB Mont-Blanc",
             "race": "TDS"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "retrievedAt": "2026-08-14T13:00:13.590Z",
             "event": "UTMB Mont-Blanc",
             "race": "TDS"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1786442970/montblanc/Races/GPX/2026/TDS_2026_098e06c78e.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:45:58.833Z",
+            "retrievedAt": "2026-08-14T13:00:14.140Z",
             "event": "UTMB Mont-Blanc",
             "race": "TDS"
           }
@@ -1510,7 +1514,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-12T13:46:11.741Z",
+          "retrievedAt": "2026-08-14T13:00:16.050Z",
           "localFile": "gpx/2026/utmb/mcc.gpx",
           "routeAsset": "generated/routes/utmb-mcc-2026.json",
           "sha256": "a32bd3f74624da03b2fcc339ed86053e931c0a57bc5b10a7f5d62f0214e91a8a",
@@ -1541,6 +1545,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -1660,28 +1665,28 @@
           {
             "url": "https://montblanc.utmb.world/races/mcc",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:45:59.030Z",
+            "retrievedAt": "2026-08-14T13:00:14.298Z",
             "event": "UTMB Mont-Blanc",
             "race": "MCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "retrievedAt": "2026-08-14T13:00:13.286Z",
             "event": "UTMB Mont-Blanc",
             "race": "MCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "retrievedAt": "2026-08-14T13:00:13.590Z",
             "event": "UTMB Mont-Blanc",
             "race": "MCC"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127488/montblanc/Races/GPX/2026/MCC_2026_c1d5b84b2c.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:45:59.030Z",
+            "retrievedAt": "2026-08-14T13:00:14.298Z",
             "event": "UTMB Mont-Blanc",
             "race": "MCC"
           }
@@ -1737,7 +1742,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-12T13:46:12.472Z",
+          "retrievedAt": "2026-08-14T13:00:16.244Z",
           "localFile": "gpx/2026/utmb/etc.gpx",
           "routeAsset": "generated/routes/utmb-etc-2026.json",
           "sha256": "5985954852b4d53314749f89fc46cb5d2e68761ef8f2c79c212f217660a2c908",
@@ -1768,6 +1773,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": true,
+          "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -1843,28 +1849,28 @@
           {
             "url": "https://montblanc.utmb.world/races/etc",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:45:59.250Z",
+            "retrievedAt": "2026-08-14T13:00:14.419Z",
             "event": "UTMB Mont-Blanc",
             "race": "ETC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "retrievedAt": "2026-08-14T13:00:13.286Z",
             "event": "UTMB Mont-Blanc",
             "race": "ETC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "retrievedAt": "2026-08-14T13:00:13.590Z",
             "event": "UTMB Mont-Blanc",
             "race": "ETC"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127487/montblanc/Races/GPX/2026/ETC_2026_ed5c8a96b4.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:45:59.250Z",
+            "retrievedAt": "2026-08-14T13:00:14.419Z",
             "event": "UTMB Mont-Blanc",
             "race": "ETC"
           }
@@ -1920,7 +1926,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-12T13:46:12.908Z",
+          "retrievedAt": "2026-08-14T13:00:16.413Z",
           "localFile": "gpx/2026/utmb/ptl.gpx",
           "routeAsset": "generated/routes/utmb-ptl-2026.json",
           "sha256": "7a9ee3cfda9b66cfc0168349d34d4298822e2a441686c88441097c0195634808",
@@ -1951,6 +1957,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -2189,28 +2196,28 @@
           {
             "url": "https://montblanc.utmb.world/races/ptl",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:45:59.521Z",
+            "retrievedAt": "2026-08-14T13:00:14.582Z",
             "event": "UTMB Mont-Blanc",
             "race": "PTL"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-12T13:45:56.835Z",
+            "retrievedAt": "2026-08-14T13:00:13.286Z",
             "event": "UTMB Mont-Blanc",
             "race": "PTL"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:45:57.264Z",
+            "retrievedAt": "2026-08-14T13:00:13.590Z",
             "event": "UTMB Mont-Blanc",
             "race": "PTL"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1723798810/montblanc/Races/GPX/2024/track_5_53fd1bf5e0.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:45:59.521Z",
+            "retrievedAt": "2026-08-14T13:00:14.582Z",
             "event": "UTMB Mont-Blanc",
             "race": "PTL"
           }

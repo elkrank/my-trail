@@ -3,13 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TrailCompare V0</title>
+    <title>TrailCompare - Comparateur de trails</title>
+    <meta name="description" content="Comparez et explorez des trails avec des données officielles, des filtres de course, les traces GPX disponibles et des favoris locaux.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TrailCompare">
+    <meta property="og:title" content="TrailCompare - Comparateur de trails">
+    <meta property="og:description" content="Comparez et explorez des trails avec des données officielles, des filtres de course, les traces GPX disponibles et des favoris locaux.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="TrailCompare - Comparateur de trails">
+    <meta name="twitter:description" content="Comparez et explorez des trails avec des données officielles, des filtres de course, les traces GPX disponibles et des favoris locaux.">
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
     <div class="app-shell">
       <aside class="sidebar" aria-label="Navigation principale">
-        <a class="brand" href="/" aria-label="TrailCompare V0">
+        <a class="brand" href="/" aria-label="TrailCompare">
           <span class="brand-mark" aria-hidden="true">
             <svg viewBox="0 0 40 40" focusable="false">
               <path d="M7 28 18 12l7 10 4-5 5 11H7Z"></path>
@@ -18,12 +26,12 @@
           </span>
           <span class="brand-copy">
             <strong>TrailCompare</strong>
-            <small>V0</small>
+            <small>Public beta</small>
           </span>
         </a>
 
         <nav class="side-nav" aria-label="Sections">
-          <a class="side-link is-active" href="#compare" aria-current="page" data-view-link="compare">
+          <a class="side-link" href="#compare" data-view-link="compare">
             <span class="side-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
             </span>
@@ -41,7 +49,7 @@
             </span>
             Mes courses
           </a>
-          <a class="side-link" href="#" aria-disabled="true">
+          <a class="side-link" href="#favorites" data-view-link="favorites">
             <span class="side-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false"><path d="m12 5 2.1 4.3 4.7.7-3.4 3.3.8 4.7-4.2-2.2L7.8 18l.8-4.7L5.2 10l4.7-.7L12 5Z"></path></svg>
             </span>
@@ -78,7 +86,7 @@
             <p class="eyebrow">COMPARATEUR DE COURSES</p>
             <h1>Comparez deux trails</h1>
             <p class="subtitle">
-              Analysez la difficulté et la pression des barrières pour mieux choisir vos objectifs.
+              Analysez la difficulté physique estimée et la pression des barrières pour mieux choisir vos objectifs.
             </p>
           </div>
           <div class="header-actions" aria-label="Actions">
@@ -123,7 +131,7 @@
           <span aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><path d="M12 17v-5M12 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg>
           </span>
-          <p>Conseil : comparez la pression V0 et les vitesses minimales pour évaluer la difficulté réelle entre deux courses.</p>
+          <p>Conseil : comparez la difficulté physique estimée, la verticalité et les vitesses minimales entre deux courses.</p>
         </aside>
         </section>
 
@@ -133,7 +141,7 @@
               <p class="eyebrow">EXPLORER LES COURSES</p>
               <h1>Explorer les trails</h1>
               <p class="subtitle">
-                Filtrez le calendrier par date, lieu, distance, D+ et donnees GPX disponibles.
+                Filtrez le calendrier par date, lieu, distance, D+ et données GPX disponibles.
               </p>
             </div>
           </header>
@@ -153,7 +161,7 @@
               </label>
 
               <label class="filter-field">
-                <span>Date debut</span>
+                <span>Date début</span>
                 <input id="explorer-date-from" type="date">
               </label>
 
@@ -167,8 +175,8 @@
                 <select id="explorer-elevation">
                   <option value="">Tous les D+</option>
                   <option value="under-1000">Moins de 1 000 m</option>
-                  <option value="1000-3000">1 000 a 3 000 m</option>
-                  <option value="3000-6000">3 000 a 6 000 m</option>
+                  <option value="1000-3000">1 000 à 3 000 m</option>
+                  <option value="3000-6000">3 000 à 6 000 m</option>
                   <option value="over-6000">Plus de 6 000 m</option>
                 </select>
               </label>
@@ -178,9 +186,37 @@
                 <select id="explorer-distance">
                   <option value="">Toutes distances</option>
                   <option value="under-30">Moins de 30 km</option>
-                  <option value="30-80">30 a 80 km</option>
-                  <option value="80-120">80 a 120 km</option>
+                  <option value="30-80">30 à 80 km</option>
+                  <option value="80-120">80 à 120 km</option>
                   <option value="over-120">Plus de 120 km</option>
+                </select>
+              </label>
+
+              <label class="filter-field">
+                <span>Mois</span>
+                <select id="explorer-month">
+                  <option value="">Tous les mois</option>
+                </select>
+              </label>
+
+              <label class="filter-field">
+                <span>Prix max</span>
+                <select id="explorer-price-max">
+                  <option value="">Tous les prix</option>
+                </select>
+              </label>
+
+              <label class="filter-field">
+                <span>Inscription</span>
+                <select id="explorer-registration-status">
+                  <option value="">Tous les statuts</option>
+                </select>
+              </label>
+
+              <label class="filter-field">
+                <span>Durée max</span>
+                <select id="explorer-duration-max">
+                  <option value="">Toutes durées</option>
                 </select>
               </label>
 
@@ -190,9 +226,9 @@
                   <option value="date-asc">Date proche</option>
                   <option value="date-desc">Date lointaine</option>
                   <option value="distance-asc">Distance croissante</option>
-                  <option value="distance-desc">Distance decroissante</option>
+                  <option value="distance-desc">Distance décroissante</option>
                   <option value="elevation-asc">D+ croissant</option>
-                  <option value="elevation-desc">D+ decroissant</option>
+                  <option value="elevation-desc">D+ décroissant</option>
                 </select>
               </label>
 
@@ -201,7 +237,7 @@
                 <span>GPX disponible</span>
               </label>
 
-              <button id="explorer-reset" class="button button-secondary reset-button" type="button">Reinitialiser</button>
+              <button id="explorer-reset" class="button button-secondary reset-button" type="button">Réinitialiser</button>
             </div>
           </section>
 
@@ -210,6 +246,24 @@
           </div>
 
           <section id="explorer-results" class="explorer-results" aria-live="polite"></section>
+        </section>
+
+        <section id="favorites-view" class="view" data-view="favorites" hidden>
+          <header class="page-header explorer-header">
+            <div>
+              <p class="eyebrow">FAVORIS</p>
+              <h1>Vos trails favoris</h1>
+              <p class="subtitle">
+                Retrouvez les courses enregistrees sur cet appareil, sans compte utilisateur.
+              </p>
+            </div>
+          </header>
+
+          <div class="explorer-meta">
+            <p id="favorites-count" aria-live="polite"></p>
+          </div>
+
+          <section id="favorites-results" class="explorer-results" aria-live="polite"></section>
         </section>
       </main>
     </div>

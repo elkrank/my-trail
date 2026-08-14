@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T13:46:30.445Z",
+  "generatedAt": "2026-08-14T13:01:22.546Z",
   "year": 2026,
   "event": {
     "id": "ecotrail",
@@ -43,8 +43,32 @@
         "terrainType": "trail",
         "nightStart": null,
         "polesAllowed": null,
-        "gpxUrl": null,
-        "gpx": null,
+        "gpxUrl": "https://strava-embeds.com/route/3499396767489537408?fullWidth=true&style=standard&clubId=245753&fromEmbed=false",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://www.strava.com/routes/3499396767489537408",
+          "downloadUrl": "https://strava-embeds.com/route/3499396767489537408?fullWidth=true&style=standard&clubId=245753&fromEmbed=false",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:49.243Z",
+          "localFile": "gpx/2026/ecotrail/80-km-automne.gpx",
+          "routeAsset": "generated/routes/ecotrail-80-km-automne-2026.json",
+          "sha256": "cc0fe873c3dd7b6adcfe1ad22371c5e3862ffdb1b28a06ff875554993ddbb545",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 7551,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 79.57,
+            "elevationGainM": 1006,
+            "elevationLossM": 986,
+            "minElevationM": 19,
+            "maxElevationM": 186,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/68230b77200c97103cc051bb/69e795ad739c45d264f1e559_ECOTRAIL%202026-6L9A9109.jpg",
           "alt": "EcoTrail Paris - 80 km Automne",
@@ -59,10 +83,21 @@
           "registrationCloseDate": null,
           "status": "full",
           "lottery": null,
+          "url": "https://www.ecotrailparis.com/pre-inscriptions",
           "maxParticipants": 2000,
           "qualificationRequired": "Licence FFA 2026-2027 ou attestation PPS"
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Arrivee",
+            "distanceKm": 80,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 720,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [
           "Réserve d'eau minimum",
@@ -85,7 +120,28 @@
           {
             "url": "https://www.ecotrailparis.com/course/trail-80-km-automne",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:24.889Z",
+            "retrievedAt": "2026-08-14T13:00:48.177Z",
+            "event": "EcoTrail Paris",
+            "race": "80 km Automne"
+          },
+          {
+            "url": "https://www.ecotrailparis.com/roadbook",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:48.028Z",
+            "event": "EcoTrail Paris",
+            "race": "80 km Automne"
+          },
+          {
+            "url": "https://strava-embeds.com/route/3499396767489537408?fullWidth=true&style=standard&clubId=245753&fromEmbed=false",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:00:49.243Z",
+            "event": "EcoTrail Paris",
+            "race": "80 km Automne"
+          },
+          {
+            "url": "https://www.strava.com/routes/3499396767489537408",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-14T13:00:49.243Z",
             "event": "EcoTrail Paris",
             "race": "80 km Automne"
           }
@@ -99,15 +155,11 @@
       "quality": {
         "status": "partial",
         "warnings": [
-          "Official page links a roadbook/FAQ for practical details; cutoff and aid station tables were not found in the race page.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "Official roadbook page says the runner roadbook is coming soon; intermediate cutoff and aid station tables are not published yet.",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "price",
-          "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }
@@ -142,8 +194,32 @@
         "terrainType": "trail",
         "nightStart": null,
         "polesAllowed": null,
-        "gpxUrl": null,
-        "gpx": null,
+        "gpxUrl": "https://strava-embeds.com/route/3499397578429775130?fullWidth=true&style=standard&clubId=245753&fromEmbed=false",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://www.strava.com/routes/3499397578429775130",
+          "downloadUrl": "https://strava-embeds.com/route/3499397578429775130?fullWidth=true&style=standard&clubId=245753&fromEmbed=false",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:49.937Z",
+          "localFile": "gpx/2026/ecotrail/50-km-automne.gpx",
+          "routeAsset": "generated/routes/ecotrail-50-km-automne-2026.json",
+          "sha256": "5d71f8830c8119ae79afce5d8c65ccafa15b9479d3643fa2234959898a0dab4c",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 5062,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 53.12,
+            "elevationGainM": 725,
+            "elevationLossM": 765,
+            "minElevationM": 31,
+            "maxElevationM": 186,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/68230b77200c97103cc051bb/69e888a7035cd40f0f7ca97a_20260321_ECOTRAIL_Morgan-BOVE_142.jpg",
           "alt": "EcoTrail Paris - 50 km Automne",
@@ -158,10 +234,21 @@
           "registrationCloseDate": null,
           "status": "full",
           "lottery": null,
+          "url": "https://www.ecotrailparis.com/pre-inscriptions",
           "maxParticipants": 2000,
           "qualificationRequired": "Licence FFA 2026-2027 ou attestation PPS"
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Arrivee",
+            "distanceKm": 50,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 540,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [
           "Réserve d'eau minimum",
@@ -182,7 +269,28 @@
           {
             "url": "https://www.ecotrailparis.com/course/trail-50-km-automne",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:25.138Z",
+            "retrievedAt": "2026-08-14T13:00:48.228Z",
+            "event": "EcoTrail Paris",
+            "race": "50 km Automne"
+          },
+          {
+            "url": "https://www.ecotrailparis.com/roadbook",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:48.028Z",
+            "event": "EcoTrail Paris",
+            "race": "50 km Automne"
+          },
+          {
+            "url": "https://strava-embeds.com/route/3499397578429775130?fullWidth=true&style=standard&clubId=245753&fromEmbed=false",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:00:49.937Z",
+            "event": "EcoTrail Paris",
+            "race": "50 km Automne"
+          },
+          {
+            "url": "https://www.strava.com/routes/3499397578429775130",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-14T13:00:49.937Z",
             "event": "EcoTrail Paris",
             "race": "50 km Automne"
           }
@@ -196,15 +304,11 @@
       "quality": {
         "status": "partial",
         "warnings": [
-          "Official page links a roadbook/FAQ for practical details; cutoff and aid station tables were not found in the race page.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "Official roadbook page says the runner roadbook is coming soon; intermediate cutoff and aid station tables are not published yet.",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "price",
-          "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }
@@ -239,8 +343,32 @@
         "terrainType": "trail",
         "nightStart": null,
         "polesAllowed": null,
-        "gpxUrl": null,
-        "gpx": null,
+        "gpxUrl": "https://strava-embeds.com/route/3499774191449659422?fullWidth=true&style=standard&clubId=245753&fromEmbed=false",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://www.strava.com/routes/3499774191449659422",
+          "downloadUrl": "https://strava-embeds.com/route/3499774191449659422?fullWidth=true&style=standard&clubId=245753&fromEmbed=false",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:50.717Z",
+          "localFile": "gpx/2026/ecotrail/20-km-automne.gpx",
+          "routeAsset": "generated/routes/ecotrail-20-km-automne-2026.json",
+          "sha256": "7adabaf9c61cf726d9a3fea2a7d2139df0c4644eda96142df2948ebf206b78f8",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 2033,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 20,
+            "elevationGainM": 167,
+            "elevationLossM": 298,
+            "minElevationM": 31,
+            "maxElevationM": 180,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/68230b77200c97103cc051bb/69e88d7d0863b69d835bc8ad_ECOTRAIL%202026-6L9A0856.jpg",
           "alt": "EcoTrail Paris - 20 km Automne",
@@ -255,10 +383,21 @@
           "registrationCloseDate": null,
           "status": "open",
           "lottery": null,
+          "url": "https://www.ecotrailparis.com/pre-inscriptions",
           "maxParticipants": 2000,
           "qualificationRequired": "Licence FFA 2026-2027 ou attestation PPS"
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Arrivee",
+            "distanceKm": 20,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 240,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [
           "Gobelet 15cl minimum",
@@ -277,7 +416,28 @@
           {
             "url": "https://www.ecotrailparis.com/course/trail-20-km-automne",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:25.240Z",
+            "retrievedAt": "2026-08-14T13:00:48.299Z",
+            "event": "EcoTrail Paris",
+            "race": "20 km Automne"
+          },
+          {
+            "url": "https://www.ecotrailparis.com/roadbook",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:48.028Z",
+            "event": "EcoTrail Paris",
+            "race": "20 km Automne"
+          },
+          {
+            "url": "https://strava-embeds.com/route/3499774191449659422?fullWidth=true&style=standard&clubId=245753&fromEmbed=false",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:00:50.717Z",
+            "event": "EcoTrail Paris",
+            "race": "20 km Automne"
+          },
+          {
+            "url": "https://www.strava.com/routes/3499774191449659422",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-14T13:00:50.717Z",
             "event": "EcoTrail Paris",
             "race": "20 km Automne"
           }
@@ -291,15 +451,11 @@
       "quality": {
         "status": "partial",
         "warnings": [
-          "Official page links a roadbook/FAQ for practical details; cutoff and aid station tables were not found in the race page.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "Official roadbook page says the runner roadbook is coming soon; intermediate cutoff and aid station tables are not published yet.",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "price",
-          "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }

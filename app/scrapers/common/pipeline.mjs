@@ -7,6 +7,10 @@ import { collect as collectSaintelyon } from "../events/saintelyon/index.mjs";
 import { collect as collectTempliers } from "../events/templiers/index.mjs";
 import { collect as collectEcotrail } from "../events/ecotrail/index.mjs";
 import { collect as collectNtmf } from "../events/ntmf/index.mjs";
+import { collect as collectUltraMarin } from "../events/ultra-marin/index.mjs";
+import { collect as collectMarathonMontBlanc } from "../events/marathon-mont-blanc/index.mjs";
+import { collect as collectMaxiRace } from "../events/maxi-race/index.mjs";
+import { collect as collectTrailAlsace } from "../events/trail-alsace/index.mjs";
 
 export const COLLECTORS = [
   { id: "utmb", label: "UTMB Mont-Blanc", collect: collectUtmb },
@@ -15,6 +19,10 @@ export const COLLECTORS = [
   { id: "templiers", label: "Festival des Templiers", collect: collectTempliers },
   { id: "ecotrail", label: "EcoTrail Paris", collect: collectEcotrail },
   { id: "ntmf", label: "Nord Trail Monts de Flandres", collect: collectNtmf },
+  { id: "ultra-marin", label: "Ultra Marin", collect: collectUltraMarin },
+  { id: "marathon-mont-blanc", label: "Marathon du Mont-Blanc", collect: collectMarathonMontBlanc },
+  { id: "maxi-race", label: "MaXi-Race du lac d'Annecy", collect: collectMaxiRace },
+  { id: "trail-alsace", label: "Trail Alsace by UTMB", collect: collectTrailAlsace },
 ];
 
 export async function runPipeline({ year = 2026, event = null, outDir = "data" } = {}) {
@@ -51,7 +59,10 @@ export async function runPipeline({ year = 2026, event = null, outDir = "data" }
     }
   }
 
-  await exportResults({ year, outDir, results });
+  const exportPayload = event
+    ? await mergeTargetedResults({ year, outDir, selected, results })
+    : results;
+  await exportResults({ year, outDir, results: exportPayload });
   return results;
 }
 
@@ -90,6 +101,31 @@ export async function runGpxOnlyPipeline({ year = 2026, event = null, outDir = "
     results.push(validateResult(enriched));
   }
 
-  await exportResults({ year, outDir, results });
+  const exportPayload = event
+    ? await mergeTargetedResults({ year, outDir, selected, results })
+    : results;
+  await exportResults({ year, outDir, results: exportPayload });
   return results;
+}
+
+async function mergeTargetedResults({ year, outDir, selected, results }) {
+  const selectedIds = new Set(selected.map((collector) => collector.id));
+  const resultByCollectorId = new Map();
+  for (const result of results) {
+    resultByCollectorId.set(result.event?.slug ?? result.event?.id, result);
+  }
+
+  const merged = [];
+  for (const collector of COLLECTORS) {
+    if (selectedIds.has(collector.id)) {
+      const result = resultByCollectorId.get(collector.id);
+      if (result) merged.push(result);
+      continue;
+    }
+
+    const previous = await loadPreviousResult({ year, outDir, eventSlug: collector.id });
+    if (previous) merged.push(previous);
+  }
+
+  return merged;
 }

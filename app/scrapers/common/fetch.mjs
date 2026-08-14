@@ -2,7 +2,7 @@ export async function fetchText(url, options = {}) {
   const retrievedAt = new Date().toISOString();
   const response = await fetch(url, {
     headers: {
-      "accept": "text/html,application/xhtml+xml,application/xml,application/json;q=0.9,*/*;q=0.8",
+      "accept": options.accept ?? "text/html,application/xhtml+xml,application/xml,application/json;q=0.9,*/*;q=0.8",
       "accept-language": options.language ?? "fr-FR,fr;q=0.9,en;q=0.8",
       "user-agent": options.userAgent ??
         "TrailCompareMVP/0.1 (+https://example.local; official-source-scraper)",
@@ -11,6 +11,36 @@ export async function fetchText(url, options = {}) {
   });
 
   const content = await response.text();
+  if (!response.ok) {
+    const error = new Error(`HTTP ${response.status} for ${url}`);
+    error.status = response.status;
+    error.content = content;
+    throw error;
+  }
+
+  return {
+    url,
+    finalUrl: response.url,
+    retrievedAt,
+    status: response.status,
+    contentType: response.headers.get("content-type"),
+    content,
+  };
+}
+
+export async function fetchBuffer(url, options = {}) {
+  const retrievedAt = new Date().toISOString();
+  const response = await fetch(url, {
+    headers: {
+      "accept": options.accept ?? "*/*",
+      "accept-language": options.language ?? "fr-FR,fr;q=0.9,en;q=0.8",
+      "user-agent": options.userAgent ??
+        "TrailCompareMVP/0.1 (+https://example.local; official-source-scraper)",
+    },
+    redirect: "follow",
+  });
+
+  const content = Buffer.from(await response.arrayBuffer());
   if (!response.ok) {
     const error = new Error(`HTTP ${response.status} for ${url}`);
     error.status = response.status;

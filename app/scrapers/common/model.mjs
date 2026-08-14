@@ -66,6 +66,7 @@ export function createEdition(year, overrides = {}) {
       registrationCloseDate: null,
       status: null,
       lottery: null,
+      url: null,
       maxParticipants: null,
       qualificationRequired: null,
     },
@@ -86,6 +87,7 @@ export function createEdition(year, overrides = {}) {
       registrationCloseDate: null,
       status: null,
       lottery: null,
+      url: null,
       maxParticipants: null,
       qualificationRequired: null,
       ...(overrides.registration ?? {}),
@@ -174,7 +176,7 @@ function round(value, decimals) {
   return Math.round(value * factor) / factor;
 }
 
-function normalizeHttpUrl(value) {
+export function normalizeHttpUrl(value) {
   if (!value) return null;
 
   try {

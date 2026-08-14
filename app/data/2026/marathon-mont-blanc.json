@@ -1,0 +1,1421 @@
+{
+  "generatedAt": "2026-08-14T13:01:22.546Z",
+  "year": 2026,
+  "event": {
+    "id": "marathon-mont-blanc",
+    "name": "Marathon du Mont-Blanc",
+    "slug": "marathon-mont-blanc",
+    "country": "France",
+    "region": "Auvergne-Rhone-Alpes",
+    "city": "Chamonix",
+    "officialWebsite": "https://www.marathonmontblanc.fr"
+  },
+  "status": "PARTIAL",
+  "sourceErrors": [],
+  "races": [
+    {
+      "event": {
+        "id": "marathon-mont-blanc",
+        "name": "Marathon du Mont-Blanc",
+        "slug": "marathon-mont-blanc",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://www.marathonmontblanc.fr"
+      },
+      "race": {
+        "id": "marathon-mont-blanc-90km",
+        "eventId": "marathon-mont-blanc",
+        "name": "90 km du Mont-Blanc",
+        "shortName": "90 km"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-06-26",
+        "startTime": "04:45",
+        "distanceKm": 88,
+        "elevationGainM": 6200,
+        "elevationLossM": 6200,
+        "startLocation": "Chamonix",
+        "finishLocation": "Chamonix",
+        "maxDurationMinutes": 1440,
+        "raceType": "solo",
+        "terrainType": "trail",
+        "nightStart": true,
+        "polesAllowed": true,
+        "gpxUrl": "https://strava-embeds.com/route/3410932955339078512?clubId=513835",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://www.strava.com/routes/3410932955339078512",
+          "downloadUrl": "https://strava-embeds.com/route/3410932955339078512?clubId=513835",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:01:03.841Z",
+          "localFile": "gpx/2026/marathon-mont-blanc/90-km.gpx",
+          "routeAsset": "generated/routes/marathon-mont-blanc-90-km-2026.json",
+          "sha256": "ec6d10c15ccb311bdde695cd68c5f1b79c59dae7fc02300a968d9269a53d04b5",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 13941,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 86.81,
+            "elevationGainM": 6175,
+            "elevationLossM": 6176,
+            "minElevationM": 1035,
+            "maxElevationM": 2476,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.marathonmontblanc.fr/sites/default/files/styles/942x500/public/2026-08/DSC0024290KM%20%C2%A9AdrienColleur.jpg.webp?h=6c891254&itok=PdoXLIEE",
+          "alt": "Marathon du Mont-Blanc - 90 km",
+          "sourceUrl": "https://www.marathonmontblanc.fr/courses/90km-du-mont-blanc"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 140,
+          "registrationOpenDate": null,
+          "registrationCloseDate": "2026-06-27",
+          "status": null,
+          "lottery": true,
+          "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+          "maxParticipants": 1000,
+          "qualificationRequired": null
+        },
+        "checkpoints": [
+          {
+            "name": "La Flégère",
+            "distanceKm": 18,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 270,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Ravitaillement du Buet",
+            "distanceKm": 28,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 390,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "La Villaz",
+            "distanceKm": 35,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 480,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Ravitaillement d’Emosson",
+            "distanceKm": 40,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 600,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Le Châtelard",
+            "distanceKm": 44,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 660,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Ravitaillement du Tour",
+            "distanceKm": 60,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 915,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Ravitaillement des Bois",
+            "distanceKm": 69,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 1035,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Ravitaillement du Montenvers",
+            "distanceKm": 75,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 1185,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Ravitaillement du refuge du Plan de l’Aiguille",
+            "distanceKm": 81,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 1305,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Chamonix arrivée",
+            "distanceKm": 88,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 1440,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "Buet",
+            "distanceKm": 28,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "d’Emosson",
+            "distanceKm": 40,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Tour",
+            "distanceKm": 60,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Bois",
+            "distanceKm": 69,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Montenvers",
+            "distanceKm": 75,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "refuge du Plan de l’Aiguille",
+            "distanceKm": 81,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Arrivee",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [
+          "et leurs documents d'identité. Aucun dossard ne sera distribué dans la nuit du jeudi au vendredi, avant le départ de la course.",
+          "Matériel obligatoire",
+          "Téléphone portable en état de fonctionnement et disposant d’un abonnement adapté aux pays traversés par la course (France et Suisse).",
+          "Carte d’identité avec photo.",
+          "Réserve d’eau 1.5 litre minimum.",
+          "Veste imperméable avec capuche (type gore-tex) adaptée à sa taille.",
+          "Vêtement seconde couche chaud (avec manches longues) adapté à sa taille.",
+          "Une lampe frontale ou pectorale avec des piles de rechange.",
+          "Couverture de survie (140cm x 200cm).",
+          "Sifflet.",
+          "Gobelet.",
+          "Bol et cuillère.",
+          "Argent liquide.",
+          "Matériel recommandé",
+          "Bonnet.",
+          "Collant.",
+          "Gants.",
+          "Rouleau de straps.",
+          "Barrières horaires",
+          "Les barrières horaires indiquées ci-dessous sont données à titre indicatif. En cas de mauvaises conditions météorologiques, et pour des raisons de sécurité,"
+        ],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": 1.5
+        },
+        "sources": [
+          {
+            "url": "https://www.marathonmontblanc.fr/courses/90km-du-mont-blanc",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-14T13:01:02.237Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "90 km"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-14T13:01:02.047Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "90 km"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/reglement-des-courses",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-14T13:01:02.160Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "90 km"
+          },
+          {
+            "url": "https://strava-embeds.com/route/3410932955339078512?clubId=513835",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:01:03.841Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "90 km"
+          },
+          {
+            "url": "https://www.strava.com/routes/3410932955339078512",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-14T13:01:03.841Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "90 km"
+          }
+        ],
+        "rawOfficial": {
+          "latestRegistrationPeriodUsed": "Du 01/04/2026 au 27/06/2026",
+          "recommendedIndex": "450",
+          "stravaAccountUrls": [
+            "https://www.strava.com/clubs/marathonmontblanc"
+          ]
+        }
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 70.45,
+        "kmEffort": 150
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [
+          "Official page warns GPX-derived distance/elevation can differ from official values.",
+          "Aid station distance unknown: Arrivee"
+        ],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "marathon-mont-blanc",
+        "name": "Marathon du Mont-Blanc",
+        "slug": "marathon-mont-blanc",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://www.marathonmontblanc.fr"
+      },
+      "race": {
+        "id": "marathon-mont-blanc-42km",
+        "eventId": "marathon-mont-blanc",
+        "name": "42 km du Mont-Blanc",
+        "shortName": "42 km"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-06-28",
+        "startTime": "06:45",
+        "distanceKm": 42,
+        "elevationGainM": 2540,
+        "elevationLossM": 2540,
+        "startLocation": "Chamonix",
+        "finishLocation": "Chamonix",
+        "maxDurationMinutes": 600,
+        "raceType": "solo",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": true,
+        "gpxUrl": "https://strava-embeds.com/route/3441346801495059420?clubId=513835",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://www.strava.com/routes/3441346801495059420",
+          "downloadUrl": "https://strava-embeds.com/route/3441346801495059420?clubId=513835",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:01:06.170Z",
+          "localFile": "gpx/2026/marathon-mont-blanc/42-km.gpx",
+          "routeAsset": "generated/routes/marathon-mont-blanc-42-km-2026.json",
+          "sha256": "352e1fc38d79b186b5e4bdad1d16c7905eafb5c81b94fef8125bb576e7915e3e",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 6491,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 43.17,
+            "elevationGainM": 2451,
+            "elevationLossM": 2452,
+            "minElevationM": 1038,
+            "maxElevationM": 2192,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.marathonmontblanc.fr/sites/default/files/styles/942x500/public/2026-08/MMB2026_42KM_%28c%29DavidGonthier_0822_HD.jpg.webp?h=fbb479bb&itok=c0uEsOlZ",
+          "alt": "Marathon du Mont-Blanc - 42 km",
+          "sourceUrl": "https://www.marathonmontblanc.fr/courses/42km-du-mont-blanc"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 80,
+          "registrationOpenDate": null,
+          "registrationCloseDate": "2026-06-27",
+          "status": null,
+          "lottery": true,
+          "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+          "maxParticipants": 2300,
+          "qualificationRequired": null
+        },
+        "checkpoints": [
+          {
+            "name": "Ravitaillement du Tour",
+            "distanceKm": 13.5,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 165,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Ravitaillement de Vallorcine",
+            "distanceKm": 23.5,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 330,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Ravitaillement de la Flégère",
+            "distanceKm": 34.2,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 510,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Chamonix arrivée",
+            "distanceKm": 42,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 600,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "Tour",
+            "distanceKm": 13.5,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "de Vallorcine",
+            "distanceKm": 23.5,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Flégère",
+            "distanceKm": 34.2,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Arrivee",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [
+          "et leurs documents d'identité.",
+          "Matériel obligatoire",
+          "Téléphone portable en état de fonctionnement.",
+          "Réserve d’eau de 1 litre minimum.",
+          "Veste imperméable avec capuche (type gore-tex) adaptée à sa taille.",
+          "Couverture de survie (140cm x 200cm).",
+          "Gobelet.",
+          "Sifflet.",
+          "Argent liquide.",
+          "Matériel recommandé",
+          "Bonnet.",
+          "Collant.",
+          "Gants.",
+          "Rouleau de Straps.",
+          "Bol et cuillère.",
+          "Barrières horaires",
+          "Les barrières horaires indiquées ci-dessous sont données à titre indicatif. En cas de mauvaises conditions météorologiques, et pour des raisons de sécurité,"
+        ],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": 1
+        },
+        "sources": [
+          {
+            "url": "https://www.marathonmontblanc.fr/courses/42km-du-mont-blanc",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-14T13:01:02.313Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "42 km"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-14T13:01:02.047Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "42 km"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/reglement-des-courses",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-14T13:01:02.160Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "42 km"
+          },
+          {
+            "url": "https://strava-embeds.com/route/3441346801495059420?clubId=513835",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:01:06.170Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "42 km"
+          },
+          {
+            "url": "https://www.strava.com/routes/3441346801495059420",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-14T13:01:06.170Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "42 km"
+          }
+        ],
+        "rawOfficial": {
+          "latestRegistrationPeriodUsed": "Du 01/04/2026 au 27/06/2026",
+          "recommendedIndex": "350",
+          "stravaAccountUrls": [
+            "https://www.strava.com/clubs/marathonmontblanc"
+          ]
+        }
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 60.48,
+        "kmEffort": 67.4
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [
+          "Official page warns GPX-derived distance/elevation can differ from official values.",
+          "Aid station distance unknown: Arrivee"
+        ],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "marathon-mont-blanc",
+        "name": "Marathon du Mont-Blanc",
+        "slug": "marathon-mont-blanc",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://www.marathonmontblanc.fr"
+      },
+      "race": {
+        "id": "marathon-mont-blanc-23km",
+        "eventId": "marathon-mont-blanc",
+        "name": "23 km du Mont-Blanc",
+        "shortName": "23 km"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-06-27",
+        "startTime": "07:00",
+        "distanceKm": 23,
+        "elevationGainM": 1680,
+        "elevationLossM": 870,
+        "startLocation": "Chamonix",
+        "finishLocation": "Planpraz",
+        "maxDurationMinutes": 360,
+        "raceType": "solo",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": true,
+        "gpxUrl": "https://www.google.com/maps/d/kml?mid=1Yb5fI78r0UNk6m2eqKVTRUA46EWC1jvz&forcekml=1",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://www.google.com/maps/d/edit?mid=1Yb5fI78r0UNk6m2eqKVTRUA46EWC1jvz&ll=45.96251364788493%2C6.904467124485518&z=13",
+          "downloadUrl": "https://www.google.com/maps/d/kml?mid=1Yb5fI78r0UNk6m2eqKVTRUA46EWC1jvz&forcekml=1",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "google-my-maps",
+          "retrievedAt": "2026-08-14T13:01:07.896Z",
+          "localFile": "gpx/2026/marathon-mont-blanc/23-km.gpx",
+          "routeAsset": "generated/routes/marathon-mont-blanc-23-km-2026.json",
+          "sha256": "e03210b3a26a73dfb21b2a34a24f8fe0684484eb521f0d18415dea2acc866ddf",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 3587,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 24.09,
+            "elevationGainM": 1656,
+            "elevationLossM": 647,
+            "minElevationM": 1039,
+            "maxElevationM": 2067,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.marathonmontblanc.fr/sites/default/files/styles/942x500/public/2026-08/MMB2026_23KM_%28c%29DavidGonthier_0145_HD.jpg.webp?h=81ba1190&itok=LmodfR8J",
+          "alt": "Marathon du Mont-Blanc - 23 km",
+          "sourceUrl": "https://www.marathonmontblanc.fr/courses/23km-du-mont-blanc"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 50,
+          "registrationOpenDate": null,
+          "registrationCloseDate": "2026-06-27",
+          "status": null,
+          "lottery": true,
+          "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+          "maxParticipants": 2000,
+          "qualificationRequired": null
+        },
+        "checkpoints": [
+          {
+            "name": "Ravitaillement de Montroc",
+            "distanceKm": 11.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 150,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Ravitaillement de la Flégère",
+            "distanceKm": 18.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 270,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Chamonix Planpraz",
+            "distanceKm": 23,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 360,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "de Montroc",
+            "distanceKm": 11.4,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Flégère",
+            "distanceKm": 18.4,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Arrivee",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [
+          "et leurs documents d'identité.",
+          "Matériel obligatoire",
+          "Téléphone portable en état de fonctionnement.",
+          "Réserve d’eau de 1 litre minimum.",
+          "Veste imperméable avec capuche (type gore-tex) adaptée à sa taille.",
+          "Couverture de survie (140cm x 200cm).",
+          "Gobelet.",
+          "Sifflet.",
+          "Argent liquide.",
+          "Matériel recommandé",
+          "Bonnet.",
+          "Collant.",
+          "Gants.",
+          "Barrières horaires",
+          "Les barrières horaires indiquées ci-dessous sont données à titre indicatif. En cas de mauvaises conditions météorologiques, et pour des raisons de sécurité,"
+        ],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": 1
+        },
+        "sources": [
+          {
+            "url": "https://www.marathonmontblanc.fr/courses/23km-du-mont-blanc",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-14T13:01:02.398Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "23 km"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-14T13:01:02.047Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "23 km"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/reglement-des-courses",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-14T13:01:02.160Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "23 km"
+          },
+          {
+            "url": "https://www.google.com/maps/d/kml?mid=1Yb5fI78r0UNk6m2eqKVTRUA46EWC1jvz&forcekml=1",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:01:07.896Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "23 km"
+          },
+          {
+            "url": "https://www.google.com/maps/d/edit?mid=1Yb5fI78r0UNk6m2eqKVTRUA46EWC1jvz&ll=45.96251364788493%2C6.904467124485518&z=13",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-14T13:01:07.896Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "23 km"
+          }
+        ],
+        "rawOfficial": {
+          "latestRegistrationPeriodUsed": "Du 01/04/2026 au 27/06/2026",
+          "recommendedIndex": "270",
+          "stravaAccountUrls": [
+            "https://www.strava.com/clubs/marathonmontblanc"
+          ]
+        }
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 73.04,
+        "kmEffort": 39.8
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [
+          "Official page warns GPX-derived distance/elevation can differ from official values.",
+          "Aid station distance unknown: Arrivee"
+        ],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "marathon-mont-blanc",
+        "name": "Marathon du Mont-Blanc",
+        "slug": "marathon-mont-blanc",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://www.marathonmontblanc.fr"
+      },
+      "race": {
+        "id": "marathon-mont-blanc-duo-etoile",
+        "eventId": "marathon-mont-blanc",
+        "name": "Duo Étoilé",
+        "shortName": "Duo Étoilé"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-06-27",
+        "startTime": "19:30",
+        "distanceKm": 21,
+        "elevationGainM": 1450,
+        "elevationLossM": 1450,
+        "startLocation": "Chamonix",
+        "finishLocation": "Chamonix",
+        "maxDurationMinutes": 390,
+        "raceType": "pair",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://www.google.com/maps/d/kml?mid=1eFQeKSq_9j44FSTDJ1SMag6O-5PKaXaA&forcekml=1",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://www.google.com/maps/d/edit?mid=1eFQeKSq_9j44FSTDJ1SMag6O-5PKaXaA&ll=45.932936590022194%2C6.908440971132301&z=16",
+          "downloadUrl": "https://www.google.com/maps/d/kml?mid=1eFQeKSq_9j44FSTDJ1SMag6O-5PKaXaA&forcekml=1",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "google-my-maps",
+          "retrievedAt": "2026-08-14T13:01:08.466Z",
+          "localFile": "gpx/2026/marathon-mont-blanc/duo-etoile.gpx",
+          "routeAsset": "generated/routes/marathon-mont-blanc-duo-etoile-2026.json",
+          "sha256": "f3827c778c2f55e81f6d9045873da15dd17805e29f6906fc6ce97c03d65bdb4f",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 7001,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 20.94,
+            "elevationGainM": 1573,
+            "elevationLossM": 1560,
+            "minElevationM": 1031,
+            "maxElevationM": 2211,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.marathonmontblanc.fr/sites/default/files/styles/942x500/public/2026-04/MMB2025_0628_%28c%29DavidGonthier_2449_BD_Duo.jpg.webp?h=41f55a5b&itok=k22KPKvj",
+          "alt": "Marathon du Mont-Blanc - Duo Étoilé",
+          "sourceUrl": "https://www.marathonmontblanc.fr/courses/duo-etoile"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 85,
+          "registrationOpenDate": null,
+          "registrationCloseDate": "2026-06-27",
+          "status": null,
+          "lottery": true,
+          "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+          "maxParticipants": 500,
+          "qualificationRequired": null
+        },
+        "checkpoints": [
+          {
+            "name": "Carrefour du Chemin Caillet",
+            "distanceKm": 4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 75,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Ravitaillement du Montenvers",
+            "distanceKm": 7.6,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 150,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Point de ravitaillement du Refuge du Plan de l'Aiguille",
+            "distanceKm": 13.7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 270,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Chamonix arrivée",
+            "distanceKm": 21,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 390,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "Montenvers",
+            "distanceKm": 7.6,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Point de ravitaillement du Refuge du Plan de l'Aiguille",
+            "distanceKm": 13.7,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": true,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          },
+          {
+            "name": "Arrivee",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [
+          ", pour permettre la pose d’une puce de chronométrage et le contrôle de l’équipement.",
+          "Aucun dossard ne sera remis aux coureurs n'ayant pas leur matériel obligatoire et leurs documents d'identité. Il n'y aura pas de dossards distribués après 18h00 le samedi.",
+          "Matériel obligatoire",
+          "Téléphone portable en état de fonctionnement.",
+          "Réserve d'eau de 0,50 litre minimum.",
+          "Veste imperméable avec capuche (type gore-tex) adaptée à sa taille.",
+          "Lampe frontale ou pectorale en état de marche, avec des piles de rechange.",
+          "Couverture de survie (140cm x 200cm).",
+          "Sifflet.",
+          "Gobelet.",
+          "Matériel recommandé",
+          "Bonnet.",
+          "Collants.",
+          "Gants.",
+          "Bol et cuillère.",
+          "Barrières horaires",
+          "Les barrières horaires indiquées ci-dessous sont données à titre indicatif. En cas de mauvaises conditions météorologiques, et pour des raisons de sécurité,"
+        ],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": 0.5
+        },
+        "sources": [
+          {
+            "url": "https://www.marathonmontblanc.fr/courses/duo-etoile",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-14T13:01:02.488Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "Duo Étoilé"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-14T13:01:02.047Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "Duo Étoilé"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/reglement-des-courses",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-14T13:01:02.160Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "Duo Étoilé"
+          },
+          {
+            "url": "https://www.google.com/maps/d/kml?mid=1eFQeKSq_9j44FSTDJ1SMag6O-5PKaXaA&forcekml=1",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:01:08.466Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "Duo Étoilé"
+          },
+          {
+            "url": "https://www.google.com/maps/d/edit?mid=1eFQeKSq_9j44FSTDJ1SMag6O-5PKaXaA&ll=45.932936590022194%2C6.908440971132301&z=16",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-14T13:01:08.466Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "Duo Étoilé"
+          }
+        ],
+        "rawOfficial": {
+          "latestRegistrationPeriodUsed": "Du 01/04/2026 au 27/06/2026",
+          "recommendedIndex": "240",
+          "stravaAccountUrls": [
+            "https://www.strava.com/clubs/marathonmontblanc"
+          ]
+        }
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 69.05,
+        "kmEffort": 35.5
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [
+          "Official page warns GPX-derived distance/elevation can differ from official values.",
+          "Aid station distance unknown: Arrivee"
+        ],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "marathon-mont-blanc",
+        "name": "Marathon du Mont-Blanc",
+        "slug": "marathon-mont-blanc",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://www.marathonmontblanc.fr"
+      },
+      "race": {
+        "id": "marathon-mont-blanc-10km",
+        "eventId": "marathon-mont-blanc",
+        "name": "10 km du Mont-Blanc",
+        "shortName": "10 km"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-06-27",
+        "startTime": "10:30",
+        "distanceKm": 10,
+        "elevationGainM": 325,
+        "elevationLossM": 325,
+        "startLocation": "Chamonix",
+        "finishLocation": "Chamonix",
+        "maxDurationMinutes": 150,
+        "raceType": "solo",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": null,
+        "gpxUrl": "https://www.google.com/maps/d/kml?mid=1IS7e4urqiNweBHbxsjxSLGJ4pn9lOy4&forcekml=1",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://www.google.com/maps/d/edit?mid=1IS7e4urqiNweBHbxsjxSLGJ4pn9lOy4&ll=45.9477806003358%2C6.899297458354261&z=14",
+          "downloadUrl": "https://www.google.com/maps/d/kml?mid=1IS7e4urqiNweBHbxsjxSLGJ4pn9lOy4&forcekml=1",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "google-my-maps",
+          "retrievedAt": "2026-08-14T13:01:09.039Z",
+          "localFile": "gpx/2026/marathon-mont-blanc/10-km.gpx",
+          "routeAsset": "generated/routes/marathon-mont-blanc-10-km-2026.json",
+          "sha256": "e2a688792690f9c8524a7e18cf96f3008a12dd9a78e024640b0f45c68e7c835a",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 367,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 9.97,
+            "elevationGainM": 0,
+            "elevationLossM": 0,
+            "minElevationM": 0,
+            "maxElevationM": 0,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.marathonmontblanc.fr/sites/default/files/styles/942x500/public/2026-08/%C2%A9FABIAN_BODET_10KM_MMB26-28.jpg.webp?h=0775493e&itok=AbuIQ1QW",
+          "alt": "Marathon du Mont-Blanc - 10 km",
+          "sourceUrl": "https://www.marathonmontblanc.fr/courses/10km-du-mont-blanc"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 40,
+          "registrationOpenDate": null,
+          "registrationCloseDate": "2026-06-27",
+          "status": null,
+          "lottery": false,
+          "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+          "maxParticipants": 2000,
+          "qualificationRequired": null
+        },
+        "checkpoints": [
+          {
+            "name": "Arrivee",
+            "distanceKm": 10,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": null,
+            "cutoffElapsedMinutes": 150,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
+        "aidStations": [
+          {
+            "name": "Arrivee",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [
+          "et leurs documents d'identité.",
+          "Matériel obligatoire",
+          "Téléphone portable en état de fonctionnement.",
+          "Réserve d’eau de 0,50 litre minimum.",
+          "Gobelet.",
+          "Matériel recommandé",
+          "Veste imperméable (type gore-tex).",
+          "Temps maximum de course",
+          "Les coureurs franchissant la ligne d'arrivée au-delà du temps maximum de course ne seront pas classés et ne seront donc pas considérés comme finisher. Ce temps maximum est calculé en fonction de l'heure de départ de votre vague.",
+          "10km du Mont-Blanc : temps maximum de course : 2h30"
+        ],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": 0.5
+        },
+        "sources": [
+          {
+            "url": "https://www.marathonmontblanc.fr/courses/10km-du-mont-blanc",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-14T13:01:02.588Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "10 km"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-14T13:01:02.047Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "10 km"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/reglement-des-courses",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-14T13:01:02.160Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "10 km"
+          },
+          {
+            "url": "https://www.google.com/maps/d/kml?mid=1IS7e4urqiNweBHbxsjxSLGJ4pn9lOy4&forcekml=1",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:01:09.039Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "10 km"
+          },
+          {
+            "url": "https://www.google.com/maps/d/edit?mid=1IS7e4urqiNweBHbxsjxSLGJ4pn9lOy4&ll=45.9477806003358%2C6.899297458354261&z=14",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-14T13:01:09.039Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "10 km"
+          }
+        ],
+        "rawOfficial": {
+          "latestRegistrationPeriodUsed": "Du 01/04/2026 au 27/06/2026",
+          "recommendedIndex": null,
+          "stravaAccountUrls": [
+            "https://www.strava.com/clubs/marathonmontblanc"
+          ]
+        }
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 32.5,
+        "kmEffort": 13.25
+      },
+      "quality": {
+        "status": "complete",
+        "warnings": [
+          "Official page warns GPX-derived distance/elevation can differ from official values.",
+          "Aid station distance unknown: Arrivee"
+        ],
+        "missingFields": []
+      }
+    },
+    {
+      "event": {
+        "id": "marathon-mont-blanc",
+        "name": "Marathon du Mont-Blanc",
+        "slug": "marathon-mont-blanc",
+        "country": "France",
+        "region": "Auvergne-Rhone-Alpes",
+        "city": "Chamonix",
+        "officialWebsite": "https://www.marathonmontblanc.fr"
+      },
+      "race": {
+        "id": "marathon-mont-blanc-kilometre-vertical",
+        "eventId": "marathon-mont-blanc",
+        "name": "Kilomètre Vertical du Mont-Blanc",
+        "shortName": "KM Vertical"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-06-26",
+        "startTime": "16:00",
+        "distanceKm": 3.8,
+        "elevationGainM": 1000,
+        "elevationLossM": null,
+        "startLocation": "Chamonix",
+        "finishLocation": "Planpraz",
+        "maxDurationMinutes": null,
+        "raceType": "vertical kilometer",
+        "terrainType": "trail",
+        "nightStart": false,
+        "polesAllowed": false,
+        "gpxUrl": "https://www.google.com/maps/d/kml?mid=16aWsmbbQyJRNd_nmS8ucNBLxWP_JMfFE&forcekml=1",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://www.google.com/maps/d/edit?mid=16aWsmbbQyJRNd_nmS8ucNBLxWP_JMfFE&ll=45.932563012396805%2C6.851032026228467&z=17",
+          "downloadUrl": "https://www.google.com/maps/d/kml?mid=16aWsmbbQyJRNd_nmS8ucNBLxWP_JMfFE&forcekml=1",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "google-my-maps",
+          "retrievedAt": "2026-08-14T13:01:09.394Z",
+          "localFile": "gpx/2026/marathon-mont-blanc/km-vertical.gpx",
+          "routeAsset": "generated/routes/marathon-mont-blanc-km-vertical-2026.json",
+          "sha256": "af87f69264633ef60cdb9075207924b76be7afab1082135e44608c3eadcfd96e",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 624,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 3.75,
+            "elevationGainM": 1010,
+            "elevationLossM": 22,
+            "minElevationM": 1038,
+            "maxElevationM": 2049,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": {
+          "url": "https://www.marathonmontblanc.fr/sites/default/files/styles/942x500/public/2026-08/MMB2026_KMV_%28c%29DavidGonthier_0041_HD.jpg.webp?h=9855f42d&itok=32BF9rzw",
+          "alt": "Marathon du Mont-Blanc - KM Vertical",
+          "sourceUrl": "https://www.marathonmontblanc.fr/courses/km-vertical"
+        },
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": 45,
+          "registrationOpenDate": null,
+          "registrationCloseDate": "2026-06-27",
+          "status": null,
+          "lottery": false,
+          "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+          "maxParticipants": 700,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [
+          {
+            "name": "Arrivee",
+            "distanceKm": null,
+            "elevationM": null,
+            "water": true,
+            "sportsDrink": null,
+            "solidFood": null,
+            "hotFood": null,
+            "dropBag": null,
+            "crewAccess": null,
+            "medical": null,
+            "cutoffDateTime": null
+          }
+        ],
+        "mandatoryEquipment": [
+          "et leurs documents d'identité. Il n'y aura pas de dossards distribués après 15h le vendredi.",
+          "Matériel obligatoire",
+          "Téléphone portable en état de fonctionnement.",
+          "Réserve d’eau de 0,50 litre minimum.",
+          "Gobelet.",
+          "Matériel recommandé",
+          "Veste imperméable (type gore-tex)."
+        ],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": 0.5
+        },
+        "sources": [
+          {
+            "url": "https://www.marathonmontblanc.fr/courses/km-vertical",
+            "type": "official-race-page",
+            "retrievedAt": "2026-08-14T13:01:02.670Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "KM Vertical"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/inscriptions",
+            "type": "official-registration",
+            "retrievedAt": "2026-08-14T13:01:02.047Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "KM Vertical"
+          },
+          {
+            "url": "https://www.marathonmontblanc.fr/coureurs/reglement-des-courses",
+            "type": "official-rules",
+            "retrievedAt": "2026-08-14T13:01:02.160Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "KM Vertical"
+          },
+          {
+            "url": "https://www.google.com/maps/d/kml?mid=16aWsmbbQyJRNd_nmS8ucNBLxWP_JMfFE&forcekml=1",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:01:09.394Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "KM Vertical"
+          },
+          {
+            "url": "https://www.google.com/maps/d/edit?mid=16aWsmbbQyJRNd_nmS8ucNBLxWP_JMfFE&ll=45.932563012396805%2C6.851032026228467&z=17",
+            "type": "official-map-platform",
+            "retrievedAt": "2026-08-14T13:01:09.394Z",
+            "event": "Marathon du Mont-Blanc",
+            "race": "KM Vertical"
+          }
+        ],
+        "rawOfficial": {
+          "latestRegistrationPeriodUsed": "Du 01/04/2026 au 27/06/2026",
+          "recommendedIndex": null,
+          "stravaAccountUrls": [
+            "https://www.strava.com/clubs/marathonmontblanc"
+          ]
+        }
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 263.16,
+        "kmEffort": 13.8
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official page warns GPX-derived distance/elevation can differ from official values.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid station distance unknown: Arrivee"
+        ],
+        "missingFields": [
+          "maxDuration",
+          "checkpoints"
+        ]
+      }
+    }
+  ]
+}

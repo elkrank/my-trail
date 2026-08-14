@@ -1,4 +1,5 @@
 import express from 'express';
+import { createReadStream } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,7 +14,34 @@ const publicDir = path.join(__dirname, '..', 'public');
 export const app = express();
 const port = Number(process.env.PORT ?? 3000);
 
-app.use(express.static(publicDir));
+app.get('/', serveIndex);
+app.get('/index.html', serveIndex);
+app.get('/robots.txt', (_request, response) => {
+  const publicBaseUrl = getPublicBaseUrl();
+  response.type('text/plain').send([
+    'User-agent: *',
+    'Allow: /',
+    publicBaseUrl ? `Sitemap: ${publicBaseUrl}/sitemap.xml` : null,
+    '',
+  ].filter((line) => line !== null).join('\n'));
+});
+app.get('/sitemap.xml', (_request, response) => {
+  const publicBaseUrl = getPublicBaseUrl();
+  if (!publicBaseUrl) {
+    response.status(404).type('text/plain').send('Not found');
+    return;
+  }
+
+  response.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${escapeXml(publicBaseUrl)}</loc>
+  </url>
+</urlset>
+`);
+});
+
+app.use(express.static(publicDir, { index: false }));
 
 function parseId(value, name) {
   const id = Number(value);
@@ -84,6 +112,45 @@ app.get('/api/races/:id/gpx', async (request, response, next) => {
   }
 });
 
+app.get('/api/races/:id/gpx/download', async (request, response, next) => {
+  try {
+    const id = parseId(request.params.id, 'id');
+    const race = await getRaceWithCheckpoints(id);
+    if (!race) {
+      response.status(404).json({ error: 'Race not found' });
+      return;
+    }
+    if (race.gpx?.status !== 'available' || !race.gpx.localFile) {
+      response.status(404).json({ error: 'GPX not available' });
+      return;
+    }
+
+    let filePath;
+    try {
+      filePath = resolveDataAssetPath(getDataRoot(), race.gpx.localFile);
+    } catch {
+      response.status(404).json({ error: 'GPX file not available' });
+      return;
+    }
+
+    const fileName = `${slugPart(race.event?.slug ?? race.eventName)}-${slugPart(race.shortName ?? race.raceName)}-${slugPart(race.edition)}.gpx`;
+    response.setHeader('Content-Type', 'application/gpx+xml; charset=utf-8');
+    response.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+
+    const stream = createReadStream(filePath);
+    stream.on('error', () => {
+      if (!response.headersSent) {
+        response.status(404).json({ error: 'GPX file not available' });
+      } else {
+        response.destroy();
+      }
+    });
+    stream.pipe(response);
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.get('/api/races/:id', async (request, response, next) => {
   try {
     const id = parseId(request.params.id, 'id');
@@ -137,10 +204,66 @@ app.use((error, _request, response, _next) => {
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {
-    console.log(`TrailCompare V0 listening on port ${port}`);
+    console.log(`TrailCompare listening on port ${port}`);
   });
 }
 
 function flattenSegments(segments) {
   return segments.flatMap((segment) => segment);
+}
+
+async function serveIndex(_request, response, next) {
+  try {
+    let html = await readFile(path.join(publicDir, 'index.html'), 'utf8');
+    const publicBaseUrl = getPublicBaseUrl();
+    if (publicBaseUrl) {
+      const tags = [
+        `<link rel="canonical" href="${escapeHtml(publicBaseUrl)}">`,
+        `<meta property="og:url" content="${escapeHtml(publicBaseUrl)}">`,
+      ].join('\n    ');
+      html = html.replace('</head>', `    ${tags}\n  </head>`);
+    }
+    response.type('html').send(html);
+  } catch (error) {
+    next(error);
+  }
+}
+
+function getPublicBaseUrl() {
+  return normalizePublicBaseUrl(process.env.PUBLIC_BASE_URL);
+}
+
+function normalizePublicBaseUrl(value) {
+  if (!value) return null;
+  try {
+    const url = new URL(String(value));
+    if (!['http:', 'https:'].includes(url.protocol)) return null;
+    url.hash = '';
+    url.search = '';
+    return url.href.replace(/\/$/, '');
+  } catch {
+    return null;
+  }
+}
+
+function slugPart(value) {
+  const slug = String(value ?? '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return slug || 'course';
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function escapeXml(value) {
+  return escapeHtml(value).replace(/'/g, '&apos;');
 }

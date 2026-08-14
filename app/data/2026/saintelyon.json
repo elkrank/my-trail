@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T13:46:30.445Z",
+  "generatedAt": "2026-08-14T13:01:22.546Z",
   "year": 2026,
   "event": {
     "id": "saintelyon",
@@ -38,13 +38,20 @@
         "elevationLossM": null,
         "startLocation": "Saint-Étienne",
         "finishLocation": "Lyon",
-        "maxDurationMinutes": null,
-        "raceType": "trail",
+        "maxDurationMinutes": 990,
+        "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": null,
+        "gpx": {
+          "status": "invalid",
+          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
+          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:35.233Z"
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6da61f2403585ef9fe29_SainteLyon2024-%C2%A9AlexisBerg-23-9786.jpg",
           "alt": "Saintelyon - Saintelyon",
@@ -59,10 +66,66 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://in.sports107.com/asics-saintelyon-2026?campaign=69b958b2fab7a5ba5e455e3a&currentPage=select-competition",
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Saint-Christo-en-Jarez",
+            "distanceKm": 17,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T04:00:00",
+            "cutoffElapsedMinutes": 270,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Sainte-Catherine",
+            "distanceKm": 32,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T07:00:00",
+            "cutoffElapsedMinutes": 450,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Le Camp-Saint-Genou",
+            "distanceKm": 48,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T09:30:00",
+            "cutoffElapsedMinutes": 600,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Soucieu-en-Jarrest",
+            "distanceKm": 60,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T12:00:00",
+            "cutoffElapsedMinutes": 750,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Chaponost",
+            "distanceKm": 67,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T13:30:00",
+            "cutoffElapsedMinutes": 840,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Lyon",
+            "distanceKm": 82,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T16:00:00",
+            "cutoffElapsedMinutes": 990,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [],
         "rules": {
@@ -75,11 +138,19 @@
           {
             "url": "https://www.saintelyon.com/races/80km-saintelyon",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:18.774Z",
+            "retrievedAt": "2026-08-14T13:00:34.488Z",
             "event": "Saintelyon",
             "race": "Saintelyon"
           }
-        ]
+        ],
+        "rawOfficial": {
+          "routeBounds": {
+            "minLat": 45.25,
+            "maxLat": 45.9,
+            "minLon": 4,
+            "maxLon": 5.1
+          }
+        }
       },
       "computed": {
         "source": "computed",
@@ -89,17 +160,15 @@
       "quality": {
         "status": "partial",
         "warnings": [
+          "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
           "Official page does not expose elevation gain yet.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "GPX_INVALID: GPX distance does not match official distance (official=80 computed=43.3)",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "elevationGain",
-          "maxDuration",
           "price",
           "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }
@@ -129,13 +198,20 @@
         "elevationLossM": null,
         "startLocation": "Saint-Étienne",
         "finishLocation": "Lyon",
-        "maxDurationMinutes": null,
-        "raceType": "trail",
+        "maxDurationMinutes": 990,
+        "raceType": "relay",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": null,
+        "gpx": {
+          "status": "invalid",
+          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
+          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:36.702Z"
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/69789440995f0f941ef6cef4_ASTL_25_2025%40barcus%20victor163.jpg",
           "alt": "Saintelyon - Relais 2",
@@ -150,10 +226,66 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://in.sports107.com/asics-saintelyon-2026?campaign=69b958b2fab7a5ba5e455e3a&currentPage=select-competition",
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Saint-Christo-en-Jarez",
+            "distanceKm": 17,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T04:00:00",
+            "cutoffElapsedMinutes": 270,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Sainte-Catherine",
+            "distanceKm": 32,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T07:00:00",
+            "cutoffElapsedMinutes": 450,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Le Camp-Saint-Genou",
+            "distanceKm": 48,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T09:30:00",
+            "cutoffElapsedMinutes": 600,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Soucieu-en-Jarrest",
+            "distanceKm": 60,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T12:00:00",
+            "cutoffElapsedMinutes": 750,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Chaponost",
+            "distanceKm": 67,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T13:30:00",
+            "cutoffElapsedMinutes": 840,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Lyon",
+            "distanceKm": 82,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T16:00:00",
+            "cutoffElapsedMinutes": 990,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [],
         "rules": {
@@ -166,11 +298,19 @@
           {
             "url": "https://www.saintelyon.com/races/80km-relais-2",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:18.908Z",
+            "retrievedAt": "2026-08-14T13:00:34.643Z",
             "event": "Saintelyon",
             "race": "Relais 2"
           }
-        ]
+        ],
+        "rawOfficial": {
+          "routeBounds": {
+            "minLat": 45.25,
+            "maxLat": 45.9,
+            "minLon": 4,
+            "maxLon": 5.1
+          }
+        }
       },
       "computed": {
         "source": "computed",
@@ -180,17 +320,15 @@
       "quality": {
         "status": "partial",
         "warnings": [
+          "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
           "Official page does not expose elevation gain yet.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "GPX_INVALID: GPX distance does not match official distance (official=80 computed=43.3)",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "elevationGain",
-          "maxDuration",
           "price",
           "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }
@@ -220,13 +358,20 @@
         "elevationLossM": null,
         "startLocation": "Saint-Étienne",
         "finishLocation": "Lyon",
-        "maxDurationMinutes": null,
-        "raceType": "trail",
+        "maxDurationMinutes": 990,
+        "raceType": "relay",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": null,
+        "gpx": {
+          "status": "invalid",
+          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
+          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:37.443Z"
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6dff1d13644f376dfc8e_SainteLyon2024-%C2%A9AlexisBerg-05-1927.jpg",
           "alt": "Saintelyon - Relais 3",
@@ -241,10 +386,66 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://in.sports107.com/asics-saintelyon-2026?campaign=69b958b2fab7a5ba5e455e3a&currentPage=select-competition",
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Saint-Christo-en-Jarez",
+            "distanceKm": 17,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T04:00:00",
+            "cutoffElapsedMinutes": 270,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Sainte-Catherine",
+            "distanceKm": 32,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T07:00:00",
+            "cutoffElapsedMinutes": 450,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Le Camp-Saint-Genou",
+            "distanceKm": 48,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T09:30:00",
+            "cutoffElapsedMinutes": 600,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Soucieu-en-Jarrest",
+            "distanceKm": 60,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T12:00:00",
+            "cutoffElapsedMinutes": 750,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Chaponost",
+            "distanceKm": 67,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T13:30:00",
+            "cutoffElapsedMinutes": 840,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Lyon",
+            "distanceKm": 82,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T16:00:00",
+            "cutoffElapsedMinutes": 990,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [],
         "rules": {
@@ -257,11 +458,19 @@
           {
             "url": "https://www.saintelyon.com/races/80km-relais-3",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:18.973Z",
+            "retrievedAt": "2026-08-14T13:00:34.679Z",
             "event": "Saintelyon",
             "race": "Relais 3"
           }
-        ]
+        ],
+        "rawOfficial": {
+          "routeBounds": {
+            "minLat": 45.25,
+            "maxLat": 45.9,
+            "minLon": 4,
+            "maxLon": 5.1
+          }
+        }
       },
       "computed": {
         "source": "computed",
@@ -271,17 +480,15 @@
       "quality": {
         "status": "partial",
         "warnings": [
+          "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
           "Official page does not expose elevation gain yet.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "GPX_INVALID: GPX distance does not match official distance (official=80 computed=43.3)",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "elevationGain",
-          "maxDuration",
           "price",
           "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }
@@ -311,13 +518,20 @@
         "elevationLossM": null,
         "startLocation": "",
         "finishLocation": "Lyon",
-        "maxDurationMinutes": null,
-        "raceType": "trail",
+        "maxDurationMinutes": 990,
+        "raceType": "relay",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": null,
+        "gpx": {
+          "status": "invalid",
+          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
+          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:38.075Z"
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c70c29c4702c2ffcc6496_ASTL_25_2025%40barcus%20victor214.jpg",
           "alt": "Saintelyon - Relais 4",
@@ -332,10 +546,66 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://in.sports107.com/asics-saintelyon-2026?campaign=69b958b2fab7a5ba5e455e3a&currentPage=select-competition",
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Saint-Christo-en-Jarez",
+            "distanceKm": 17,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T04:00:00",
+            "cutoffElapsedMinutes": 270,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Sainte-Catherine",
+            "distanceKm": 32,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T07:00:00",
+            "cutoffElapsedMinutes": 450,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Le Camp-Saint-Genou",
+            "distanceKm": 48,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T09:30:00",
+            "cutoffElapsedMinutes": 600,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Soucieu-en-Jarrest",
+            "distanceKm": 60,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T12:00:00",
+            "cutoffElapsedMinutes": 750,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Chaponost",
+            "distanceKm": 67,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T13:30:00",
+            "cutoffElapsedMinutes": 840,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Lyon",
+            "distanceKm": 82,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T16:00:00",
+            "cutoffElapsedMinutes": 990,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [],
         "rules": {
@@ -348,11 +618,19 @@
           {
             "url": "https://www.saintelyon.com/races/80km-relais-4",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:19.025Z",
+            "retrievedAt": "2026-08-14T13:00:34.730Z",
             "event": "Saintelyon",
             "race": "Relais 4"
           }
-        ]
+        ],
+        "rawOfficial": {
+          "routeBounds": {
+            "minLat": 45.25,
+            "maxLat": 45.9,
+            "minLon": 4,
+            "maxLon": 5.1
+          }
+        }
       },
       "computed": {
         "source": "computed",
@@ -362,17 +640,15 @@
       "quality": {
         "status": "partial",
         "warnings": [
+          "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
           "Official page does not expose elevation gain yet.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "GPX_INVALID: GPX distance does not match official distance (official=80 computed=43.3)",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "elevationGain",
-          "maxDuration",
           "price",
           "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }
@@ -402,13 +678,20 @@
         "elevationLossM": null,
         "startLocation": "Sainte-Catherine",
         "finishLocation": "Lyon",
-        "maxDurationMinutes": null,
-        "raceType": "trail",
+        "maxDurationMinutes": 1020,
+        "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": null,
+        "gpx": {
+          "status": "invalid",
+          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
+          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:38.708Z"
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6fd60c97b389db30d6dd_ASTL24_EXTRASPORT_2024%40barcus%20victor53.jpg",
           "alt": "Saintelyon - SaintExpress",
@@ -423,10 +706,21 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://in.sports107.com/asics-saintelyon-2026?campaign=69b958b2fab7a5ba5e455e3a&currentPage=select-competition",
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Fermeture des parcours",
+            "distanceKm": 45,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T16:00:00",
+            "cutoffElapsedMinutes": 1020,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [],
         "rules": {
@@ -439,11 +733,19 @@
           {
             "url": "https://www.saintelyon.com/races/45km-saint-express",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:19.109Z",
+            "retrievedAt": "2026-08-14T13:00:34.762Z",
             "event": "Saintelyon",
             "race": "SaintExpress"
           }
-        ]
+        ],
+        "rawOfficial": {
+          "routeBounds": {
+            "minLat": 45.25,
+            "maxLat": 45.9,
+            "minLon": 4,
+            "maxLon": 5.1
+          }
+        }
       },
       "computed": {
         "source": "computed",
@@ -453,17 +755,15 @@
       "quality": {
         "status": "partial",
         "warnings": [
+          "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
           "Official page does not expose elevation gain yet.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "GPX_INVALID: GPX route is outside the expected official race area",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "elevationGain",
-          "maxDuration",
           "price",
           "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }
@@ -493,13 +793,20 @@
         "elevationLossM": null,
         "startLocation": "Mornant",
         "finishLocation": "Lyon",
-        "maxDurationMinutes": null,
-        "raceType": "trail",
+        "maxDurationMinutes": 1050,
+        "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": null,
+        "gpx": {
+          "status": "invalid",
+          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
+          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:39.385Z"
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/69f0cddfd9fe5d05f600e00c_mxpstudio15.jpg",
           "alt": "Saintelyon - SainteVia",
@@ -514,10 +821,21 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://in.sports107.com/asics-saintelyon-2026?campaign=69b958b2fab7a5ba5e455e3a&currentPage=select-competition",
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Fermeture des parcours",
+            "distanceKm": 35,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T16:00:00",
+            "cutoffElapsedMinutes": 1050,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [],
         "rules": {
@@ -530,11 +848,19 @@
           {
             "url": "https://www.saintelyon.com/races/saintevia",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:19.164Z",
+            "retrievedAt": "2026-08-14T13:00:34.819Z",
             "event": "Saintelyon",
             "race": "SainteVia"
           }
-        ]
+        ],
+        "rawOfficial": {
+          "routeBounds": {
+            "minLat": 45.25,
+            "maxLat": 45.9,
+            "minLon": 4,
+            "maxLon": 5.1
+          }
+        }
       },
       "computed": {
         "source": "computed",
@@ -544,17 +870,15 @@
       "quality": {
         "status": "partial",
         "warnings": [
+          "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
           "Official page does not expose elevation gain yet.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "GPX_INVALID: GPX distance does not match official distance (official=35 computed=43.3)",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "elevationGain",
-          "maxDuration",
           "price",
           "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }
@@ -584,13 +908,20 @@
         "elevationLossM": null,
         "startLocation": "Soucieu-en-Jarrest",
         "finishLocation": "Lyon",
-        "maxDurationMinutes": null,
-        "raceType": "trail",
+        "maxDurationMinutes": 1020,
+        "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": null,
+        "gpx": {
+          "status": "invalid",
+          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
+          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:39.919Z"
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6ed2b707d4e11b0e6c83_SAINTELYON_2025_%C2%A9_Infinity_Nine_Media-B.Seon-28.jpg",
           "alt": "Saintelyon - SainteSprint",
@@ -605,10 +936,21 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://in.sports107.com/asics-saintelyon-2026?campaign=69b958b2fab7a5ba5e455e3a&currentPage=select-competition",
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Fermeture des parcours",
+            "distanceKm": 24,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T16:00:00",
+            "cutoffElapsedMinutes": 1020,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [],
         "rules": {
@@ -621,11 +963,19 @@
           {
             "url": "https://www.saintelyon.com/races/14km-saintesprint",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:19.224Z",
+            "retrievedAt": "2026-08-14T13:00:34.850Z",
             "event": "Saintelyon",
             "race": "SainteSprint"
           }
-        ]
+        ],
+        "rawOfficial": {
+          "routeBounds": {
+            "minLat": 45.25,
+            "maxLat": 45.9,
+            "minLon": 4,
+            "maxLon": 5.1
+          }
+        }
       },
       "computed": {
         "source": "computed",
@@ -635,17 +985,15 @@
       "quality": {
         "status": "partial",
         "warnings": [
+          "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
           "Official page does not expose elevation gain yet.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "GPX_INVALID: GPX distance does not match official distance (official=24 computed=43.3)",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "elevationGain",
-          "maxDuration",
           "price",
           "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }
@@ -675,13 +1023,20 @@
         "elevationLossM": null,
         "startLocation": "Chaponost",
         "finishLocation": "Lyon",
-        "maxDurationMinutes": null,
-        "raceType": "trail",
+        "maxDurationMinutes": 1050,
+        "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": null,
+        "gpx": {
+          "status": "invalid",
+          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
+          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:40.711Z"
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/697b5d475eadf62e6943325f_WOUJOW_ASL24_BD521.jpg",
           "alt": "Saintelyon - SainteTic",
@@ -696,10 +1051,21 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://in.sports107.com/asics-saintelyon-2026?campaign=69b958b2fab7a5ba5e455e3a&currentPage=select-competition",
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Fermeture des parcours",
+            "distanceKm": 13,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T16:00:00",
+            "cutoffElapsedMinutes": 1050,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [],
         "rules": {
@@ -712,11 +1078,19 @@
           {
             "url": "https://www.saintelyon.com/races/13km-saintetic",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:19.272Z",
+            "retrievedAt": "2026-08-14T13:00:34.901Z",
             "event": "Saintelyon",
             "race": "SainteTic"
           }
-        ]
+        ],
+        "rawOfficial": {
+          "routeBounds": {
+            "minLat": 45.25,
+            "maxLat": 45.9,
+            "minLon": 4,
+            "maxLon": 5.1
+          }
+        }
       },
       "computed": {
         "source": "computed",
@@ -726,17 +1100,15 @@
       "quality": {
         "status": "partial",
         "warnings": [
+          "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
           "Official page does not expose elevation gain yet.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "GPX_INVALID: GPX distance does not match official distance (official=13 computed=43.3)",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "elevationGain",
-          "maxDuration",
           "price",
           "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }
@@ -766,13 +1138,20 @@
         "elevationLossM": null,
         "startLocation": "Halle Tony Garnier",
         "finishLocation": "Lyon",
-        "maxDurationMinutes": null,
-        "raceType": "trail",
+        "maxDurationMinutes": 1860,
+        "raceType": "solo",
         "terrainType": "trail",
         "nightStart": false,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": null,
+        "gpx": {
+          "status": "invalid",
+          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
+          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
+          "sourceType": "official-map-platform",
+          "sourcePlatform": "strava",
+          "retrievedAt": "2026-08-14T13:00:41.876Z"
+        },
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/6978970c7fb53fc7007442d9_ASTL24_EXTRASPORT_2024%40barcus%20victor24.jpg",
           "alt": "Saintelyon - Lyon Saintelyon",
@@ -787,10 +1166,102 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": "https://in.sports107.com/asics-saintelyon-2026?campaign=69b958b2fab7a5ba5e455e3a&currentPage=select-competition",
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "Soucieux-en-Jarrest",
+            "distanceKm": 19,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-28T12:15:00",
+            "cutoffElapsedMinutes": 195,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Sainte-Catherine",
+            "distanceKm": 48,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-28T17:00:00",
+            "cutoffElapsedMinutes": 480,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Saint-Christo-en-Jarez",
+            "distanceKm": 62,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-28T19:30:00",
+            "cutoffElapsedMinutes": 630,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Saint-Etienne",
+            "distanceKm": 82,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-28T22:30:00",
+            "cutoffElapsedMinutes": 810,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Saint-Christo-en-Jarez",
+            "distanceKm": 99,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T04:00:00",
+            "cutoffElapsedMinutes": 1140,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Sainte-Catherine",
+            "distanceKm": 114,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T07:00:00",
+            "cutoffElapsedMinutes": 1320,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Le Camp-Saint-Genou",
+            "distanceKm": 130,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T09:30:00",
+            "cutoffElapsedMinutes": 1470,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Soucieu-en-Jarrest",
+            "distanceKm": 142,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T12:00:00",
+            "cutoffElapsedMinutes": 1620,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Chaponost",
+            "distanceKm": 149,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T13:30:00",
+            "cutoffElapsedMinutes": 1710,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "Lyon",
+            "distanceKm": 160,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-11-29T16:00:00",
+            "cutoffElapsedMinutes": 1860,
+            "aidStation": null,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [],
         "mandatoryEquipment": [],
         "rules": {
@@ -803,11 +1274,19 @@
           {
             "url": "https://www.saintelyon.com/races/160km-lyon-saintelyon",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:19.322Z",
+            "retrievedAt": "2026-08-14T13:00:34.930Z",
             "event": "Saintelyon",
             "race": "Lyon Saintelyon"
           }
-        ]
+        ],
+        "rawOfficial": {
+          "routeBounds": {
+            "minLat": 45.25,
+            "maxLat": 45.9,
+            "minLon": 4,
+            "maxLon": 5.1
+          }
+        }
       },
       "computed": {
         "source": "computed",
@@ -817,17 +1296,15 @@
       "quality": {
         "status": "partial",
         "warnings": [
+          "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
           "Official page does not expose elevation gain yet.",
-          "GPX officiel non trouvé",
-          "Barriers/checkpoints not found in official source.",
+          "GPX_INVALID: GPX distance does not match official distance (official=160 computed=43.3)",
           "Aid stations not found in official source."
         ],
         "missingFields": [
           "elevationGain",
-          "maxDuration",
           "price",
           "gpx",
-          "checkpoints",
           "aidStations"
         ]
       }

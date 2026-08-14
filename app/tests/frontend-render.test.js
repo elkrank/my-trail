@@ -101,9 +101,10 @@ function viewLinkStub(view) {
   };
 }
 
-async function renderApp({ races, comparison = null, hash = '' }) {
+async function renderApp({ races, comparison = null, hash = '', storage = null }) {
   const compareLink = viewLinkStub('compare');
   const explorerLink = viewLinkStub('explorer');
+  const favoritesLink = viewLinkStub('favorites');
   const elements = {
     '#race-a': optionStub(),
     '#race-b': optionStub(),
@@ -115,17 +116,24 @@ async function renderApp({ races, comparison = null, hash = '' }) {
     '#toast': elementStub(),
     '#compare-view': elementStub(),
     '#explorer-view': elementStub(),
+    '#favorites-view': elementStub(),
     '#explorer-search': elementStub(),
     '#explorer-location': optionStub(),
     '#explorer-date-from': elementStub(),
     '#explorer-date-to': elementStub(),
     '#explorer-elevation': optionStub(),
     '#explorer-distance': optionStub(),
+    '#explorer-month': optionStub(),
+    '#explorer-price-max': optionStub(),
+    '#explorer-registration-status': optionStub(),
+    '#explorer-duration-max': optionStub(),
     '#explorer-sort': optionStub(),
     '#explorer-gpx-only': elementStub({ checked: false }),
     '#explorer-reset': elementStub(),
     '#explorer-count': elementStub(),
     '#explorer-results': htmlStub(),
+    '#favorites-count': elementStub(),
+    '#favorites-results': htmlStub(),
   };
   elements['#explorer-sort'].value = 'date-asc';
 
@@ -141,7 +149,7 @@ async function renderApp({ races, comparison = null, hash = '' }) {
         return elements[selector];
       },
       querySelectorAll(selector) {
-        return selector === '[data-view-link]' ? [compareLink, explorerLink] : [];
+        return selector === '[data-view-link]' ? [compareLink, explorerLink, favoritesLink] : [];
       },
       createElement() {
         return {
@@ -151,6 +159,7 @@ async function renderApp({ races, comparison = null, hash = '' }) {
     },
     window: {
       location: { href: `http://localhost/${hash}`, hash },
+      localStorage: storage,
       clearTimeout() {},
       setTimeout() {
         return 1;
@@ -175,7 +184,7 @@ async function renderApp({ races, comparison = null, hash = '' }) {
   await Promise.resolve();
   await Promise.resolve();
 
-  return { elements, fetchCalls, links: { compareLink, explorerLink } };
+  return { elements, fetchCalls, links: { compareLink, explorerLink, favoritesLink } };
 }
 
 function jsonResponse(body, ok = true) {
@@ -188,9 +197,29 @@ function jsonResponse(body, ok = true) {
   };
 }
 
-function raceFixture(overrides = {}) {
+function storageStub(initialValue = null, { throwOnGet = false, throwOnSet = false } = {}) {
+  const store = new Map();
+  if (initialValue !== null) store.set('trailcompare:favorites:v1', initialValue);
   return {
-    id: 9,
+    getItem(key) {
+      if (throwOnGet) throw new Error('storage get unavailable');
+      return store.has(key) ? store.get(key) : null;
+    },
+    setItem(key, value) {
+      if (throwOnSet) throw new Error('storage set unavailable');
+      store.set(key, value);
+    },
+    value(key = 'trailcompare:favorites:v1') {
+      return store.get(key);
+    },
+  };
+}
+
+function raceFixture(overrides = {}) {
+  const fixtureId = overrides.id ?? 9;
+  return {
+    id: fixtureId,
+    sourceId: `fixture:${fixtureId}:2026`,
     name: 'Nord Trail Monts de Flandres - 115 km',
     event: {
       id: 'ntmf',
@@ -213,9 +242,20 @@ function raceFixture(overrides = {}) {
     timeLimitMinutes: 1110,
     kmEffort: 136.5,
     difficultyScoreV0: 70,
+    difficultyScoreV1: 70,
+    difficultyScore: 70,
+    difficultyScoreVersion: 'v1',
+    elevationDensityMPerKm: 18.7,
+    verticalityLevel: 'hilly',
     barrierPressureScoreV0: 59,
     confidence: 'official',
     sourceUrl: 'https://example.test',
+    registration: {
+      priceEur: 105,
+      status: 'unknown',
+      lottery: null,
+      url: null,
+    },
     quality: { status: 'partial', missingFields: ['gpx'] },
     illustration: {
       url: 'https://example.test/images/ntmf.jpg',
@@ -265,6 +305,11 @@ test('frontend renders comparison cards with real values and empty states', asyn
     timeLimitMinutes: 540,
     kmEffort: 58,
     difficultyScoreV0: 31,
+    difficultyScoreV1: 42,
+    difficultyScore: 42,
+    difficultyScoreVersion: 'v1',
+    elevationDensityMPerKm: 16,
+    verticalityLevel: 'hilly',
     barrierPressureScoreV0: null,
     criticalBarrier: null,
     checkpoints: [],
@@ -278,8 +323,10 @@ test('frontend renders comparison cards with real values and empty states', asyn
   assert.match(html, /Nord Trail Monts de Flandres - 115 km/);
   assert.match(html, /EcoTrail Paris - 50 km Automne/);
   assert.match(html, /136,5 km/);
+  assert.match(html, /DIFFICULTÉ PHYSIQUE ESTIMÉE/);
+  assert.match(html, /Vallonnée/);
   assert.match(html, /Boescheppe - 74,5 km/);
-  assert.match(html, /Aucun checkpoint V0 d.fini pour cette course/);
+  assert.match(html, /Aucun checkpoint de barri.re d.fini pour cette course/);
   assert.match(html, /Trac. GPX non disponible/);
   assert.match(html, /Profil GPX r.el non disponible/);
 });
@@ -358,6 +405,68 @@ test('explorer filters by date location elevation distance and gpx availability'
   assert.equal(elements['#explorer-count'].textContent, '1 course sur 3');
 });
 
+test('explorer filters by month price registration status duration and unknown values', async () => {
+  const known = raceFixture({
+    id: 1,
+    name: 'Known April Trail',
+    date: '2026-04-19',
+    distanceKm: 42,
+    elevationGainM: 1200,
+    timeLimitMinutes: 540,
+    registration: { priceEur: 45, status: 'open', lottery: null, url: null },
+  });
+  const expensive = raceFixture({
+    id: 2,
+    name: 'Expensive August Trail',
+    date: '2026-08-28',
+    distanceKm: 100,
+    elevationGainM: 5000,
+    timeLimitMinutes: 1800,
+    registration: { priceEur: 250, status: 'closed', lottery: null, url: null },
+  });
+  const unknown = raceFixture({
+    id: 3,
+    name: 'Unknown Data Trail',
+    date: null,
+    distanceKm: 20,
+    elevationGainM: null,
+    timeLimitMinutes: null,
+    registration: { priceEur: null, status: 'unknown', lottery: null, url: null },
+  });
+
+  const { elements } = await renderApp({ races: [known, expensive, unknown], hash: '#explorer' });
+  assert.match(elements['#explorer-results'].innerHTML, /Unknown Data Trail/);
+  assert.match(elements['#explorer-month'].innerHTML, /avril/);
+  assert.match(elements['#explorer-price-max'].innerHTML, /Jusqu&#39;à 45 EUR/);
+  assert.doesNotMatch(elements['#explorer-price-max'].innerHTML, /value="0"/);
+  assert.match(elements['#explorer-registration-status'].innerHTML, /Ouverte/);
+  assert.match(elements['#explorer-duration-max'].innerHTML, /Jusqu&#39;à 9 h/);
+
+  elements['#explorer-price-max'].value = '45';
+  elements['#explorer-price-max'].dispatch('change');
+  assert.match(elements['#explorer-results'].innerHTML, /Known April Trail/);
+  assert.doesNotMatch(elements['#explorer-results'].innerHTML, /Expensive August Trail/);
+  assert.doesNotMatch(elements['#explorer-results'].innerHTML, /Unknown Data Trail/);
+
+  elements['#explorer-reset'].dispatch('click');
+  elements['#explorer-month'].value = '04';
+  elements['#explorer-month'].dispatch('change');
+  assert.match(elements['#explorer-results'].innerHTML, /Known April Trail/);
+  assert.doesNotMatch(elements['#explorer-results'].innerHTML, /Unknown Data Trail/);
+
+  elements['#explorer-reset'].dispatch('click');
+  elements['#explorer-registration-status'].value = 'unknown';
+  elements['#explorer-registration-status'].dispatch('change');
+  assert.match(elements['#explorer-results'].innerHTML, /Unknown Data Trail/);
+  assert.doesNotMatch(elements['#explorer-results'].innerHTML, /Known April Trail/);
+
+  elements['#explorer-reset'].dispatch('click');
+  elements['#explorer-duration-max'].value = '540';
+  elements['#explorer-duration-max'].dispatch('change');
+  assert.match(elements['#explorer-results'].innerHTML, /Known April Trail/);
+  assert.doesNotMatch(elements['#explorer-results'].innerHTML, /Unknown Data Trail/);
+});
+
 test('explorer sorts by distance and can reset filters', async () => {
   const shortRace = raceFixture({
     id: 1,
@@ -387,6 +496,109 @@ test('explorer sorts by distance and can reset filters', async () => {
   assert.doesNotMatch(elements['#explorer-results'].innerHTML, /Long Trail/);
 
   elements['#explorer-reset'].dispatch('click');
+  assert.equal(elements['#explorer-month'].value, '');
+  assert.equal(elements['#explorer-price-max'].value, '');
+  assert.equal(elements['#explorer-registration-status'].value, '');
+  assert.equal(elements['#explorer-duration-max'].value, '');
   assert.match(elements['#explorer-results'].innerHTML, /Short Trail/);
   assert.match(elements['#explorer-results'].innerHTML, /Long Trail/);
+});
+
+test('registration and gpx actions render only when safe data is available', async () => {
+  const withActions = raceFixture({
+    id: 1,
+    name: 'Action Trail',
+    registration: {
+      priceEur: 45,
+      status: 'open',
+      lottery: null,
+      url: 'https://example.test/register',
+    },
+    gpx: {
+      status: 'available',
+      localFile: 'gpx/2026/fixture/action.gpx',
+    },
+  });
+  const invalidAction = raceFixture({
+    id: 2,
+    name: 'Invalid Action Trail',
+    registration: {
+      priceEur: null,
+      status: 'unknown',
+      lottery: null,
+      url: 'javascript:alert(1)',
+    },
+    gpx: {
+      status: 'available',
+    },
+  });
+
+  const { elements } = await renderApp({ races: [withActions, invalidAction], hash: '#explorer' });
+  const explorerHtml = elements['#explorer-results'].innerHTML;
+  const comparisonHtml = elements['#comparison'].innerHTML;
+
+  assert.match(explorerHtml, /href="https:\/\/example\.test\/register"[\s\S]*?S'inscrire sur le site officiel/);
+  assert.match(explorerHtml, /href="\/api\/races\/1\/gpx\/download"[\s\S]*?Télécharger le GPX officiel/);
+  assert.doesNotMatch(explorerHtml, /javascript:alert/);
+  assert.doesNotMatch(explorerHtml, /\/api\/races\/2\/gpx\/download/);
+  assert.match(comparisonHtml, /S'inscrire sur le site officiel/);
+  assert.match(comparisonHtml, /Source officielle/);
+});
+
+test('favorites persist by sourceId and ignore missing races', async () => {
+  const raceA = raceFixture({ id: 1, name: 'Favorite Trail' });
+  const raceB = raceFixture({ id: 2, name: 'Second Trail' });
+  const storage = storageStub(JSON.stringify([raceA.sourceId, 'missing:race:2026']));
+
+  const { elements } = await renderApp({ races: [raceA, raceB], hash: '#favorites', storage });
+  assert.equal(elements['#favorites-count'].textContent, '1 favori');
+  assert.match(elements['#favorites-results'].innerHTML, /Favorite Trail/);
+  assert.doesNotMatch(elements['#favorites-results'].innerHTML, /Second Trail/);
+  assert.match(elements['#favorites-results'].innerHTML, /aria-pressed="true"/);
+  assert.equal(storage.value(), JSON.stringify([raceA.sourceId]));
+
+  elements['#favorites-results'].listeners.click({
+    target: {
+      closest(selector) {
+        return selector === '[data-favorite-source-id]'
+          ? { dataset: { favoriteSourceId: raceA.sourceId } }
+          : null;
+      },
+    },
+  });
+
+  assert.equal(elements['#favorites-count'].textContent, '0 favori');
+  assert.match(elements['#favorites-results'].innerHTML, /Aucun favori/);
+  assert.equal(storage.value(), JSON.stringify([]));
+});
+
+test('favorites tolerate corrupted or unavailable localStorage', async () => {
+  const raceA = raceFixture({ id: 1, name: 'Storage Trail' });
+  const raceB = raceFixture({ id: 2, name: 'Other Trail' });
+  const corrupted = await renderApp({
+    races: [raceA, raceB],
+    hash: '#favorites',
+    storage: storageStub('not json'),
+  });
+
+  assert.equal(corrupted.elements['#favorites-count'].textContent, '0 favori');
+  assert.match(corrupted.elements['#favorites-results'].innerHTML, /Aucun favori/);
+
+  const unavailable = await renderApp({
+    races: [raceA, raceB],
+    hash: '#explorer',
+    storage: storageStub(null, { throwOnGet: true, throwOnSet: true }),
+  });
+
+  unavailable.elements['#explorer-results'].listeners.click({
+    target: {
+      closest(selector) {
+        return selector === '[data-favorite-source-id]'
+          ? { dataset: { favoriteSourceId: raceA.sourceId } }
+          : null;
+      },
+    },
+  });
+
+  assert.match(unavailable.elements['#explorer-results'].innerHTML, /aria-pressed="true"/);
 });

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T13:46:30.445Z",
+  "generatedAt": "2026-08-14T13:01:22.546Z",
   "year": 2026,
   "event": {
     "id": "templiers",
@@ -38,7 +38,7 @@
         "elevationLossM": null,
         "startLocation": "Millau",
         "finishLocation": "Millau",
-        "maxDurationMinutes": null,
+        "maxDurationMinutes": 1405,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": true,
@@ -63,10 +63,10 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-12T13:46:21.327Z",
+          "retrievedAt": "2026-08-14T13:00:44.321Z",
           "localFile": "gpx/2026/templiers/endurance-trail.gpx",
           "routeAsset": "generated/routes/templiers-endurance-trail-2026.json",
-          "sha256": "f3788b8312d50eaa25e794bd8c427ff47feccc87e0f4f5f43f607a1b80a29c8f",
+          "sha256": "022e16abfcbae747b7da44e98fbccb1f32add8644e7e2dcdd8013714102e2ca9",
           "trackCount": 1,
           "routeCount": 0,
           "pointCount": 4634,
@@ -94,10 +94,138 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "CARBASSAS (P10)",
+            "distanceKm": 8.3,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T05:55:00",
+            "cutoffElapsedMinutes": 115,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA CRESSE",
+            "distanceKm": 17.6,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T07:15:00",
+            "cutoffElapsedMinutes": 195,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LE ROZIER",
+            "distanceKm": 28.7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T09:25:00",
+            "cutoffElapsedMinutes": 325,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LE TRUEL",
+            "distanceKm": 39.9,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T12:30:00",
+            "cutoffElapsedMinutes": 510,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA ROUJARIE",
+            "distanceKm": 51.6,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T15:10:00",
+            "cutoffElapsedMinutes": 670,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ST ANDRE",
+            "distanceKm": 57.5,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T16:15:00",
+            "cutoffElapsedMinutes": 735,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA ROQUE STE MARGUERITE",
+            "distanceKm": 68.9,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T19:00:00",
+            "cutoffElapsedMinutes": 900,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "PIERREFICHE",
+            "distanceKm": 71.3,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T20:20:00",
+            "cutoffElapsedMinutes": 980,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA SALVAGE",
+            "distanceKm": 76.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T20:55:00",
+            "cutoffElapsedMinutes": 1015,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "MAS DE BRU",
+            "distanceKm": 84.8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T23:00:00",
+            "cutoffElapsedMinutes": 1140,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "MASSEBIAU",
+            "distanceKm": 90.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T00:45:00",
+            "cutoffElapsedMinutes": 1245,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LE CADE",
+            "distanceKm": 93.5,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T01:30:00",
+            "cutoffElapsedMinutes": 1290,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA POUNCHO",
+            "distanceKm": 96.6,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T02:25:00",
+            "cutoffElapsedMinutes": 1345,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ARRIVEE",
+            "distanceKm": 99.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T03:25:00",
+            "cutoffElapsedMinutes": 1405,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [
           {
             "name": "Le Rozier",
@@ -176,28 +304,35 @@
           {
             "url": "https://www.festivaldestempliers.com/l/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:20.195Z",
+            "retrievedAt": "2026-08-14T13:00:42.862Z",
             "event": "Festival des Templiers",
             "race": "Endurance Trail"
           },
           {
             "url": "https://www.festivaldestempliers.com/infos_pratiques/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "retrievedAt": "2026-08-14T13:00:42.728Z",
+            "event": "Festival des Templiers",
+            "race": "Endurance Trail"
+          },
+          {
+            "url": "http://www.eldorun.com/templiers/25TABLEAUTEMPSDEPASSAGESTEMPLIERSVENDREDI.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:42.894Z",
             "event": "Festival des Templiers",
             "race": "Endurance Trail"
           },
           {
             "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325091&format=gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:21.327Z",
+            "retrievedAt": "2026-08-14T13:00:44.321Z",
             "event": "Festival des Templiers",
             "race": "Endurance Trail"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/325091",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:21.327Z",
+            "retrievedAt": "2026-08-14T13:00:44.321Z",
             "event": "Festival des Templiers",
             "race": "Endurance Trail"
           }
@@ -211,11 +346,9 @@
       "quality": {
         "status": "partial",
         "warnings": [
-          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
           "Official page lists aid stations but their distances require a separate linked detail page.",
           "GPX_CHANGED: Le GPX officiel de Festival des Templiers Endurance Trail 2026 a changé depuis la dernière collecte.",
           "GPX_ELEVATION_GAIN_MISMATCH: official=4304 computed=5751",
-          "Barriers/checkpoints not found in official source.",
           "Aid station distance unknown: Le Rozier",
           "Aid station distance unknown: Parking Vautours ACCES INTERDIT : route fermée au Rozier – accès vélo autorisé – pas de navette bus) – assistance ravitaillement interdit",
           "Aid station distance unknown: Saint-André-de-Vézines",
@@ -223,9 +356,7 @@
           "Aid station distance unknown: Le Cade"
         ],
         "missingFields": [
-          "maxDuration",
-          "price",
-          "checkpoints"
+          "price"
         ]
       }
     },
@@ -254,7 +385,7 @@
         "elevationLossM": null,
         "startLocation": "Millau",
         "finishLocation": "Millau",
-        "maxDurationMinutes": null,
+        "maxDurationMinutes": 1055,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -279,10 +410,10 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-12T13:46:21.965Z",
+          "retrievedAt": "2026-08-14T13:00:45.314Z",
           "localFile": "gpx/2026/templiers/integrale-des-causses.gpx",
           "routeAsset": "generated/routes/templiers-integrale-des-causses-2026.json",
-          "sha256": "f57401399fe2a713fcc70e6c1d983438fcd434a06f7578c8f8cbeb196086f6e4",
+          "sha256": "2b2b87ed8eaf0736d023230b30ebc1ca1d1eddd7a4030dfc667fee68d3ae52ed",
           "trackCount": 1,
           "routeCount": 0,
           "pointCount": 2839,
@@ -310,10 +441,93 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "ST ANDRE",
+            "distanceKm": 19.2,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T10:35:00",
+            "cutoffElapsedMinutes": 245,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA ROQUE STE MARGUERITE",
+            "distanceKm": 30.7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T13:25:00",
+            "cutoffElapsedMinutes": 415,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "PIERREFICHE",
+            "distanceKm": 33,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T14:35:00",
+            "cutoffElapsedMinutes": 485,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA SALVAGE",
+            "distanceKm": 38.3,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T15:40:00",
+            "cutoffElapsedMinutes": 550,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "MAS DE BRU",
+            "distanceKm": 46.7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T18:10:00",
+            "cutoffElapsedMinutes": 700,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "MASSEBIAU",
+            "distanceKm": 52.3,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T19:30:00",
+            "cutoffElapsedMinutes": 780,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LE CADE",
+            "distanceKm": 55.3,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T21:10:00",
+            "cutoffElapsedMinutes": 880,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA POUNCHO",
+            "distanceKm": 58.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T22:30:00",
+            "cutoffElapsedMinutes": 960,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ARRIVEE",
+            "distanceKm": 61.3,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T00:05:00",
+            "cutoffElapsedMinutes": 1055,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [
           {
             "name": "St André de Vézines",
@@ -366,28 +580,35 @@
           {
             "url": "https://www.festivaldestempliers.com/lintegrale-des-causses/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:20.266Z",
+            "retrievedAt": "2026-08-14T13:00:42.984Z",
             "event": "Festival des Templiers",
             "race": "Integrale des Causses"
           },
           {
             "url": "https://www.festivaldestempliers.com/infos_pratiques/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "retrievedAt": "2026-08-14T13:00:42.728Z",
+            "event": "Festival des Templiers",
+            "race": "Integrale des Causses"
+          },
+          {
+            "url": "https://www.eldorun.com/templiers/25TABLEAUTEMPSDEPASSAGESTEMPLIERSVENDREDI.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:43.042Z",
             "event": "Festival des Templiers",
             "race": "Integrale des Causses"
           },
           {
             "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325089&format=gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:21.965Z",
+            "retrievedAt": "2026-08-14T13:00:45.314Z",
             "event": "Festival des Templiers",
             "race": "Integrale des Causses"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/325089",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:21.965Z",
+            "retrievedAt": "2026-08-14T13:00:45.314Z",
             "event": "Festival des Templiers",
             "race": "Integrale des Causses"
           }
@@ -403,15 +624,12 @@
         "warnings": [
           "Official page lists aid stations but their distances require a separate linked detail page.",
           "GPX_CHANGED: Le GPX officiel de Festival des Templiers Integrale des Causses 2026 a changé depuis la dernière collecte.",
-          "Barriers/checkpoints not found in official source.",
           "Aid station distance unknown: St André de Vézines",
           "Aid station distance unknown: La Salvage",
           "Aid station distance unknown: Le Cade"
         ],
         "missingFields": [
-          "maxDuration",
-          "price",
-          "checkpoints"
+          "price"
         ]
       }
     },
@@ -440,7 +658,7 @@
         "elevationLossM": null,
         "startLocation": "Millau",
         "finishLocation": "Millau",
-        "maxDurationMinutes": null,
+        "maxDurationMinutes": 560,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -465,10 +683,10 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-12T13:46:22.397Z",
+          "retrievedAt": "2026-08-14T13:00:45.771Z",
           "localFile": "gpx/2026/templiers/marathon-du-larzac.gpx",
           "routeAsset": "generated/routes/templiers-marathon-du-larzac-2026.json",
-          "sha256": "19ce0e01d22a8112ce6ce4a2d897949219a31403c53cef8d27c3f7845bad7f42",
+          "sha256": "547ec7cadd380dfac05a2e7ad6ec8cb3a21a17aa82a2141c6e7bc8b5513c1b71",
           "trackCount": 1,
           "routeCount": 0,
           "pointCount": 1170,
@@ -496,10 +714,57 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "LA SALVAGE",
+            "distanceKm": 7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T08:15:00",
+            "cutoffElapsedMinutes": 75,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "MAS DE BRU",
+            "distanceKm": 18.7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T11:45:00",
+            "cutoffElapsedMinutes": 285,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "MASSEBIAU",
+            "distanceKm": 24.3,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T12:50:00",
+            "cutoffElapsedMinutes": 350,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LE CADE",
+            "distanceKm": 27.3,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T15:10:00",
+            "cutoffElapsedMinutes": 490,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ARRIVEE",
+            "distanceKm": 33.2,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-16T16:20:00",
+            "cutoffElapsedMinutes": 560,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [
           {
             "name": "Mas de Bru",
@@ -539,28 +804,35 @@
           {
             "url": "https://www.festivaldestempliers.com/marathon-du-larzac-3/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:20.353Z",
+            "retrievedAt": "2026-08-14T13:00:43.152Z",
             "event": "Festival des Templiers",
             "race": "Marathon du Larzac"
           },
           {
             "url": "https://www.festivaldestempliers.com/infos_pratiques/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "retrievedAt": "2026-08-14T13:00:42.728Z",
+            "event": "Festival des Templiers",
+            "race": "Marathon du Larzac"
+          },
+          {
+            "url": "https://www.eldorun.com/templiers/25TABLEAUTEMPSDEPASSAGESTEMPLIERSVENDREDI.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:43.214Z",
             "event": "Festival des Templiers",
             "race": "Marathon du Larzac"
           },
           {
             "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325087&format=gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:22.397Z",
+            "retrievedAt": "2026-08-14T13:00:45.771Z",
             "event": "Festival des Templiers",
             "race": "Marathon du Larzac"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/325087",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:22.397Z",
+            "retrievedAt": "2026-08-14T13:00:45.771Z",
             "event": "Festival des Templiers",
             "race": "Marathon du Larzac"
           }
@@ -576,14 +848,11 @@
         "warnings": [
           "Official page lists aid stations but their distances require a separate linked detail page.",
           "GPX_CHANGED: Le GPX officiel de Festival des Templiers Marathon du Larzac 2026 a changé depuis la dernière collecte.",
-          "Barriers/checkpoints not found in official source.",
           "Aid station distance unknown: Mas de Bru",
           "Aid station distance unknown: Le Cade"
         ],
         "missingFields": [
-          "maxDuration",
-          "price",
-          "checkpoints"
+          "price"
         ]
       }
     },
@@ -612,7 +881,7 @@
         "elevationLossM": null,
         "startLocation": "Millau",
         "finishLocation": "Millau",
-        "maxDurationMinutes": null,
+        "maxDurationMinutes": 780,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -637,10 +906,10 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-12T13:46:22.679Z",
+          "retrievedAt": "2026-08-14T13:00:46.008Z",
           "localFile": "gpx/2026/templiers/boffi-fifty.gpx",
           "routeAsset": "generated/routes/templiers-boffi-fifty-2026.json",
-          "sha256": "7d1156e766f9d99815da124c53909053a1bd7fe2dac7e3810b4d4607c7ddc488",
+          "sha256": "9462d2341b9803af45cfa1ddd27c9d4d27040fcff316151167e4788be1c60af1",
           "trackCount": 1,
           "routeCount": 0,
           "pointCount": 2315,
@@ -668,10 +937,84 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "CARBASSAS (P7)",
+            "distanceKm": 3.9,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T07:50:00",
+            "cutoffElapsedMinutes": 70,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ROC DEL MAR",
+            "distanceKm": 8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T08:50:00",
+            "cutoffElapsedMinutes": 130,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA CRESSE",
+            "distanceKm": 11.8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T09:40:00",
+            "cutoffElapsedMinutes": 180,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LAUGLANOU",
+            "distanceKm": 19.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T11:35:00",
+            "cutoffElapsedMinutes": 295,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "RAVIN DU MONNA",
+            "distanceKm": 36.3,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T16:00:00",
+            "cutoffElapsedMinutes": 560,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LE CADE",
+            "distanceKm": 41.7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T18:00:00",
+            "cutoffElapsedMinutes": 680,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA POUNCHO",
+            "distanceKm": 44.8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T18:45:00",
+            "cutoffElapsedMinutes": 725,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ARRIVEE",
+            "distanceKm": 47.2,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T19:40:00",
+            "cutoffElapsedMinutes": 780,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [
           {
             "name": "Lauglanou",
@@ -711,28 +1054,42 @@
           {
             "url": "https://www.festivaldestempliers.com/boffi-fifty/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:20.430Z",
+            "retrievedAt": "2026-08-14T13:00:43.241Z",
             "event": "Festival des Templiers",
             "race": "Boffi Fifty"
           },
           {
             "url": "https://www.festivaldestempliers.com/infos_pratiques/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "retrievedAt": "2026-08-14T13:00:42.728Z",
+            "event": "Festival des Templiers",
+            "race": "Boffi Fifty"
+          },
+          {
+            "url": "http://www.eldorun.com/templiers/24TABLEAUTEMPSDEPASSAGES_SAMEDI.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:43.300Z",
+            "event": "Festival des Templiers",
+            "race": "Boffi Fifty"
+          },
+          {
+            "url": "http://eldorun.com/templiers/24TABLEAUTEMPSDEPASSAGES_SAMEDI.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:43.343Z",
             "event": "Festival des Templiers",
             "race": "Boffi Fifty"
           },
           {
             "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325088&format=gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:22.679Z",
+            "retrievedAt": "2026-08-14T13:00:46.008Z",
             "event": "Festival des Templiers",
             "race": "Boffi Fifty"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/325088",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:22.679Z",
+            "retrievedAt": "2026-08-14T13:00:46.008Z",
             "event": "Festival des Templiers",
             "race": "Boffi Fifty"
           }
@@ -746,17 +1103,13 @@
       "quality": {
         "status": "partial",
         "warnings": [
-          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
           "Official page lists aid stations but their distances require a separate linked detail page.",
           "GPX_CHANGED: Le GPX officiel de Festival des Templiers Boffi Fifty 2026 a changé depuis la dernière collecte.",
-          "Barriers/checkpoints not found in official source.",
           "Aid station distance unknown: Lauglanou",
           "Aid station distance unknown: Le Cade"
         ],
         "missingFields": [
-          "maxDuration",
-          "price",
-          "checkpoints"
+          "price"
         ]
       }
     },
@@ -785,7 +1138,7 @@
         "elevationLossM": null,
         "startLocation": "Millau",
         "finishLocation": "Millau",
-        "maxDurationMinutes": null,
+        "maxDurationMinutes": 400,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -810,10 +1163,10 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-12T13:46:23.044Z",
+          "retrievedAt": "2026-08-14T13:00:46.401Z",
           "localFile": "gpx/2026/templiers/dourbie-formi.gpx",
           "routeAsset": "generated/routes/templiers-dourbie-formi-2026.json",
-          "sha256": "77982de716ff6a3d2399070f6de4c7b9de835f915838cb7a819aa4dc3af29306",
+          "sha256": "db84e260af7c6e9a8e4a38cb54fc1cc4b7b0ec8552011a532a7c8d05f7c65520",
           "trackCount": 1,
           "routeCount": 0,
           "pointCount": 1488,
@@ -841,10 +1194,57 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "MASSEBIAU",
+            "distanceKm": 3.7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T08:10:00",
+            "cutoffElapsedMinutes": 60,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "MAS DE BRU",
+            "distanceKm": 8.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T09:00:00",
+            "cutoffElapsedMinutes": 110,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "MASSEBIAU",
+            "distanceKm": 17.7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T11:10:00",
+            "cutoffElapsedMinutes": 240,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA POUNCHO",
+            "distanceKm": 20.6,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T12:55:00",
+            "cutoffElapsedMinutes": 345,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ARRIVEE",
+            "distanceKm": 23,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T13:50:00",
+            "cutoffElapsedMinutes": 400,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [
           {
             "name": "Massebiau",
@@ -871,28 +1271,35 @@
           {
             "url": "https://www.festivaldestempliers.com/dourbie-formi-2/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:20.510Z",
+            "retrievedAt": "2026-08-14T13:00:43.468Z",
             "event": "Festival des Templiers",
             "race": "Dourbie Formi"
           },
           {
             "url": "https://www.festivaldestempliers.com/infos_pratiques/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "retrievedAt": "2026-08-14T13:00:42.728Z",
+            "event": "Festival des Templiers",
+            "race": "Dourbie Formi"
+          },
+          {
+            "url": "http://www.eldorun.com/templiers/24TABLEAUTEMPSDEPASSAGES_SAMEDI.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:43.548Z",
             "event": "Festival des Templiers",
             "race": "Dourbie Formi"
           },
           {
             "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325084&format=gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:23.044Z",
+            "retrievedAt": "2026-08-14T13:00:46.401Z",
             "event": "Festival des Templiers",
             "race": "Dourbie Formi"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/325084",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:23.044Z",
+            "retrievedAt": "2026-08-14T13:00:46.401Z",
             "event": "Festival des Templiers",
             "race": "Dourbie Formi"
           }
@@ -906,17 +1313,13 @@
       "quality": {
         "status": "partial",
         "warnings": [
-          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
           "Official page lists aid stations but their distances require a separate linked detail page.",
           "GPX_CHANGED: Le GPX officiel de Festival des Templiers Dourbie Formi 2026 a changé depuis la dernière collecte.",
           "GPX_ELEVATION_GAIN_MISMATCH: official=1229 computed=1565",
-          "Barriers/checkpoints not found in official source.",
           "Aid station distance unknown: Massebiau"
         ],
         "missingFields": [
-          "maxDuration",
-          "price",
-          "checkpoints"
+          "price"
         ]
       }
     },
@@ -945,7 +1348,7 @@
         "elevationLossM": null,
         "startLocation": "Millau",
         "finishLocation": "Millau",
-        "maxDurationMinutes": null,
+        "maxDurationMinutes": 455,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -970,10 +1373,10 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-12T13:46:23.368Z",
+          "retrievedAt": "2026-08-14T13:00:46.683Z",
           "localFile": "gpx/2026/templiers/monna-lisa.gpx",
           "routeAsset": "generated/routes/templiers-monna-lisa-2026.json",
-          "sha256": "3bb2535365ea48a7bbab21cd50c80972f5c16eef2b05ca3abad616d906fb57a1",
+          "sha256": "c6fadac29cf73f5259fb8d6275e3cbab5c93b7b260d269cfaacf9ce76fcde088",
           "trackCount": 1,
           "routeCount": 0,
           "pointCount": 1120,
@@ -1001,10 +1404,66 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "CARBASSAS (P7)",
+            "distanceKm": 3.9,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T10:40:00",
+            "cutoffElapsedMinutes": 75,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ROC DEL MAR",
+            "distanceKm": 8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T11:35:00",
+            "cutoffElapsedMinutes": 130,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "BETPAUMES P114",
+            "distanceKm": 14.1,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T12:40:00",
+            "cutoffElapsedMinutes": 195,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LAUGLANOU",
+            "distanceKm": 22,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T14:30:00",
+            "cutoffElapsedMinutes": 305,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA POUNCHO",
+            "distanceKm": 27.8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T15:55:00",
+            "cutoffElapsedMinutes": 390,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ARRIVEE",
+            "distanceKm": 30.7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T17:00:00",
+            "cutoffElapsedMinutes": 455,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [
           {
             "name": "Betpaumes",
@@ -1044,28 +1503,35 @@
           {
             "url": "https://www.festivaldestempliers.com/la-monna-lisa-trail/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:20.582Z",
+            "retrievedAt": "2026-08-14T13:00:43.649Z",
             "event": "Festival des Templiers",
             "race": "Monna Lisa"
           },
           {
             "url": "https://www.festivaldestempliers.com/infos_pratiques/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "retrievedAt": "2026-08-14T13:00:42.728Z",
+            "event": "Festival des Templiers",
+            "race": "Monna Lisa"
+          },
+          {
+            "url": "http://www.eldorun.com/templiers/24TABLEAUTEMPSDEPASSAGES_SAMEDI.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:43.678Z",
             "event": "Festival des Templiers",
             "race": "Monna Lisa"
           },
           {
             "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325085&format=gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:23.368Z",
+            "retrievedAt": "2026-08-14T13:00:46.683Z",
             "event": "Festival des Templiers",
             "race": "Monna Lisa"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/325085",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:23.368Z",
+            "retrievedAt": "2026-08-14T13:00:46.683Z",
             "event": "Festival des Templiers",
             "race": "Monna Lisa"
           }
@@ -1079,17 +1545,13 @@
       "quality": {
         "status": "partial",
         "warnings": [
-          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
           "Official page lists aid stations but their distances require a separate linked detail page.",
           "GPX_CHANGED: Le GPX officiel de Festival des Templiers Monna Lisa 2026 a changé depuis la dernière collecte.",
-          "Barriers/checkpoints not found in official source.",
           "Aid station distance unknown: Betpaumes",
           "Aid station distance unknown: Lauglanou"
         ],
         "missingFields": [
-          "maxDuration",
-          "price",
-          "checkpoints"
+          "price"
         ]
       }
     },
@@ -1118,7 +1580,7 @@
         "elevationLossM": null,
         "startLocation": "Millau",
         "finishLocation": "Millau",
-        "maxDurationMinutes": null,
+        "maxDurationMinutes": 495,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -1143,10 +1605,10 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-12T13:46:23.624Z",
+          "retrievedAt": "2026-08-14T13:00:46.870Z",
           "localFile": "gpx/2026/templiers/marathon-des-causses.gpx",
           "routeAsset": "generated/routes/templiers-marathon-des-causses-2026.json",
-          "sha256": "62c9c2c0b20cb1479242ecb51840df981cee6a6990ac5bd56e96cac8083ed7fe",
+          "sha256": "2680bf19f7ad2da6c5bd09edc43e6057adb95eb1890ce64b7815f66806b1eb66",
           "trackCount": 1,
           "routeCount": 0,
           "pointCount": 1170,
@@ -1174,10 +1636,75 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "CARBASSAS (P7)",
+            "distanceKm": 3.9,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T13:25:00",
+            "cutoffElapsedMinutes": 75,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ROC DEL MAR",
+            "distanceKm": 8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T14:30:00",
+            "cutoffElapsedMinutes": 140,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA CRESSE",
+            "distanceKm": 11.8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T14:50:00",
+            "cutoffElapsedMinutes": 160,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LAUGLANOU",
+            "distanceKm": 19.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T16:30:00",
+            "cutoffElapsedMinutes": 260,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LE CADE",
+            "distanceKm": 25.9,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T18:30:00",
+            "cutoffElapsedMinutes": 380,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA POUNCHO",
+            "distanceKm": 31.8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T19:50:00",
+            "cutoffElapsedMinutes": 460,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ARRIVEE",
+            "distanceKm": 34.1,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T20:25:00",
+            "cutoffElapsedMinutes": 495,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [
           {
             "name": "Lauglanou",
@@ -1217,28 +1744,35 @@
           {
             "url": "https://www.festivaldestempliers.com/le-marathon-des-causses/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:20.666Z",
+            "retrievedAt": "2026-08-14T13:00:43.731Z",
             "event": "Festival des Templiers",
             "race": "Marathon des Causses"
           },
           {
             "url": "https://www.festivaldestempliers.com/infos_pratiques/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "retrievedAt": "2026-08-14T13:00:42.728Z",
+            "event": "Festival des Templiers",
+            "race": "Marathon des Causses"
+          },
+          {
+            "url": "http://www.eldorun.com/templiers/24TABLEAUTEMPSDEPASSAGES_SAMEDI.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:43.763Z",
             "event": "Festival des Templiers",
             "race": "Marathon des Causses"
           },
           {
             "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325087&format=gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:23.624Z",
+            "retrievedAt": "2026-08-14T13:00:46.870Z",
             "event": "Festival des Templiers",
             "race": "Marathon des Causses"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/325087",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:23.624Z",
+            "retrievedAt": "2026-08-14T13:00:46.870Z",
             "event": "Festival des Templiers",
             "race": "Marathon des Causses"
           }
@@ -1252,17 +1786,13 @@
       "quality": {
         "status": "partial",
         "warnings": [
-          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
           "Official page lists aid stations but their distances require a separate linked detail page.",
           "GPX_CHANGED: Le GPX officiel de Festival des Templiers Marathon des Causses 2026 a changé depuis la dernière collecte.",
-          "Barriers/checkpoints not found in official source.",
           "Aid station distance unknown: Lauglanou",
           "Aid station distance unknown: Le Cade"
         ],
         "missingFields": [
-          "maxDuration",
-          "price",
-          "checkpoints"
+          "price"
         ]
       }
     },
@@ -1316,10 +1846,10 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-12T13:46:23.924Z",
+          "retrievedAt": "2026-08-14T13:00:47.115Z",
           "localFile": "gpx/2026/templiers/troubadours.gpx",
           "routeAsset": "generated/routes/templiers-troubadours-2026.json",
-          "sha256": "8c1ffd516def80890a3f40a9496c1443676b1aba1656efa3109120d951788532",
+          "sha256": "3678b4f61d54e0c1d1883c40363b4f6dfe5bb2e645302ae9c1b01433dd4476f7",
           "trackCount": 1,
           "routeCount": 0,
           "pointCount": 471,
@@ -1347,6 +1877,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -1363,28 +1894,28 @@
           {
             "url": "https://www.festivaldestempliers.com/troubadours/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:20.733Z",
+            "retrievedAt": "2026-08-14T13:00:43.839Z",
             "event": "Festival des Templiers",
             "race": "Troubadours"
           },
           {
             "url": "https://www.festivaldestempliers.com/infos_pratiques/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "retrievedAt": "2026-08-14T13:00:42.728Z",
             "event": "Festival des Templiers",
             "race": "Troubadours"
           },
           {
             "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325081&format=gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:23.924Z",
+            "retrievedAt": "2026-08-14T13:00:47.115Z",
             "event": "Festival des Templiers",
             "race": "Troubadours"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/325081",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:23.924Z",
+            "retrievedAt": "2026-08-14T13:00:47.115Z",
             "event": "Festival des Templiers",
             "race": "Troubadours"
           }
@@ -1436,7 +1967,7 @@
         "elevationLossM": null,
         "startLocation": "Millau",
         "finishLocation": "Millau",
-        "maxDurationMinutes": null,
+        "maxDurationMinutes": 300,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -1461,10 +1992,10 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-12T13:46:24.134Z",
+          "retrievedAt": "2026-08-14T13:00:47.253Z",
           "localFile": "gpx/2026/templiers/vo2-trail.gpx",
           "routeAsset": "generated/routes/templiers-vo2-trail-2026.json",
-          "sha256": "718bee59593365b7e0a918d29bd94ddc7db41e06e5149a34ca38124c1ee94374",
+          "sha256": "ae89de1ca2b4d350bf16c806ed17b6067185ff9dd36cf8ad7d0551798783863f",
           "trackCount": 1,
           "routeCount": 0,
           "pointCount": 761,
@@ -1492,10 +2023,48 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "CARBASSAS (P7)",
+            "distanceKm": 3.9,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T17:15:00",
+            "cutoffElapsedMinutes": 75,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LAUGLANOU",
+            "distanceKm": 9.2,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T18:45:00",
+            "cutoffElapsedMinutes": 165,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA POUNCHO",
+            "distanceKm": 14.9,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T19:50:00",
+            "cutoffElapsedMinutes": 230,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ARRIVEE",
+            "distanceKm": 17.8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-17T21:00:00",
+            "cutoffElapsedMinutes": 300,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [
           {
             "name": "Lauglanou",
@@ -1522,28 +2091,35 @@
           {
             "url": "https://www.festivaldestempliers.com/vo2-trail/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:20.815Z",
+            "retrievedAt": "2026-08-14T13:00:43.878Z",
             "event": "Festival des Templiers",
             "race": "VO2 Trail"
           },
           {
             "url": "https://www.festivaldestempliers.com/infos_pratiques/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "retrievedAt": "2026-08-14T13:00:42.728Z",
+            "event": "Festival des Templiers",
+            "race": "VO2 Trail"
+          },
+          {
+            "url": "http://www.eldorun.com/templiers/24TABLEAUTEMPSDEPASSAGES_SAMEDI.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:43.920Z",
             "event": "Festival des Templiers",
             "race": "VO2 Trail"
           },
           {
             "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325083&format=gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:24.134Z",
+            "retrievedAt": "2026-08-14T13:00:47.253Z",
             "event": "Festival des Templiers",
             "race": "VO2 Trail"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/325083",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:24.134Z",
+            "retrievedAt": "2026-08-14T13:00:47.253Z",
             "event": "Festival des Templiers",
             "race": "VO2 Trail"
           }
@@ -1557,16 +2133,12 @@
       "quality": {
         "status": "partial",
         "warnings": [
-          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
           "Official page lists aid stations but their distances require a separate linked detail page.",
           "GPX_CHANGED: Le GPX officiel de Festival des Templiers VO2 Trail 2026 a changé depuis la dernière collecte.",
-          "Barriers/checkpoints not found in official source.",
           "Aid station distance unknown: Lauglanou"
         ],
         "missingFields": [
-          "maxDuration",
-          "price",
-          "checkpoints"
+          "price"
         ]
       }
     },
@@ -1620,10 +2192,10 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-12T13:46:24.342Z",
+          "retrievedAt": "2026-08-14T13:00:47.511Z",
           "localFile": "gpx/2026/templiers/templiere.gpx",
           "routeAsset": "generated/routes/templiers-templiere-2026.json",
-          "sha256": "e4271f46201cb25f4936367b1b50f6341eed9ef218ed031a68f3f6509670d36b",
+          "sha256": "4676ceaee5e076be3132b798c6d0876d6c391b338ab6d02de157c69886492c8c",
           "trackCount": 1,
           "routeCount": 0,
           "pointCount": 308,
@@ -1651,6 +2223,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -1667,28 +2240,28 @@
           {
             "url": "https://www.festivaldestempliers.com/templiere/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:20.890Z",
+            "retrievedAt": "2026-08-14T13:00:43.983Z",
             "event": "Festival des Templiers",
             "race": "Templiere"
           },
           {
             "url": "https://www.festivaldestempliers.com/infos_pratiques/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "retrievedAt": "2026-08-14T13:00:42.728Z",
             "event": "Festival des Templiers",
             "race": "Templiere"
           },
           {
             "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325080&format=gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:24.342Z",
+            "retrievedAt": "2026-08-14T13:00:47.511Z",
             "event": "Festival des Templiers",
             "race": "Templiere"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/325080",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:24.342Z",
+            "retrievedAt": "2026-08-14T13:00:47.511Z",
             "event": "Festival des Templiers",
             "race": "Templiere"
           }
@@ -1740,7 +2313,7 @@
         "elevationLossM": null,
         "startLocation": "Millau",
         "finishLocation": "Millau",
-        "maxDurationMinutes": null,
+        "maxDurationMinutes": 1075,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": true,
@@ -1765,10 +2338,10 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-12T13:46:24.534Z",
+          "retrievedAt": "2026-08-14T13:00:47.677Z",
           "localFile": "gpx/2026/templiers/grand-trail.gpx",
           "routeAsset": "generated/routes/templiers-grand-trail-2026.json",
-          "sha256": "b9b32d1a45cd03b93390398756112121f42aac57cc55f68c91de93678c0e0020",
+          "sha256": "885fc06517f06e8e84cb9887c1984922bbd6d9986ac9a4513c1e540a7838e88e",
           "trackCount": 1,
           "routeCount": 0,
           "pointCount": 3468,
@@ -1796,10 +2369,120 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [],
+        "checkpoints": [
+          {
+            "name": "CARBASSAS (P10)",
+            "distanceKm": 8.2,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T07:40:00",
+            "cutoffElapsedMinutes": 150,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "PEYRELEAU",
+            "distanceKm": 23.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T09:35:00",
+            "cutoffElapsedMinutes": 265,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "SAINT ANDRE",
+            "distanceKm": 36.7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T12:30:00",
+            "cutoffElapsedMinutes": 440,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA ROQUE STE MARGUERITE",
+            "distanceKm": 48.2,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T15:10:00",
+            "cutoffElapsedMinutes": 600,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "PIERREFICHE",
+            "distanceKm": 50.7,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T15:45:00",
+            "cutoffElapsedMinutes": 635,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA SALVAGE",
+            "distanceKm": 55.8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T16:55:00",
+            "cutoffElapsedMinutes": 705,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "MAS DE BRU",
+            "distanceKm": 64.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T18:20:00",
+            "cutoffElapsedMinutes": 790,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "MASSEBIAU",
+            "distanceKm": 69.8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T19:30:00",
+            "cutoffElapsedMinutes": 860,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LE CADE",
+            "distanceKm": 73,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T20:40:00",
+            "cutoffElapsedMinutes": 930,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "RAVIN DU CAF",
+            "distanceKm": 74.8,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T20:40:00",
+            "cutoffElapsedMinutes": 930,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "LA POUNCHO",
+            "distanceKm": 77.6,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T22:10:00",
+            "cutoffElapsedMinutes": 1020,
+            "aidStation": false,
+            "personalAssistanceAllowed": null
+          },
+          {
+            "name": "ARRIVEE",
+            "distanceKm": 80.4,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-10-18T23:05:00",
+            "cutoffElapsedMinutes": 1075,
+            "aidStation": true,
+            "personalAssistanceAllowed": null
+          }
+        ],
         "aidStations": [
           {
             "name": "Peyreleau ASSISTANCE INTERDITE",
@@ -1865,28 +2548,35 @@
           {
             "url": "https://www.festivaldestempliers.com/grand-trail-des-templiers/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:20.972Z",
+            "retrievedAt": "2026-08-14T13:00:44.020Z",
             "event": "Festival des Templiers",
             "race": "Grand Trail"
           },
           {
             "url": "https://www.festivaldestempliers.com/infos_pratiques/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:19.942Z",
+            "retrievedAt": "2026-08-14T13:00:42.728Z",
+            "event": "Festival des Templiers",
+            "race": "Grand Trail"
+          },
+          {
+            "url": "http://www.eldorun.com/templiers/25TABLEAUTEMPSDE%20PASSAGESTEMPLIERSdimanche.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-14T13:00:44.066Z",
             "event": "Festival des Templiers",
             "race": "Grand Trail"
           },
           {
             "url": "https://tracedetrail.fr/download/getFile/tracedetrail?traceID=325090&format=gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:24.534Z",
+            "retrievedAt": "2026-08-14T13:00:47.677Z",
             "event": "Festival des Templiers",
             "race": "Grand Trail"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/325090",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:24.534Z",
+            "retrievedAt": "2026-08-14T13:00:47.677Z",
             "event": "Festival des Templiers",
             "race": "Grand Trail"
           }
@@ -1900,19 +2590,15 @@
       "quality": {
         "status": "partial",
         "warnings": [
-          "Official page links cutoff details, but no machine-readable cutoff table was found in the page.",
           "Official page lists aid stations but their distances require a separate linked detail page.",
           "GPX_CHANGED: Le GPX officiel de Festival des Templiers Grand Trail 2026 a changé depuis la dernière collecte.",
-          "Barriers/checkpoints not found in official source.",
           "Aid station distance unknown: Peyreleau ASSISTANCE INTERDITE",
           "Aid station distance unknown: Saint-André-de-Vézines",
           "Aid station distance unknown: La Salvage",
           "Aid station distance unknown: Ferme du Cade"
         ],
         "missingFields": [
-          "maxDuration",
-          "price",
-          "checkpoints"
+          "price"
         ]
       }
     }

@@ -31,11 +31,13 @@
 
 html {
   min-width: 320px;
+  overflow-x: hidden;
 }
 
 body {
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(248, 247, 242, 0) 360px),
     var(--background);
@@ -345,7 +347,19 @@ h1 {
   cursor: pointer;
   font-size: 0.88rem;
   font-weight: 760;
+  text-decoration: none;
   transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.button-primary {
+  border-color: var(--green-700);
+  background: var(--green-700);
+  color: #ffffff;
+}
+
+.button-primary:hover {
+  border-color: var(--green-900);
+  background: var(--green-900);
 }
 
 .button span {
@@ -557,6 +571,16 @@ input:focus {
   border-color: #d2d8d0;
   color: var(--orange);
   background: var(--surface-muted);
+}
+
+.favorite-button.is-active {
+  border-color: #e0a84b;
+  background: #fff5dc;
+  color: #9a5a00;
+}
+
+.favorite-button.is-active svg {
+  fill: currentColor;
 }
 
 .race-card h2 {
@@ -1028,6 +1052,17 @@ input:focus {
   text-decoration: underline;
 }
 
+.race-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 18px;
+}
+
+.race-actions .button {
+  min-height: 34px;
+}
+
 .compare-tip {
   display: flex;
   align-items: center;
@@ -1200,6 +1235,13 @@ input:focus {
   gap: 12px;
 }
 
+.explorer-card-toolbar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .explorer-event {
   display: block;
   margin-bottom: 6px;
@@ -1294,6 +1336,8 @@ input:focus {
 
 .explorer-actions {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 6px;
 }
 
@@ -1310,6 +1354,7 @@ input:focus {
   min-height: 210px;
   border: 1px dashed #d9ddd7;
   border-radius: 12px;
+  padding: 22px 18px;
   background: rgba(255, 255, 255, 0.7);
   color: var(--text-secondary);
   text-align: center;
@@ -1322,9 +1367,11 @@ input:focus {
 }
 
 .explorer-empty p {
+  max-width: 34ch;
   margin-bottom: 0;
   font-size: 0.9rem;
   font-weight: 680;
+  overflow-wrap: anywhere;
 }
 
 .toast {
@@ -1420,7 +1467,8 @@ input:focus {
 
   .side-nav {
     display: flex;
-    flex: 1 0 auto;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .sidebar-bottom {
@@ -1472,6 +1520,10 @@ input:focus {
 }
 
 @media (max-width: 620px) {
+  .brand-copy {
+    display: none;
+  }
+
   .brand-copy strong {
     font-size: 0.78rem;
   }
@@ -1483,6 +1535,10 @@ input:focus {
   }
 
   .side-icon {
+    display: none;
+  }
+
+  .side-link[aria-disabled="true"] {
     display: none;
   }
 
@@ -1556,10 +1612,16 @@ input:focus {
     min-width: 480px;
   }
 
+  .race-actions,
   .data-note,
   .race-source {
     margin-right: 14px;
     margin-left: 14px;
+  }
+
+  .race-actions {
+    padding-right: 0;
+    padding-left: 0;
   }
 
   .race-source {

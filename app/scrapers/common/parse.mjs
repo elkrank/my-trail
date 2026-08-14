@@ -155,6 +155,19 @@ export function extractIllustration(html, baseUrl) {
   return null;
 }
 
+export function extractRegistrationUrl(html, baseUrl) {
+  const input = String(html ?? "");
+  for (const match of input.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]{0,700}?)<\/a>/gi)) {
+    const label = stripHtml(match[2]);
+    if (!/(?:inscription|s'inscrire|register|registration|sign\s*up|entry)/i.test(label)) continue;
+
+    const url = normalizeHttpUrl(match[1], baseUrl);
+    if (url) return url;
+  }
+
+  return null;
+}
+
 export function numberFrom(value) {
   if (value === null || value === undefined) return null;
   const raw = String(value)
@@ -376,6 +389,18 @@ function normalizeIllustrationUrl(value, baseUrl) {
     if (!["http:", "https:"].includes(url.protocol)) return null;
     if (isExcludedImageUrl(url.href)) return null;
     return url.href;
+  } catch {
+    return null;
+  }
+}
+
+function normalizeHttpUrl(value, baseUrl) {
+  const raw = decodeHtmlEntities(value).trim();
+  if (!raw || raw === "#" || /^(?:data|blob|javascript|mailto):/i.test(raw)) return null;
+
+  try {
+    const url = new URL(raw, baseUrl);
+    return ["http:", "https:"].includes(url.protocol) ? url.href : null;
   } catch {
     return null;
   }

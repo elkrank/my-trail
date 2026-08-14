@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T13:46:30.445Z",
+  "generatedAt": "2026-08-14T13:01:22.546Z",
   "year": 2026,
   "event": {
     "id": "ntmf",
@@ -52,7 +52,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-12T13:46:27.417Z",
+          "retrievedAt": "2026-08-14T13:00:54.318Z",
           "localFile": "gpx/2026/ntmf/13-km.gpx",
           "routeAsset": "generated/routes/ntmf-13-km-2026.json",
           "sha256": "606df287afecf99a53ad2905961d730d15cf1bd54865294ef61b713d74e019ea",
@@ -83,6 +83,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -112,35 +113,35 @@
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:26.269Z",
+            "retrievedAt": "2026-08-14T13:00:51.310Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "13 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.546Z",
+            "retrievedAt": "2026-08-14T13:00:51.460Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "13 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.744Z",
+            "retrievedAt": "2026-08-14T13:00:51.633Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "13 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf-2026-13-km.6pK_wSFC2IAcZnWMx0Xm9.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:27.417Z",
+            "retrievedAt": "2026-08-14T13:00:54.318Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "13 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-13-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:27.417Z",
+            "retrievedAt": "2026-08-14T13:00:54.318Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "13 km"
           }
@@ -200,7 +201,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-12T13:46:27.793Z",
+          "retrievedAt": "2026-08-14T13:00:54.847Z",
           "localFile": "gpx/2026/ntmf/25-km.gpx",
           "routeAsset": "generated/routes/ntmf-25-km-2026.json",
           "sha256": "0a0a8837bf18ba2ed88aacf742f66d13355f38663a4b29fb104bd8e7c23268ec",
@@ -231,6 +232,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -274,35 +276,35 @@
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:26.269Z",
+            "retrievedAt": "2026-08-14T13:00:51.310Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "25 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.546Z",
+            "retrievedAt": "2026-08-14T13:00:51.460Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "25 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.744Z",
+            "retrievedAt": "2026-08-14T13:00:51.633Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "25 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf25-km-2026.vbIq498EsedOtYGGGIrpG.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:27.793Z",
+            "retrievedAt": "2026-08-14T13:00:54.847Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "25 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-25-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:27.793Z",
+            "retrievedAt": "2026-08-14T13:00:54.847Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "25 km"
           }
@@ -358,7 +360,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-12T13:46:28.160Z",
+          "retrievedAt": "2026-08-14T13:00:55.171Z",
           "localFile": "gpx/2026/ntmf/30-km.gpx",
           "routeAsset": "generated/routes/ntmf-30-km-2026.json",
           "sha256": "cf8505b39a1fe61f0523c0340ff06e8f2a07611ee8ead689fbdc5749001137ac",
@@ -389,6 +391,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -422,35 +425,35 @@
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:26.269Z",
+            "retrievedAt": "2026-08-14T13:00:51.310Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "30 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.546Z",
+            "retrievedAt": "2026-08-14T13:00:51.460Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "30 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.744Z",
+            "retrievedAt": "2026-08-14T13:00:51.633Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "30 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf-30km-2026.8SJkn56NhryxwNlMRUo-1.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:28.160Z",
+            "retrievedAt": "2026-08-14T13:00:55.171Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "30 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-30-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:28.160Z",
+            "retrievedAt": "2026-08-14T13:00:55.171Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "30 km"
           }
@@ -510,7 +513,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-12T13:46:28.567Z",
+          "retrievedAt": "2026-08-14T13:00:55.549Z",
           "localFile": "gpx/2026/ntmf/42-km.gpx",
           "routeAsset": "generated/routes/ntmf-42-km-2026.json",
           "sha256": "fc654c8b951e09c219c1017c8fe2650941e05021d45b77f13753baf9dc4efb67",
@@ -541,6 +544,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -601,35 +605,35 @@
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:26.269Z",
+            "retrievedAt": "2026-08-14T13:00:51.310Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "42 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.546Z",
+            "retrievedAt": "2026-08-14T13:00:51.460Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "42 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.744Z",
+            "retrievedAt": "2026-08-14T13:00:51.633Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "42 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf42-km-2026.bsM3NO7DUVB9YYWjg9mvk.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:28.567Z",
+            "retrievedAt": "2026-08-14T13:00:55.549Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "42 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-42-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:28.567Z",
+            "retrievedAt": "2026-08-14T13:00:55.549Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "42 km"
           }
@@ -685,7 +689,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-12T13:46:28.970Z",
+          "retrievedAt": "2026-08-14T13:00:55.886Z",
           "localFile": "gpx/2026/ntmf/59-km.gpx",
           "routeAsset": "generated/routes/ntmf-59-km-2026.json",
           "sha256": "eef243a7ebd2ee344db258ba56cb2b68924ad44285e91af1b7ef8e7ff4968717",
@@ -716,6 +720,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -789,35 +794,35 @@
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:26.269Z",
+            "retrievedAt": "2026-08-14T13:00:51.310Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "59 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.546Z",
+            "retrievedAt": "2026-08-14T13:00:51.460Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "59 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.744Z",
+            "retrievedAt": "2026-08-14T13:00:51.633Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "59 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf-59-km-2026.Wl2QfGfZb25W32Z3C-aI9.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:28.970Z",
+            "retrievedAt": "2026-08-14T13:00:55.886Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "59 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-59-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:28.970Z",
+            "retrievedAt": "2026-08-14T13:00:55.886Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "59 km"
           }
@@ -873,7 +878,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-12T13:46:29.324Z",
+          "retrievedAt": "2026-08-14T13:00:56.154Z",
           "localFile": "gpx/2026/ntmf/80-km.gpx",
           "routeAsset": "generated/routes/ntmf-80-km-2026.json",
           "sha256": "2ecf5a6b69c4f73043a76d801409d8756fc710a859486fc645443390d2524594",
@@ -904,6 +909,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -1008,35 +1014,35 @@
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:26.269Z",
+            "retrievedAt": "2026-08-14T13:00:51.310Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "80 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.546Z",
+            "retrievedAt": "2026-08-14T13:00:51.460Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "80 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.744Z",
+            "retrievedAt": "2026-08-14T13:00:51.633Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "80 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf-80-km-2026.bn6u2F3u_KAAjhVNO6shK.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:29.324Z",
+            "retrievedAt": "2026-08-14T13:00:56.154Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "80 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-80-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:29.324Z",
+            "retrievedAt": "2026-08-14T13:00:56.154Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "80 km"
           }
@@ -1092,7 +1098,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-12T13:46:29.952Z",
+          "retrievedAt": "2026-08-14T13:00:56.458Z",
           "localFile": "gpx/2026/ntmf/115-km.gpx",
           "routeAsset": "generated/routes/ntmf-115-km-2026.json",
           "sha256": "232e245fb09f272aefd92e7136a5c9a59571fc612ae24c7df521dd20e8d47b5e",
@@ -1123,6 +1129,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
+          "url": null,
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -1262,35 +1269,35 @@
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-12T13:46:26.269Z",
+            "retrievedAt": "2026-08-14T13:00:51.310Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "115 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.546Z",
+            "retrievedAt": "2026-08-14T13:00:51.460Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "115 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-12T13:46:26.744Z",
+            "retrievedAt": "2026-08-14T13:00:51.633Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "115 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf-2026-115-km.jUaqmQcAIiqV6jbkAyH8J.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-12T13:46:29.952Z",
+            "retrievedAt": "2026-08-14T13:00:56.458Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "115 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-115-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-12T13:46:29.952Z",
+            "retrievedAt": "2026-08-14T13:00:56.458Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "115 km"
           }

@@ -5,6 +5,7 @@ import {
   createIllustration,
   createRace,
   createRaceEntry,
+  normalizeHttpUrl,
   sourceFromFetch,
 } from "../../common/model.mjs";
 import {
@@ -175,6 +176,7 @@ function buildRaceEntry({
       priceEur: priceByRace.get(race.shortName) ?? null,
       status: null,
       lottery: race.shortName === "ETC" ? true : null,
+      url: registration ? normalizeHttpUrl(registration.finalUrl ?? registration.url ?? REGISTRATION_URL) : null,
       qualificationRequired: qualificationByRace.get(race.shortName) ?? null,
     },
     checkpoints,

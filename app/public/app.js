@@ -9,23 +9,63 @@ const toastEl = document.querySelector('#toast');
 const viewLinks = Array.from(document.querySelectorAll('[data-view-link]'));
 const compareView = document.querySelector('#compare-view');
 const explorerView = document.querySelector('#explorer-view');
+const favoritesView = document.querySelector('#favorites-view');
 const explorerSearchInput = document.querySelector('#explorer-search');
 const explorerLocationSelect = document.querySelector('#explorer-location');
 const explorerDateFromInput = document.querySelector('#explorer-date-from');
 const explorerDateToInput = document.querySelector('#explorer-date-to');
 const explorerElevationSelect = document.querySelector('#explorer-elevation');
 const explorerDistanceSelect = document.querySelector('#explorer-distance');
+const explorerMonthSelect = document.querySelector('#explorer-month');
+const explorerPriceMaxSelect = document.querySelector('#explorer-price-max');
+const explorerRegistrationStatusSelect = document.querySelector('#explorer-registration-status');
+const explorerDurationMaxSelect = document.querySelector('#explorer-duration-max');
 const explorerSortSelect = document.querySelector('#explorer-sort');
 const explorerGpxOnlyInput = document.querySelector('#explorer-gpx-only');
 const explorerResetButton = document.querySelector('#explorer-reset');
 const explorerCountEl = document.querySelector('#explorer-count');
 const explorerResultsEl = document.querySelector('#explorer-results');
+const favoritesCountEl = document.querySelector('#favorites-count');
+const favoritesResultsEl = document.querySelector('#favorites-results');
 
 const confidenceLabels = {
   official: 'Source officielle',
   secondary: 'Source secondaire',
   unverified: 'Donnée non vérifiée',
 };
+
+const registrationStatusLabels = {
+  open: 'Ouverte',
+  upcoming: 'A venir',
+  closed: 'Fermee',
+  lottery: "Liste d'attente ou loterie",
+  unknown: 'Inconnue',
+};
+
+const verticalityLabels = {
+  rolling: 'Roulante',
+  hilly: 'Vallonnée',
+  mountainous: 'Montagneuse',
+  very_mountainous: 'Très montagneuse',
+  extreme: 'Extrême',
+};
+
+const viewMeta = {
+  compare: {
+    title: 'TrailCompare - Comparateur de trails',
+    description: 'Comparez deux trails avec les données officielles disponibles, la difficulté physique estimée, la pression des barrières et les traces GPX.',
+  },
+  explorer: {
+    title: 'TrailCompare - Explorer les trails',
+    description: 'Explorez les trails par mois, lieu, distance, dénivelé, prix, durée, inscription et disponibilité GPX.',
+  },
+  favorites: {
+    title: 'TrailCompare - Favoris',
+    description: 'Retrouvez vos trails favoris sauvegardés localement sur cet appareil.',
+  },
+};
+
+const favoriteStorageKey = 'trailcompare:favorites:v1';
 
 const htmlEscapeMap = {
   '&': '&amp;',
@@ -53,6 +93,7 @@ const state = {
   races: [],
   currentComparison: null,
   gpxCache: new Map(),
+  favorites: new Set(),
   isSwapping: false,
   activeView: 'compare',
 };
@@ -65,7 +106,7 @@ function safeHttpUrl(value) {
   if (!value) return null;
 
   try {
-    const url = new URL(String(value), window.location.origin);
+    const url = new URL(String(value));
     return ['http:', 'https:'].includes(url.protocol) ? url.href : null;
   } catch {
     return null;
@@ -85,9 +126,15 @@ function showToast(message) {
   }, 2200);
 }
 
-function formatNumber(value, digits = 1) {
+function numericValue(value) {
+  if (value === null || value === undefined || value === '') return null;
   const number = Number(value);
-  if (!Number.isFinite(number)) return 'Non disponible';
+  return Number.isFinite(number) ? number : null;
+}
+
+function formatNumber(value, digits = 1) {
+  const number = numericValue(value);
+  if (number === null) return 'Non disponible';
 
   return number.toLocaleString('fr-FR', {
     maximumFractionDigits: digits,
@@ -96,20 +143,32 @@ function formatNumber(value, digits = 1) {
 }
 
 function formatDuration(minutes) {
-  const number = Number(minutes);
-  if (!Number.isFinite(number) || number <= 0) return 'Non disponible';
+  const number = numericValue(minutes);
+  if (number === null || number <= 0) return 'Non disponible';
 
   const hours = Math.floor(number / 60);
   const remainder = Math.round(number % 60);
   return remainder ? `${hours} h ${String(remainder).padStart(2, '0')}` : `${hours} h`;
 }
 
+function formatPrice(value) {
+  const number = numericValue(value);
+  return number !== null ? `${formatNumber(number, 0)} EUR` : 'Non disponible';
+}
+
+function formatMonthOption(month) {
+  const value = Number(month);
+  if (!Number.isInteger(value) || value < 1 || value > 12) return 'Mois inconnu';
+  const date = new Date(2026, value - 1, 1);
+  return date.toLocaleDateString('fr-FR', { month: 'long' });
+}
+
 function formatKm(value) {
-  return Number.isFinite(Number(value)) ? `${formatNumber(value, 1)} km` : 'Non disponible';
+  return numericValue(value) !== null ? `${formatNumber(value, 1)} km` : 'Non disponible';
 }
 
 function formatElevation(value) {
-  return Number.isFinite(Number(value)) ? `${formatNumber(value, 0)} D+` : 'Non disponible';
+  return numericValue(value) !== null ? `${formatNumber(value, 0)} D+` : 'Non disponible';
 }
 
 function formatDate(value) {
@@ -129,15 +188,16 @@ function formatRaceDateTime(race) {
 }
 
 function formatAltitude(value) {
-  return Number.isFinite(Number(value)) ? `${formatNumber(value, 0)} m` : 'Non disponible';
+  return numericValue(value) !== null ? `${formatNumber(value, 0)} m` : 'Non disponible';
 }
 
 function formatSpeed(value) {
-  return Number.isFinite(Number(value)) ? `${formatNumber(value, 2)} km/h` : 'Non disponible';
+  return numericValue(value) !== null ? `${formatNumber(value, 2)} km/h` : 'Non disponible';
 }
 
 function formatScore(value) {
-  return Number.isFinite(Number(value)) ? `${Math.round(Number(value))}/100` : 'Non disponible';
+  const number = numericValue(value);
+  return number !== null ? `${Math.round(number)}/100` : 'Non disponible';
 }
 
 function sourceLabel(race) {
@@ -165,8 +225,74 @@ function dateToTime(value) {
   return date ? date.getTime() : null;
 }
 
+function raceMonthValue(race) {
+  const date = parseDateValue(race.date);
+  return date ? String(date.getMonth() + 1).padStart(2, '0') : '';
+}
+
 function hasAvailableGpx(race) {
   return race.gpx?.status === 'available';
+}
+
+function hasDownloadableGpx(race) {
+  return hasAvailableGpx(race) && Boolean(race.gpx?.localFile);
+}
+
+function normalizeRegistrationStatus(status) {
+  const value = String(status ?? 'unknown');
+  return registrationStatusLabels[value] ? value : 'unknown';
+}
+
+function registrationStatusLabel(status) {
+  return registrationStatusLabels[normalizeRegistrationStatus(status)] ?? registrationStatusLabels.unknown;
+}
+
+function verticalityLabel(level) {
+  return verticalityLabels[level] ?? 'Non disponible';
+}
+
+function difficultyScoreValue(race) {
+  return numericValue(race?.difficultyScore) ?? numericValue(race?.difficultyScoreV1);
+}
+
+function readFavoriteIds() {
+  try {
+    const raw = window.localStorage?.getItem(favoriteStorageKey);
+    if (!raw) return new Set();
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return new Set();
+    return new Set(parsed.filter((value) => typeof value === 'string' && value.trim()));
+  } catch {
+    return new Set();
+  }
+}
+
+function writeFavoriteIds() {
+  try {
+    window.localStorage?.setItem(favoriteStorageKey, JSON.stringify([...state.favorites]));
+  } catch {
+    // Local storage can be disabled; keep the in-memory state usable for the session.
+  }
+}
+
+function reconcileFavorites(races) {
+  const knownSourceIds = new Set(races.map((race) => race.sourceId).filter(Boolean));
+  state.favorites = new Set([...readFavoriteIds()].filter((sourceId) => knownSourceIds.has(sourceId)));
+  writeFavoriteIds();
+}
+
+function isFavorite(race) {
+  return Boolean(race?.sourceId && state.favorites.has(race.sourceId));
+}
+
+function updateDocumentMeta(view) {
+  const meta = viewMeta[view] ?? viewMeta.compare;
+  document.title = meta.title;
+  document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description);
+  document.querySelector('meta[property="og:title"]')?.setAttribute('content', meta.title);
+  document.querySelector('meta[property="og:description"]')?.setAttribute('content', meta.description);
+  document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', meta.title);
+  document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', meta.description);
 }
 
 function knownRaceLocationLabel(race) {
@@ -213,6 +339,10 @@ function getExplorerFilters() {
     dateTo: explorerDateToInput?.value ?? '',
     elevation: explorerElevationSelect?.value ?? '',
     distance: explorerDistanceSelect?.value ?? '',
+    month: explorerMonthSelect?.value ?? '',
+    priceMax: explorerPriceMaxSelect?.value ?? '',
+    registrationStatus: explorerRegistrationStatusSelect?.value ?? '',
+    durationMax: explorerDurationMaxSelect?.value ?? '',
     sort: explorerSortSelect?.value || 'date-asc',
     gpxOnly: Boolean(explorerGpxOnlyInput?.checked),
   };
@@ -221,11 +351,18 @@ function getExplorerFilters() {
 function matchesRange(value, rangeKey, ranges) {
   if (!rangeKey) return true;
   const range = ranges[rangeKey];
-  const number = Number(value);
-  if (!range || !Number.isFinite(number)) return false;
+  const number = numericValue(value);
+  if (!range || number === null) return false;
   if (Number.isFinite(range.min) && number < range.min) return false;
   if (Number.isFinite(range.max) && number >= range.max) return false;
   return true;
+}
+
+function matchesMaximum(value, maxValue) {
+  if (!maxValue) return true;
+  const number = numericValue(value);
+  const max = numericValue(maxValue);
+  return number !== null && max !== null && number <= max;
 }
 
 function matchesExplorerFilters(race, filters) {
@@ -233,6 +370,10 @@ function matchesExplorerFilters(race, filters) {
   if (filters.location && knownRaceLocationLabel(race) !== filters.location) return false;
   if (!matchesRange(race.elevationGainM, filters.elevation, elevationRanges)) return false;
   if (!matchesRange(race.distanceKm, filters.distance, distanceRanges)) return false;
+  if (filters.month && raceMonthValue(race) !== filters.month) return false;
+  if (!matchesMaximum(race.registration?.priceEur, filters.priceMax)) return false;
+  if (filters.registrationStatus && normalizeRegistrationStatus(race.registration?.status) !== filters.registrationStatus) return false;
+  if (!matchesMaximum(race.timeLimitMinutes, filters.durationMax)) return false;
   if (filters.gpxOnly && !hasAvailableGpx(race)) return false;
 
   if (filters.dateFrom || filters.dateTo) {
@@ -249,10 +390,10 @@ function matchesExplorerFilters(race, filters) {
 }
 
 function compareNullableNumbers(valueA, valueB, direction = 1) {
-  const numberA = Number(valueA);
-  const numberB = Number(valueB);
-  const hasA = Number.isFinite(numberA);
-  const hasB = Number.isFinite(numberB);
+  const numberA = numericValue(valueA);
+  const numberB = numericValue(valueB);
+  const hasA = numberA !== null;
+  const hasB = numberB !== null;
 
   if (!hasA && !hasB) return 0;
   if (!hasA) return 1;
@@ -293,8 +434,8 @@ function sortExplorerRaces(races, sort) {
 }
 
 function scoreTone(score) {
-  const value = Number(score);
-  if (!Number.isFinite(value)) return 'muted';
+  const value = numericValue(score);
+  if (value === null) return 'muted';
   if (value >= 70) return 'high';
   if (value >= 50) return 'medium';
   return 'low';
@@ -453,10 +594,10 @@ function profileTemplate(race, variant, gpxData) {
       y: Number(point.elevationM),
     }))
     : gpxData?.points
-      ?.filter((point) => Number.isFinite(Number(point.ele)))
+      ?.filter((point) => numericValue(point.ele) !== null)
       .map((point, index) => ({
         x: point.distanceKm ?? index,
-        y: Number(point.ele),
+        y: numericValue(point.ele),
       }));
 
   const elevationPoints = gpxElevationPoints?.length > 1
@@ -497,8 +638,8 @@ function profileTemplate(race, variant, gpxData) {
 }
 
 function metricTemplate(label, value, { score, accent = false } = {}) {
-  const hasScore = Number.isFinite(Number(score));
-  const tone = score ? scoreTone(score) : 'muted';
+  const hasScore = numericValue(score) !== null;
+  const tone = hasScore ? scoreTone(score) : 'muted';
   return `
     <div class="metric ${accent ? 'is-accent' : ''}">
       <span>${escapeHtml(label)}</span>
@@ -509,14 +650,16 @@ function metricTemplate(label, value, { score, accent = false } = {}) {
 }
 
 function metricsTemplate(race) {
+  const difficultyScore = difficultyScoreValue(race);
   return `
     <div class="metrics-grid" aria-label="Métriques principales">
       ${metricTemplate('KM-EFFORT', formatKm(race.kmEffort))}
-      ${metricTemplate('TEMPS LIMITE', formatDuration(race.timeLimitMinutes))}
-      ${metricTemplate('DIFFICULTÉ V0', formatScore(race.difficultyScoreV0), {
-        score: race.difficultyScoreV0,
+      ${metricTemplate('DIFFICULTÉ PHYSIQUE ESTIMÉE', formatScore(difficultyScore), {
+        score: difficultyScore,
         accent: true,
       })}
+      ${metricTemplate('VERTICALITÉ', verticalityLabel(race.verticalityLevel))}
+      ${metricTemplate('TEMPS LIMITE', formatDuration(race.timeLimitMinutes))}
       ${metricTemplate('PRESSION V0', formatScore(race.barrierPressureScoreV0), {
         score: race.barrierPressureScoreV0,
         accent: true,
@@ -588,7 +731,7 @@ function checkpointsTemplate(race) {
           <span aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><path d="M12 17v-5M12 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg>
           </span>
-          <p>Aucun checkpoint V0 défini pour cette course.</p>
+          <p>Aucun checkpoint de barrière défini pour cette course.</p>
         </div>
       </section>
     `;
@@ -625,9 +768,41 @@ function sourceTemplate(race) {
   return `
     <footer class="race-source">
       <span>${escapeHtml(sourceLabel(race))}</span>
-      ${safeSourceUrl ? `<a href="${escapeHtml(safeSourceUrl)}" rel="noreferrer" target="_blank">Consulter</a>` : '<span>Source indisponible</span>'}
+      ${safeSourceUrl ? `<a href="${escapeHtml(safeSourceUrl)}" rel="noopener noreferrer" target="_blank">Consulter</a>` : '<span>Source indisponible</span>'}
     </footer>
   `;
+}
+
+function favoriteButtonTemplate(race) {
+  const selected = isFavorite(race);
+  const label = selected ? `Retirer ${race.name} des favoris` : `Ajouter ${race.name} aux favoris`;
+  return `
+    <button class="favorite-button ${selected ? 'is-active' : ''}" type="button" data-favorite-source-id="${escapeHtml(race.sourceId)}" aria-pressed="${selected ? 'true' : 'false'}" aria-label="${escapeHtml(label)}">
+      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="m12 5 2.1 4.3 4.7.7-3.4 3.3.8 4.7-4.2-2.2L7.8 18l.8-4.7L5.2 10l4.7-.7L12 5Z"></path>
+      </svg>
+    </button>
+  `;
+}
+
+function registrationLinkTemplate(race, className = '') {
+  const registrationUrl = safeHttpUrl(race.registration?.url);
+  if (!registrationUrl) return '';
+  return `<a class="button button-primary button-small ${className}" href="${escapeHtml(registrationUrl)}" target="_blank" rel="noopener noreferrer">S'inscrire sur le site officiel</a>`;
+}
+
+function gpxDownloadLinkTemplate(race, className = '') {
+  if (!hasDownloadableGpx(race)) return '';
+  return `<a class="button button-secondary button-small ${className}" href="/api/races/${escapeHtml(race.id)}/gpx/download">Télécharger le GPX officiel</a>`;
+}
+
+function raceActionsTemplate(race) {
+  const actions = [
+    registrationLinkTemplate(race),
+    gpxDownloadLinkTemplate(race),
+  ].filter(Boolean);
+  if (!actions.length) return '';
+  return `<div class="race-actions">${actions.join('')}</div>`;
 }
 
 function raceCardTemplate(race, variant, gpxData) {
@@ -642,11 +817,7 @@ function raceCardTemplate(race, variant, gpxData) {
       <header class="race-card-header">
         <div class="race-title-row">
           <span class="variant-badge">${variantLabel}</span>
-          <button class="favorite-button" type="button" aria-label="Ajouter aux favoris">
-            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-              <path d="m12 5 2.1 4.3 4.7.7-3.4 3.3.8 4.7-4.2-2.2L7.8 18l.8-4.7L5.2 10l4.7-.7L12 5Z"></path>
-            </svg>
-          </button>
+          ${favoriteButtonTemplate(race)}
         </div>
         <div>
           <h2>${escapeHtml(race.name)}</h2>
@@ -661,10 +832,11 @@ function raceCardTemplate(race, variant, gpxData) {
       ${checkpointsTemplate(race)}
 
       <div class="data-note">
-        <span>Couverture V0</span>
+        <span>Couverture des données</span>
         <strong>${escapeHtml(missing)}</strong>
       </div>
 
+      ${raceActionsTemplate(race)}
       ${sourceTemplate(race)}
     </article>
   `;
@@ -694,6 +866,42 @@ function populateExplorerLocations(races) {
   explorerLocationSelect.value = locations.includes(selected) ? selected : '';
 }
 
+function populateSelectOptions(select, defaultLabel, values, labelFn) {
+  if (!select) return;
+
+  const selected = select.value;
+  select.innerHTML = [
+    `<option value="">${escapeHtml(defaultLabel)}</option>`,
+    ...values.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(labelFn(value))}</option>`),
+  ].join('');
+  select.value = values.includes(selected) ? selected : '';
+}
+
+function populateExplorerDynamicFilters(races) {
+  const months = [...new Set(races.map(raceMonthValue).filter(Boolean))]
+    .sort((monthA, monthB) => Number(monthA) - Number(monthB));
+  const prices = [...new Set(races
+    .map((race) => race.registration?.priceEur)
+    .map(numericValue)
+    .filter((value) => value !== null)
+    .map((value) => String(value)))]
+    .sort((priceA, priceB) => Number(priceA) - Number(priceB));
+  const durations = [...new Set(races
+    .map((race) => race.timeLimitMinutes)
+    .map(numericValue)
+    .filter((value) => value !== null && value > 0)
+    .map((value) => String(value)))]
+    .sort((durationA, durationB) => Number(durationA) - Number(durationB));
+  const statuses = [...new Set(races.map((race) => normalizeRegistrationStatus(race.registration?.status)))]
+    .filter((status) => registrationStatusLabels[status])
+    .sort((statusA, statusB) => registrationStatusLabel(statusA).localeCompare(registrationStatusLabel(statusB), 'fr'));
+
+  populateSelectOptions(explorerMonthSelect, 'Tous les mois', months, (month) => formatMonthOption(Number(month)));
+  populateSelectOptions(explorerPriceMaxSelect, 'Tous les prix', prices, (price) => `Jusqu'à ${formatPrice(price)}`);
+  populateSelectOptions(explorerRegistrationStatusSelect, 'Tous les statuts', statuses, registrationStatusLabel);
+  populateSelectOptions(explorerDurationMaxSelect, 'Toutes durées', durations, (duration) => `Jusqu'à ${formatDuration(duration)}`);
+}
+
 function explorerMetricTemplate(label, value) {
   return `
     <div class="explorer-metric">
@@ -712,7 +920,7 @@ function explorerIllustrationTemplate(race) {
   const alt = race.illustration?.alt || `Illustration ${race.name}`;
   return `
     <div class="explorer-card-media">
-      <img src="${escapeHtml(illustrationUrl)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+      <img src="${escapeHtml(illustrationUrl)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('is-empty'); this.remove();">
     </div>
   `;
 }
@@ -731,7 +939,10 @@ function explorerRaceCardTemplate(race) {
           <span class="explorer-event">${escapeHtml(race.eventName)}</span>
           <h2>${escapeHtml(race.name)}</h2>
         </div>
-        <span class="quality-badge ${qualityClass}">${qualityStatus}</span>
+        <div class="explorer-card-toolbar">
+          <span class="quality-badge ${qualityClass}">${qualityStatus}</span>
+          ${favoriteButtonTemplate(race)}
+        </div>
       </header>
 
       <div class="explorer-metrics">
@@ -739,6 +950,8 @@ function explorerRaceCardTemplate(race) {
         ${explorerMetricTemplate('Lieu', raceLocationLabel(race))}
         ${explorerMetricTemplate('Distance', formatKm(race.distanceKm))}
         ${explorerMetricTemplate('D+', formatElevation(race.elevationGainM))}
+        ${explorerMetricTemplate('Prix', formatPrice(race.registration?.priceEur))}
+        ${explorerMetricTemplate('Inscription', registrationStatusLabel(race.registration?.status))}
       </div>
 
       <div class="explorer-route-note">
@@ -751,6 +964,8 @@ function explorerRaceCardTemplate(race) {
           ${isGpxAvailable ? 'GPX disponible' : 'GPX absent'}
         </span>
         <div class="explorer-actions">
+          ${registrationLinkTemplate(race)}
+          ${gpxDownloadLinkTemplate(race)}
           <button class="button button-secondary button-small" type="button" data-compare-target="a" data-race-id="${escapeHtml(race.id)}">Comparer A</button>
           <button class="button button-secondary button-small" type="button" data-compare-target="b" data-race-id="${escapeHtml(race.id)}">Comparer B</button>
         </div>
@@ -785,6 +1000,62 @@ function renderExplorer() {
     `;
 }
 
+function favoriteRaces() {
+  return state.races.filter((race) => isFavorite(race));
+}
+
+function renderFavorites() {
+  if (!favoritesResultsEl) return;
+
+  const races = favoriteRaces();
+  const count = races.length;
+  const plural = count > 1 ? 's' : '';
+
+  if (favoritesCountEl) {
+    favoritesCountEl.textContent = `${count} favori${plural}`;
+  }
+
+  favoritesResultsEl.innerHTML = races.length
+    ? races.map(explorerRaceCardTemplate).join('')
+    : `
+      <div class="explorer-empty">
+        <strong>Aucun favori</strong>
+        <p>Ajoutez des courses depuis Explorer ou le comparateur pour les retrouver ici.</p>
+      </div>
+    `;
+}
+
+function refreshFavoriteViews() {
+  if (state.activeView === 'explorer') renderExplorer();
+  if (state.activeView === 'favorites') renderFavorites();
+  if (state.currentComparison) {
+    comparisonEl.querySelectorAll?.('[data-favorite-source-id]').forEach((button) => {
+      const race = state.races.find((candidate) => candidate.sourceId === button.dataset.favoriteSourceId);
+      if (!race) return;
+      const selected = isFavorite(race);
+      button.classList.toggle('is-active', selected);
+      button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      button.setAttribute('aria-label', selected ? `Retirer ${race.name} des favoris` : `Ajouter ${race.name} aux favoris`);
+    });
+  }
+}
+
+function toggleFavorite(sourceId) {
+  const race = state.races.find((candidate) => candidate.sourceId === sourceId);
+  if (!race) return;
+
+  if (state.favorites.has(sourceId)) {
+    state.favorites.delete(sourceId);
+    showToast('Course retirée des favoris.');
+  } else {
+    state.favorites.add(sourceId);
+    showToast('Course ajoutée aux favoris.');
+  }
+
+  writeFavoriteIds();
+  refreshFavoriteViews();
+}
+
 function resetExplorerFilters() {
   if (explorerSearchInput) explorerSearchInput.value = '';
   if (explorerLocationSelect) explorerLocationSelect.value = '';
@@ -792,6 +1063,10 @@ function resetExplorerFilters() {
   if (explorerDateToInput) explorerDateToInput.value = '';
   if (explorerElevationSelect) explorerElevationSelect.value = '';
   if (explorerDistanceSelect) explorerDistanceSelect.value = '';
+  if (explorerMonthSelect) explorerMonthSelect.value = '';
+  if (explorerPriceMaxSelect) explorerPriceMaxSelect.value = '';
+  if (explorerRegistrationStatusSelect) explorerRegistrationStatusSelect.value = '';
+  if (explorerDurationMaxSelect) explorerDurationMaxSelect.value = '';
   if (explorerSortSelect) explorerSortSelect.value = 'date-asc';
   if (explorerGpxOnlyInput) explorerGpxOnlyInput.checked = false;
   renderExplorer();
@@ -809,21 +1084,29 @@ function compareFromExplorer(raceId, target) {
 
   setActiveView('compare');
   compareSelectedRaces();
-  showToast(`Course ajoutee en ${target === 'b' ? 'B' : 'A'}.`);
+  showToast(`Course ajoutée en ${target === 'b' ? 'B' : 'A'}.`);
 }
 
-function handleExplorerAction(event) {
+function handleRaceListAction(event) {
+  const favoriteButton = event.target.closest?.('[data-favorite-source-id]');
+  if (favoriteButton) {
+    toggleFavorite(favoriteButton.dataset.favoriteSourceId);
+    return;
+  }
+
   const button = event.target.closest?.('[data-compare-target]');
   if (!button) return;
   compareFromExplorer(button.dataset.raceId, button.dataset.compareTarget);
 }
 
 function getInitialView() {
-  return window.location.hash === '#explorer' ? 'explorer' : 'compare';
+  if (window.location.hash === '#explorer') return 'explorer';
+  if (window.location.hash === '#favorites') return 'favorites';
+  return 'compare';
 }
 
 function setActiveView(view, { updateHash = true } = {}) {
-  const activeView = view === 'explorer' ? 'explorer' : 'compare';
+  const activeView = ['compare', 'explorer', 'favorites'].includes(view) ? view : 'compare';
   state.activeView = activeView;
 
   if (compareView) {
@@ -834,6 +1117,11 @@ function setActiveView(view, { updateHash = true } = {}) {
   if (explorerView) {
     explorerView.hidden = activeView !== 'explorer';
     explorerView.classList.toggle('is-active', activeView === 'explorer');
+  }
+
+  if (favoritesView) {
+    favoritesView.hidden = activeView !== 'favorites';
+    favoritesView.classList.toggle('is-active', activeView === 'favorites');
   }
 
   viewLinks.forEach((link) => {
@@ -847,13 +1135,15 @@ function setActiveView(view, { updateHash = true } = {}) {
   });
 
   if (updateHash) {
-    const nextHash = activeView === 'explorer' ? '#explorer' : '#compare';
+    const nextHash = activeView === 'explorer' ? '#explorer' : activeView === 'favorites' ? '#favorites' : '#compare';
     if (window.location.hash !== nextHash) {
       window.location.hash = nextHash;
     }
   }
 
+  updateDocumentMeta(activeView);
   if (activeView === 'explorer') renderExplorer();
+  if (activeView === 'favorites') renderFavorites();
 }
 
 function bindNavigation() {
@@ -880,12 +1170,21 @@ function bindExplorerEvents() {
     explorerLocationSelect,
     explorerElevationSelect,
     explorerDistanceSelect,
+    explorerMonthSelect,
+    explorerPriceMaxSelect,
+    explorerRegistrationStatusSelect,
+    explorerDurationMaxSelect,
     explorerSortSelect,
     explorerGpxOnlyInput,
   ].forEach((control) => control?.addEventListener('change', renderExplorer));
 
   explorerResetButton?.addEventListener('click', resetExplorerFilters);
-  explorerResultsEl?.addEventListener('click', handleExplorerAction);
+  explorerResultsEl?.addEventListener('click', handleRaceListAction);
+  favoritesResultsEl?.addEventListener('click', handleRaceListAction);
+  comparisonEl?.addEventListener('click', (event) => {
+    const favoriteButton = event.target.closest?.('[data-favorite-source-id]');
+    if (favoriteButton) toggleFavorite(favoriteButton.dataset.favoriteSourceId);
+  });
 }
 
 async function fetchJson(url) {
@@ -922,7 +1221,7 @@ async function compareSelectedRaces() {
     return;
   }
 
-  setStatus('Calcul des estimations V0...');
+  setStatus('Calcul des estimations...');
   comparisonEl.classList.toggle('is-swapping', state.isSwapping);
 
   try {
@@ -978,16 +1277,34 @@ function exportComparison() {
   }
 
   const rows = [
-    ['Course', 'Distance', 'D+', 'Km-effort', 'Temps limite', 'Difficulté V0', 'Pression V0'],
-    ['A', state.currentComparison.raceA.distanceKm, state.currentComparison.raceA.elevationGainM, state.currentComparison.raceA.kmEffort, formatDuration(state.currentComparison.raceA.timeLimitMinutes), formatScore(state.currentComparison.raceA.difficultyScoreV0), formatScore(state.currentComparison.raceA.barrierPressureScoreV0)],
-    ['B', state.currentComparison.raceB.distanceKm, state.currentComparison.raceB.elevationGainM, state.currentComparison.raceB.kmEffort, formatDuration(state.currentComparison.raceB.timeLimitMinutes), formatScore(state.currentComparison.raceB.difficultyScoreV0), formatScore(state.currentComparison.raceB.barrierPressureScoreV0)],
+    ['Course', 'Distance', 'D+', 'Km-effort', 'Verticalité', 'Temps limite', 'Difficulté physique V1', 'Pression V0'],
+    [
+      'A',
+      state.currentComparison.raceA.distanceKm,
+      state.currentComparison.raceA.elevationGainM,
+      state.currentComparison.raceA.kmEffort,
+      verticalityLabel(state.currentComparison.raceA.verticalityLevel),
+      formatDuration(state.currentComparison.raceA.timeLimitMinutes),
+      formatScore(difficultyScoreValue(state.currentComparison.raceA)),
+      formatScore(state.currentComparison.raceA.barrierPressureScoreV0),
+    ],
+    [
+      'B',
+      state.currentComparison.raceB.distanceKm,
+      state.currentComparison.raceB.elevationGainM,
+      state.currentComparison.raceB.kmEffort,
+      verticalityLabel(state.currentComparison.raceB.verticalityLevel),
+      formatDuration(state.currentComparison.raceB.timeLimitMinutes),
+      formatScore(difficultyScoreValue(state.currentComparison.raceB)),
+      formatScore(state.currentComparison.raceB.barrierPressureScoreV0),
+    ],
   ];
   const csv = rows.map((row) => row.map((value) => `"${String(value ?? '').replaceAll('"', '""')}"`).join(',')).join('\n');
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.download = 'trailcompare-v0.csv';
+  link.download = 'trailcompare-comparaison.csv';
   link.click();
   URL.revokeObjectURL(url);
   showToast('Export CSV généré.');
@@ -1012,11 +1329,13 @@ async function init() {
   try {
     const { races } = await fetchJson('/api/races');
     state.races = races;
+    reconcileFavorites(races);
     const selection = applyUrlSelection(races);
 
     populateSelect(raceASelect, races, selection.raceA);
     populateSelect(raceBSelect, races, selection.raceB);
     populateExplorerLocations(races);
+    populateExplorerDynamicFilters(races);
 
     bindNavigation();
     bindExplorerEvents();
@@ -1028,6 +1347,7 @@ async function init() {
 
     setActiveView(getInitialView(), { updateHash: false });
     renderExplorer();
+    renderFavorites();
     await compareSelectedRaces();
   } catch (error) {
     setStatus(`Impossible de charger les courses: ${error.message}`);

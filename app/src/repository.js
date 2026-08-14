@@ -43,7 +43,7 @@ function normalizeDataset(payload) {
       confidence: edition.sources.length ? 'official' : 'unverified',
       quality: entry.quality,
       computed: entry.computed,
-      registration: edition.registration,
+      registration: normalizeRegistration(edition.registration),
       rules: edition.rules,
       aidStations: edition.aidStations,
       mandatoryEquipment: edition.mandatoryEquipment,
@@ -115,10 +115,10 @@ function publicRace(race, { includeDetails = false } = {}) {
     gpxUrl: race.gpxUrl,
     gpx: race.gpx,
     illustration: race.illustration,
+    registration: race.registration,
   };
 
   if (includeDetails) {
-    output.registration = race.registration;
     output.rules = race.rules;
     output.aidStations = race.aidStations;
     output.mandatoryEquipment = race.mandatoryEquipment;
@@ -169,6 +169,8 @@ export function getDataRoot() {
 }
 
 function numberOrNull(value) {
+  if (value === null || value === undefined) return null;
+  if (typeof value === 'string' && value.trim() === '') return null;
   const number = Number(value);
   return Number.isFinite(number) ? number : null;
 }
@@ -184,6 +186,41 @@ function normalizeIllustration(value) {
   };
 }
 
+function normalizeRegistration(value) {
+  const registration = value ?? {};
+  const lottery = booleanOrNull(registration.lottery);
+  const status = normalizeRegistrationStatus(registration.status, lottery);
+
+  return {
+    priceEur: numberOrNull(registration.priceEur),
+    registrationOpenDate: registration.registrationOpenDate ?? null,
+    registrationCloseDate: registration.registrationCloseDate ?? null,
+    status,
+    lottery,
+    maxParticipants: numberOrNull(registration.maxParticipants),
+    qualificationRequired: registration.qualificationRequired ?? null,
+    url: normalizeHttpUrl(registration.url),
+  };
+}
+
+function normalizeRegistrationStatus(value, lottery) {
+  if (lottery === true) return 'lottery';
+
+  const status = String(value ?? '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[\s_-]+/g, '-');
+
+  if (!status) return 'unknown';
+  if (['open', 'opened', 'ouvert', 'ouverte', 'inscriptions-ouvertes'].includes(status)) return 'open';
+  if (['upcoming', 'coming-soon', 'a-venir', 'avenir', 'soon'].includes(status)) return 'upcoming';
+  if (['closed', 'close', 'full', 'complete', 'complet', 'ferme', 'fermee', 'finished', 'termine', 'terminee'].includes(status)) return 'closed';
+  if (['lottery', 'loterie', 'waitlist', 'waiting-list', 'liste-attente', 'liste-d-attente'].includes(status)) return 'lottery';
+  return 'unknown';
+}
+
 function normalizeHttpUrl(value) {
   if (!value) return null;
 
@@ -193,4 +230,8 @@ function normalizeHttpUrl(value) {
   } catch {
     return null;
   }
+}
+
+function booleanOrNull(value) {
+  return typeof value === 'boolean' ? value : null;
 }

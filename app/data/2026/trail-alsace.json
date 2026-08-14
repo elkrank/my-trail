@@ -1,0 +1,622 @@
+{
+  "generatedAt": "2026-08-14T13:01:22.546Z",
+  "year": 2026,
+  "event": {
+    "id": "trail-alsace",
+    "name": "Trail Alsace by UTMB",
+    "slug": "trail-alsace",
+    "country": "France",
+    "region": "Grand Est",
+    "city": "Obernai",
+    "officialWebsite": "https://alsace.utmb.world"
+  },
+  "status": "PARTIAL",
+  "sourceErrors": [],
+  "races": [
+    {
+      "event": {
+        "id": "trail-alsace",
+        "name": "Trail Alsace by UTMB",
+        "slug": "trail-alsace",
+        "country": "France",
+        "region": "Grand Est",
+        "city": "Obernai",
+        "officialWebsite": "https://alsace.utmb.world"
+      },
+      "race": {
+        "id": "trail-alsace-utdc",
+        "eventId": "trail-alsace",
+        "name": "Ultra-Trail des Chevaliers",
+        "shortName": "UTDC"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-05-15",
+        "startTime": null,
+        "distanceKm": 158,
+        "elevationGainM": 5100,
+        "elevationLossM": null,
+        "startLocation": "Station du Lac Blanc, massif des Vosges",
+        "finishLocation": null,
+        "maxDurationMinutes": null,
+        "raceType": "solo",
+        "terrainType": "trail",
+        "nightStart": null,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1778483103/alsacegrandest/GPX%202026/2026_tage_utdc_v17_113abf93d4.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1778483103/alsacegrandest/GPX%202026/2026_tage_utdc_v17_113abf93d4.gpx",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1778483103/alsacegrandest/GPX%202026/2026_tage_utdc_v17_113abf93d4.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-gpx",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-14T13:01:22.129Z",
+          "localFile": "gpx/2026/trail-alsace/utdc.gpx",
+          "routeAsset": "generated/routes/trail-alsace-utdc-2026.json",
+          "sha256": "a12e68d9d39a7714112048b41225106ac309bba1b4670b00a82225e8b83e795d",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 6725,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 157.11,
+            "elevationGainM": 5702,
+            "elevationLossM": 6668,
+            "minElevationM": 179,
+            "maxElevationM": 1175,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": null,
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "url": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://utmb.world/utmb-index/races/35486.trailalsacebyutmbultra-traildeschevaliers.2026",
+            "type": "official-results",
+            "retrievedAt": "2026-08-14T13:01:19.624Z",
+            "event": "Trail Alsace by UTMB",
+            "race": "UTDC"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1778483103/alsacegrandest/GPX%202026/2026_tage_utdc_v17_113abf93d4.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:01:19.832Z",
+            "event": "Trail Alsace by UTMB",
+            "race": "UTDC"
+          }
+        ],
+        "rawOfficial": {
+          "utmbCategory": "100M",
+          "resultCount": 837
+        }
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 32.28,
+        "kmEffort": 209
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official Trail Alsace race page is not a confirmed 2026 page; non-GPX values ignored.",
+          "Official race page exposes a year-specific 2026 GPX asset; only that GPX URL is retained.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "trail-alsace",
+        "name": "Trail Alsace by UTMB",
+        "slug": "trail-alsace",
+        "country": "France",
+        "region": "Grand Est",
+        "city": "Obernai",
+        "officialWebsite": "https://alsace.utmb.world"
+      },
+      "race": {
+        "id": "trail-alsace-utdp",
+        "eventId": "trail-alsace",
+        "name": "Ultra-Trail des Païens",
+        "shortName": "UTDP"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-05-15",
+        "startTime": null,
+        "distanceKm": 108,
+        "elevationGainM": 3750,
+        "elevationLossM": null,
+        "startLocation": "Orschwiller",
+        "finishLocation": null,
+        "maxDurationMinutes": null,
+        "raceType": "solo",
+        "terrainType": "trail",
+        "nightStart": null,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1778484702/alsacegrandest/GPX%202026/2026_tage_utdp_v8_b4e9e02420.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1778484702/alsacegrandest/GPX%202026/2026_tage_utdp_v8_b4e9e02420.gpx",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1778484702/alsacegrandest/GPX%202026/2026_tage_utdp_v8_b4e9e02420.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-gpx",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-14T13:01:22.346Z",
+          "localFile": "gpx/2026/trail-alsace/utdp.gpx",
+          "routeAsset": "generated/routes/trail-alsace-utdp-2026.json",
+          "sha256": "f1f5b699a10a3421e25c8810615652f6320a9f9b35911cc46e3f0bcc3279ba6d",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 4510,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 107.88,
+            "elevationGainM": 4204,
+            "elevationLossM": 4250,
+            "minElevationM": 178,
+            "maxElevationM": 778,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": null,
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "url": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://utmb.world/utmb-index/races/35488.trailalsacebyutmbultra-traildespaiens.2026",
+            "type": "official-results",
+            "retrievedAt": "2026-08-14T13:01:20.400Z",
+            "event": "Trail Alsace by UTMB",
+            "race": "UTDP"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1778484702/alsacegrandest/GPX%202026/2026_tage_utdp_v8_b4e9e02420.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:01:20.941Z",
+            "event": "Trail Alsace by UTMB",
+            "race": "UTDP"
+          }
+        ],
+        "rawOfficial": {
+          "utmbCategory": "100K",
+          "resultCount": 1427
+        }
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 34.72,
+        "kmEffort": 145.5
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official Trail Alsace race page is not a confirmed 2026 page; non-GPX values ignored.",
+          "Official race page exposes a year-specific 2026 GPX asset; only that GPX URL is retained.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "trail-alsace",
+        "name": "Trail Alsace by UTMB",
+        "slug": "trail-alsace",
+        "country": "France",
+        "region": "Grand Est",
+        "city": "Obernai",
+        "officialWebsite": "https://alsace.utmb.world"
+      },
+      "race": {
+        "id": "trail-alsace-tdc",
+        "eventId": "trail-alsace",
+        "name": "Trail des Celtes",
+        "shortName": "TDC"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-05-17",
+        "startTime": null,
+        "distanceKm": 47,
+        "elevationGainM": 1600,
+        "elevationLossM": null,
+        "startLocation": "Barr",
+        "finishLocation": null,
+        "maxDurationMinutes": null,
+        "raceType": "solo",
+        "terrainType": "trail",
+        "nightStart": null,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_tdc_v5_9bb7e62bdb.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_tdc_v5_9bb7e62bdb.gpx",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_tdc_v5_9bb7e62bdb.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-gpx",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-14T13:01:22.416Z",
+          "localFile": "gpx/2026/trail-alsace/tdc.gpx",
+          "routeAsset": "generated/routes/trail-alsace-tdc-2026.json",
+          "sha256": "a7bb890c7e2ad3482e5f22abcc6df9ad3ebac5267b2f775076e7376c94b28574",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 1665,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 48,
+            "elevationGainM": 1613,
+            "elevationLossM": 1641,
+            "minElevationM": 179,
+            "maxElevationM": 779,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": null,
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "url": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://utmb.world/utmb-index/races/35482.trailalsacebyutmbtraildesceltes.2026",
+            "type": "official-results",
+            "retrievedAt": "2026-08-14T13:01:21.065Z",
+            "event": "Trail Alsace by UTMB",
+            "race": "TDC"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_tdc_v5_9bb7e62bdb.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:01:21.228Z",
+            "event": "Trail Alsace by UTMB",
+            "race": "TDC"
+          }
+        ],
+        "rawOfficial": {
+          "utmbCategory": "50K",
+          "resultCount": 1912
+        }
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 34.04,
+        "kmEffort": 63
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official Trail Alsace race page is not a confirmed 2026 page; non-GPX values ignored.",
+          "Official race page exposes a year-specific 2026 GPX asset; only that GPX URL is retained.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "trail-alsace",
+        "name": "Trail Alsace by UTMB",
+        "slug": "trail-alsace",
+        "country": "France",
+        "region": "Grand Est",
+        "city": "Obernai",
+        "officialWebsite": "https://alsace.utmb.world"
+      },
+      "race": {
+        "id": "trail-alsace-tdp",
+        "eventId": "trail-alsace",
+        "name": "Trail des Pèlerins",
+        "shortName": "TDP"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-05-16",
+        "startTime": null,
+        "distanceKm": 29,
+        "elevationGainM": 800,
+        "elevationLossM": null,
+        "startLocation": "Barr",
+        "finishLocation": null,
+        "maxDurationMinutes": null,
+        "raceType": "solo",
+        "terrainType": "trail",
+        "nightStart": null,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_tdp_v4_bed5e9165d.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_tdp_v4_bed5e9165d.gpx",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_tdp_v4_bed5e9165d.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-gpx",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-14T13:01:22.467Z",
+          "localFile": "gpx/2026/trail-alsace/tdp.gpx",
+          "routeAsset": "generated/routes/trail-alsace-tdp-2026.json",
+          "sha256": "0b8d4f468a0271ff9691fa4d4375357213b07d21c657a32747145d8e84e7ac04",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 949,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 29.3,
+            "elevationGainM": 865,
+            "elevationLossM": 893,
+            "minElevationM": 179,
+            "maxElevationM": 763,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": null,
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "url": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://utmb.world/utmb-index/races/35484.trailalsacebyutmbtraildespelerins.2026",
+            "type": "official-results",
+            "retrievedAt": "2026-08-14T13:01:21.379Z",
+            "event": "Trail Alsace by UTMB",
+            "race": "TDP"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_tdp_v4_bed5e9165d.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:01:21.543Z",
+            "event": "Trail Alsace by UTMB",
+            "race": "TDP"
+          }
+        ],
+        "rawOfficial": {
+          "utmbCategory": "20K",
+          "resultCount": 1439
+        }
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 27.59,
+        "kmEffort": 37
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official Trail Alsace race page is not a confirmed 2026 page; non-GPX values ignored.",
+          "Official race page exposes a year-specific 2026 GPX asset; only that GPX URL is retained.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    },
+    {
+      "event": {
+        "id": "trail-alsace",
+        "name": "Trail Alsace by UTMB",
+        "slug": "trail-alsace",
+        "country": "France",
+        "region": "Grand Est",
+        "city": "Obernai",
+        "officialWebsite": "https://alsace.utmb.world"
+      },
+      "race": {
+        "id": "trail-alsace-rdp",
+        "eventId": "trail-alsace",
+        "name": "Ronde des Pages",
+        "shortName": "RDP"
+      },
+      "edition": {
+        "year": 2026,
+        "date": "2026-05-16",
+        "startTime": null,
+        "distanceKm": 18,
+        "elevationGainM": 250,
+        "elevationLossM": null,
+        "startLocation": "Obernai",
+        "finishLocation": null,
+        "maxDurationMinutes": null,
+        "raceType": "solo",
+        "terrainType": "trail",
+        "nightStart": null,
+        "polesAllowed": null,
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_rdp_v2_c90992388c.gpx",
+        "gpx": {
+          "status": "available",
+          "sourceUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_rdp_v2_c90992388c.gpx",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_rdp_v2_c90992388c.gpx",
+          "downloadMethod": "GET",
+          "downloadParams": null,
+          "sourceType": "official-gpx",
+          "sourcePlatform": null,
+          "retrievedAt": "2026-08-14T13:01:22.495Z",
+          "localFile": "gpx/2026/trail-alsace/rdp.gpx",
+          "routeAsset": "generated/routes/trail-alsace-rdp-2026.json",
+          "sha256": "c4294075347cb3f351f229a444188882019ea1cbb8df8b5441689d6c065add9f",
+          "trackCount": 1,
+          "routeCount": 0,
+          "pointCount": 1102,
+          "hasElevation": true,
+          "computed": {
+            "distanceKm": 18.25,
+            "elevationGainM": 267,
+            "elevationLossM": 266,
+            "minElevationM": 179,
+            "maxElevationM": 361,
+            "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          }
+        },
+        "illustration": null,
+        "terrainDescription": null,
+        "technicalScore": null,
+        "technicalScoreSource": null,
+        "registration": {
+          "priceEur": null,
+          "registrationOpenDate": null,
+          "registrationCloseDate": null,
+          "status": null,
+          "lottery": null,
+          "url": null,
+          "maxParticipants": null,
+          "qualificationRequired": null
+        },
+        "checkpoints": [],
+        "aidStations": [],
+        "mandatoryEquipment": [],
+        "rules": {
+          "personalAssistanceAllowed": null,
+          "pacersAllowed": null,
+          "dropBagAllowed": null,
+          "minimumWaterLiters": null
+        },
+        "sources": [
+          {
+            "url": "https://utmb.world/utmb-index/races/50844.trailalsacebyutmbrondedespages.2026",
+            "type": "official-results",
+            "retrievedAt": "2026-08-14T13:01:21.675Z",
+            "event": "Trail Alsace by UTMB",
+            "race": "RDP"
+          },
+          {
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1777041241/alsacegrandest/GPX%202026/2026_tage_rdp_v2_c90992388c.gpx",
+            "type": "official-gpx",
+            "retrievedAt": "2026-08-14T13:01:21.847Z",
+            "event": "Trail Alsace by UTMB",
+            "race": "RDP"
+          }
+        ],
+        "rawOfficial": {
+          "utmbCategory": "20K",
+          "resultCount": 897
+        }
+      },
+      "computed": {
+        "source": "computed",
+        "elevationDensityMPerKm": 13.89,
+        "kmEffort": 20.5
+      },
+      "quality": {
+        "status": "partial",
+        "warnings": [
+          "Official Trail Alsace race page is not a confirmed 2026 page; non-GPX values ignored.",
+          "Official race page exposes a year-specific 2026 GPX asset; only that GPX URL is retained.",
+          "Barriers/checkpoints not found in official source.",
+          "Aid stations not found in official source."
+        ],
+        "missingFields": [
+          "maxDuration",
+          "price",
+          "checkpoints",
+          "aidStations"
+        ]
+      }
+    }
+  ]
+}
