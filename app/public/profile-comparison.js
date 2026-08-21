@@ -299,7 +299,8 @@ export function assessConfidence(profile, race, now = new Date(), estimate = est
   else missing.push('Distance ou D+ officiel manquant');
   if (Array.isArray(race?.checkpoints) && race.checkpoints.length && race.checkpoints.some((item) => numberOrNull(item.elevationGainFromStartM) !== null)) score += 10;
   else missing.push('Barrières avec D+ cumulé indisponibles');
-  const qualityScore = race?.quality?.status === 'complete' ? 10 : race?.quality?.status === 'partial' ? 6 : 2;
+  const sportStatus = race?.quality?.sportCompleteness ?? race?.quality?.status;
+  const qualityScore = sportStatus === 'complete' ? 10 : sportStatus === 'partial' ? 6 : 2;
   score += qualityScore;
   if (race?.technicalScore !== null && race?.technicalScore !== undefined) score += 4;
   else missing.push('Technicité officielle indisponible');

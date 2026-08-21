@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T13:01:22.546Z",
+  "generatedAt": "2026-08-21T13:06:15.525Z",
   "year": 2026,
   "event": {
     "id": "ntmf",
@@ -10,7 +10,7 @@
     "city": "Saint-Jans-Cappel",
     "officialWebsite": "https://www.nordtrailmontsdeflandres.com"
   },
-  "status": "PARTIAL",
+  "status": "SUCCESS",
   "sourceErrors": [],
   "races": [
     {
@@ -39,6 +39,7 @@
         "startLocation": "Saint-Jans-Cappel",
         "finishLocation": "Saint-Jans-Cappel",
         "maxDurationMinutes": 270,
+        "finishCutoffTime": null,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -52,7 +53,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-14T13:00:54.318Z",
+          "retrievedAt": "2026-08-21T13:02:20.037Z",
           "localFile": "gpx/2026/ntmf/13-km.gpx",
           "routeAsset": "generated/routes/ntmf-13-km-2026.json",
           "sha256": "606df287afecf99a53ad2905961d730d15cf1bd54865294ef61b713d74e019ea",
@@ -67,6 +68,13 @@
             "minElevationM": 31,
             "maxElevationM": 135,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 280,
+            "computedGainM": 264,
+            "deltaM": 16,
+            "deltaPercent": 5.7
           }
         },
         "illustration": {
@@ -75,6 +83,14 @@
           "sourceUrl": "https://www.nordtrailmontsdeflandres.com/les-courses"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -83,7 +99,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://in.inscriptions-prolivesport.fr/ntmf2026",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -99,6 +115,14 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "known_none",
+            "sourceUrl": "https://www.nordtrailmontsdeflandres.com/les-courses",
+            "checkedAt": "2026-08-21T12:57:45.979Z",
+            "reason": "Official page confirms zero on-course aid stations; finish refreshment is not an on-course station."
+          }
+        },
         "mandatoryEquipment": [
           "reusable cup/container",
           "minimum 0.5 L water/liquid"
@@ -106,42 +130,44 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": 0.5
+          "minimumWaterLiters": 0.5,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:51.310Z",
+            "retrievedAt": "2026-08-21T12:57:45.979Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "13 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.460Z",
+            "retrievedAt": "2026-08-21T12:57:46.938Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "13 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.633Z",
+            "retrievedAt": "2026-08-21T12:57:47.233Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "13 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf-2026-13-km.6pK_wSFC2IAcZnWMx0Xm9.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:54.318Z",
+            "retrievedAt": "2026-08-21T12:57:48.088Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "13 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-13-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:54.318Z",
+            "retrievedAt": "2026-08-21T12:57:48.088Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "13 km"
           }
@@ -153,13 +179,12 @@
         "kmEffort": 15.8
       },
       "quality": {
-        "status": "partial",
-        "warnings": [
-          "Aid stations not found in official source."
-        ],
-        "missingFields": [
-          "aidStations"
-        ]
+        "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
+        "warnings": [],
+        "missingFields": []
       }
     },
     {
@@ -188,6 +213,7 @@
         "startLocation": "Saint-Jans-Cappel",
         "finishLocation": "Saint-Jans-Cappel",
         "maxDurationMinutes": 270,
+        "finishCutoffTime": null,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -201,7 +227,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-14T13:00:54.847Z",
+          "retrievedAt": "2026-08-21T13:02:20.294Z",
           "localFile": "gpx/2026/ntmf/25-km.gpx",
           "routeAsset": "generated/routes/ntmf-25-km-2026.json",
           "sha256": "0a0a8837bf18ba2ed88aacf742f66d13355f38663a4b29fb104bd8e7c23268ec",
@@ -216,6 +242,13 @@
             "minElevationM": 30,
             "maxElevationM": 159,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 550,
+            "computedGainM": 499,
+            "deltaM": 51,
+            "deltaPercent": 9.3
           }
         },
         "illustration": {
@@ -224,6 +257,14 @@
           "sourceUrl": "https://www.nordtrailmontsdeflandres.com/les-courses"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -232,7 +273,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://in.inscriptions-prolivesport.fr/ntmf2026",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -262,6 +303,7 @@
             "cutoffDateTime": null
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [
           "reusable cup/container",
           "minimum 0.5 L water/liquid"
@@ -269,42 +311,44 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": 0.5
+          "minimumWaterLiters": 0.5,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:51.310Z",
+            "retrievedAt": "2026-08-21T12:57:45.979Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "25 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.460Z",
+            "retrievedAt": "2026-08-21T12:57:46.938Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "25 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.633Z",
+            "retrievedAt": "2026-08-21T12:57:47.233Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "25 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf25-km-2026.vbIq498EsedOtYGGGIrpG.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:54.847Z",
+            "retrievedAt": "2026-08-21T12:57:48.404Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "25 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-25-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:54.847Z",
+            "retrievedAt": "2026-08-21T12:57:48.404Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "25 km"
           }
@@ -317,6 +361,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }
@@ -347,6 +394,7 @@
         "startLocation": "Saint-Jans-Cappel",
         "finishLocation": "Saint-Jans-Cappel",
         "maxDurationMinutes": 420,
+        "finishCutoffTime": null,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": true,
@@ -360,7 +408,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-14T13:00:55.171Z",
+          "retrievedAt": "2026-08-21T13:02:20.646Z",
           "localFile": "gpx/2026/ntmf/30-km.gpx",
           "routeAsset": "generated/routes/ntmf-30-km-2026.json",
           "sha256": "cf8505b39a1fe61f0523c0340ff06e8f2a07611ee8ead689fbdc5749001137ac",
@@ -375,6 +423,13 @@
             "minElevationM": 31,
             "maxElevationM": 161,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 710,
+            "computedGainM": 676,
+            "deltaM": 34,
+            "deltaPercent": 4.8
           }
         },
         "illustration": {
@@ -383,6 +438,14 @@
           "sourceUrl": "https://www.nordtrailmontsdeflandres.com/les-courses"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -391,7 +454,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://in.inscriptions-prolivesport.fr/ntmf2026",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -407,6 +470,14 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "known_none",
+            "sourceUrl": "https://www.nordtrailmontsdeflandres.com/les-courses",
+            "checkedAt": "2026-08-21T12:57:45.979Z",
+            "reason": "Official page confirms zero on-course aid stations; finish refreshment is not an on-course station."
+          }
+        },
         "mandatoryEquipment": [
           "reusable cup/container",
           "minimum 1.5 L water/liquid",
@@ -418,42 +489,44 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": 1.5
+          "minimumWaterLiters": 1.5,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:51.310Z",
+            "retrievedAt": "2026-08-21T12:57:45.979Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "30 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.460Z",
+            "retrievedAt": "2026-08-21T12:57:46.938Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "30 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.633Z",
+            "retrievedAt": "2026-08-21T12:57:47.233Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "30 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf-30km-2026.8SJkn56NhryxwNlMRUo-1.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:55.171Z",
+            "retrievedAt": "2026-08-21T12:57:48.708Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "30 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-30-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:55.171Z",
+            "retrievedAt": "2026-08-21T12:57:48.708Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "30 km"
           }
@@ -465,13 +538,12 @@
         "kmEffort": 37.1
       },
       "quality": {
-        "status": "partial",
-        "warnings": [
-          "Aid stations not found in official source."
-        ],
-        "missingFields": [
-          "aidStations"
-        ]
+        "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
+        "warnings": [],
+        "missingFields": []
       }
     },
     {
@@ -500,6 +572,7 @@
         "startLocation": "Saint-Jans-Cappel",
         "finishLocation": "Saint-Jans-Cappel",
         "maxDurationMinutes": 510,
+        "finishCutoffTime": null,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -513,7 +586,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-14T13:00:55.549Z",
+          "retrievedAt": "2026-08-21T13:02:21.013Z",
           "localFile": "gpx/2026/ntmf/42-km.gpx",
           "routeAsset": "generated/routes/ntmf-42-km-2026.json",
           "sha256": "fc654c8b951e09c219c1017c8fe2650941e05021d45b77f13753baf9dc4efb67",
@@ -528,6 +601,13 @@
             "minElevationM": 30,
             "maxElevationM": 161,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 990,
+            "computedGainM": 944,
+            "deltaM": 46,
+            "deltaPercent": 4.6
           }
         },
         "illustration": {
@@ -536,6 +616,14 @@
           "sourceUrl": "https://www.nordtrailmontsdeflandres.com/les-courses"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -544,7 +632,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://in.inscriptions-prolivesport.fr/ntmf2026",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -587,6 +675,7 @@
             "cutoffDateTime": null
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [
           "reusable cup/container",
           "minimum 1.5 L water/liquid",
@@ -598,42 +687,44 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": 1.5
+          "minimumWaterLiters": 1.5,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:51.310Z",
+            "retrievedAt": "2026-08-21T12:57:45.979Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "42 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.460Z",
+            "retrievedAt": "2026-08-21T12:57:46.938Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "42 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.633Z",
+            "retrievedAt": "2026-08-21T12:57:47.233Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "42 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf42-km-2026.bsM3NO7DUVB9YYWjg9mvk.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:55.549Z",
+            "retrievedAt": "2026-08-21T12:57:49.050Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "42 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-42-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:55.549Z",
+            "retrievedAt": "2026-08-21T12:57:49.050Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "42 km"
           }
@@ -646,6 +737,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }
@@ -676,6 +770,7 @@
         "startLocation": "Saint-Jans-Cappel",
         "finishLocation": "Saint-Jans-Cappel",
         "maxDurationMinutes": 690,
+        "finishCutoffTime": null,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -689,7 +784,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-14T13:00:55.886Z",
+          "retrievedAt": "2026-08-21T13:02:21.278Z",
           "localFile": "gpx/2026/ntmf/59-km.gpx",
           "routeAsset": "generated/routes/ntmf-59-km-2026.json",
           "sha256": "eef243a7ebd2ee344db258ba56cb2b68924ad44285e91af1b7ef8e7ff4968717",
@@ -704,6 +799,13 @@
             "minElevationM": 31,
             "maxElevationM": 161,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 1150,
+            "computedGainM": 1094,
+            "deltaM": 56,
+            "deltaPercent": 4.9
           }
         },
         "illustration": {
@@ -712,6 +814,14 @@
           "sourceUrl": "https://www.nordtrailmontsdeflandres.com/les-courses"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -720,7 +830,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://in.inscriptions-prolivesport.fr/ntmf2026",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -776,6 +886,7 @@
             "cutoffDateTime": null
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [
           "reusable cup/container",
           "minimum 1.5 L water/liquid",
@@ -787,42 +898,44 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": 1.5
+          "minimumWaterLiters": 1.5,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:51.310Z",
+            "retrievedAt": "2026-08-21T12:57:45.979Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "59 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.460Z",
+            "retrievedAt": "2026-08-21T12:57:46.938Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "59 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.633Z",
+            "retrievedAt": "2026-08-21T12:57:47.233Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "59 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf-59-km-2026.Wl2QfGfZb25W32Z3C-aI9.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:55.886Z",
+            "retrievedAt": "2026-08-21T12:57:49.668Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "59 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-59-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:55.886Z",
+            "retrievedAt": "2026-08-21T12:57:49.668Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "59 km"
           }
@@ -835,6 +948,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }
@@ -865,6 +981,7 @@
         "startLocation": "Saint-Jans-Cappel",
         "finishLocation": "Saint-Jans-Cappel",
         "maxDurationMinutes": 870,
+        "finishCutoffTime": null,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": false,
@@ -878,7 +995,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-14T13:00:56.154Z",
+          "retrievedAt": "2026-08-21T13:02:21.636Z",
           "localFile": "gpx/2026/ntmf/80-km.gpx",
           "routeAsset": "generated/routes/ntmf-80-km-2026.json",
           "sha256": "2ecf5a6b69c4f73043a76d801409d8756fc710a859486fc645443390d2524594",
@@ -893,6 +1010,13 @@
             "minElevationM": 31,
             "maxElevationM": 161,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 1500,
+            "computedGainM": 1426,
+            "deltaM": 74,
+            "deltaPercent": 4.9
           }
         },
         "illustration": {
@@ -901,6 +1025,14 @@
           "sourceUrl": "https://www.nordtrailmontsdeflandres.com/les-courses"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -909,7 +1041,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://in.inscriptions-prolivesport.fr/ntmf2026",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -996,6 +1128,7 @@
             "cutoffDateTime": null
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [
           "reusable cup/container",
           "minimum 1.5 L water/liquid",
@@ -1007,42 +1140,44 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": 1.5
+          "minimumWaterLiters": 1.5,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:51.310Z",
+            "retrievedAt": "2026-08-21T12:57:45.979Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "80 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.460Z",
+            "retrievedAt": "2026-08-21T12:57:46.938Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "80 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.633Z",
+            "retrievedAt": "2026-08-21T12:57:47.233Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "80 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf-80-km-2026.bn6u2F3u_KAAjhVNO6shK.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:56.154Z",
+            "retrievedAt": "2026-08-21T12:57:50.004Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "80 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-80-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:56.154Z",
+            "retrievedAt": "2026-08-21T12:57:50.004Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "80 km"
           }
@@ -1055,6 +1190,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }
@@ -1085,6 +1223,7 @@
         "startLocation": "Saint-Jans-Cappel",
         "finishLocation": "Saint-Jans-Cappel",
         "maxDurationMinutes": 1110,
+        "finishCutoffTime": null,
         "raceType": "trail",
         "terrainType": "trail",
         "nightStart": true,
@@ -1098,7 +1237,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "pacevisor",
-          "retrievedAt": "2026-08-14T13:00:56.458Z",
+          "retrievedAt": "2026-08-21T13:02:22.002Z",
           "localFile": "gpx/2026/ntmf/115-km.gpx",
           "routeAsset": "generated/routes/ntmf-115-km-2026.json",
           "sha256": "232e245fb09f272aefd92e7136a5c9a59571fc612ae24c7df521dd20e8d47b5e",
@@ -1113,6 +1252,13 @@
             "minElevationM": 19,
             "maxElevationM": 174,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 2150,
+            "computedGainM": 2073,
+            "deltaM": 77,
+            "deltaPercent": 3.6
           }
         },
         "illustration": {
@@ -1121,6 +1267,14 @@
           "sourceUrl": "https://www.nordtrailmontsdeflandres.com/les-courses"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1129,7 +1283,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://in.inscriptions-prolivesport.fr/ntmf2026",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -1251,6 +1405,7 @@
             "cutoffDateTime": null
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [
           "reusable cup/container",
           "minimum 1.5 L water/liquid",
@@ -1262,42 +1417,44 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": true,
-          "minimumWaterLiters": 1.5
+          "minimumWaterLiters": 1.5,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.nordtrailmontsdeflandres.com/les-courses",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:51.310Z",
+            "retrievedAt": "2026-08-21T12:57:45.979Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "115 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.460Z",
+            "retrievedAt": "2026-08-21T12:57:46.938Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "115 km"
           },
           {
             "url": "https://www.nordtrailmontsdeflandres.com/en/reglements-des-courses",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:51.633Z",
+            "retrievedAt": "2026-08-21T12:57:47.233Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "115 km"
           },
           {
             "url": "https://static.pacevisor.com/ntmf-2026-115-km.jUaqmQcAIiqV6jbkAyH8J.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:56.458Z",
+            "retrievedAt": "2026-08-21T12:57:50.571Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "115 km"
           },
           {
             "url": "https://pacevisor.com/races/ntmf-115-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:56.458Z",
+            "retrievedAt": "2026-08-21T12:57:50.571Z",
             "event": "Nord Trail Monts de Flandres",
             "race": "115 km"
           }
@@ -1310,6 +1467,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }

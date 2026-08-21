@@ -7,6 +7,7 @@ import {
 } from "../../common/cutoffs.mjs";
 import {
   createEdition,
+  createDataAvailability,
   createEvent,
   createIllustration,
   createRace,
@@ -117,6 +118,9 @@ export async function collect({ year }) {
       ...pageStats,
     };
     const barrierPdfUrl = data.pdfUrls?.find((pdfUrl) => /barrieres?_horaires?/i.test(pdfUrl)) ?? null;
+    const aidPdfUrl = data.pdfUrls?.find((pdfUrl) => /postes/i.test(pdfUrl)) ??
+      (raceConfig.shortName === "Metis" ? data.pdfUrls?.find((pdfUrl) => /descriptif/i.test(pdfUrl)) : null) ??
+      null;
     let barrierPdf = null;
     if (barrierPdfUrl) {
       try {
@@ -130,6 +134,17 @@ export async function collect({ year }) {
       startTime: data.startTime ?? null,
       distanceKm: data.distanceKm ?? null,
       maxDurationMinutes: data.maxDurationMinutes ?? null,
+    });
+    let aidPdf = null;
+    if (aidPdfUrl) {
+      try {
+        aidPdf = await fetchPdfText(aidPdfUrl);
+      } catch (error) {
+        sourceErrors.push({ url: aidPdfUrl, message: error.message, status: error.status ?? null });
+      }
+    }
+    const parsedAid = parseGrandRaidAidStationPdf(aidPdf?.layoutPages ?? [], {
+      raceDistanceKm: data.distanceKm ?? null,
     });
     const race = createRace(event, {
       name: raceConfig.name,
@@ -155,6 +170,7 @@ export async function collect({ year }) {
       ...(eventRange && !data.date ? [`Official 2026 event range found (${eventRange}), but race-specific start date was not found.`] : []),
       ...(!roadbookIsCurrentYear ? ["Official roadbook page did not expose a current 2026 roadbook; 2025 roadbook data was not reused."] : []),
       ...parsedBarriers.warnings,
+      ...parsedAid.warnings,
       ...(data.warnings ?? []),
     ];
 
@@ -182,7 +198,7 @@ export async function collect({ year }) {
           distanceKm: data.distanceKm ?? null,
           maxDurationMinutes: data.maxDurationMinutes ?? null,
         }),
-      aidStations: [],
+      aidStations: parsedAid.reliable ? parsedAid.aidStations : [],
       mandatoryEquipment: data.mandatoryEquipment ?? [],
       rules: {
         personalAssistanceAllowed: rulesText ? true : null,
@@ -191,6 +207,21 @@ export async function collect({ year }) {
       rawOfficial: {
         traceId: data.traceId ?? null,
         relayLegsKm: data.relayLegsKm ?? null,
+      },
+      dataAvailability: {
+        aidStations: parsedAid.reliable
+          ? createDataAvailability("known", {
+            sourceUrl: aidPdfUrl,
+            checkedAt: aidPdf?.retrievedAt,
+            reason: "Aid stations and services were extracted from the official 2026 posts table.",
+          })
+          : createDataAvailability("extraction_error", {
+            sourceUrl: aidPdfUrl ?? url,
+            checkedAt: aidPdf?.retrievedAt ?? racePage?.retrievedAt,
+            reason: aidPdfUrl
+              ? "Official 2026 PDF is available but its aid-station service markers could not be extracted reliably."
+              : "No machine-readable 2026 aid-station table was found on the official race page.",
+          }),
       },
       sources,
     });
@@ -473,6 +504,97 @@ export function parseGrandRaidBarrierPdf(text, { date, startTime, distanceKm, ma
   if (text && unique.length === 0) warnings.push("Official barrier PDF was found but no usable cutoff checkpoint was extracted.");
 
   return { checkpoints: unique, warnings };
+}
+
+export function parseGrandRaidAidStationPdf(layoutPages, { raceDistanceKm = null } = {}) {
+  const items = (layoutPages ?? []).flatMap((page) => page?.items ?? []);
+  if (!items.length) {
+    return {
+      aidStations: [],
+      reliable: false,
+      warnings: ["Official posts PDF was found but has no machine-readable layout data."],
+    };
+  }
+
+  const headerTop = Math.max(...items.map((item) => item.y).filter(Number.isFinite));
+  const headerItems = items.filter((item) => item.y >= headerTop - 35);
+  const altiX = headerItems.find((item) => /^Alti\.?$/i.test(item.text?.trim()))?.x;
+  const openingX = headerItems.find((item) => /^Ouverture$/i.test(item.text?.trim()))?.x;
+  const cumulativeX = headerItems
+    .filter((item) => /^Cumul\b/i.test(item.text?.trim()) && (!Number.isFinite(altiX) || item.x < altiX))
+    .sort((left, right) => right.x - left.x)[0]?.x;
+  const serviceColumns = [
+    ["refreshment", /^(?:Rav\.?|Ravito|Ravitaillement)$/i],
+    ["soup", /^soupe$/i],
+    ["hotMeal", /^Repas(?: chaud)?$/i],
+    ["medical", /^Médecin$/i],
+  ].map(([key, pattern]) => ({ key, x: headerItems.find((item) => pattern.test(item.text?.trim()))?.x }))
+    .filter((column) => Number.isFinite(column.x));
+
+  if (!Number.isFinite(cumulativeX) || !Number.isFinite(openingX) || serviceColumns.length < 2) {
+    return {
+      aidStations: [],
+      reliable: false,
+      warnings: ["Official posts PDF columns could not be identified reliably."],
+    };
+  }
+
+  const dataItems = items.filter((item) => item.y < headerTop - 35);
+  const markers = dataItems.filter((item) =>
+    /^(?:|0|O)$/i.test(String(item.text ?? "").trim()) &&
+    serviceColumns.some((column) => Math.abs(item.x - column.x) <= 16),
+  );
+  const rows = new Map();
+  for (const marker of markers) {
+    const distanceItem = dataItems
+      .filter((item) => Math.abs(item.x - cumulativeX) <= 8 && Math.abs(item.y - marker.y) <= 7)
+      .map((item) => ({ item, value: numberFrom(item.text) }))
+      .find((candidate) => Number.isFinite(candidate.value) && candidate.value >= 0 && (!Number.isFinite(raceDistanceKm) || candidate.value <= raceDistanceKm + 5));
+    if (!distanceItem) continue;
+    const distanceKm = distanceItem.value;
+    const name = dataItems
+      .filter((item) => item.x < openingX - 5 && Math.abs(item.y - distanceItem.item.y) <= 9 && item.text?.trim())
+      .sort((left, right) => right.y - left.y || left.x - right.x)
+      .map((item) => item.text.trim())
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (!name) continue;
+    const row = rows.get(`${name}:${distanceKm}`) ?? { name, distanceKm, services: new Set() };
+    const column = serviceColumns.find((candidate) => Math.abs(marker.x - candidate.x) <= 16);
+    if (column) row.services.add(column.key);
+    rows.set(`${name}:${distanceKm}`, row);
+  }
+
+  const aidStations = [...rows.values()]
+    .filter((row) => row.services.has("refreshment") || row.services.has("soup") || row.services.has("hotMeal"))
+    .sort((left, right) => left.distanceKm - right.distanceKm)
+    .map((row) => ({
+      name: row.name,
+      distanceKm: row.distanceKm,
+      elevationM: null,
+      water: true,
+      sportsDrink: null,
+      solidFood: row.services.has("refreshment") || row.services.has("soup") || row.services.has("hotMeal"),
+      hotFood: row.services.has("soup") || row.services.has("hotMeal"),
+      dropBag: null,
+      crewAccess: null,
+      medical: row.services.has("medical"),
+      cutoffDateTime: null,
+      services: [...row.services],
+    }));
+  const lastAidDistanceKm = aidStations.at(-1)?.distanceKm ?? 0;
+  const coversCourse = !Number.isFinite(raceDistanceKm) || lastAidDistanceKm >= raceDistanceKm * 0.6;
+  const reliable = aidStations.length >= 2
+    && coversCourse
+    && aidStations.every((station, index) => index === 0 || station.distanceKm >= aidStations[index - 1].distanceKm);
+  return {
+    aidStations: reliable ? aidStations : [],
+    reliable,
+    warnings: reliable ? [] : [coversCourse
+      ? "Official posts PDF service markers were not extractable with sufficient confidence."
+      : "Official posts PDF extraction did not cover enough of the course to be considered complete."],
+  };
 }
 
 function findGrandRaidTimeGroups(lines) {

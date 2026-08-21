@@ -13,6 +13,7 @@ import {
   extractGpxFromZip,
   findGpxCandidate,
   GPX_NOT_FOUND_WARNING,
+  normalizeVolatileGpxMetadata,
   parseTraceDeTrailEventTraces,
   parseStravaAccountRoutes,
   sha256Hex,
@@ -57,6 +58,18 @@ test("rejects HTML returned instead of GPX", async () => {
   const buffer = await readFile(join(fixtures, "html-as-gpx.gpx"));
 
   assert.throws(() => analyzeGpxBuffer(buffer), /HTML/i);
+});
+
+test("removes volatile download timestamps from an official route GPX", () => {
+  const volatile = Buffer.from(`<?xml version="1.0"?><gpx><metadata><time>2026-08-21T12:00:00Z</time></metadata><trk><trkseg><trkpt lat="1" lon="2"><time>2026-08-21T12:00:00Z</time></trkpt><trkpt lat="1.1" lon="2.1"><time>2026-08-21T12:15:00Z</time></trkpt></trkseg></trk></gpx>`);
+  const normalized = normalizeVolatileGpxMetadata(volatile, { stripTimes: true }).toString("utf8");
+  assert.doesNotMatch(normalized, /<time>/);
+  assert.match(normalized, /<trkpt lat="1" lon="2">/);
+});
+
+test("preserves meaningful GPX point times", () => {
+  const timed = Buffer.from(`<gpx><trk><trkseg><trkpt lat="1" lon="2"><time>2026-08-21T12:00:00Z</time></trkpt><trkpt lat="1.1" lon="2.1"><time>2026-08-21T12:01:00Z</time></trkpt></trkseg></trk></gpx>`);
+  assert.equal(normalizeVolatileGpxMetadata(timed), timed);
 });
 
 test("extracts a GPX from a ZIP download", async () => {

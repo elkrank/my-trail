@@ -11,6 +11,25 @@ export const SOURCE_TYPES = new Set([
   "official-results",
 ]);
 
+export const DATA_AVAILABILITY_STATUSES = Object.freeze({
+  KNOWN: "known",
+  KNOWN_NONE: "known_none",
+  NOT_APPLICABLE: "not_applicable",
+  NOT_PUBLISHED: "not_published",
+  EXTRACTION_ERROR: "extraction_error",
+  UNKNOWN: "unknown",
+});
+
+export const DATA_AVAILABILITY_STATUS_VALUES = new Set(
+  Object.values(DATA_AVAILABILITY_STATUSES),
+);
+
+export const COMPLETE_AVAILABILITY_STATUSES = new Set([
+  DATA_AVAILABILITY_STATUSES.KNOWN,
+  DATA_AVAILABILITY_STATUSES.KNOWN_NONE,
+  DATA_AVAILABILITY_STATUSES.NOT_APPLICABLE,
+]);
+
 export function slugify(value) {
   return String(value ?? "")
     .normalize("NFD")
@@ -53,6 +72,7 @@ export function createEdition(year, overrides = {}) {
     startLocation: null,
     finishLocation: null,
     maxDurationMinutes: null,
+    finishCutoffTime: null,
     raceType: null,
     terrainType: null,
     nightStart: null,
@@ -83,6 +103,7 @@ export function createEdition(year, overrides = {}) {
     },
     checkpoints: [],
     aidStations: [],
+    dataAvailability: {},
     mandatoryEquipment: [],
     rules: {
       personalAssistanceAllowed: null,
@@ -123,7 +144,55 @@ export function createEdition(year, overrides = {}) {
       details: null,
       ...(overrides.rules ?? {}),
     },
+    dataAvailability: {
+      ...(overrides.dataAvailability ?? {}),
+      ...(overrides.dataAvailability?.registration
+        ? { registration: { ...overrides.dataAvailability.registration } }
+        : {}),
+    },
   };
+}
+
+export function createDataAvailability(status, { sourceUrl = null, checkedAt = null, reason = null } = {}) {
+  if (!DATA_AVAILABILITY_STATUS_VALUES.has(status)) {
+    throw new Error(`Unsupported data availability status: ${status}`);
+  }
+
+  return {
+    status,
+    ...(sourceUrl ? { sourceUrl: normalizeHttpUrl(sourceUrl) ?? sourceUrl } : {}),
+    ...(checkedAt ? { checkedAt } : {}),
+    ...(reason ? { reason } : {}),
+  };
+}
+
+export function getDataAvailability(edition, path) {
+  const explicit = getPath(edition?.dataAvailability, path);
+  if (explicit?.status) return explicit;
+
+  const value = getPath(edition, path);
+  if (path === "gpx") {
+    if (value?.status === "available") return { status: DATA_AVAILABILITY_STATUSES.KNOWN };
+    if (["invalid", "unavailable"].includes(value?.status)) {
+      return {
+        status: DATA_AVAILABILITY_STATUSES.EXTRACTION_ERROR,
+        ...(value.sourceUrl ? { sourceUrl: value.sourceUrl } : {}),
+        ...(value.retrievedAt ? { checkedAt: value.retrievedAt } : {}),
+      };
+    }
+  }
+  if (Array.isArray(value)) {
+    return { status: value.length ? DATA_AVAILABILITY_STATUSES.KNOWN : DATA_AVAILABILITY_STATUSES.UNKNOWN };
+  }
+  return {
+    status: value !== null && value !== undefined && value !== ""
+      ? DATA_AVAILABILITY_STATUSES.KNOWN
+      : DATA_AVAILABILITY_STATUSES.UNKNOWN,
+  };
+}
+
+export function isAvailabilityComplete(availability) {
+  return COMPLETE_AVAILABILITY_STATUSES.has(availability?.status);
 }
 
 export function createIllustration({ url, sourceUrl, event, race, alt }) {
@@ -198,6 +267,10 @@ export function refreshComputed(entry) {
 function round(value, decimals) {
   const factor = 10 ** decimals;
   return Math.round(value * factor) / factor;
+}
+
+function getPath(object, path) {
+  return String(path).split(".").reduce((current, key) => current?.[key], object);
 }
 
 export function normalizeHttpUrl(value) {

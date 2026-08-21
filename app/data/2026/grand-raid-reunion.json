@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T13:01:22.546Z",
+  "generatedAt": "2026-08-21T13:06:15.525Z",
   "year": 2026,
   "event": {
     "id": "grand-raid-reunion",
@@ -39,6 +39,7 @@
         "startLocation": "Ravine Blanche Saint-Pierre",
         "finishLocation": "La Redoute",
         "maxDurationMinutes": 3960,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
@@ -63,7 +64,7 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-14T13:00:28.316Z",
+          "retrievedAt": "2026-08-21T13:02:02.141Z",
           "localFile": "gpx/2026/grand-raid-reunion/diagonale.gpx",
           "routeAsset": "generated/routes/grand-raid-reunion-diagonale-2026.json",
           "sha256": "ecd3c270902166608b19b8447dc8b50b5640ad67bf8c1d60368cdd645563fe31",
@@ -78,6 +79,13 @@
             "minElevationM": 0,
             "maxElevationM": 2492,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "inconsistent",
+            "officialGainM": 10200,
+            "computedGainM": 18287,
+            "deltaM": 8087,
+            "deltaPercent": 79.3
           }
         },
         "illustration": {
@@ -86,6 +94,14 @@
           "sourceUrl": "https://www.grandraid-reunion.com/fr/les-courses/la-diagonale-des-fous/"
         },
         "terrainDescription": "Le parcours de la Diagonale des Fous (du 15 au 18 octobre 2026) La Diagonale des Fous est une des cinq courses organisées dans le cadre du Grand Raid. La Diagonale des Fous, une course de trail extrême qui se déroule à La Réunion, incarne l’esprit d’aventure, d’endurance et de défi. Chaque année, des coureurs du monde entier se rassemblent pour affronter ce défi audacieux, faisant de cette épreuve un événement emblématique.",
+        "description": {
+          "original": "Le parcours de la Diagonale des Fous (du 15 au 18 octobre 2026) La Diagonale des Fous est une des cinq courses organisées dans le cadre du Grand Raid. La Diagonale des Fous, une course de trail extrême qui se déroule à La Réunion, incarne l’esprit d’aventure, d’endurance et de défi. Chaque année, des coureurs du monde entier se rassemblent pour affronter ce défi audacieux, faisant de cette épreuve un événement emblématique.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -263,6 +279,14 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "extraction_error",
+            "sourceUrl": "https://www.grandraid-reunion.com/IMG/pdf/diagonale_des_fous_2026_postes.pdf",
+            "checkedAt": "2026-08-21T12:57:21.887Z",
+            "reason": "Official 2026 PDF is available but its aid-station service markers could not be extracted reliably."
+          }
+        },
         "mandatoryEquipment": [
           "Reserve alimentaire",
           "Gobelet personnel",
@@ -275,77 +299,79 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.grandraid-reunion.com/fr/les-courses/la-diagonale-des-fous/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:20.396Z",
+            "retrievedAt": "2026-08-21T12:57:20.107Z",
             "event": "Grand Raid de La Reunion",
             "race": "Diagonale"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/les-courses/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:16.645Z",
+            "retrievedAt": "2026-08-21T12:57:17.235Z",
             "event": "Grand Raid de La Reunion",
             "race": "Diagonale"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/inscriptions/modalites-des-inscriptions/modalites-d-inscriptions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:16.725Z",
+            "retrievedAt": "2026-08-21T12:57:17.341Z",
             "event": "Grand Raid de La Reunion",
             "race": "Diagonale"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/inscriptions/reglement/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:18.379Z",
+            "retrievedAt": "2026-08-21T12:57:18.067Z",
             "event": "Grand Raid de La Reunion",
             "race": "Diagonale"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/informations-pratiques/carnet-de-route/",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:19.476Z",
+            "retrievedAt": "2026-08-21T12:57:19.161Z",
             "event": "Grand Raid de La Reunion",
             "race": "Diagonale"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/diagonale_des_fous_barrieres_horaires_2026.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:20.396Z",
+            "retrievedAt": "2026-08-21T12:57:20.107Z",
             "event": "Grand Raid de La Reunion",
             "race": "Diagonale"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/diagonale_des_fous_2026_descriptif.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:20.396Z",
+            "retrievedAt": "2026-08-21T12:57:20.107Z",
             "event": "Grand Raid de La Reunion",
             "race": "Diagonale"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/diagonale_des_fous_2026_postes.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:20.396Z",
+            "retrievedAt": "2026-08-21T12:57:20.107Z",
             "event": "Grand Raid de La Reunion",
             "race": "Diagonale"
           },
           {
             "url": "https://tracedetrail.fr/fr/iframe/7023",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:20.396Z",
+            "retrievedAt": "2026-08-21T12:57:20.107Z",
             "event": "Grand Raid de La Reunion",
             "race": "Diagonale"
           },
           {
             "url": "https://tracedetrail.fr/fr/iframe/7023",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:28.316Z",
+            "retrievedAt": "2026-08-21T12:57:30.010Z",
             "event": "Grand Raid de La Reunion",
             "race": "Diagonale"
           }
@@ -362,10 +388,13 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "complete",
         "warnings": [
+          "Official posts PDF extraction did not cover enough of the course to be considered complete.",
           "Official race page states the 2026 route can still be modified for administrative, practical or trail-condition reasons.",
-          "GPX_ELEVATION_GAIN_MISMATCH: official=10200 computed=18287",
-          "Aid stations not found in official source."
+          "GPX_ELEVATION_GAIN_MISMATCH: official=10200 computed=18287"
         ],
         "missingFields": [
           "aidStations"
@@ -398,6 +427,7 @@
         "startLocation": "Cilaos",
         "finishLocation": "La Redoute",
         "maxDurationMinutes": 2520,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
@@ -422,7 +452,7 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-14T13:00:29.999Z",
+          "retrievedAt": "2026-08-21T13:02:04.146Z",
           "localFile": "gpx/2026/grand-raid-reunion/bourbon.gpx",
           "routeAsset": "generated/routes/grand-raid-reunion-bourbon-2026.json",
           "sha256": "0b838e11839e0127bd064491a949698e6ed925a178e2bda41052e79412f01893",
@@ -437,6 +467,13 @@
             "minElevationM": 2,
             "maxElevationM": 2102,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "inconsistent",
+            "officialGainM": 6200,
+            "computedGainM": 37833,
+            "deltaM": 31633,
+            "deltaPercent": 510.2
           }
         },
         "illustration": {
@@ -445,6 +482,14 @@
           "sourceUrl": "https://www.grandraid-reunion.com/fr/les-courses/le-trail-de-bourbon/"
         },
         "terrainDescription": "- Grand Raid de la Réunion Les courses Inscriptions Listes des inscrits Liste d’attente Informations pratiques Se préparer Résultats Les dernières éditions Espace Coureur Nos partenaires La Réunion Espace presse Accueil Les courses Le Trail de Bourbon",
+        "description": {
+          "original": "- Grand Raid de la Réunion Les courses Inscriptions Listes des inscrits Liste d’attente Informations pratiques Se préparer Résultats Les dernières éditions Espace Coureur Nos partenaires La Réunion Espace presse Accueil Les courses Le Trail de Bourbon",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -568,6 +613,14 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "extraction_error",
+            "sourceUrl": "https://www.grandraid-reunion.com/IMG/pdf/trail_de_bourbon_2026_postesok.pdf",
+            "checkedAt": "2026-08-21T12:57:23.839Z",
+            "reason": "Official 2026 PDF is available but its aid-station service markers could not be extracted reliably."
+          }
+        },
         "mandatoryEquipment": [
           "Reserve alimentaire",
           "Gobelet personnel",
@@ -580,77 +633,79 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.grandraid-reunion.com/fr/les-courses/le-trail-de-bourbon/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:21.929Z",
+            "retrievedAt": "2026-08-21T12:57:22.041Z",
             "event": "Grand Raid de La Reunion",
             "race": "Bourbon"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/les-courses/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:16.645Z",
+            "retrievedAt": "2026-08-21T12:57:17.235Z",
             "event": "Grand Raid de La Reunion",
             "race": "Bourbon"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/inscriptions/modalites-des-inscriptions/modalites-d-inscriptions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:16.725Z",
+            "retrievedAt": "2026-08-21T12:57:17.341Z",
             "event": "Grand Raid de La Reunion",
             "race": "Bourbon"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/inscriptions/reglement/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:18.379Z",
+            "retrievedAt": "2026-08-21T12:57:18.067Z",
             "event": "Grand Raid de La Reunion",
             "race": "Bourbon"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/informations-pratiques/carnet-de-route/",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:19.476Z",
+            "retrievedAt": "2026-08-21T12:57:19.161Z",
             "event": "Grand Raid de La Reunion",
             "race": "Bourbon"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/trail_de_bourbon_2026_barrieres_horaires.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:21.929Z",
+            "retrievedAt": "2026-08-21T12:57:22.041Z",
             "event": "Grand Raid de La Reunion",
             "race": "Bourbon"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/trail_de_bourbon_2026_descriptif.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:21.929Z",
+            "retrievedAt": "2026-08-21T12:57:22.041Z",
             "event": "Grand Raid de La Reunion",
             "race": "Bourbon"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/trail_de_bourbon_2026_postesok.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:21.929Z",
+            "retrievedAt": "2026-08-21T12:57:22.041Z",
             "event": "Grand Raid de La Reunion",
             "race": "Bourbon"
           },
           {
             "url": "https://tracedetrail.fr/fr/iframe/10490",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:21.929Z",
+            "retrievedAt": "2026-08-21T12:57:22.041Z",
             "event": "Grand Raid de La Reunion",
             "race": "Bourbon"
           },
           {
             "url": "https://tracedetrail.fr/fr/iframe/10490",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:29.999Z",
+            "retrievedAt": "2026-08-21T12:57:31.813Z",
             "event": "Grand Raid de La Reunion",
             "race": "Bourbon"
           }
@@ -667,10 +722,13 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "complete",
         "warnings": [
+          "Official posts PDF extraction did not cover enough of the course to be considered complete.",
           "Official race page states the 2026 route can still be modified for administrative, practical or trail-condition reasons.",
-          "GPX_ELEVATION_GAIN_MISMATCH: official=6200 computed=37833",
-          "Aid stations not found in official source."
+          "GPX_ELEVATION_GAIN_MISMATCH: official=6200 computed=37833"
         ],
         "missingFields": [
           "aidStations"
@@ -703,6 +761,7 @@
         "startLocation": "Hell Bourg",
         "finishLocation": "La Redoute",
         "maxDurationMinutes": 1260,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
@@ -727,7 +786,7 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-14T13:00:31.526Z",
+          "retrievedAt": "2026-08-21T13:02:07.121Z",
           "localFile": "gpx/2026/grand-raid-reunion/mascareignes.gpx",
           "routeAsset": "generated/routes/grand-raid-reunion-mascareignes-2026.json",
           "sha256": "52c346f874559d0292a4d5a56cf92db78fe5e019d9791fc68e779080b23f9da6",
@@ -742,6 +801,13 @@
             "minElevationM": 1,
             "maxElevationM": 1826,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "inconsistent",
+            "officialGainM": 3800,
+            "computedGainM": 9644,
+            "deltaM": 5844,
+            "deltaPercent": 153.8
           }
         },
         "illustration": {
@@ -750,6 +816,14 @@
           "sourceUrl": "https://www.grandraid-reunion.com/fr/les-courses/la-mascareignes/"
         },
         "terrainDescription": "Le parcours de La Mascareignes (16 octobre 2026) La Mascareignes est une des cinq courses organisées dans le cadre du Grand Raid. Le départ sera donné de Hell-Bourg à 01h00 le 16 octobre 2026. Les participants devront effectuer 74km et gravir 3800 m de dénivelé positif. Le tracé sort du cirque de Salazie par le Sentier Scout et plonge dans le cirque de Mafate. Après avoir traversé Mafate, les traileurs retrouveront la côte et se dirigeront vers l’arrivée qui sera jugée sur le stade de la Redoute à Saint-Denis.",
+        "description": {
+          "original": "Le parcours de La Mascareignes (16 octobre 2026) La Mascareignes est une des cinq courses organisées dans le cadre du Grand Raid. Le départ sera donné de Hell-Bourg à 01h00 le 16 octobre 2026. Les participants devront effectuer 74km et gravir 3800 m de dénivelé positif. Le tracé sort du cirque de Salazie par le Sentier Scout et plonge dans le cirque de Mafate. Après avoir traversé Mafate, les traileurs retrouveront la côte et se dirigeront vers l’arrivée qui sera jugée sur le stade de la Redoute à Saint-Denis.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -855,6 +929,14 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "extraction_error",
+            "sourceUrl": "https://www.grandraid-reunion.com/IMG/pdf/mascareignes_2026_postes.pdf",
+            "checkedAt": "2026-08-21T12:57:25.573Z",
+            "reason": "Official 2026 PDF is available but its aid-station service markers could not be extracted reliably."
+          }
+        },
         "mandatoryEquipment": [
           "Reserve alimentaire",
           "Gobelet personnel",
@@ -867,77 +949,79 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.grandraid-reunion.com/fr/les-courses/la-mascareignes/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:23.478Z",
+            "retrievedAt": "2026-08-21T12:57:24.067Z",
             "event": "Grand Raid de La Reunion",
             "race": "Mascareignes"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/les-courses/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:16.645Z",
+            "retrievedAt": "2026-08-21T12:57:17.235Z",
             "event": "Grand Raid de La Reunion",
             "race": "Mascareignes"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/inscriptions/modalites-des-inscriptions/modalites-d-inscriptions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:16.725Z",
+            "retrievedAt": "2026-08-21T12:57:17.341Z",
             "event": "Grand Raid de La Reunion",
             "race": "Mascareignes"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/inscriptions/reglement/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:18.379Z",
+            "retrievedAt": "2026-08-21T12:57:18.067Z",
             "event": "Grand Raid de La Reunion",
             "race": "Mascareignes"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/informations-pratiques/carnet-de-route/",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:19.476Z",
+            "retrievedAt": "2026-08-21T12:57:19.161Z",
             "event": "Grand Raid de La Reunion",
             "race": "Mascareignes"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/mascareignes_2026_barrieres_horaires.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:23.478Z",
+            "retrievedAt": "2026-08-21T12:57:24.067Z",
             "event": "Grand Raid de La Reunion",
             "race": "Mascareignes"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/mascareignes_2026_descriptif.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:23.478Z",
+            "retrievedAt": "2026-08-21T12:57:24.067Z",
             "event": "Grand Raid de La Reunion",
             "race": "Mascareignes"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/mascareignes_2026_postes.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:23.478Z",
+            "retrievedAt": "2026-08-21T12:57:24.067Z",
             "event": "Grand Raid de La Reunion",
             "race": "Mascareignes"
           },
           {
             "url": "https://tracedetrail.fr/fr/iframe/7025",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:23.478Z",
+            "retrievedAt": "2026-08-21T12:57:24.067Z",
             "event": "Grand Raid de La Reunion",
             "race": "Mascareignes"
           },
           {
             "url": "https://tracedetrail.fr/fr/iframe/7025",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:31.526Z",
+            "retrievedAt": "2026-08-21T12:57:33.666Z",
             "event": "Grand Raid de La Reunion",
             "race": "Mascareignes"
           }
@@ -954,10 +1038,13 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "complete",
         "warnings": [
+          "Official posts PDF extraction did not cover enough of the course to be considered complete.",
           "Official race page states the 2026 route can still be modified for administrative, practical or trail-condition reasons.",
-          "GPX_ELEVATION_GAIN_MISMATCH: official=3800 computed=9644",
-          "Aid stations not found in official source."
+          "GPX_ELEVATION_GAIN_MISMATCH: official=3800 computed=9644"
         ],
         "missingFields": [
           "aidStations"
@@ -990,6 +1077,7 @@
         "startLocation": "Saint Paul",
         "finishLocation": "La Redoute",
         "maxDurationMinutes": 840,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": false,
@@ -1014,7 +1102,7 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-14T13:00:32.824Z",
+          "retrievedAt": "2026-08-21T13:02:08.789Z",
           "localFile": "gpx/2026/grand-raid-reunion/metis.gpx",
           "routeAsset": "generated/routes/grand-raid-reunion-metis-2026.json",
           "sha256": "bbefae8699233eb8e89065a5e32176a751431d98512002e6d49e34888afd99ab",
@@ -1029,6 +1117,13 @@
             "minElevationM": 2,
             "maxElevationM": 728,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 2500,
+            "computedGainM": 2978,
+            "deltaM": 478,
+            "deltaPercent": 19.1
           }
         },
         "illustration": {
@@ -1037,6 +1132,14 @@
           "sourceUrl": "https://www.grandraid-reunion.com/fr/les-courses/le-metis-trail/"
         },
         "terrainDescription": "Le parcours du Metis Trail (17 octobre 2026) Le Metis Trail est une des cinq courses organisées dans le cadre du Grand Raid. Découvrez la dernière-née des courses du Grand Raid Réunion ! Le Métis Trail Réunion, une épreuve audacieuse de 51 km et 2500 m de dénivelé positif, tracera son chemin entre Saint-Paul et Saint-Denis. Elle offre aux coureurs une expérience unique au cœur de la splendide île de La Réunion, mettant en lumière des endroits historiques et panoramiques. Limitée à 700 participants, l’inscription se fera par tirage au sort, ajoutant une touche d’exaltation à cette aventure épique. Préparez-vous à repousser vos limites et à vivre une expérience de trail inoubliable dans un cadre exceptionnel.",
+        "description": {
+          "original": "Le parcours du Metis Trail (17 octobre 2026) Le Metis Trail est une des cinq courses organisées dans le cadre du Grand Raid. Découvrez la dernière-née des courses du Grand Raid Réunion ! Le Métis Trail Réunion, une épreuve audacieuse de 51 km et 2500 m de dénivelé positif, tracera son chemin entre Saint-Paul et Saint-Denis. Elle offre aux coureurs une expérience unique au cœur de la splendide île de La Réunion, mettant en lumière des endroits historiques et panoramiques. Limitée à 700 participants, l’inscription se fera par tirage au sort, ajoutant une touche d’exaltation à cette aventure épique. Préparez-vous à repousser vos limites et à vivre une expérience de trail inoubliable dans un cadre exceptionnel.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1115,6 +1218,14 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "extraction_error",
+            "sourceUrl": "https://www.grandraid-reunion.com/IMG/pdf/metis_trail_2026_descriptif.pdf",
+            "checkedAt": "2026-08-21T12:57:27.011Z",
+            "reason": "Official 2026 PDF is available but its aid-station service markers could not be extracted reliably."
+          }
+        },
         "mandatoryEquipment": [
           "Reserve alimentaire",
           "Gobelet personnel",
@@ -1127,70 +1238,72 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.grandraid-reunion.com/fr/les-courses/le-metis-trail/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:24.697Z",
+            "retrievedAt": "2026-08-21T12:57:25.719Z",
             "event": "Grand Raid de La Reunion",
             "race": "Metis"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/les-courses/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:16.645Z",
+            "retrievedAt": "2026-08-21T12:57:17.235Z",
             "event": "Grand Raid de La Reunion",
             "race": "Metis"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/inscriptions/modalites-des-inscriptions/modalites-d-inscriptions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:16.725Z",
+            "retrievedAt": "2026-08-21T12:57:17.341Z",
             "event": "Grand Raid de La Reunion",
             "race": "Metis"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/inscriptions/reglement/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:18.379Z",
+            "retrievedAt": "2026-08-21T12:57:18.067Z",
             "event": "Grand Raid de La Reunion",
             "race": "Metis"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/informations-pratiques/carnet-de-route/",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:19.476Z",
+            "retrievedAt": "2026-08-21T12:57:19.161Z",
             "event": "Grand Raid de La Reunion",
             "race": "Metis"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/metis_trail_2026_barrieres_horaires_ok.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:24.697Z",
+            "retrievedAt": "2026-08-21T12:57:25.719Z",
             "event": "Grand Raid de La Reunion",
             "race": "Metis"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/metis_trail_2026_descriptif.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:24.697Z",
+            "retrievedAt": "2026-08-21T12:57:25.719Z",
             "event": "Grand Raid de La Reunion",
             "race": "Metis"
           },
           {
             "url": "https://tracedetrail.fr/fr/iframe/7024",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:24.697Z",
+            "retrievedAt": "2026-08-21T12:57:25.719Z",
             "event": "Grand Raid de La Reunion",
             "race": "Metis"
           },
           {
             "url": "https://tracedetrail.fr/fr/iframe/7024",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:32.824Z",
+            "retrievedAt": "2026-08-21T12:57:35.272Z",
             "event": "Grand Raid de La Reunion",
             "race": "Metis"
           }
@@ -1207,9 +1320,12 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "complete",
         "warnings": [
-          "Official race page states the 2026 route can still be modified for administrative, practical or trail-condition reasons.",
-          "Aid stations not found in official source."
+          "Official posts PDF columns could not be identified reliably.",
+          "Official race page states the 2026 route can still be modified for administrative, practical or trail-condition reasons."
         ],
         "missingFields": [
           "aidStations"
@@ -1242,6 +1358,7 @@
         "startLocation": "Mairie de Saint Joseph",
         "finishLocation": "La Redoute",
         "maxDurationMinutes": 2385,
+        "finishCutoffTime": null,
         "raceType": "relay",
         "terrainType": "trail",
         "nightStart": false,
@@ -1266,7 +1383,7 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-14T13:00:34.255Z",
+          "retrievedAt": "2026-08-21T13:02:10.429Z",
           "localFile": "gpx/2026/grand-raid-reunion/zembrocal.gpx",
           "routeAsset": "generated/routes/grand-raid-reunion-zembrocal-2026.json",
           "sha256": "f990e3ea99339b9e58a1282413091a5c6ebc9deb55b88ec7a874fea0b0a61388",
@@ -1281,6 +1398,13 @@
             "minElevationM": 2,
             "maxElevationM": 2489,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "inconsistent",
+            "officialGainM": 8460,
+            "computedGainM": 14660,
+            "deltaM": 6200,
+            "deltaPercent": 73.3
           }
         },
         "illustration": {
@@ -1289,6 +1413,14 @@
           "sourceUrl": "https://www.grandraid-reunion.com/fr/les-courses/le-zembrocal-trail/"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1457,6 +1589,14 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "extraction_error",
+            "sourceUrl": "https://www.grandraid-reunion.com/IMG/pdf/zembrocal_2026_postes.pdf",
+            "checkedAt": "2026-08-21T12:57:28.372Z",
+            "reason": "Official 2026 PDF is available but its aid-station service markers could not be extracted reliably."
+          }
+        },
         "mandatoryEquipment": [
           "Reserve alimentaire",
           "Gobelet personnel",
@@ -1469,77 +1609,79 @@
         "rules": {
           "personalAssistanceAllowed": true,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.grandraid-reunion.com/fr/les-courses/le-zembrocal-trail/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:25.885Z",
+            "retrievedAt": "2026-08-21T12:57:27.146Z",
             "event": "Grand Raid de La Reunion",
             "race": "Zembrocal"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/les-courses/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:16.645Z",
+            "retrievedAt": "2026-08-21T12:57:17.235Z",
             "event": "Grand Raid de La Reunion",
             "race": "Zembrocal"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/inscriptions/modalites-des-inscriptions/modalites-d-inscriptions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:16.725Z",
+            "retrievedAt": "2026-08-21T12:57:17.341Z",
             "event": "Grand Raid de La Reunion",
             "race": "Zembrocal"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/inscriptions/reglement/",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:18.379Z",
+            "retrievedAt": "2026-08-21T12:57:18.067Z",
             "event": "Grand Raid de La Reunion",
             "race": "Zembrocal"
           },
           {
             "url": "https://www.grandraid-reunion.com/fr/informations-pratiques/carnet-de-route/",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:19.476Z",
+            "retrievedAt": "2026-08-21T12:57:19.161Z",
             "event": "Grand Raid de La Reunion",
             "race": "Zembrocal"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/zembrocal_trail_2026_barrieres_horaires.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:25.885Z",
+            "retrievedAt": "2026-08-21T12:57:27.146Z",
             "event": "Grand Raid de La Reunion",
             "race": "Zembrocal"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/zembrocal_2026_descriptif.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:25.885Z",
+            "retrievedAt": "2026-08-21T12:57:27.146Z",
             "event": "Grand Raid de La Reunion",
             "race": "Zembrocal"
           },
           {
             "url": "https://www.grandraid-reunion.com/IMG/pdf/zembrocal_2026_postes.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:00:25.885Z",
+            "retrievedAt": "2026-08-21T12:57:27.146Z",
             "event": "Grand Raid de La Reunion",
             "race": "Zembrocal"
           },
           {
             "url": "https://tracedetrail.fr/fr/iframe/7027",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:25.885Z",
+            "retrievedAt": "2026-08-21T12:57:27.146Z",
             "event": "Grand Raid de La Reunion",
             "race": "Zembrocal"
           },
           {
             "url": "https://tracedetrail.fr/fr/iframe/7027",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:34.255Z",
+            "retrievedAt": "2026-08-21T12:57:36.741Z",
             "event": "Grand Raid de La Reunion",
             "race": "Zembrocal"
           }
@@ -1561,11 +1703,14 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "complete",
         "warnings": [
           "Official barrier PDF finish cutoff (2505 min) differs from race page max duration (2385 min).",
+          "Official posts PDF extraction did not cover enough of the course to be considered complete.",
           "Official race page states the 2026 route can still be modified for administrative, practical or trail-condition reasons.",
-          "GPX_ELEVATION_GAIN_MISMATCH: official=8460 computed=14660",
-          "Aid stations not found in official source."
+          "GPX_ELEVATION_GAIN_MISMATCH: official=8460 computed=14660"
         ],
         "missingFields": [
           "aidStations"

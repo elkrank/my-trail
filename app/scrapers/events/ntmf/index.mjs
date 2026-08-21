@@ -1,13 +1,14 @@
 import { fetchText } from "../../common/fetch.mjs";
 import {
   createEdition,
+  createDataAvailability,
   createEvent,
   createIllustration,
   createRace,
   createRaceEntry,
   sourceFromFetch,
 } from "../../common/model.mjs";
-import { extractIllustration, minutesBetween, parseDate, parseTime, stripHtml, textNoAccents } from "../../common/parse.mjs";
+import { extractIllustration, extractRegistrationUrl, minutesBetween, parseDate, parseTime, stripHtml, textNoAccents } from "../../common/parse.mjs";
 
 const BASE_URL = "https://www.nordtrailmontsdeflandres.com";
 const COURSES_URL = `${BASE_URL}/les-courses`;
@@ -49,6 +50,9 @@ export async function collect({ year }) {
   const prices = parsePrices(rulesEnText || rulesFrText);
   const aidByDistance = parseAidStations(rulesFrText);
   const checkpointsByDistance = buildCheckpoints();
+  const registrationUrl = pages.courses
+    ? extractRegistrationUrl(pages.courses.content, pages.courses.finalUrl ?? pages.courses.url)
+    : null;
 
   const races = RACES.map((distance) => {
     const race = createRace(event, {
@@ -87,6 +91,7 @@ export async function collect({ year }) {
       illustration,
       registration: {
         priceEur: prices.get(distance) ?? null,
+        url: registrationUrl,
       },
       checkpoints,
       aidStations: aidByDistance.get(distance) ?? [],
@@ -97,6 +102,13 @@ export async function collect({ year }) {
         minimumWaterLiters: distance === 13 ? 0.5 : distance >= 30 ? 1.5 : 0.5,
       },
       mandatoryEquipment: mandatoryEquipment(distance),
+      dataAvailability: [13, 30].includes(distance) && pages.courses ? {
+        aidStations: createDataAvailability("known_none", {
+          sourceUrl: pages.courses.finalUrl ?? pages.courses.url,
+          checkedAt: pages.courses.retrievedAt,
+          reason: "Official page confirms zero on-course aid stations; finish refreshment is not an on-course station.",
+        }),
+      } : {},
       sources,
     });
 

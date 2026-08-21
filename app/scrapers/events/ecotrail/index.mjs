@@ -2,6 +2,7 @@ import { fetchText } from "../../common/fetch.mjs";
 import { buildFinishCheckpoint } from "../../common/cutoffs.mjs";
 import {
   createEdition,
+  createDataAvailability,
   createEvent,
   createIllustration,
   createRace,
@@ -122,6 +123,20 @@ function buildRace(event, raceConfig, page, roadbook, year) {
       minimumWaterLiters: minimumWaterLiters(text),
     },
     terrainDescription: text.match(/L'itin[ée]raire en d[ée]tail\s+([\s\S]{0,500}?)(?:Informations essentielles|Image)/i)?.[1]?.trim() ?? null,
+    dataAvailability: roadbook && /roadbook arrive tr[èe]s prochainement/i.test(stripHtml(roadbook.content)) ? {
+      aidStations: createDataAvailability("not_published", {
+        sourceUrl: roadbook.finalUrl ?? roadbook.url,
+        checkedAt: roadbook.retrievedAt,
+        reason: "The official 2026 roadbook page says the runner roadbook is coming soon.",
+      }),
+      registration: {
+        priceEur: createDataAvailability("not_published", {
+          sourceUrl: roadbook.finalUrl ?? roadbook.url,
+          checkedAt: roadbook.retrievedAt,
+          reason: "The current official public pages do not publish an exploitable 2026 price.",
+        }),
+      },
+    } : {},
     sources,
   });
 

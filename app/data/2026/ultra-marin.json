@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T13:01:22.546Z",
+  "generatedAt": "2026-08-21T13:06:15.525Z",
   "year": 2026,
   "event": {
     "id": "ultra-marin",
@@ -39,6 +39,7 @@
         "startLocation": "Vannes",
         "finishLocation": "Vannes",
         "maxDurationMinutes": 2520,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": false,
@@ -52,7 +53,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "livetrail",
-          "retrievedAt": "2026-08-14T13:00:58.908Z",
+          "retrievedAt": "2026-08-21T13:02:22.716Z",
           "localFile": "gpx/2026/ultra-marin/grand-raid.gpx",
           "routeAsset": "generated/routes/ultra-marin-grand-raid-2026.json",
           "sha256": "844e71e16f8faf779d52af39a9b8cb3d0a489b8e77190a2ca55d17f754408ade",
@@ -67,6 +68,13 @@
             "minElevationM": 0,
             "maxElevationM": 35,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "inconsistent",
+            "officialGainM": 1430,
+            "computedGainM": 767,
+            "deltaM": 663,
+            "deltaPercent": 46.4
           }
         },
         "illustration": {
@@ -75,6 +83,14 @@
           "sourceUrl": "https://www.ultra-marin.fr/grand-raid-ultramarin"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -171,46 +187,71 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "extraction_error",
+            "sourceUrl": "https://www.calameo.com/books/008167820d06fe08ac749",
+            "checkedAt": "2026-08-21T12:57:51.414Z",
+            "reason": "The official Calameo guide has no stable public PDF/text download that the scraper can parse reliably."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "extraction_error",
+              "sourceUrl": "https://www.calameo.com/books/008167820d06fe08ac749",
+              "checkedAt": "2026-08-21T12:57:51.414Z",
+              "reason": "The official guide is public through Calameo, but no stable machine-readable tariff source is exposed."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.ultra-marin.fr/grand-raid-ultramarin",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:56.663Z",
+            "retrievedAt": "2026-08-21T12:57:52.182Z",
             "event": "Ultra Marin",
             "race": "Grand Raid"
           },
           {
             "url": "https://www.ultra-marin.fr/commentsinscrire",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:56.663Z",
+            "retrievedAt": "2026-08-21T12:57:52.182Z",
             "event": "Ultra Marin",
             "race": "Grand Raid"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/GdRaid",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:56.904Z",
+            "retrievedAt": "2026-08-21T12:57:52.453Z",
+            "event": "Ultra Marin",
+            "race": "Grand Raid"
+          },
+          {
+            "url": "https://www.calameo.com/books/008167820d06fe08ac749",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-21T12:57:51.414Z",
             "event": "Ultra Marin",
             "race": "Grand Raid"
           },
           {
             "url": "https://livetrailv3.s3.gra.io.cloud.ovh.net/ultramarin-breizhchrono_2026/tracks/a1091c19-3937-4048-8218-49ef0fb1b53c.json",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:58.908Z",
+            "retrievedAt": "2026-08-21T12:57:55.355Z",
             "event": "Ultra Marin",
             "race": "Grand Raid"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/GdRaid?view=withdrawals",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:58.908Z",
+            "retrievedAt": "2026-08-21T12:57:55.355Z",
             "event": "Ultra Marin",
             "race": "Grand Raid"
           }
@@ -223,15 +264,17 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page states the 2026 route was provisional when published.",
           "Official page does not publish a confirmed 2026 race date in text.",
-          "GPX_ELEVATION_GAIN_MISMATCH: official=1430 computed=767",
-          "Aid stations not found in official source."
+          "GPX_ELEVATION_GAIN_MISMATCH: official=1430 computed=767"
         ],
         "missingFields": [
-          "price",
-          "aidStations"
+          "aidStations",
+          "price"
         ]
       }
     },
@@ -253,7 +296,7 @@
       },
       "edition": {
         "year": 2026,
-        "date": "2026-06-26",
+        "date": "2026-06-24",
         "startTime": "20:00",
         "distanceKm": 175,
         "elevationGainM": 1430,
@@ -261,6 +304,7 @@
         "startLocation": "Vannes",
         "finishLocation": "Vannes",
         "maxDurationMinutes": 2475,
+        "finishCutoffTime": null,
         "raceType": "relay",
         "terrainType": "trail",
         "nightStart": true,
@@ -274,7 +318,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "livetrail",
-          "retrievedAt": "2026-08-14T13:00:59.595Z",
+          "retrievedAt": "2026-08-21T13:02:23.337Z",
           "localFile": "gpx/2026/ultra-marin/grand-relais.gpx",
           "routeAsset": "generated/routes/ultra-marin-grand-relais-2026.json",
           "sha256": "558180a0a93c99d03ab4bfe86ddac5ff837cbd3f58e04954e0834b6b89ae569d",
@@ -289,6 +333,13 @@
             "minElevationM": -1,
             "maxElevationM": 38,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "inconsistent",
+            "officialGainM": 1430,
+            "computedGainM": 1028,
+            "deltaM": 402,
+            "deltaPercent": 28.1
           }
         },
         "illustration": {
@@ -297,6 +348,14 @@
           "sourceUrl": "https://www.ultra-marin.fr/grand-relais-175km"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -315,7 +374,7 @@
             "distanceKm": 13.44,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-26T22:30:00",
-            "cutoffElapsedMinutes": 150,
+            "cutoffElapsedMinutes": 4230,
             "aidStation": true,
             "personalAssistanceAllowed": null
           },
@@ -324,7 +383,7 @@
             "distanceKm": 27.52,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-27T01:00:00",
-            "cutoffElapsedMinutes": 300,
+            "cutoffElapsedMinutes": 4380,
             "aidStation": true,
             "personalAssistanceAllowed": null
           },
@@ -333,7 +392,7 @@
             "distanceKm": 41.63,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-27T03:00:00",
-            "cutoffElapsedMinutes": 420,
+            "cutoffElapsedMinutes": 4500,
             "aidStation": true,
             "personalAssistanceAllowed": null
           },
@@ -342,7 +401,7 @@
             "distanceKm": 57.65,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-27T07:00:00",
-            "cutoffElapsedMinutes": 660,
+            "cutoffElapsedMinutes": 4740,
             "aidStation": true,
             "personalAssistanceAllowed": null
           },
@@ -351,7 +410,7 @@
             "distanceKm": 73.96,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-27T10:30:00",
-            "cutoffElapsedMinutes": 870,
+            "cutoffElapsedMinutes": 4950,
             "aidStation": true,
             "personalAssistanceAllowed": null
           },
@@ -360,7 +419,7 @@
             "distanceKm": 87.67,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-27T14:00:00",
-            "cutoffElapsedMinutes": 1080,
+            "cutoffElapsedMinutes": 5160,
             "aidStation": true,
             "personalAssistanceAllowed": null
           },
@@ -369,7 +428,7 @@
             "distanceKm": 90.27,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-27T15:00:00",
-            "cutoffElapsedMinutes": 1140,
+            "cutoffElapsedMinutes": 5220,
             "aidStation": false,
             "personalAssistanceAllowed": null
           },
@@ -378,7 +437,7 @@
             "distanceKm": 103.16,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-27T17:30:00",
-            "cutoffElapsedMinutes": 1290,
+            "cutoffElapsedMinutes": 5370,
             "aidStation": false,
             "personalAssistanceAllowed": null
           },
@@ -387,52 +446,77 @@
             "distanceKm": 152.82,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-28T07:30:00",
-            "cutoffElapsedMinutes": 2130,
+            "cutoffElapsedMinutes": 6210,
             "aidStation": true,
             "personalAssistanceAllowed": null
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.ultra-marin.fr/grand-relais-175km",
+            "checkedAt": "2026-08-21T12:57:52.691Z",
+            "reason": "Official race page says aid stations are forthcoming."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "extraction_error",
+              "sourceUrl": "https://www.calameo.com/books/008167820d06fe08ac749",
+              "checkedAt": "2026-08-21T12:57:51.414Z",
+              "reason": "The official guide is public through Calameo, but no stable machine-readable tariff source is exposed."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.ultra-marin.fr/grand-relais-175km",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:57.074Z",
+            "retrievedAt": "2026-08-21T12:57:52.691Z",
             "event": "Ultra Marin",
             "race": "Grand Relais"
           },
           {
             "url": "https://www.ultra-marin.fr/commentsinscrire",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:57.074Z",
+            "retrievedAt": "2026-08-21T12:57:52.691Z",
             "event": "Ultra Marin",
             "race": "Grand Relais"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/Relais",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:57.198Z",
+            "retrievedAt": "2026-08-21T12:57:52.905Z",
+            "event": "Ultra Marin",
+            "race": "Grand Relais"
+          },
+          {
+            "url": "https://www.calameo.com/books/008167820d06fe08ac749",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-21T12:57:51.414Z",
             "event": "Ultra Marin",
             "race": "Grand Relais"
           },
           {
             "url": "https://livetrailv3.s3.gra.io.cloud.ovh.net/ultramarin-breizhchrono_2026/tracks/06587248-5118-4af8-8ae0-c84550870134.json",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:59.595Z",
+            "retrievedAt": "2026-08-21T12:57:56.438Z",
             "event": "Ultra Marin",
             "race": "Grand Relais"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/Relais?view=withdrawals",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:59.595Z",
+            "retrievedAt": "2026-08-21T12:57:56.438Z",
             "event": "Ultra Marin",
             "race": "Grand Relais"
           }
@@ -445,17 +529,19 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page states a Grand Relais start-time change to 20:00; the public date field is not explicit.",
           "Official page states the 2026 route was provisional when published.",
           "Official page says aid stations are forthcoming; none were extracted.",
           "Official page does not publish a confirmed 2026 race date in text.",
-          "GPX_ELEVATION_GAIN_MISMATCH: official=1430 computed=1028",
-          "Aid stations not found in official source."
+          "GPX_ELEVATION_GAIN_MISMATCH: official=1430 computed=1028"
         ],
         "missingFields": [
-          "price",
-          "aidStations"
+          "aidStations",
+          "price"
         ]
       }
     },
@@ -485,6 +571,7 @@
         "startLocation": "Saint-Gildas-de-Rhuys",
         "finishLocation": "Vannes",
         "maxDurationMinutes": 1200,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": false,
@@ -498,7 +585,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "livetrail",
-          "retrievedAt": "2026-08-14T13:01:00.310Z",
+          "retrievedAt": "2026-08-21T13:02:23.992Z",
           "localFile": "gpx/2026/ultra-marin/raid.gpx",
           "routeAsset": "generated/routes/ultra-marin-raid-2026.json",
           "sha256": "b6fbae08a07a49dc367f173ce841c4761b304789c09700c7a562442a08a0e7b9",
@@ -513,6 +600,13 @@
             "minElevationM": 0,
             "maxElevationM": 38,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 810,
+            "computedGainM": 724,
+            "deltaM": 86,
+            "deltaPercent": 10.6
           }
         },
         "illustration": {
@@ -521,6 +615,14 @@
           "sourceUrl": "https://www.ultra-marin.fr/raid-ultramarin"
         },
         "terrainDescription": "Présent depuis la première édition de L'Ultra Marin&reg; en 2005, le Raid est la petite sœur du Grand Raid. Au départ de Saint-Gildas-de-Rhuys, les concurrents découvrent la presqu'île de Rhuys côté océan avec ses montées sèches sans jamais quitter la mer de vue. Après 30 kilomètres, les coureurs traverseront l'embouchure du Golfe du Morbihan à bord de semi-rigides, pour une traversée d'une quinzaine de minutes. Sans compter le temps de traversée en bateau, les coureurs devront rallier l'arrivée sur le port de Vannes en un temps maximum de 20 heures.",
+        "description": {
+          "original": "Présent depuis la première édition de L'Ultra Marin&reg; en 2005, le Raid est la petite sœur du Grand Raid. Au départ de Saint-Gildas-de-Rhuys, les concurrents découvrent la presqu'île de Rhuys côté océan avec ses montées sèches sans jamais quitter la mer de vue. Après 30 kilomètres, les coureurs traverseront l'embouchure du Golfe du Morbihan à bord de semi-rigides, pour une traversée d'une quinzaine de minutes. Sans compter le temps de traversée en bateau, les coureurs devront rallier l'arrivée sur le port de Vannes en un temps maximum de 20 heures.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -563,39 +665,64 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.ultra-marin.fr/raid-ultramarin",
+            "checkedAt": "2026-08-21T12:57:53.200Z",
+            "reason": "Official race page says aid stations are forthcoming."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "extraction_error",
+              "sourceUrl": "https://www.calameo.com/books/008167820d06fe08ac749",
+              "checkedAt": "2026-08-21T12:57:51.414Z",
+              "reason": "The official guide is public through Calameo, but no stable machine-readable tariff source is exposed."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.ultra-marin.fr/raid-ultramarin",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:57.274Z",
+            "retrievedAt": "2026-08-21T12:57:53.200Z",
             "event": "Ultra Marin",
             "race": "Raid"
           },
           {
             "url": "https://www.ultra-marin.fr/commentsinscrire",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:57.274Z",
+            "retrievedAt": "2026-08-21T12:57:53.200Z",
             "event": "Ultra Marin",
             "race": "Raid"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/Raid",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:57.517Z",
+            "retrievedAt": "2026-08-21T12:57:53.502Z",
+            "event": "Ultra Marin",
+            "race": "Raid"
+          },
+          {
+            "url": "https://www.calameo.com/books/008167820d06fe08ac749",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-21T12:57:51.414Z",
             "event": "Ultra Marin",
             "race": "Raid"
           },
           {
             "url": "https://livetrailv3.s3.gra.io.cloud.ovh.net/ultramarin-breizhchrono_2026/tracks/22dba836-9ee3-4bf6-b978-67e3f4b2b551.json",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:01:00.310Z",
+            "retrievedAt": "2026-08-21T12:57:57.488Z",
             "event": "Ultra Marin",
             "race": "Raid"
           }
@@ -608,15 +735,17 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page states this 2026 race was cancelled.",
           "Official page states the 2026 route was provisional when published.",
-          "Official page says aid stations are forthcoming; none were extracted.",
-          "Aid stations not found in official source."
+          "Official page says aid stations are forthcoming; none were extracted."
         ],
         "missingFields": [
-          "price",
-          "aidStations"
+          "aidStations",
+          "price"
         ]
       }
     },
@@ -646,6 +775,7 @@
         "startLocation": "Château de Suscinio, Sarzeau",
         "finishLocation": "Vannes",
         "maxDurationMinutes": 840,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
@@ -659,7 +789,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "livetrail",
-          "retrievedAt": "2026-08-14T13:01:00.831Z",
+          "retrievedAt": "2026-08-21T13:02:24.695Z",
           "localFile": "gpx/2026/ultra-marin/reveil-des-ducs.gpx",
           "routeAsset": "generated/routes/ultra-marin-reveil-des-ducs-2026.json",
           "sha256": "4d6ce94daa7e8d9177f1f4991187cd2fbc55372353d72c30a00d21e997a3cfdd",
@@ -674,6 +804,13 @@
             "minElevationM": -1,
             "maxElevationM": 30,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 500,
+            "computedGainM": 285,
+            "deltaM": 215,
+            "deltaPercent": 43
           }
         },
         "illustration": {
@@ -682,6 +819,14 @@
           "sourceUrl": "https://www.ultra-marin.fr/le-r%C3%A9veil-des-ducs-70km"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -700,7 +845,7 @@
             "distanceKm": 29.45,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-28T04:20:00",
-            "cutoffElapsedMinutes": 318,
+            "cutoffElapsedMinutes": 6020,
             "aidStation": true,
             "personalAssistanceAllowed": null
           },
@@ -709,7 +854,7 @@
             "distanceKm": 43.7,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-28T07:20:00",
-            "cutoffElapsedMinutes": 498,
+            "cutoffElapsedMinutes": 6200,
             "aidStation": true,
             "personalAssistanceAllowed": null
           },
@@ -718,52 +863,77 @@
             "distanceKm": 57.75,
             "elevationGainFromStartM": null,
             "cutoffDateTime": "2026-06-28T10:20:00",
-            "cutoffElapsedMinutes": 678,
+            "cutoffElapsedMinutes": 6380,
             "aidStation": true,
             "personalAssistanceAllowed": null
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "extraction_error",
+            "sourceUrl": "https://www.calameo.com/books/008167820d06fe08ac749",
+            "checkedAt": "2026-08-21T12:57:51.414Z",
+            "reason": "The official Calameo guide has no stable public PDF/text download that the scraper can parse reliably."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "extraction_error",
+              "sourceUrl": "https://www.calameo.com/books/008167820d06fe08ac749",
+              "checkedAt": "2026-08-21T12:57:51.414Z",
+              "reason": "The official guide is public through Calameo, but no stable machine-readable tariff source is exposed."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.ultra-marin.fr/le-r%C3%A9veil-des-ducs-70km",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:57.611Z",
+            "retrievedAt": "2026-08-21T12:57:53.590Z",
             "event": "Ultra Marin",
             "race": "Réveil des Ducs"
           },
           {
             "url": "https://www.ultra-marin.fr/commentsinscrire",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:57.611Z",
+            "retrievedAt": "2026-08-21T12:57:53.590Z",
             "event": "Ultra Marin",
             "race": "Réveil des Ducs"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/Ducs",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:57.735Z",
+            "retrievedAt": "2026-08-21T12:57:53.850Z",
+            "event": "Ultra Marin",
+            "race": "Réveil des Ducs"
+          },
+          {
+            "url": "https://www.calameo.com/books/008167820d06fe08ac749",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-21T12:57:51.414Z",
             "event": "Ultra Marin",
             "race": "Réveil des Ducs"
           },
           {
             "url": "https://livetrailv3.s3.gra.io.cloud.ovh.net/ultramarin-breizhchrono_2026/tracks/67155376-2f68-4ce8-ad73-0008d09496e0.json",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:01:00.831Z",
+            "retrievedAt": "2026-08-21T12:57:58.362Z",
             "event": "Ultra Marin",
             "race": "Réveil des Ducs"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/Ducs?view=withdrawals",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:00.831Z",
+            "retrievedAt": "2026-08-21T12:57:58.362Z",
             "event": "Ultra Marin",
             "race": "Réveil des Ducs"
           }
@@ -776,13 +946,15 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
-          "Official page states the 2026 route was provisional when published.",
-          "Aid stations not found in official source."
+          "Official page states the 2026 route was provisional when published."
         ],
         "missingFields": [
-          "price",
-          "aidStations"
+          "aidStations",
+          "price"
         ]
       }
     },
@@ -812,6 +984,7 @@
         "startLocation": "Auray",
         "finishLocation": "Vannes",
         "maxDurationMinutes": 720,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": false,
@@ -825,7 +998,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "livetrail",
-          "retrievedAt": "2026-08-14T13:01:01.269Z",
+          "retrievedAt": "2026-08-21T13:02:25.210Z",
           "localFile": "gpx/2026/ultra-marin/l-arvor.gpx",
           "routeAsset": "generated/routes/ultra-marin-l-arvor-2026.json",
           "sha256": "093e443027c5450a554dc6607a4d83b9df1b7da1d14043104c477668c8903570",
@@ -840,6 +1013,13 @@
             "minElevationM": 0,
             "maxElevationM": 34,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 500,
+            "computedGainM": 442,
+            "deltaM": 58,
+            "deltaPercent": 11.6
           }
         },
         "illustration": {
@@ -848,6 +1028,14 @@
           "sourceUrl": "https://www.ultra-marin.fr/trail-ultramarin"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -881,39 +1069,64 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.ultra-marin.fr/trail-ultramarin",
+            "checkedAt": "2026-08-21T12:57:53.963Z",
+            "reason": "Official race page says aid stations are forthcoming."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "extraction_error",
+              "sourceUrl": "https://www.calameo.com/books/008167820d06fe08ac749",
+              "checkedAt": "2026-08-21T12:57:51.414Z",
+              "reason": "The official guide is public through Calameo, but no stable machine-readable tariff source is exposed."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.ultra-marin.fr/trail-ultramarin",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:57.807Z",
+            "retrievedAt": "2026-08-21T12:57:53.963Z",
             "event": "Ultra Marin",
             "race": "L'Arvor"
           },
           {
             "url": "https://www.ultra-marin.fr/commentsinscrire",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:57.807Z",
+            "retrievedAt": "2026-08-21T12:57:53.963Z",
             "event": "Ultra Marin",
             "race": "L'Arvor"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/Arvor",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:57.974Z",
+            "retrievedAt": "2026-08-21T12:57:54.237Z",
+            "event": "Ultra Marin",
+            "race": "L'Arvor"
+          },
+          {
+            "url": "https://www.calameo.com/books/008167820d06fe08ac749",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-21T12:57:51.414Z",
             "event": "Ultra Marin",
             "race": "L'Arvor"
           },
           {
             "url": "https://livetrailv3.s3.gra.io.cloud.ovh.net/ultramarin-breizhchrono_2026/tracks/5df592e5-d5bb-4c77-8152-bba32a25c6cf.json",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:01:01.269Z",
+            "retrievedAt": "2026-08-21T12:57:59.353Z",
             "event": "Ultra Marin",
             "race": "L'Arvor"
           }
@@ -926,14 +1139,16 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page states the 2026 route was provisional when published.",
-          "Official page says aid stations are forthcoming; none were extracted.",
-          "Aid stations not found in official source."
+          "Official page says aid stations are forthcoming; none were extracted."
         ],
         "missingFields": [
-          "price",
-          "aidStations"
+          "aidStations",
+          "price"
         ]
       }
     },
@@ -963,6 +1178,7 @@
         "startLocation": "Baden",
         "finishLocation": "Vannes",
         "maxDurationMinutes": 360,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": false,
@@ -976,7 +1192,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "livetrail",
-          "retrievedAt": "2026-08-14T13:01:01.621Z",
+          "retrievedAt": "2026-08-21T13:02:25.677Z",
           "localFile": "gpx/2026/ultra-marin/ronde-des-douaniers.gpx",
           "routeAsset": "generated/routes/ultra-marin-ronde-des-douaniers-2026.json",
           "sha256": "871612a577aecd3e8ae362a661514f533e7952d1323ff35e1db1a286525a497a",
@@ -991,6 +1207,13 @@
             "minElevationM": 0,
             "maxElevationM": 26,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 150,
+            "computedGainM": 212,
+            "deltaM": 62,
+            "deltaPercent": 41.3
           }
         },
         "illustration": {
@@ -999,6 +1222,14 @@
           "sourceUrl": "https://www.ultra-marin.fr/rondedesdouaniers-ultramarin"
         },
         "terrainDescription": "INSCRIPTION PARCOURS TABLEAU DE BORD GUIDE COUREUR RDD 2026 PRéSENTATION Avec 34 kilomètres, la Ronde des Douaniers est la course la plus rapide de L'Ultra Marin&reg;, idéale pour découvrir l'événement sur un format plus accessible, sans renoncer à l'intensité. Le départ est donné depuis Baden.",
+        "description": {
+          "original": "INSCRIPTION PARCOURS TABLEAU DE BORD GUIDE COUREUR RDD 2026 PRéSENTATION Avec 34 kilomètres, la Ronde des Douaniers est la course la plus rapide de L'Ultra Marin&reg;, idéale pour découvrir l'événement sur un format plus accessible, sans renoncer à l'intensité. Le départ est donné depuis Baden.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1023,46 +1254,71 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.ultra-marin.fr/rondedesdouaniers-ultramarin",
+            "checkedAt": "2026-08-21T12:57:54.324Z",
+            "reason": "Official race page says aid stations are forthcoming."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "extraction_error",
+              "sourceUrl": "https://www.calameo.com/books/008167820d06fe08ac749",
+              "checkedAt": "2026-08-21T12:57:51.414Z",
+              "reason": "The official guide is public through Calameo, but no stable machine-readable tariff source is exposed."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.ultra-marin.fr/rondedesdouaniers-ultramarin",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:58.065Z",
+            "retrievedAt": "2026-08-21T12:57:54.324Z",
             "event": "Ultra Marin",
             "race": "Ronde des Douaniers"
           },
           {
             "url": "https://www.ultra-marin.fr/commentsinscrire",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:58.065Z",
+            "retrievedAt": "2026-08-21T12:57:54.324Z",
             "event": "Ultra Marin",
             "race": "Ronde des Douaniers"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/RondeDD",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:58.214Z",
+            "retrievedAt": "2026-08-21T12:57:54.499Z",
+            "event": "Ultra Marin",
+            "race": "Ronde des Douaniers"
+          },
+          {
+            "url": "https://www.calameo.com/books/008167820d06fe08ac749",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-21T12:57:51.414Z",
             "event": "Ultra Marin",
             "race": "Ronde des Douaniers"
           },
           {
             "url": "https://livetrailv3.s3.gra.io.cloud.ovh.net/ultramarin-breizhchrono_2026/tracks/35f7ea57-e181-4311-ba21-ca605afd99b9.json",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:01:01.621Z",
+            "retrievedAt": "2026-08-21T12:57:59.942Z",
             "event": "Ultra Marin",
             "race": "Ronde des Douaniers"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/RondeDD?view=withdrawals",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:01.621Z",
+            "retrievedAt": "2026-08-21T12:57:59.942Z",
             "event": "Ultra Marin",
             "race": "Ronde des Douaniers"
           }
@@ -1075,14 +1331,16 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page states the 2026 route was provisional when published.",
-          "Official page says aid stations are forthcoming; none were extracted.",
-          "Aid stations not found in official source."
+          "Official page says aid stations are forthcoming; none were extracted."
         ],
         "missingFields": [
-          "price",
-          "aidStations"
+          "aidStations",
+          "price"
         ]
       }
     },
@@ -1112,6 +1370,7 @@
         "startLocation": "Vannes",
         "finishLocation": "Vannes",
         "maxDurationMinutes": 120,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": false,
@@ -1125,7 +1384,7 @@
           "downloadParams": null,
           "sourceType": "official-map-platform",
           "sourcePlatform": "livetrail",
-          "retrievedAt": "2026-08-14T13:01:01.960Z",
+          "retrievedAt": "2026-08-21T13:02:26.004Z",
           "localFile": "gpx/2026/ultra-marin/course-des-marins.gpx",
           "routeAsset": "generated/routes/ultra-marin-course-des-marins-2026.json",
           "sha256": "5c2dcb8da85c651e66e248215c33464e0057beab191a16cfed3706ba3a6833e9",
@@ -1140,6 +1399,13 @@
             "minElevationM": 1,
             "maxElevationM": 12,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "unverified",
+            "officialGainM": null,
+            "computedGainM": 35,
+            "deltaM": null,
+            "deltaPercent": null
           }
         },
         "illustration": {
@@ -1148,6 +1414,14 @@
           "sourceUrl": "https://www.ultra-marin.fr/coursesdesmarins-12k"
         },
         "terrainDescription": "La Grande nouveauté de cette année elle est enfin là ! Place à un tout nouveau format accessible à tous, le 12 KM ! (de 16 ans à + le participant doit être né avant le 28 juin 2010) Pensé pour offrir une expérience sportive ouverte, conviviale et motivante, ce",
+        "description": {
+          "original": "La Grande nouveauté de cette année elle est enfin là ! Place à un tout nouveau format accessible à tous, le 12 KM ! (de 16 ans à + le participant doit être né avant le 28 juin 2010) Pensé pour offrir une expérience sportive ouverte, conviviale et motivante, ce",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1172,46 +1446,71 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "aidStations": {
+            "status": "extraction_error",
+            "sourceUrl": "https://www.calameo.com/books/008167820d06fe08ac749",
+            "checkedAt": "2026-08-21T12:57:51.414Z",
+            "reason": "The official Calameo guide has no stable public PDF/text download that the scraper can parse reliably."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "extraction_error",
+              "sourceUrl": "https://www.calameo.com/books/008167820d06fe08ac749",
+              "checkedAt": "2026-08-21T12:57:51.414Z",
+              "reason": "The official guide is public through Calameo, but no stable machine-readable tariff source is exposed."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.ultra-marin.fr/coursesdesmarins-12k",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:58.281Z",
+            "retrievedAt": "2026-08-21T12:57:54.610Z",
             "event": "Ultra Marin",
             "race": "Course des Marins"
           },
           {
             "url": "https://www.ultra-marin.fr/commentsinscrire",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:58.281Z",
+            "retrievedAt": "2026-08-21T12:57:54.610Z",
             "event": "Ultra Marin",
             "race": "Course des Marins"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/Marins",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:00:58.593Z",
+            "retrievedAt": "2026-08-21T12:57:54.805Z",
+            "event": "Ultra Marin",
+            "race": "Course des Marins"
+          },
+          {
+            "url": "https://www.calameo.com/books/008167820d06fe08ac749",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-21T12:57:51.414Z",
             "event": "Ultra Marin",
             "race": "Course des Marins"
           },
           {
             "url": "https://livetrailv3.s3.gra.io.cloud.ovh.net/ultramarin-breizhchrono_2026/tracks/42849ad6-94f1-4fab-b583-37242d5669b8.json",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:01:01.960Z",
+            "retrievedAt": "2026-08-21T12:58:00.337Z",
             "event": "Ultra Marin",
             "race": "Course des Marins"
           },
           {
             "url": "https://ultramarin-breizhchrono.v3.livetrail.net/fr/2026/races/Marins?view=withdrawals",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:01.960Z",
+            "retrievedAt": "2026-08-21T12:58:00.337Z",
             "event": "Ultra Marin",
             "race": "Course des Marins"
           }
@@ -1224,15 +1523,17 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page states the 2026 route was provisional when published.",
-          "Official LiveTrail page was found but no cutoff checkpoint was extracted.",
-          "Aid stations not found in official source."
+          "Official LiveTrail page was found but no cutoff checkpoint was extracted."
         ],
         "missingFields": [
           "elevationGain",
-          "price",
-          "aidStations"
+          "aidStations",
+          "price"
         ]
       }
     }

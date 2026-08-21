@@ -1,6 +1,7 @@
 import { fetchText } from "../../common/fetch.mjs";
 import {
   createEdition,
+  createDataAvailability,
   createEvent,
   createIllustration,
   createRace,
@@ -71,7 +72,7 @@ function buildRace(event, raceConfig, page, year) {
   const startTime = parseTime(timeText);
   const distanceKm = numberFrom(rawDistance ?? raceConfig.slug);
   const elevationText = text.match(/D[Ã©e]nivel[Ã©e]\s+([0-9][0-9\s,.]*\s*m|A venir|Ã€ venir)/i)?.[1] ?? null;
-  const ravitoComing = /Ravitos\s+(a venir|Ã  venir)/i.test(text);
+  const ravitoComing = /Ravitos?[\s\S]{0,80}?(?:a venir|Ã  venir)/i.test(text);
   const barrierComing = /Barri[Ã¨e]res horaires\s+(a venir|Ã  venir)/i.test(text);
   const checkpoints = parseSaintelyonCheckpoints(text, { date, startTime, distanceKm });
   const maxDurationMinutes =
@@ -114,6 +115,36 @@ function buildRace(event, raceConfig, page, year) {
         maxLat: 45.9,
         minLon: 4.0,
         maxLon: 5.1,
+      },
+    },
+    dataAvailability: {
+      ...(!elevationText || /venir/i.test(elevationText) ? {
+        elevationGainM: createDataAvailability("not_published", {
+          sourceUrl: page.finalUrl ?? page.url,
+          checkedAt: page.retrievedAt,
+          reason: "Official race page marks elevation gain as coming soon.",
+        }),
+      } : {}),
+      aidStations: createDataAvailability("not_published", {
+        sourceUrl: page.finalUrl ?? page.url,
+        checkedAt: page.retrievedAt,
+        reason: ravitoComing
+          ? "Official race page marks aid stations as coming soon."
+          : "Official 2026 race page does not publish usable aid-station details yet.",
+      }),
+      ...(/Trace GPX\s*\(?(?:a venir|à venir)/i.test(text) ? {
+        gpx: createDataAvailability("not_published", {
+          sourceUrl: page.finalUrl ?? page.url,
+          checkedAt: page.retrievedAt,
+          reason: "Official race page marks the GPX as coming soon.",
+        }),
+      } : {}),
+      registration: {
+        priceEur: createDataAvailability("not_published", {
+          sourceUrl: page.finalUrl ?? page.url,
+          checkedAt: page.retrievedAt,
+          reason: "Official public race page does not publish the 2026 price and no previous-edition price is reused.",
+        }),
       },
     },
     sources: [

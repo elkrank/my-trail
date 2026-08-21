@@ -21,6 +21,7 @@ import {
   parseUtmbIndexRacePage,
   TRAIL_ALSACE_RACES,
 } from "../../scrapers/events/trail-alsace/index.mjs";
+import { extractCalameoBookUrl } from "../../scrapers/events/ultra-marin/index.mjs";
 import {
   buildUltraMarinEntry,
   parseUltraMarinRacePage,
@@ -54,6 +55,12 @@ test("Ultra Marin parses distance, D+, date, time, max duration and relay type",
   assert.equal(relay.edition.startTime, "20:00");
   assert.equal(relay.edition.date, null);
   assert.equal(relay.edition.gpx, null);
+});
+
+test("Ultra Marin accepts only the public Calameo book URL exposed by the official guide page", () => {
+  const url = extractCalameoBookUrl('<a href="https://www.calameo.com/read/008167820d06fe08ac749">Guide coureur</a>');
+  assert.equal(url, "https://www.calameo.com/books/008167820d06fe08ac749");
+  assert.equal(extractCalameoBookUrl('<img src="https://i.calameoassets.com/ephemeral/page-1.jpg">'), null);
 });
 
 test("Marathon du Mont-Blanc parses the six adult formats and rejects youth-only configs", async () => {

@@ -11,6 +11,7 @@
     "report:difficulty": "node scripts/difficulty-v1-report.mjs",
     "report:course-pages": "node scripts/audit-course-pages.mjs",
     "report:assets": "node scripts/audit-data-assets.mjs",
+    "report:quality": "node scripts/data-quality-report.mjs --write",
     "clean:assets": "node scripts/audit-data-assets.mjs --delete"
   },
   "dependencies": {

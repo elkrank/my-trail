@@ -52,6 +52,12 @@ export async function collectGpxForEntry(entry, {
 } = {}) {
   const warnings = (entry.quality?.warnings ?? []).filter((warning) => !isGpxWarning(warning));
 
+  if (["not_published", "not_applicable", "known_none"].includes(entry.edition?.dataAvailability?.gpx?.status)) {
+    entry.edition.gpx = null;
+    entry.quality = { ...(entry.quality ?? {}), warnings };
+    return entry;
+  }
+
   if (
     entry.edition?.gpx?.status === "multi-stage" ||
     asArray(entry.edition?.rawOfficial?.stageTraceUrls).length > 0
@@ -813,14 +819,29 @@ export async function downloadGpx(url, { fetchImpl = globalThis.fetch, request =
   const stravaEmbedGpx = convertStravaRouteEmbedToGpx(downloadedBuffer);
   const traceDeTrailGpx = stravaEmbedGpx ? null : convertTraceDeTrailPageToGpx(downloadedBuffer);
   const liveTrailGpx = stravaEmbedGpx || traceDeTrailGpx ? null : convertLiveTrailTrackJsonToGpx(downloadedBuffer);
-  const gpxBuffer = stravaEmbedGpx ??
+  const rawGpxBuffer = stravaEmbedGpx ??
     traceDeTrailGpx ??
     liveTrailGpx ??
     (isKmlBuffer(downloadedBuffer)
     ? convertKmlToGpx(downloadedBuffer)
     : downloadedBuffer);
+  const gpxBuffer = normalizeVolatileGpxMetadata(rawGpxBuffer, {
+    stripTimes: /tracedetrail/i.test(`${url} ${finalUrl}`),
+  });
 
   return { finalUrl, gpxBuffer };
+}
+
+export function normalizeVolatileGpxMetadata(buffer, { stripTimes = false } = {}) {
+  const text = stripBom(buffer.toString("utf8"));
+  if (!/<gpx\b/i.test(text)) return buffer;
+  const times = [...text.matchAll(/<time\b[^>]*>([^<]+)<\/time>/gi)].map((match) => match[1].trim());
+  if (!stripTimes && (times.length < 2 || new Set(times).size !== 1)) return buffer;
+  if (times.length === 0) return buffer;
+
+  // Trace de Trail exports route-relative timestamps anchored to the download
+  // instant. They have no sporting meaning and change on every scrape.
+  return Buffer.from(text.replace(/\s*<time\b[^>]*>[^<]+<\/time>/gi, ""), "utf8");
 }
 
 export function analyzeGpxBuffer(buffer) {

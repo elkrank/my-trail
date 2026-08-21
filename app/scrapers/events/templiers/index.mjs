@@ -6,6 +6,7 @@ import {
 } from "../../common/cutoffs.mjs";
 import {
   createEdition,
+  createDataAvailability,
   createEvent,
   createIllustration,
   createRace,
@@ -140,6 +141,30 @@ function buildRace(event, raceConfig, page, info, cutoffPdfs, year) {
     checkpoints: parsedCutoffs.checkpoints,
     maxDurationMinutes: parsedCutoffs.maxDurationMinutes,
     terrainDescription: firstParagraph(text),
+    dataAvailability: hasNoCutoff ? {
+      maxDurationMinutes: createDataAvailability("not_applicable", {
+        sourceUrl: page.finalUrl ?? page.url,
+        checkedAt: page.retrievedAt,
+        reason: "Official race page states that there is no eliminating time.",
+      }),
+      checkpoints: createDataAvailability("not_applicable", {
+        sourceUrl: page.finalUrl ?? page.url,
+        checkedAt: page.retrievedAt,
+        reason: "Official race page states that there are no eliminating time barriers.",
+      }),
+      aidStations: createDataAvailability("unknown", {
+        sourceUrl: page.finalUrl ?? page.url,
+        checkedAt: page.retrievedAt,
+        reason: "Official race page does not provide reliable on-course aid-station details.",
+      }),
+      registration: {
+        priceEur: createDataAvailability("unknown", {
+          sourceUrl: page.finalUrl ?? page.url,
+          checkedAt: page.retrievedAt,
+          reason: "Official public race page does not publish an exploitable 2026 price.",
+        }),
+      },
+    } : {},
     sources,
   });
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T13:01:22.546Z",
+  "generatedAt": "2026-08-21T13:06:15.525Z",
   "year": 2026,
   "event": {
     "id": "maxi-race",
@@ -14,8 +14,8 @@
   "sourceErrors": [
     {
       "url": "https://www.maxi-race.org/wp-content/uploads/2026/04/MXR-2026-tableau-de-course-marathon-eXperience.pdf",
-      "message": "HTTP 404 for https://www.maxi-race.org/wp-content/uploads/2026/04/MXR-2026-tableau-de-course-marathon-eXperience.pdf",
-      "status": 404
+      "message": "HTTP 500 for https://www.maxi-race.org/wp-content/uploads/2026/04/MXR-2026-tableau-de-course-marathon-eXperience.pdf",
+      "status": 500
     }
   ],
   "races": [
@@ -44,7 +44,8 @@
         "elevationLossM": 5444,
         "startLocation": null,
         "finishLocation": null,
-        "maxDurationMinutes": 1615,
+        "maxDurationMinutes": null,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
@@ -69,7 +70,7 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-14T13:01:16.348Z",
+          "retrievedAt": "2026-08-21T13:02:34.535Z",
           "localFile": "gpx/2026/maxi-race/tour-solo.gpx",
           "routeAsset": "generated/routes/maxi-race-tour-solo-2026.json",
           "sha256": "e720c1421de1021b7960c13bcf24c3742fa8023316a57859fc82ab9cc07ac48e",
@@ -84,6 +85,13 @@
             "minElevationM": 446,
             "maxElevationM": 1847,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "inconsistent",
+            "officialGainM": 5446,
+            "computedGainM": 6902,
+            "deltaM": 1456,
+            "deltaPercent": 26.7
           }
         },
         "illustration": {
@@ -92,6 +100,14 @@
           "sourceUrl": "https://www.maxi-race.org/tour-du-lac-solo/"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -100,111 +116,11 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://www.maxi-race.org/inscriptions/",
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [
-          {
-            "name": "Forêt",
-            "distanceKm": 7.4,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T04:40:00",
-            "cutoffElapsedMinutes": 195,
-            "aidStation": false,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Passage de relais",
-            "distanceKm": 14.5,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T05:55:00",
-            "cutoffElapsedMinutes": 270,
-            "aidStation": false,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Ravitaillement light (tOur en solo)",
-            "distanceKm": 17.3,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T06:30:00",
-            "cutoffElapsedMinutes": 305,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Ravitaillement light (toutes courses)",
-            "distanceKm": 28.1,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T09:50:00",
-            "cutoffElapsedMinutes": 505,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Point d’eau",
-            "distanceKm": 36.9,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T12:30:00",
-            "cutoffElapsedMinutes": 665,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Base vie Doussard Passage de relais",
-            "distanceKm": 46.6,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T14:20:00",
-            "cutoffElapsedMinutes": 775,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Ravitaillement light (toutes courses)",
-            "distanceKm": 66.9,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T19:35:00",
-            "cutoffElapsedMinutes": 1090,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Forêt",
-            "distanceKm": 79,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T23:05:00",
-            "cutoffElapsedMinutes": 1300,
-            "aidStation": false,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Base vie Semnoz Passage de relais",
-            "distanceKm": 85.5,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-31T00:45:00",
-            "cutoffElapsedMinutes": 1400,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Forêt",
-            "distanceKm": 94.4,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-31T02:40:00",
-            "cutoffElapsedMinutes": 1515,
-            "aidStation": false,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Arrivée –Parking des Marquisats",
-            "distanceKm": 100,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-31T04:20:00",
-            "cutoffElapsedMinutes": 1615,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          }
-        ],
+        "checkpoints": [],
         "aidStations": [
           {
             "name": "Alex Light Aid",
@@ -337,6 +253,7 @@
             "cutoffDateTime": null
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [
           "minimum 1.5 L water reserve for hot-weather plan",
           "headwear recommended by hot-weather plan"
@@ -344,49 +261,51 @@
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": true,
-          "minimumWaterLiters": 1.5
+          "minimumWaterLiters": 1.5,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.maxi-race.org/tour-du-lac-solo/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:01:10.536Z",
+            "retrievedAt": "2026-08-21T12:58:07.603Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur solo"
           },
           {
             "url": "https://tracedetrail.fr/fr/event/adidas-terrex-maxi-race-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur solo"
           },
           {
             "url": "https://www.maxi-race.org/plan-canicule-2026/",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:01:09.870Z",
+            "retrievedAt": "2026-08-21T12:58:07.430Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur solo"
           },
           {
             "url": "https://www.maxi-race.org/wp-content/uploads/2026/02/MXR-2026-tableau-de-course-tOur-du-lac.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:01:10.645Z",
+            "retrievedAt": "2026-08-21T12:58:07.673Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur solo"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/337955",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur solo"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/337955",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:01:16.348Z",
+            "retrievedAt": "2026-08-21T12:58:15.659Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur solo"
           }
@@ -409,12 +328,18 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official race page exposes a distance range (100 à 105 km*); no exact value was inferred from it.",
+          "Official Maxi-Race cutoff PDF was found but no usable checkpoint was extracted.",
           "GPX_ELEVATION_GAIN_MISMATCH: official=5446 computed=6902"
         ],
         "missingFields": [
-          "price"
+          "checkpoints",
+          "price",
+          "maxDuration"
         ]
       }
     },
@@ -444,6 +369,7 @@
         "startLocation": null,
         "finishLocation": null,
         "maxDurationMinutes": 1085,
+        "finishCutoffTime": null,
         "raceType": "stage race",
         "terrainType": "trail",
         "nightStart": true,
@@ -460,7 +386,7 @@
           ],
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-14T13:01:16.711Z"
+          "retrievedAt": "2026-08-21T13:02:34.899Z"
         },
         "illustration": {
           "url": "https://www.maxi-race.org/wp-content/uploads/2025/09/Picto-tOur-2j.png",
@@ -468,6 +394,14 @@
           "sourceUrl": "https://www.maxi-race.org/tour-du-lac-solo-en-2jours/"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -476,7 +410,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://www.maxi-race.org/inscriptions/",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -555,53 +489,56 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {},
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": true,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.maxi-race.org/tour-du-lac-solo-en-2jours/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:01:10.799Z",
+            "retrievedAt": "2026-08-21T12:58:07.850Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur 2 jours"
           },
           {
             "url": "https://tracedetrail.fr/fr/event/adidas-terrex-maxi-race-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur 2 jours"
           },
           {
             "url": "https://www.maxi-race.org/plan-canicule-2026/",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:01:09.870Z",
+            "retrievedAt": "2026-08-21T12:58:07.430Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur 2 jours"
           },
           {
             "url": "https://www.maxi-race.org/wp-content/uploads/2026/02/MXR-2026-tableau-de-course-tOur-du-lac-en-2-jours-1.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:01:10.905Z",
+            "retrievedAt": "2026-08-21T12:58:07.969Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur 2 jours"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/337955",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur 2 jours"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/317545",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur 2 jours"
           }
@@ -630,21 +567,23 @@
         "kmEffort": null
       },
       "quality": {
-        "status": "invalid",
+        "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official 2026 aggregate distance/elevation for the two-day race was not confirmed in a public 2026 source; value kept null.",
           "Current model stores one route per race; official stage traces are kept as raw metadata and not downloaded as a misleading single GPX.",
           "Official race page exposes a distance range (104 à 108 km); no exact value was inferred from it.",
           "Official race page date appears to be 2027-05-30; it was not used for the 2026 edition.",
-          "GPX_INVALID: GPX distance does not match official distance range (official=104-108 computed=155.81)",
-          "Aid stations not found in official source."
+          "GPX_INVALID: GPX distance does not match official distance range (official=104-108 computed=155.81)"
         ],
         "missingFields": [
           "distance",
           "elevationGain",
-          "price",
+          "aidStations",
           "gpx",
-          "aidStations"
+          "price"
         ]
       }
     },
@@ -673,7 +612,8 @@
         "elevationLossM": 5444,
         "startLocation": null,
         "finishLocation": null,
-        "maxDurationMinutes": 1576,
+        "maxDurationMinutes": null,
+        "finishCutoffTime": null,
         "raceType": "relay",
         "terrainType": "trail",
         "nightStart": true,
@@ -698,7 +638,7 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-14T13:01:17.742Z",
+          "retrievedAt": "2026-08-21T13:02:35.811Z",
           "localFile": "gpx/2026/maxi-race/tour-relais.gpx",
           "routeAsset": "generated/routes/maxi-race-tour-relais-2026.json",
           "sha256": "e720c1421de1021b7960c13bcf24c3742fa8023316a57859fc82ab9cc07ac48e",
@@ -713,6 +653,13 @@
             "minElevationM": 446,
             "maxElevationM": 1847,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "inconsistent",
+            "officialGainM": 5446,
+            "computedGainM": 6902,
+            "deltaM": 1456,
+            "deltaPercent": 26.7
           }
         },
         "illustration": {
@@ -721,6 +668,14 @@
           "sourceUrl": "https://www.maxi-race.org/tour-du-lac-en-relais/"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -729,111 +684,11 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://www.maxi-race.org/inscriptions/",
           "maxParticipants": null,
           "qualificationRequired": null
         },
-        "checkpoints": [
-          {
-            "name": "Forêt",
-            "distanceKm": 7.4,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T04:40:00",
-            "cutoffElapsedMinutes": 156,
-            "aidStation": false,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Passage de relais",
-            "distanceKm": 14.5,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T05:55:00",
-            "cutoffElapsedMinutes": 231,
-            "aidStation": false,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Ravitaillement light (tOur en solo)",
-            "distanceKm": 17.3,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T06:30:00",
-            "cutoffElapsedMinutes": 266,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Ravitaillement light (toutes courses)",
-            "distanceKm": 28.1,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T09:50:00",
-            "cutoffElapsedMinutes": 466,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Point d’eau",
-            "distanceKm": 36.9,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T12:30:00",
-            "cutoffElapsedMinutes": 626,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Base vie Doussard Passage de relais",
-            "distanceKm": 46.6,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T14:20:00",
-            "cutoffElapsedMinutes": 736,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Ravitaillement light (toutes courses)",
-            "distanceKm": 66.9,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T19:35:00",
-            "cutoffElapsedMinutes": 1051,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Forêt",
-            "distanceKm": 79,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-30T23:05:00",
-            "cutoffElapsedMinutes": 1261,
-            "aidStation": false,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Base vie Semnoz Passage de relais",
-            "distanceKm": 85.5,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-31T00:45:00",
-            "cutoffElapsedMinutes": 1361,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Forêt",
-            "distanceKm": 94.4,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-31T02:40:00",
-            "cutoffElapsedMinutes": 1476,
-            "aidStation": false,
-            "personalAssistanceAllowed": null
-          },
-          {
-            "name": "Arrivée –Parking des Marquisats",
-            "distanceKm": 100,
-            "elevationGainFromStartM": null,
-            "cutoffDateTime": "2026-05-31T04:20:00",
-            "cutoffElapsedMinutes": 1576,
-            "aidStation": true,
-            "personalAssistanceAllowed": null
-          }
-        ],
+        "checkpoints": [],
         "aidStations": [
           {
             "name": "Alex Light Aid",
@@ -966,6 +821,7 @@
             "cutoffDateTime": null
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [
           "minimum 1.5 L water reserve for hot-weather plan",
           "headwear recommended by hot-weather plan"
@@ -973,49 +829,51 @@
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": 1.5
+          "minimumWaterLiters": 1.5,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.maxi-race.org/tour-du-lac-en-relais/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:01:11.004Z",
+            "retrievedAt": "2026-08-21T12:58:08.126Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur relais"
           },
           {
             "url": "https://tracedetrail.fr/fr/event/adidas-terrex-maxi-race-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur relais"
           },
           {
             "url": "https://www.maxi-race.org/plan-canicule-2026/",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:01:09.870Z",
+            "retrievedAt": "2026-08-21T12:58:07.430Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur relais"
           },
           {
             "url": "https://www.maxi-race.org/wp-content/uploads/2026/02/MXR-2026-tableau-de-course-tOur-du-lac.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:01:11.086Z",
+            "retrievedAt": "2026-08-21T12:58:08.179Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur relais"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/337955",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur relais"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/337955",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:01:17.742Z",
+            "retrievedAt": "2026-08-21T12:58:17.020Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "tOur relais"
           }
@@ -1038,12 +896,18 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official race page exposes a distance range (100 à 105 km* : 46 + 39 + 15km); no exact value was inferred from it.",
+          "Official Maxi-Race cutoff PDF was found but no usable checkpoint was extracted.",
           "GPX_ELEVATION_GAIN_MISMATCH: official=5446 computed=6902"
         ],
         "missingFields": [
-          "price"
+          "checkpoints",
+          "price",
+          "maxDuration"
         ]
       }
     },
@@ -1073,6 +937,7 @@
         "startLocation": null,
         "finishLocation": null,
         "maxDurationMinutes": 1170,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": null,
@@ -1097,7 +962,7 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-14T13:01:18.361Z",
+          "retrievedAt": "2026-08-21T13:02:36.181Z",
           "localFile": "gpx/2026/maxi-race/demi-tour.gpx",
           "routeAsset": "generated/routes/maxi-race-demi-tour-2026.json",
           "sha256": "b47c7d2a7439fe4b6710a41937bf3dca8078e05b63fea2b1f83d143c62422ec2",
@@ -1112,6 +977,13 @@
             "minElevationM": 448,
             "maxElevationM": 1651,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 3344,
+            "computedGainM": 3827,
+            "deltaM": 483,
+            "deltaPercent": 14.4
           }
         },
         "illustration": {
@@ -1120,6 +992,14 @@
           "sourceUrl": "https://www.maxi-race.org/demi-tour/"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1128,7 +1008,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://www.maxi-race.org/inscriptions/",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -1286,6 +1166,7 @@
             "cutoffDateTime": null
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [
           "minimum 1.5 L water reserve for hot-weather plan",
           "headwear recommended by hot-weather plan"
@@ -1293,49 +1174,51 @@
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": 1.5
+          "minimumWaterLiters": 1.5,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.maxi-race.org/demi-tour/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:01:11.193Z",
+            "retrievedAt": "2026-08-21T12:58:08.304Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Demi-tOur"
           },
           {
             "url": "https://tracedetrail.fr/fr/event/adidas-terrex-maxi-race-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Demi-tOur"
           },
           {
             "url": "https://www.maxi-race.org/plan-canicule-2026/",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:01:09.870Z",
+            "retrievedAt": "2026-08-21T12:58:07.430Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Demi-tOur"
           },
           {
             "url": "https://www.maxi-race.org/wp-content/uploads/2026/02/MXR-2026-tableau-de-course-demi-tOur-du-lac.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:01:11.308Z",
+            "retrievedAt": "2026-08-21T12:58:08.366Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Demi-tOur"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/317545",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Demi-tOur"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/317545",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:01:18.361Z",
+            "retrievedAt": "2026-08-21T12:58:17.564Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Demi-tOur"
           }
@@ -1358,6 +1241,9 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official race page exposes a distance range (55 à 60 km*); no exact value was inferred from it."
         ],
@@ -1384,7 +1270,7 @@
       },
       "edition": {
         "year": 2026,
-        "date": "2026-05-30",
+        "date": "2026-05-31",
         "startTime": "06:00",
         "distanceKm": 39.88,
         "elevationGainM": 1713,
@@ -1392,6 +1278,7 @@
         "startLocation": null,
         "finishLocation": null,
         "maxDurationMinutes": null,
+        "finishCutoffTime": "14:50",
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": false,
@@ -1416,7 +1303,7 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-14T13:01:18.975Z",
+          "retrievedAt": "2026-08-21T13:02:36.749Z",
           "localFile": "gpx/2026/maxi-race/marathon-experience.gpx",
           "routeAsset": "generated/routes/maxi-race-marathon-experience-2026.json",
           "sha256": "aeb0f18069427ef661fc940fac321cb5c48fbf676892ab23b8266d111d21c206",
@@ -1431,6 +1318,13 @@
             "minElevationM": 442,
             "maxElevationM": 1692,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 1713,
+            "computedGainM": 1972,
+            "deltaM": 259,
+            "deltaPercent": 15.1
           }
         },
         "illustration": {
@@ -1439,6 +1333,14 @@
           "sourceUrl": "https://www.maxi-race.org/marathon-experience/"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1447,7 +1349,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://www.maxi-race.org/inscriptions/",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -1480,6 +1382,26 @@
             "cutoffDateTime": null
           }
         ],
+        "dataAvailability": {
+          "maxDurationMinutes": {
+            "status": "not_applicable",
+            "sourceUrl": "https://www.maxi-race.org/wp-content/uploads/2026/04/MXR-2026-Livret-Marathon-eXperience.pdf",
+            "checkedAt": "2026-08-21T12:58:11.569Z",
+            "reason": "Wave starts run from 06:00 to 06:40, so no single maximum duration is valid for every runner."
+          },
+          "finishCutoffTime": {
+            "status": "known",
+            "sourceUrl": "https://www.maxi-race.org/wp-content/uploads/2026/04/MXR-2026-Livret-Marathon-eXperience.pdf",
+            "checkedAt": "2026-08-21T12:58:11.569Z",
+            "reason": "Final runner roadbook publishes an arrival cutoff of 14:50."
+          },
+          "checkpoints": {
+            "status": "extraction_error",
+            "sourceUrl": "https://www.maxi-race.org/wp-content/uploads/2026/04/MXR-2026-Livret-Marathon-eXperience.pdf",
+            "checkedAt": "2026-08-21T12:58:11.569Z",
+            "reason": "The official timetable exists but no reliable checkpoint rows were extracted."
+          }
+        },
         "mandatoryEquipment": [
           "minimum 1.5 L water reserve for hot-weather plan",
           "headwear recommended by hot-weather plan"
@@ -1487,42 +1409,51 @@
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": 1.5
+          "minimumWaterLiters": 1.5,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.maxi-race.org/marathon-experience/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:01:11.404Z",
+            "retrievedAt": "2026-08-21T12:58:08.424Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Marathon-eXperience"
           },
           {
             "url": "https://tracedetrail.fr/fr/event/adidas-terrex-maxi-race-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Marathon-eXperience"
           },
           {
             "url": "https://www.maxi-race.org/plan-canicule-2026/",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:01:09.870Z",
+            "retrievedAt": "2026-08-21T12:58:07.430Z",
+            "event": "MaXi-Race du lac d'Annecy",
+            "race": "Marathon-eXperience"
+          },
+          {
+            "url": "https://www.maxi-race.org/wp-content/uploads/2026/04/MXR-2026-Livret-Marathon-eXperience.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-21T12:58:11.569Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Marathon-eXperience"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/317565",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Marathon-eXperience"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/317565",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:01:18.975Z",
+            "retrievedAt": "2026-08-21T12:58:18.103Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Marathon-eXperience"
           }
@@ -1545,14 +1476,16 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official race page exposes a distance range (38 à 42 km*); no exact value was inferred from it.",
-          "Barriers/checkpoints not found in official source."
+          "Official Maxi-Race cutoff PDF was found but no usable checkpoint was extracted."
         ],
         "missingFields": [
-          "maxDuration",
-          "price",
-          "checkpoints"
+          "checkpoints",
+          "price"
         ]
       }
     },
@@ -1574,7 +1507,7 @@
       },
       "edition": {
         "year": 2026,
-        "date": null,
+        "date": "2026-05-30",
         "startTime": "09:00",
         "distanceKm": 19.95,
         "elevationGainM": 412,
@@ -1582,6 +1515,7 @@
         "startLocation": null,
         "finishLocation": null,
         "maxDurationMinutes": 240,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": false,
@@ -1606,7 +1540,7 @@
           },
           "sourceType": "official-map-platform",
           "sourcePlatform": "trace-de-trail",
-          "retrievedAt": "2026-08-14T13:01:19.436Z",
+          "retrievedAt": "2026-08-21T13:02:37.244Z",
           "localFile": "gpx/2026/maxi-race/quart-de-tour.gpx",
           "routeAsset": "generated/routes/maxi-race-quart-de-tour-2026.json",
           "sha256": "6d8a3d1c50356d3a0660b6819f8ff9da54fab50fd3e91b5deb32a68e4f0f30b6",
@@ -1621,6 +1555,13 @@
             "minElevationM": 442,
             "maxElevationM": 1692,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 412,
+            "computedGainM": 473,
+            "deltaM": 61,
+            "deltaPercent": 14.8
           }
         },
         "illustration": {
@@ -1629,6 +1570,14 @@
           "sourceUrl": "https://www.maxi-race.org/quart-de-tour/"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1637,7 +1586,7 @@
           "registrationCloseDate": null,
           "status": null,
           "lottery": null,
-          "url": null,
+          "url": "https://www.maxi-race.org/inscriptions/",
           "maxParticipants": null,
           "qualificationRequired": null
         },
@@ -1646,7 +1595,7 @@
             "name": "Forêt",
             "distanceKm": 13.4,
             "elevationGainFromStartM": null,
-            "cutoffDateTime": null,
+            "cutoffDateTime": "2026-05-30T11:30:00",
             "cutoffElapsedMinutes": 150,
             "aidStation": false,
             "personalAssistanceAllowed": null
@@ -1655,60 +1604,77 @@
             "name": "Arrivée",
             "distanceKm": 20,
             "elevationGainFromStartM": null,
-            "cutoffDateTime": null,
+            "cutoffDateTime": "2026-05-30T13:00:00",
             "cutoffElapsedMinutes": 240,
             "aidStation": true,
             "personalAssistanceAllowed": null
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "date": {
+            "status": "known",
+            "sourceUrl": "https://www.maxi-race.org/wp-content/uploads/2026/04/MXR-2026-Livret-Quart-de-tOur-du-Lac.pdf",
+            "checkedAt": "2026-08-21T12:58:12.901Z",
+            "reason": "Final 2026 runner roadbook and official program take precedence over the stale race-page date."
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": false,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.maxi-race.org/quart-de-tour/",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:01:14.648Z",
+            "retrievedAt": "2026-08-21T12:58:12.612Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Quart-de-tOur"
           },
           {
             "url": "https://tracedetrail.fr/fr/event/adidas-terrex-maxi-race-2026",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Quart-de-tOur"
           },
           {
             "url": "https://www.maxi-race.org/plan-canicule-2026/",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:01:09.870Z",
+            "retrievedAt": "2026-08-21T12:58:07.430Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Quart-de-tOur"
           },
           {
             "url": "https://www.maxi-race.org/wp-content/uploads/2026/02/MXR-2026-tableau-de-course-Quart-de-tOur-du-lac-1.pdf",
             "type": "official-roadbook",
-            "retrievedAt": "2026-08-14T13:01:14.812Z",
+            "retrievedAt": "2026-08-21T12:58:12.841Z",
+            "event": "MaXi-Race du lac d'Annecy",
+            "race": "Quart-de-tOur"
+          },
+          {
+            "url": "https://www.maxi-race.org/wp-content/uploads/2026/04/MXR-2026-Livret-Quart-de-tOur-du-Lac.pdf",
+            "type": "official-roadbook",
+            "retrievedAt": "2026-08-21T12:58:12.901Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Quart-de-tOur"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/317422",
             "type": "official-map-platform",
-            "retrievedAt": "2026-08-14T13:01:09.740Z",
+            "retrievedAt": "2026-08-21T12:58:07.312Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Quart-de-tOur"
           },
           {
             "url": "https://tracedetrail.fr/fr/trace/317422",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:01:19.436Z",
+            "retrievedAt": "2026-08-21T12:58:18.645Z",
             "event": "MaXi-Race du lac d'Annecy",
             "race": "Quart-de-tOur"
           }
@@ -1731,14 +1697,15 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
-          "Official sources conflict on 2026 date: race page 2026-05-29, Trace de Trail 2026-05-30.",
-          "Aid stations not found in official source."
+          "Official sources conflict on 2026 date: race page 2026-05-29; final runner roadbook/program 2026-05-30 takes precedence."
         ],
         "missingFields": [
-          "date",
-          "price",
-          "aidStations"
+          "aidStations",
+          "price"
         ]
       }
     }

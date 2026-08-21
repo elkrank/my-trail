@@ -6,6 +6,7 @@ import {
 } from "../../common/cutoffs.mjs";
 import {
   createEdition,
+  createDataAvailability,
   createEvent,
   createIllustration,
   createRace,
@@ -25,6 +26,7 @@ import {
 
 const BASE_URL = "https://www.ultra-marin.fr";
 const LIVETRAIL_BASE_URL = "https://ultramarin-breizhchrono.v3.livetrail.net";
+const GUIDE_URL = `${BASE_URL}/guide-coureur`;
 
 export const ULTRA_MARIN_RACES = [
   {
@@ -100,6 +102,21 @@ export async function collect({ year }) {
 
   const sourceErrors = [];
   const races = [];
+  let guidePage = null;
+  let guideSourceUrl = GUIDE_URL;
+  try {
+    guidePage = await fetchText(GUIDE_URL);
+    guideSourceUrl = extractCalameoBookUrl(guidePage.content, guidePage.finalUrl ?? guidePage.url) ?? GUIDE_URL;
+    if (guideSourceUrl !== GUIDE_URL) {
+      try {
+        await fetchText(guideSourceUrl);
+      } catch (error) {
+        sourceErrors.push({ url: guideSourceUrl, message: error.message, status: error.status ?? null });
+      }
+    }
+  } catch (error) {
+    sourceErrors.push({ url: GUIDE_URL, message: error.message, status: error.status ?? null });
+  }
 
   for (const raceConfig of ULTRA_MARIN_RACES) {
     const url = new URL(raceConfig.path, BASE_URL).href;
@@ -114,7 +131,7 @@ export async function collect({ year }) {
           sourceErrors.push({ url: liveTrailUrl, message: error.message, status: error.status ?? null });
         }
       }
-      races.push(buildUltraMarinEntry({ event, raceConfig, page, liveTrailPage, year }));
+      races.push(buildUltraMarinEntry({ event, raceConfig, page, liveTrailPage, guidePage, guideSourceUrl, year }));
     } catch (error) {
       sourceErrors.push({ url, message: error.message, status: error.status ?? null });
     }
@@ -123,7 +140,7 @@ export async function collect({ year }) {
   return { event, sourceErrors, races };
 }
 
-export function buildUltraMarinEntry({ event, raceConfig, page, liveTrailPage = null, year }) {
+export function buildUltraMarinEntry({ event, raceConfig, page, liveTrailPage = null, guidePage = null, guideSourceUrl = GUIDE_URL, year }) {
   const parsed = parseUltraMarinRacePage(page.content, { year });
   const liveTrail = parseLiveTrailRacePage(liveTrailPage?.content ?? "", raceConfig.liveTrailRaceCode);
   const race = createRace(event, {
@@ -162,6 +179,12 @@ export function buildUltraMarinEntry({ event, raceConfig, page, liveTrailPage = 
         race: race.shortName,
       }));
   }
+  sources.push(sourceFromUrl(guideSourceUrl, {
+    type: "official-roadbook",
+    retrievedAt: guidePage?.retrievedAt ?? page.retrievedAt,
+    event: event.name,
+    race: race.shortName,
+  }));
 
   const illustration = createIllustration({
     url: extractIllustration(page.content, page.finalUrl ?? page.url),
@@ -197,6 +220,25 @@ export function buildUltraMarinEntry({ event, raceConfig, page, liveTrailPage = 
     },
     checkpoints,
     aidStations: [],
+    dataAvailability: {
+      aidStations: createDataAvailability(
+        parsed.aidStationsNotPublished ? "not_published" : "extraction_error",
+        {
+          sourceUrl: parsed.aidStationsNotPublished ? (page.finalUrl ?? page.url) : guideSourceUrl,
+          checkedAt: parsed.aidStationsNotPublished ? page.retrievedAt : (guidePage?.retrievedAt ?? page.retrievedAt),
+          reason: parsed.aidStationsNotPublished
+            ? "Official race page says aid stations are forthcoming."
+            : "The official Calameo guide has no stable public PDF/text download that the scraper can parse reliably.",
+        },
+      ),
+      registration: {
+        priceEur: createDataAvailability("extraction_error", {
+          sourceUrl: guideSourceUrl,
+          checkedAt: guidePage?.retrievedAt ?? page.retrievedAt,
+          reason: "The official guide is public through Calameo, but no stable machine-readable tariff source is exposed.",
+        }),
+      },
+    },
     sources,
   });
 
@@ -233,7 +275,8 @@ export function parseUltraMarinRacePage(html, { year = 2026 } = {}) {
   if (/LE PARCOURS 2026[\s\S]{0,220}provisoire/i.test(text)) {
     warnings.push("Official page states the 2026 route was provisional when published.");
   }
-  if (/points? des ravitaillements? (?:sont )?[aà] venir/i.test(text)) {
+  const aidStationsNotPublished = /points? des ravitaillements? (?:sont )?[aà] venir/i.test(text);
+  if (aidStationsNotPublished) {
     warnings.push("Official page says aid stations are forthcoming; none were extracted.");
   }
   if (dateText && /communiqu[ée]e prochainement/i.test(dateText)) {
@@ -251,9 +294,21 @@ export function parseUltraMarinRacePage(html, { year = 2026 } = {}) {
       oneLine.match(/Temps maximum\s+([0-9]{1,3}\s*h(?:\s*[0-9]{1,2})?)/i)?.[1],
     ),
     registrationStatus: /Course compl[èe]te/i.test(text) ? "closed" : null,
+    aidStationsNotPublished,
     description,
     warnings,
   };
+}
+
+export function extractCalameoBookUrl(html, baseUrl = GUIDE_URL) {
+  for (const match of String(html ?? "").matchAll(/href=["']([^"']*calameo\.com\/(?:books|read)\/\w+)["']/gi)) {
+    try {
+      return new URL(match[1], baseUrl).href.replace("/read/", "/books/");
+    } catch {
+      // Ignore malformed official embeds.
+    }
+  }
+  return null;
 }
 
 function buildFinishCheckpoint({ name, distanceKm, maxDurationMinutes }) {

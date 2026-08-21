@@ -1,6 +1,7 @@
 import { fetchText } from "../../common/fetch.mjs";
 import {
   createEdition,
+  createDataAvailability,
   createEvent,
   createIllustration,
   createRace,
@@ -194,6 +195,18 @@ export function buildMarathonMontBlancEntry({ event, raceConfig, page, shared = 
       recommendedIndex: parsed.recommendedIndex,
       stravaAccountUrls: [STRAVA_CLUB_URL],
     },
+    dataAvailability: raceConfig.slug === "kilometre-vertical" && shared.rules ? {
+      maxDurationMinutes: createDataAvailability("not_applicable", {
+        sourceUrl: shared.rules.finalUrl ?? shared.rules.url,
+        checkedAt: shared.rules.retrievedAt,
+        reason: "The 2026 rules explicitly state that the Kilometre Vertical has no maximum time.",
+      }),
+      checkpoints: createDataAvailability("not_applicable", {
+        sourceUrl: shared.rules.finalUrl ?? shared.rules.url,
+        checkedAt: shared.rules.retrievedAt,
+        reason: "The 2026 rules explicitly state that the Kilometre Vertical has no time barriers.",
+      }),
+    } : {},
     sources,
   });
 

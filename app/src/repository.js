@@ -41,9 +41,11 @@ function normalizeDataset(payload) {
       startLocation: edition.startLocation ?? null,
       finishLocation: edition.finishLocation ?? null,
       timeLimitMinutes: numberOrNull(edition.maxDurationMinutes),
+      finishCutoffTime: textOrNull(edition.finishCutoffTime),
       sourceUrl: officialRaceSource?.url ?? null,
       confidence: edition.sources.length ? 'official' : 'unverified',
       quality: entry.quality,
+      dataAvailability: normalizeDataAvailability(edition.dataAvailability),
       computed: entry.computed,
       registration: normalizeRegistration(edition.registration),
       raceType: textOrNull(edition.raceType),
@@ -127,9 +129,11 @@ function publicRace(race, { includeDetails = false } = {}) {
     startLocation: race.startLocation,
     finishLocation: race.finishLocation,
     timeLimitMinutes: race.timeLimitMinutes,
+    finishCutoffTime: race.finishCutoffTime,
     sourceUrl: race.sourceUrl,
     confidence: race.confidence,
     quality: race.quality,
+    dataAvailability: race.dataAvailability,
     computed: race.computed,
     gpxUrl: race.gpxUrl,
     gpx: race.gpx,
@@ -355,6 +359,25 @@ function normalizeSources(value) {
     event: textOrNull(source?.event),
     race: textOrNull(source?.race),
   })).filter((source) => source.url);
+}
+
+function normalizeDataAvailability(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+  const output = {};
+  for (const [key, item] of Object.entries(value)) {
+    if (!item || typeof item !== 'object' || Array.isArray(item)) continue;
+    if (item.status) {
+      output[key] = {
+        status: textOrNull(item.status),
+        sourceUrl: normalizeHttpUrl(item.sourceUrl),
+        checkedAt: textOrNull(item.checkedAt),
+        reason: textOrNull(item.reason),
+      };
+    } else {
+      output[key] = normalizeDataAvailability(item);
+    }
+  }
+  return output;
 }
 
 function groupSourcesByFamily(value) {

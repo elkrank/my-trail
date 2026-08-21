@@ -1,6 +1,7 @@
 import { fetchText } from "../../common/fetch.mjs";
 import {
   createEdition,
+  createDataAvailability,
   createEvent,
   createRace,
   createRaceEntry,
@@ -144,6 +145,22 @@ export function buildTrailAlsaceEntry({ event, raceConfig, indexPage, racePage, 
       utmbCategory: raceConfig.category,
       resultCount: indexStats.resultCount,
     },
+    dataAvailability: !racePageStats.targetYear && racePage ? {
+      maxDurationMinutes: createDataAvailability("unknown", {
+        reason: `Current official race page is for another edition, so no time limit is copied into ${year}.`,
+      }),
+      checkpoints: createDataAvailability("unknown", {
+        reason: `Current official race page is for another edition, so no barriers are copied into ${year}.`,
+      }),
+      aidStations: createDataAvailability("unknown", {
+        reason: `Current official race page is for another edition, so no aid stations are copied into ${year}.`,
+      }),
+      registration: {
+        priceEur: createDataAvailability("unknown", {
+          reason: `Current official registration information is not tied to ${year}.`,
+        }),
+      },
+    } : {},
     sources,
   });
 
@@ -164,15 +181,16 @@ export function parseUtmbIndexRacePage(html, { year = 2026, fallback = {} } = {}
   const city = valueAfterLabel(oneLine, /City \/ Country/i, [/Date/i]);
   const warnings = [];
 
-  if (html && !new RegExp(`\\b${year}\\b`).test(text)) {
+  const targetYear = Boolean(html && new RegExp(`\\b${year}\\b`).test(text));
+  if (html && !targetYear) {
     warnings.push(`UTMB Index source does not contain target year ${year}.`);
   }
 
   return {
-    date: parseDate(dateText, year) ?? fallback.date ?? null,
-    distanceKm: numberFromText(distanceText) ?? fallback.distanceKm ?? null,
-    elevationGainM: numberFromText(gainText) ?? fallback.elevationGainM ?? null,
-    city: city ?? fallback.city ?? null,
+    date: targetYear ? (parseDate(dateText, year) ?? fallback.date ?? null) : null,
+    distanceKm: targetYear ? (numberFromText(distanceText) ?? fallback.distanceKm ?? null) : null,
+    elevationGainM: targetYear ? (numberFromText(gainText) ?? fallback.elevationGainM ?? null) : null,
+    city: targetYear ? (city ?? fallback.city ?? null) : null,
     resultCount: numberFromText(oneLine.match(/\b([0-9]+)\s+Results\b/i)?.[1]),
     warnings,
   };

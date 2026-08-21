@@ -7,7 +7,7 @@ import { extractIllustration, extractNextData, extractRegistrationUrl, parseDate
 import { parseMainInfo, extractGpxUrl, minimumWaterLiters } from "../../scrapers/events/ecotrail/index.mjs";
 import { parseHeaderFields, parseSaintelyonCheckpoints } from "../../scrapers/events/saintelyon/index.mjs";
 import { parseAidStations, parseTempliersCutoffPdfText } from "../../scrapers/events/templiers/index.mjs";
-import { parseGrandRaidBarrierPdf, parseGrandRaidRacePage } from "../../scrapers/events/grand-raid-reunion/index.mjs";
+import { parseGrandRaidAidStationPdf, parseGrandRaidBarrierPdf, parseGrandRaidRacePage } from "../../scrapers/events/grand-raid-reunion/index.mjs";
 import { buildAidStations, buildCheckpoints as buildUtmbCheckpoints } from "../../scrapers/events/utmb/index.mjs";
 import { buildCheckpoints as buildNtmfCheckpoints, parsePrices, parseStats } from "../../scrapers/events/ntmf/index.mjs";
 import { parseLiveTrailRacePage } from "../../scrapers/events/ultra-marin/index.mjs";
@@ -151,6 +151,42 @@ O
   assert.equal(parsed.checkpoints[1].name, "La Redoute");
   assert.equal(parsed.checkpoints[1].cutoffElapsedMinutes, 3960);
 });
+
+test("parses Grand Raid layout columns without treating every passage as an aid station", () => {
+  const header = [
+    item("Ouverture", 100, 500), item("Cumul", 200, 500), item("KM", 202, 494), item("Alti.", 250, 500),
+    item("Rav.", 400, 500), item("soupe", 430, 500), item("Repas", 460, 500), item("Médecin", 490, 500),
+  ];
+  const rows = [
+    item("Passage sans service", 20, 465), item("5,0", 200, 465),
+    item("Ravito A", 20, 440), item("12,5", 200, 440), item(" ", 390, 440), item(" ", 420, 440),
+    item("Ravito B", 20, 415), item("30,0", 200, 415), item(" ", 390, 415), item(" ", 480, 415),
+  ];
+  const parsed = parseGrandRaidAidStationPdf([{ pageNumber: 1, items: [...header, ...rows] }], { raceDistanceKm: 50 });
+  assert.equal(parsed.reliable, true);
+  assert.deepEqual(parsed.aidStations.map((station) => station.name), ["Ravito A", "Ravito B"]);
+  assert.equal(parsed.aidStations[0].hotFood, true);
+  assert.equal(parsed.aidStations[1].medical, true);
+});
+
+test("rejects a Grand Raid aid-station extraction that stops too early", () => {
+  const header = [
+    item("Ouverture", 100, 500), item("Cumul", 200, 500), item("KM", 202, 494), item("Alti.", 250, 500),
+    item("Rav.", 400, 500), item("soupe", 430, 500), item("Repas", 460, 500), item("Médecin", 490, 500),
+  ];
+  const rows = [
+    item("Ravito A", 20, 440), item("12,5", 200, 440), item(" ", 390, 440), item(" ", 420, 440),
+    item("Ravito B", 20, 415), item("30,0", 200, 415), item(" ", 390, 415), item(" ", 480, 415),
+  ];
+  const parsed = parseGrandRaidAidStationPdf([{ pageNumber: 1, items: [...header, ...rows] }], { raceDistanceKm: 100 });
+  assert.equal(parsed.reliable, false);
+  assert.deepEqual(parsed.aidStations, []);
+  assert.match(parsed.warnings.join("\n"), /did not cover enough/);
+});
+
+function item(text, x, y) {
+  return { text, x, y, width: 10, height: 5 };
+}
 
 test("parses Ultra Marin LiveTrail embedded points with cutoffs", () => {
   const html = `<script>self.__next_f.push([1,"{\\"raceId\\":\\"GdRaid\\",\\"startDate\\":\\"2026-06-26T19:00:00.000+02:00\\"},{\\"access\\":[],\\"altitude\\":3,\\"cutoff\\":\\"2026-06-26T22:30:00.000+02:00\\",\\"distance\\":14697,\\"elevationGain\\":46,\\"pointId\\":2,\\"isAssistance\\":false,\\"isDisabled\\":false,\\"isMeet\\":true,\\"lat\\":47.62,\\"lon\\":-2.77,\\"name\\":\\"Sene Barrarac\\",\\"raceId\\":\\"GdRaid\\",\\"services\\":[\\"DRINK_SUPPLY\\"],\\"shortName\\":\\"Barrarac\\",\\"type\\":\\"SIMPLE\\",\\"livecams\\":[]}"])</script>`;

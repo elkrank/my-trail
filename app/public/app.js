@@ -184,6 +184,14 @@ function formatDuration(minutes) {
   return remainder ? `${hours} h ${String(remainder).padStart(2, '0')}` : `${hours} h`;
 }
 
+function formatRaceTimeLimit(race) {
+  const duration = numericValue(race?.timeLimitMinutes);
+  if (duration !== null && duration > 0) return formatDuration(duration);
+  if (race?.finishCutoffTime) return `Arrivée avant ${race.finishCutoffTime}`;
+  if (race?.dataAvailability?.maxDurationMinutes?.status === 'not_applicable') return 'Sans objet';
+  return 'Non disponible';
+}
+
 function formatPrice(value) {
   const number = numericValue(value);
   return number !== null ? `${formatNumber(number, 0)} EUR` : 'Non disponible';
@@ -742,7 +750,7 @@ function metricsTemplate(race) {
         accent: true,
       })}
       ${metricTemplate('VERTICALITÉ', verticalityLabel(race.verticalityLevel))}
-      ${metricTemplate('TEMPS LIMITE', formatDuration(race.timeLimitMinutes))}
+      ${metricTemplate('TEMPS LIMITE', formatRaceTimeLimit(race))}
       ${metricTemplate('PRESSION V0', formatScore(race.barrierPressureScoreV0), {
         score: race.barrierPressureScoreV0,
         accent: true,
@@ -1040,7 +1048,7 @@ function explorerRaceCardTemplate(race) {
 
       <div class="explorer-route-note">
         <span>${escapeHtml(startFinishLabel(race))}</span>
-        <span>${escapeHtml(formatDuration(race.timeLimitMinutes))}</span>
+        <span>${escapeHtml(formatRaceTimeLimit(race))}</span>
       </div>
 
       <footer class="explorer-card-footer">
@@ -1655,16 +1663,65 @@ function qualitySourcesTemplate(race) {
   }).filter(Boolean).join('');
   const warnings = (race.quality?.warnings ?? []).map((warning) => `<li>${escapeHtml(warning)}</li>`).join('');
   const missing = (race.missingOfficialInformation ?? race.quality?.missingFields ?? []).map((field) => `<li>${escapeHtml(field)}</li>`).join('');
+  const availability = availabilityEntries(race.dataAvailability).map(({ path, record }) => {
+    const sourceUrl = safeHttpUrl(record.sourceUrl);
+    const source = sourceUrl ? ` <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">source</a>` : '';
+    const reason = record.reason ? ` — ${escapeHtml(record.reason)}` : '';
+    return `<li><strong>${escapeHtml(availabilityFieldLabel(path))}</strong> : ${escapeHtml(availabilityStatusLabel(record.status))}${reason}${source}</li>`;
+  }).join('');
   return `
     <div class="quality-grid">
       <div><span>Complétude</span><strong>${race.quality?.status === 'complete' ? 'Complète' : race.quality?.status === 'invalid' ? 'À contrôler' : 'Partielle'}</strong></div>
+      <div><span>Sport</span><strong>${completenessLabel(race.quality?.sportCompleteness)}</strong></div>
+      <div><span>Logistique</span><strong>${completenessLabel(race.quality?.logisticsCompleteness)}</strong></div>
+      <div><span>Inscription</span><strong>${completenessLabel(race.quality?.registrationCompleteness)}</strong></div>
       <div><span>Dernière vérification</span><strong>${escapeHtml(race.verifiedAt ? formatDate(String(race.verifiedAt).slice(0, 10)) : 'Non renseignée')}</strong></div>
       <div><span>Provenance</span><strong>${safeSources.length} source${safeSources.length > 1 ? 's' : ''} officielle${safeSources.length > 1 ? 's' : ''}</strong></div>
     </div>
     ${warnings ? `<div class="quality-alert"><h3>Avertissements</h3><ul>${warnings}</ul></div>` : ''}
+    ${availability ? `<div class="quality-alert is-muted"><h3>Disponibilité des données</h3><ul>${availability}</ul></div>` : ''}
     ${missing ? `<div class="quality-alert is-muted"><h3>Informations officielles manquantes</h3><ul>${missing}</ul></div>` : ''}
     ${sources ? `<h3>Sources officielles</h3><ul class="source-list">${sources}</ul>` : '<p>Aucune source officielle exploitable n’est publiée pour cette fiche.</p>'}
   `;
+}
+
+function completenessLabel(status) {
+  return status === 'complete' ? 'Complète' : status === 'partial' ? 'Partielle' : 'À contrôler';
+}
+
+function availabilityEntries(value, prefix = '') {
+  if (!value || typeof value !== 'object') return [];
+  const output = [];
+  for (const [key, item] of Object.entries(value)) {
+    const path = prefix ? `${prefix}.${key}` : key;
+    if (item?.status) output.push({ path, record: item });
+    else output.push(...availabilityEntries(item, path));
+  }
+  return output;
+}
+
+function availabilityStatusLabel(status) {
+  return ({
+    known: 'connue',
+    known_none: 'absence confirmée',
+    not_applicable: 'sans objet',
+    not_published: 'pas encore publiée',
+    extraction_error: 'source disponible, extraction en échec',
+    unknown: 'inconnue',
+  })[status] ?? status ?? 'inconnue';
+}
+
+function availabilityFieldLabel(path) {
+  return ({
+    date: 'Date',
+    elevationGainM: 'Dénivelé positif',
+    maxDurationMinutes: 'Temps maximum',
+    finishCutoffTime: 'Heure limite d’arrivée',
+    checkpoints: 'Barrières horaires',
+    aidStations: 'Ravitaillements',
+    gpx: 'GPX',
+    'registration.priceEur': 'Prix',
+  })[path] ?? path;
 }
 
 function formatDateTime(value) {
@@ -1714,7 +1771,7 @@ function courseDetailTemplate(race) {
         ${officialMetricTemplate('Distance', formatKm(race.distanceKm))}
         ${officialMetricTemplate('D+', formatElevation(race.elevationGainM))}
         ${officialMetricTemplate('D-', numericValue(race.elevationLossM) === null ? null : `${formatNumber(race.elevationLossM, 0)} D-`)}
-        ${officialMetricTemplate('Temps limite', formatDuration(race.timeLimitMinutes))}
+        ${officialMetricTemplate('Temps limite', formatRaceTimeLimit(race))}
         ${officialMetricTemplate('Km-effort', race.kmEffort === null ? null : `${formatNumber(race.kmEffort)} km`, { calculated: true })}
         ${officialMetricTemplate('Difficulté', difficultyScoreValue(race) === null ? null : formatScore(difficultyScoreValue(race)), { calculated: true })}
         ${officialMetricTemplate('Verticalité', race.verticalityLevel ? verticalityLabel(race.verticalityLevel) : null, { calculated: true })}

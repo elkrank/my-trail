@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T13:01:22.546Z",
+  "generatedAt": "2026-08-21T13:06:15.525Z",
   "year": 2026,
   "event": {
     "id": "saintelyon",
@@ -39,25 +39,27 @@
         "startLocation": "Saint-Étienne",
         "finishLocation": "Lyon",
         "maxDurationMinutes": 990,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": {
-          "status": "invalid",
-          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
-          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
-          "sourceType": "official-map-platform",
-          "sourcePlatform": "strava",
-          "retrievedAt": "2026-08-14T13:00:35.233Z"
-        },
+        "gpx": null,
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6da61f2403585ef9fe29_SainteLyon2024-%C2%A9AlexisBerg-23-9786.jpg",
           "alt": "Saintelyon - Saintelyon",
           "sourceUrl": "https://www.saintelyon.com/races/80km-saintelyon"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -127,18 +129,48 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "elevationGainM": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-saintelyon",
+            "checkedAt": "2026-08-21T12:57:37.282Z",
+            "reason": "Official race page marks elevation gain as coming soon."
+          },
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-saintelyon",
+            "checkedAt": "2026-08-21T12:57:37.282Z",
+            "reason": "Official 2026 race page does not publish usable aid-station details yet."
+          },
+          "gpx": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-saintelyon",
+            "checkedAt": "2026-08-21T12:57:37.282Z",
+            "reason": "Official race page marks the GPX as coming soon."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "not_published",
+              "sourceUrl": "https://www.saintelyon.com/races/80km-saintelyon",
+              "checkedAt": "2026-08-21T12:57:37.282Z",
+              "reason": "Official public race page does not publish the 2026 price and no previous-edition price is reused."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.saintelyon.com/races/80km-saintelyon",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:34.488Z",
+            "retrievedAt": "2026-08-21T12:57:37.282Z",
             "event": "Saintelyon",
             "race": "Saintelyon"
           }
@@ -159,17 +191,18 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
-          "Official page does not expose elevation gain yet.",
-          "GPX_INVALID: GPX distance does not match official distance (official=80 computed=43.3)",
-          "Aid stations not found in official source."
+          "Official page does not expose elevation gain yet."
         ],
         "missingFields": [
           "elevationGain",
-          "price",
+          "aidStations",
           "gpx",
-          "aidStations"
+          "price"
         ]
       }
     },
@@ -199,25 +232,27 @@
         "startLocation": "Saint-Étienne",
         "finishLocation": "Lyon",
         "maxDurationMinutes": 990,
+        "finishCutoffTime": null,
         "raceType": "relay",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": {
-          "status": "invalid",
-          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
-          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
-          "sourceType": "official-map-platform",
-          "sourcePlatform": "strava",
-          "retrievedAt": "2026-08-14T13:00:36.702Z"
-        },
+        "gpx": null,
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/69789440995f0f941ef6cef4_ASTL_25_2025%40barcus%20victor163.jpg",
           "alt": "Saintelyon - Relais 2",
           "sourceUrl": "https://www.saintelyon.com/races/80km-relais-2"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -287,18 +322,48 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "elevationGainM": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-relais-2",
+            "checkedAt": "2026-08-21T12:57:37.372Z",
+            "reason": "Official race page marks elevation gain as coming soon."
+          },
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-relais-2",
+            "checkedAt": "2026-08-21T12:57:37.372Z",
+            "reason": "Official 2026 race page does not publish usable aid-station details yet."
+          },
+          "gpx": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-relais-2",
+            "checkedAt": "2026-08-21T12:57:37.372Z",
+            "reason": "Official race page marks the GPX as coming soon."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "not_published",
+              "sourceUrl": "https://www.saintelyon.com/races/80km-relais-2",
+              "checkedAt": "2026-08-21T12:57:37.372Z",
+              "reason": "Official public race page does not publish the 2026 price and no previous-edition price is reused."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.saintelyon.com/races/80km-relais-2",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:34.643Z",
+            "retrievedAt": "2026-08-21T12:57:37.372Z",
             "event": "Saintelyon",
             "race": "Relais 2"
           }
@@ -319,17 +384,18 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
-          "Official page does not expose elevation gain yet.",
-          "GPX_INVALID: GPX distance does not match official distance (official=80 computed=43.3)",
-          "Aid stations not found in official source."
+          "Official page does not expose elevation gain yet."
         ],
         "missingFields": [
           "elevationGain",
-          "price",
+          "aidStations",
           "gpx",
-          "aidStations"
+          "price"
         ]
       }
     },
@@ -359,25 +425,27 @@
         "startLocation": "Saint-Étienne",
         "finishLocation": "Lyon",
         "maxDurationMinutes": 990,
+        "finishCutoffTime": null,
         "raceType": "relay",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": {
-          "status": "invalid",
-          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
-          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
-          "sourceType": "official-map-platform",
-          "sourcePlatform": "strava",
-          "retrievedAt": "2026-08-14T13:00:37.443Z"
-        },
+        "gpx": null,
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6dff1d13644f376dfc8e_SainteLyon2024-%C2%A9AlexisBerg-05-1927.jpg",
           "alt": "Saintelyon - Relais 3",
           "sourceUrl": "https://www.saintelyon.com/races/80km-relais-3"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -447,18 +515,48 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "elevationGainM": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-relais-3",
+            "checkedAt": "2026-08-21T12:57:37.405Z",
+            "reason": "Official race page marks elevation gain as coming soon."
+          },
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-relais-3",
+            "checkedAt": "2026-08-21T12:57:37.405Z",
+            "reason": "Official 2026 race page does not publish usable aid-station details yet."
+          },
+          "gpx": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-relais-3",
+            "checkedAt": "2026-08-21T12:57:37.405Z",
+            "reason": "Official race page marks the GPX as coming soon."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "not_published",
+              "sourceUrl": "https://www.saintelyon.com/races/80km-relais-3",
+              "checkedAt": "2026-08-21T12:57:37.405Z",
+              "reason": "Official public race page does not publish the 2026 price and no previous-edition price is reused."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.saintelyon.com/races/80km-relais-3",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:34.679Z",
+            "retrievedAt": "2026-08-21T12:57:37.405Z",
             "event": "Saintelyon",
             "race": "Relais 3"
           }
@@ -479,17 +577,18 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
-          "Official page does not expose elevation gain yet.",
-          "GPX_INVALID: GPX distance does not match official distance (official=80 computed=43.3)",
-          "Aid stations not found in official source."
+          "Official page does not expose elevation gain yet."
         ],
         "missingFields": [
           "elevationGain",
-          "price",
+          "aidStations",
           "gpx",
-          "aidStations"
+          "price"
         ]
       }
     },
@@ -519,25 +618,27 @@
         "startLocation": "",
         "finishLocation": "Lyon",
         "maxDurationMinutes": 990,
+        "finishCutoffTime": null,
         "raceType": "relay",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": {
-          "status": "invalid",
-          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
-          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
-          "sourceType": "official-map-platform",
-          "sourcePlatform": "strava",
-          "retrievedAt": "2026-08-14T13:00:38.075Z"
-        },
+        "gpx": null,
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c70c29c4702c2ffcc6496_ASTL_25_2025%40barcus%20victor214.jpg",
           "alt": "Saintelyon - Relais 4",
           "sourceUrl": "https://www.saintelyon.com/races/80km-relais-4"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -607,18 +708,48 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "elevationGainM": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-relais-4",
+            "checkedAt": "2026-08-21T12:57:37.442Z",
+            "reason": "Official race page marks elevation gain as coming soon."
+          },
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-relais-4",
+            "checkedAt": "2026-08-21T12:57:37.442Z",
+            "reason": "Official 2026 race page does not publish usable aid-station details yet."
+          },
+          "gpx": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/80km-relais-4",
+            "checkedAt": "2026-08-21T12:57:37.442Z",
+            "reason": "Official race page marks the GPX as coming soon."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "not_published",
+              "sourceUrl": "https://www.saintelyon.com/races/80km-relais-4",
+              "checkedAt": "2026-08-21T12:57:37.442Z",
+              "reason": "Official public race page does not publish the 2026 price and no previous-edition price is reused."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.saintelyon.com/races/80km-relais-4",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:34.730Z",
+            "retrievedAt": "2026-08-21T12:57:37.442Z",
             "event": "Saintelyon",
             "race": "Relais 4"
           }
@@ -639,17 +770,18 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
-          "Official page does not expose elevation gain yet.",
-          "GPX_INVALID: GPX distance does not match official distance (official=80 computed=43.3)",
-          "Aid stations not found in official source."
+          "Official page does not expose elevation gain yet."
         ],
         "missingFields": [
           "elevationGain",
-          "price",
+          "aidStations",
           "gpx",
-          "aidStations"
+          "price"
         ]
       }
     },
@@ -679,25 +811,27 @@
         "startLocation": "Sainte-Catherine",
         "finishLocation": "Lyon",
         "maxDurationMinutes": 1020,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": {
-          "status": "invalid",
-          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
-          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
-          "sourceType": "official-map-platform",
-          "sourcePlatform": "strava",
-          "retrievedAt": "2026-08-14T13:00:38.708Z"
-        },
+        "gpx": null,
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6fd60c97b389db30d6dd_ASTL24_EXTRASPORT_2024%40barcus%20victor53.jpg",
           "alt": "Saintelyon - SaintExpress",
           "sourceUrl": "https://www.saintelyon.com/races/45km-saint-express"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -722,18 +856,48 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "elevationGainM": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/45km-saint-express",
+            "checkedAt": "2026-08-21T12:57:37.476Z",
+            "reason": "Official race page marks elevation gain as coming soon."
+          },
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/45km-saint-express",
+            "checkedAt": "2026-08-21T12:57:37.476Z",
+            "reason": "Official 2026 race page does not publish usable aid-station details yet."
+          },
+          "gpx": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/45km-saint-express",
+            "checkedAt": "2026-08-21T12:57:37.476Z",
+            "reason": "Official race page marks the GPX as coming soon."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "not_published",
+              "sourceUrl": "https://www.saintelyon.com/races/45km-saint-express",
+              "checkedAt": "2026-08-21T12:57:37.476Z",
+              "reason": "Official public race page does not publish the 2026 price and no previous-edition price is reused."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.saintelyon.com/races/45km-saint-express",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:34.762Z",
+            "retrievedAt": "2026-08-21T12:57:37.476Z",
             "event": "Saintelyon",
             "race": "SaintExpress"
           }
@@ -754,17 +918,18 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
-          "Official page does not expose elevation gain yet.",
-          "GPX_INVALID: GPX route is outside the expected official race area",
-          "Aid stations not found in official source."
+          "Official page does not expose elevation gain yet."
         ],
         "missingFields": [
           "elevationGain",
-          "price",
+          "aidStations",
           "gpx",
-          "aidStations"
+          "price"
         ]
       }
     },
@@ -794,25 +959,27 @@
         "startLocation": "Mornant",
         "finishLocation": "Lyon",
         "maxDurationMinutes": 1050,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": {
-          "status": "invalid",
-          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
-          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
-          "sourceType": "official-map-platform",
-          "sourcePlatform": "strava",
-          "retrievedAt": "2026-08-14T13:00:39.385Z"
-        },
+        "gpx": null,
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/69f0cddfd9fe5d05f600e00c_mxpstudio15.jpg",
           "alt": "Saintelyon - SainteVia",
           "sourceUrl": "https://www.saintelyon.com/races/saintevia"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -837,18 +1004,48 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "elevationGainM": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/saintevia",
+            "checkedAt": "2026-08-21T12:57:37.509Z",
+            "reason": "Official race page marks elevation gain as coming soon."
+          },
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/saintevia",
+            "checkedAt": "2026-08-21T12:57:37.509Z",
+            "reason": "Official 2026 race page does not publish usable aid-station details yet."
+          },
+          "gpx": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/saintevia",
+            "checkedAt": "2026-08-21T12:57:37.509Z",
+            "reason": "Official race page marks the GPX as coming soon."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "not_published",
+              "sourceUrl": "https://www.saintelyon.com/races/saintevia",
+              "checkedAt": "2026-08-21T12:57:37.509Z",
+              "reason": "Official public race page does not publish the 2026 price and no previous-edition price is reused."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.saintelyon.com/races/saintevia",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:34.819Z",
+            "retrievedAt": "2026-08-21T12:57:37.509Z",
             "event": "Saintelyon",
             "race": "SainteVia"
           }
@@ -869,17 +1066,18 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
-          "Official page does not expose elevation gain yet.",
-          "GPX_INVALID: GPX distance does not match official distance (official=35 computed=43.3)",
-          "Aid stations not found in official source."
+          "Official page does not expose elevation gain yet."
         ],
         "missingFields": [
           "elevationGain",
-          "price",
+          "aidStations",
           "gpx",
-          "aidStations"
+          "price"
         ]
       }
     },
@@ -909,25 +1107,27 @@
         "startLocation": "Soucieu-en-Jarrest",
         "finishLocation": "Lyon",
         "maxDurationMinutes": 1020,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": {
-          "status": "invalid",
-          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
-          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
-          "sourceType": "official-map-platform",
-          "sourcePlatform": "strava",
-          "retrievedAt": "2026-08-14T13:00:39.919Z"
-        },
+        "gpx": null,
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/699c6ed2b707d4e11b0e6c83_SAINTELYON_2025_%C2%A9_Infinity_Nine_Media-B.Seon-28.jpg",
           "alt": "Saintelyon - SainteSprint",
           "sourceUrl": "https://www.saintelyon.com/races/14km-saintesprint"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -952,18 +1152,48 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "elevationGainM": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/14km-saintesprint",
+            "checkedAt": "2026-08-21T12:57:37.538Z",
+            "reason": "Official race page marks elevation gain as coming soon."
+          },
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/14km-saintesprint",
+            "checkedAt": "2026-08-21T12:57:37.538Z",
+            "reason": "Official 2026 race page does not publish usable aid-station details yet."
+          },
+          "gpx": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/14km-saintesprint",
+            "checkedAt": "2026-08-21T12:57:37.538Z",
+            "reason": "Official race page marks the GPX as coming soon."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "not_published",
+              "sourceUrl": "https://www.saintelyon.com/races/14km-saintesprint",
+              "checkedAt": "2026-08-21T12:57:37.538Z",
+              "reason": "Official public race page does not publish the 2026 price and no previous-edition price is reused."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.saintelyon.com/races/14km-saintesprint",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:34.850Z",
+            "retrievedAt": "2026-08-21T12:57:37.538Z",
             "event": "Saintelyon",
             "race": "SainteSprint"
           }
@@ -984,17 +1214,18 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
-          "Official page does not expose elevation gain yet.",
-          "GPX_INVALID: GPX distance does not match official distance (official=24 computed=43.3)",
-          "Aid stations not found in official source."
+          "Official page does not expose elevation gain yet."
         ],
         "missingFields": [
           "elevationGain",
-          "price",
+          "aidStations",
           "gpx",
-          "aidStations"
+          "price"
         ]
       }
     },
@@ -1024,25 +1255,27 @@
         "startLocation": "Chaponost",
         "finishLocation": "Lyon",
         "maxDurationMinutes": 1050,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": true,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": {
-          "status": "invalid",
-          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
-          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
-          "sourceType": "official-map-platform",
-          "sourcePlatform": "strava",
-          "retrievedAt": "2026-08-14T13:00:40.711Z"
-        },
+        "gpx": null,
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/697b5d475eadf62e6943325f_WOUJOW_ASL24_BD521.jpg",
           "alt": "Saintelyon - SainteTic",
           "sourceUrl": "https://www.saintelyon.com/races/13km-saintetic"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1067,18 +1300,48 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "elevationGainM": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/13km-saintetic",
+            "checkedAt": "2026-08-21T12:57:37.569Z",
+            "reason": "Official race page marks elevation gain as coming soon."
+          },
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/13km-saintetic",
+            "checkedAt": "2026-08-21T12:57:37.569Z",
+            "reason": "Official 2026 race page does not publish usable aid-station details yet."
+          },
+          "gpx": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/13km-saintetic",
+            "checkedAt": "2026-08-21T12:57:37.569Z",
+            "reason": "Official race page marks the GPX as coming soon."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "not_published",
+              "sourceUrl": "https://www.saintelyon.com/races/13km-saintetic",
+              "checkedAt": "2026-08-21T12:57:37.569Z",
+              "reason": "Official public race page does not publish the 2026 price and no previous-edition price is reused."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.saintelyon.com/races/13km-saintetic",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:34.901Z",
+            "retrievedAt": "2026-08-21T12:57:37.569Z",
             "event": "Saintelyon",
             "race": "SainteTic"
           }
@@ -1099,17 +1362,18 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
-          "Official page does not expose elevation gain yet.",
-          "GPX_INVALID: GPX distance does not match official distance (official=13 computed=43.3)",
-          "Aid stations not found in official source."
+          "Official page does not expose elevation gain yet."
         ],
         "missingFields": [
           "elevationGain",
-          "price",
+          "aidStations",
           "gpx",
-          "aidStations"
+          "price"
         ]
       }
     },
@@ -1139,25 +1403,27 @@
         "startLocation": "Halle Tony Garnier",
         "finishLocation": "Lyon",
         "maxDurationMinutes": 1860,
+        "finishCutoffTime": null,
         "raceType": "solo",
         "terrainType": "trail",
         "nightStart": false,
         "polesAllowed": null,
         "gpxUrl": null,
-        "gpx": {
-          "status": "invalid",
-          "sourceUrl": "https://www.strava.com/routes/3339557107256267162",
-          "downloadUrl": "https://www.strava.com/routes/3339557107256267162/export_gpx",
-          "sourceType": "official-map-platform",
-          "sourcePlatform": "strava",
-          "retrievedAt": "2026-08-14T13:00:41.876Z"
-        },
+        "gpx": null,
         "illustration": {
           "url": "https://cdn.prod.website-files.com/69431a153154265f30421613/6978970c7fb53fc7007442d9_ASTL24_EXTRASPORT_2024%40barcus%20victor24.jpg",
           "alt": "Saintelyon - Lyon Saintelyon",
           "sourceUrl": "https://www.saintelyon.com/races/160km-lyon-saintelyon"
         },
         "terrainDescription": null,
+        "description": {
+          "original": null,
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1263,18 +1529,48 @@
           }
         ],
         "aidStations": [],
+        "dataAvailability": {
+          "elevationGainM": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/160km-lyon-saintelyon",
+            "checkedAt": "2026-08-21T12:57:37.603Z",
+            "reason": "Official race page marks elevation gain as coming soon."
+          },
+          "aidStations": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/160km-lyon-saintelyon",
+            "checkedAt": "2026-08-21T12:57:37.603Z",
+            "reason": "Official 2026 race page does not publish usable aid-station details yet."
+          },
+          "gpx": {
+            "status": "not_published",
+            "sourceUrl": "https://www.saintelyon.com/races/160km-lyon-saintelyon",
+            "checkedAt": "2026-08-21T12:57:37.603Z",
+            "reason": "Official race page marks the GPX as coming soon."
+          },
+          "registration": {
+            "priceEur": {
+              "status": "not_published",
+              "sourceUrl": "https://www.saintelyon.com/races/160km-lyon-saintelyon",
+              "checkedAt": "2026-08-21T12:57:37.603Z",
+              "reason": "Official public race page does not publish the 2026 price and no previous-edition price is reused."
+            }
+          }
+        },
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": null,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://www.saintelyon.com/races/160km-lyon-saintelyon",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:34.930Z",
+            "retrievedAt": "2026-08-21T12:57:37.603Z",
             "event": "Saintelyon",
             "race": "Lyon Saintelyon"
           }
@@ -1295,17 +1591,18 @@
       },
       "quality": {
         "status": "partial",
+        "sportCompleteness": "partial",
+        "logisticsCompleteness": "partial",
+        "registrationCompleteness": "partial",
         "warnings": [
           "Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.",
-          "Official page does not expose elevation gain yet.",
-          "GPX_INVALID: GPX distance does not match official distance (official=160 computed=43.3)",
-          "Aid stations not found in official source."
+          "Official page does not expose elevation gain yet."
         ],
         "missingFields": [
           "elevationGain",
-          "price",
+          "aidStations",
           "gpx",
-          "aidStations"
+          "price"
         ]
       }
     }

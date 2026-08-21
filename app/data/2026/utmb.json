@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T13:01:22.546Z",
+  "generatedAt": "2026-08-21T13:06:15.525Z",
   "year": 2026,
   "event": {
     "id": "utmb",
@@ -39,6 +39,7 @@
         "startLocation": "Chamonix",
         "finishLocation": "Chamonix",
         "maxDurationMinutes": 2805,
+        "finishCutoffTime": null,
         "raceType": null,
         "terrainType": "trail",
         "nightStart": false,
@@ -52,7 +53,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-14T13:00:14.869Z",
+          "retrievedAt": "2026-08-21T13:01:58.420Z",
           "localFile": "gpx/2026/utmb/utmb.gpx",
           "routeAsset": "generated/routes/utmb-utmb-2026.json",
           "sha256": "bd058ebdd47a5dec48681156e6bf4b622c6594323d3399e4dc90fd425e7d3dfe",
@@ -67,6 +68,13 @@
             "minElevationM": 805,
             "maxElevationM": 2571,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 9900,
+            "computedGainM": 9994,
+            "deltaM": 94,
+            "deltaPercent": 0.9
           }
         },
         "illustration": {
@@ -75,6 +83,14 @@
           "sourceUrl": "https://montblanc.utmb.world/races/utmb"
         },
         "terrainDescription": "4 letters. 3 countries crossed. 1 extraordinary adventure, which is now the 100M finals of the UTMB World Series. This is the iconic race that has taken so many passionate runners on an extraordinary journey around the Mont-Blanc.",
+        "description": {
+          "original": "4 letters. 3 countries crossed. 1 extraordinary adventure, which is now the 100M finals of the UTMB World Series. This is the iconic race that has taken so many passionate runners on an extraordinary journey around the Mont-Blanc.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -134,8 +150,8 @@
             "personalAssistanceAllowed": false
           },
           {
-            "name": "Courmayeur Forum Sport Center",
-            "distanceKm": 83.5,
+            "name": "Courmayeur Sport Center",
+            "distanceKm": 83.3,
             "elevationGainFromStartM": 4727,
             "cutoffDateTime": "2026-08-29T13:15:00",
             "cutoffElapsedMinutes": 1170,
@@ -308,9 +324,9 @@
             "cutoffDateTime": null
           },
           {
-            "name": "Courmayeur Forum Sport Center",
-            "distanceKm": 83.5,
-            "elevationM": 1194,
+            "name": "Courmayeur Sport Center",
+            "distanceKm": 83.3,
+            "elevationM": 1195,
             "water": true,
             "sportsDrink": true,
             "solidFood": true,
@@ -323,7 +339,7 @@
           {
             "name": "Refuge Bertone",
             "distanceKm": 88.8,
-            "elevationM": 1972,
+            "elevationM": 1982,
             "water": true,
             "sportsDrink": true,
             "solidFood": false,
@@ -425,39 +441,42 @@
             "cutoffDateTime": "2026-08-30T16:30:00"
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": true,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://montblanc.utmb.world/races/utmb",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:13.741Z",
+            "retrievedAt": "2026-08-21T12:57:13.748Z",
             "event": "UTMB Mont-Blanc",
             "race": "UTMB"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:13.286Z",
+            "retrievedAt": "2026-08-21T12:57:13.332Z",
             "event": "UTMB Mont-Blanc",
             "race": "UTMB"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:13.590Z",
+            "retrievedAt": "2026-08-21T12:57:13.597Z",
             "event": "UTMB Mont-Blanc",
             "race": "UTMB"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1786442971/montblanc/Races/GPX/2026/UTMB_2026_25e2a492e6.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:13.741Z",
+            "retrievedAt": "2026-08-21T12:57:13.748Z",
             "event": "UTMB Mont-Blanc",
             "race": "UTMB"
           }
@@ -470,6 +489,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }
@@ -500,6 +522,7 @@
         "startLocation": "Courmayeur",
         "finishLocation": "Chamonix",
         "maxDurationMinutes": 1590,
+        "finishCutoffTime": null,
         "raceType": null,
         "terrainType": "trail",
         "nightStart": false,
@@ -513,7 +536,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-14T13:00:15.286Z",
+          "retrievedAt": "2026-08-21T13:01:58.855Z",
           "localFile": "gpx/2026/utmb/ccc.gpx",
           "routeAsset": "generated/routes/utmb-ccc-2026.json",
           "sha256": "409971e2fb242aacc67b7cfc716a4c0f2122529ec7bf9586170292fec5979591",
@@ -528,6 +551,13 @@
             "minElevationM": 1035,
             "maxElevationM": 2556,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 6050,
+            "computedGainM": 6015,
+            "deltaM": 35,
+            "deltaPercent": 0.6
           }
         },
         "illustration": {
@@ -536,6 +566,14 @@
           "sourceUrl": "https://montblanc.utmb.world/races/ccc"
         },
         "terrainDescription": "The Final of the 100K category, the \"little sister\" of the UTMB takes you through a unique journey of ultra-endurance from Courmayeur to Chamonix.",
+        "description": {
+          "original": "The Final of the 100K category, the \"little sister\" of the UTMB takes you through a unique journey of ultra-endurance from Courmayeur to Chamonix.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -750,39 +788,42 @@
             "cutoffDateTime": "2026-08-29T12:00:00"
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": true,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://montblanc.utmb.world/races/ccc",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:13.869Z",
+            "retrievedAt": "2026-08-21T12:57:13.917Z",
             "event": "UTMB Mont-Blanc",
             "race": "CCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:13.286Z",
+            "retrievedAt": "2026-08-21T12:57:13.332Z",
             "event": "UTMB Mont-Blanc",
             "race": "CCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:13.590Z",
+            "retrievedAt": "2026-08-21T12:57:13.597Z",
             "event": "UTMB Mont-Blanc",
             "race": "CCC"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1785143154/montblanc/Races/GPX/2026/CCC_2026_cd3cb129a5.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:13.869Z",
+            "retrievedAt": "2026-08-21T12:57:13.917Z",
             "event": "UTMB Mont-Blanc",
             "race": "CCC"
           }
@@ -795,6 +836,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }
@@ -821,38 +865,46 @@
         "startTime": "08:15",
         "distanceKm": 60,
         "elevationGainM": 3500,
-        "elevationLossM": 3215,
+        "elevationLossM": 3221,
         "startLocation": "Orsières",
         "finishLocation": "Chamonix",
         "maxDurationMinutes": 870,
+        "finishCutoffTime": null,
         "raceType": null,
         "terrainType": "trail",
         "nightStart": false,
         "polesAllowed": null,
-        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127491/montblanc/Races/GPX/2026/OCC_2026_4ffbc4d07f.gpx",
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1787126004/montblanc/Races/GPX/2026/OCC_2026_V2_94a3b7427e.gpx",
         "gpx": {
           "status": "available",
           "sourceUrl": "https://montblanc.utmb.world/races/occ",
-          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127491/montblanc/Races/GPX/2026/OCC_2026_4ffbc4d07f.gpx",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1787126004/montblanc/Races/GPX/2026/OCC_2026_V2_94a3b7427e.gpx",
           "downloadMethod": "GET",
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-14T13:00:15.533Z",
+          "retrievedAt": "2026-08-21T13:01:59.184Z",
           "localFile": "gpx/2026/utmb/occ.gpx",
           "routeAsset": "generated/routes/utmb-occ-2026.json",
-          "sha256": "b2fe8c72f404e90cec54693e495da78c0380260f5dc76657f3255a6f1488498f",
+          "sha256": "8806a614a4549c280a0c2cc2eeda127bdec0a7036a832e10ebd667794fa63d23",
           "trackCount": 1,
           "routeCount": 0,
-          "pointCount": 5365,
+          "pointCount": 5118,
           "hasElevation": true,
           "computed": {
-            "distanceKm": 60.07,
-            "elevationGainM": 3336,
-            "elevationLossM": 3215,
-            "minElevationM": 889,
-            "maxElevationM": 2313,
+            "distanceKm": 60.14,
+            "elevationGainM": 3342,
+            "elevationLossM": 3221,
+            "minElevationM": 893,
+            "maxElevationM": 2311,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 3500,
+            "computedGainM": 3342,
+            "deltaM": 158,
+            "deltaPercent": 4.5
           }
         },
         "illustration": {
@@ -861,6 +913,14 @@
           "sourceUrl": "https://montblanc.utmb.world/races/occ"
         },
         "terrainDescription": "The ultimate challenge for mid-distance ultra-runners, the OCC is the 50K category final for the UTMB World Series.",
+        "description": {
+          "original": "The ultimate challenge for mid-distance ultra-runners, the OCC is the 50K category final for the UTMB World Series.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -877,7 +937,7 @@
           {
             "name": "Plan de l'Au",
             "distanceKm": 12.2,
-            "elevationGainFromStartM": 680,
+            "elevationGainFromStartM": 729,
             "cutoffDateTime": "2026-08-27T11:15:00",
             "cutoffElapsedMinutes": 180,
             "aidStation": false,
@@ -885,8 +945,8 @@
           },
           {
             "name": "Trient",
-            "distanceKm": 23.8,
-            "elevationGainFromStartM": 1455,
+            "distanceKm": 23.9,
+            "elevationGainFromStartM": 1533,
             "cutoffDateTime": "2026-08-27T14:15:00",
             "cutoffElapsedMinutes": 360,
             "aidStation": true,
@@ -894,8 +954,8 @@
           },
           {
             "name": "Col de Balme",
-            "distanceKm": 33.5,
-            "elevationGainFromStartM": 2509,
+            "distanceKm": 33.6,
+            "elevationGainFromStartM": 2604,
             "cutoffDateTime": "2026-08-27T17:30:00",
             "cutoffElapsedMinutes": 555,
             "aidStation": true,
@@ -903,8 +963,8 @@
           },
           {
             "name": "Argentière",
-            "distanceKm": 50.2,
-            "elevationGainFromStartM": 3072,
+            "distanceKm": 50.4,
+            "elevationGainFromStartM": 3159,
             "cutoffDateTime": "2026-08-27T21:15:00",
             "cutoffElapsedMinutes": 780,
             "aidStation": true,
@@ -912,8 +972,8 @@
           },
           {
             "name": "Chamonix",
-            "distanceKm": 61.1,
-            "elevationGainFromStartM": 3336,
+            "distanceKm": 61.3,
+            "elevationGainFromStartM": 3342,
             "cutoffDateTime": "2026-08-27T23:30:00",
             "cutoffElapsedMinutes": 915,
             "aidStation": true,
@@ -949,8 +1009,8 @@
           },
           {
             "name": "Trient",
-            "distanceKm": 23.8,
-            "elevationM": 1308,
+            "distanceKm": 23.9,
+            "elevationM": 1304,
             "water": true,
             "sportsDrink": true,
             "solidFood": true,
@@ -962,7 +1022,7 @@
           },
           {
             "name": "Col de Balme",
-            "distanceKm": 33.5,
+            "distanceKm": 33.6,
             "elevationM": 2202,
             "water": true,
             "sportsDrink": true,
@@ -975,7 +1035,7 @@
           },
           {
             "name": "Argentière",
-            "distanceKm": 50.2,
+            "distanceKm": 50.4,
             "elevationM": 1255,
             "water": true,
             "sportsDrink": true,
@@ -988,7 +1048,7 @@
           },
           {
             "name": "Chamonix",
-            "distanceKm": 61.1,
+            "distanceKm": 61.3,
             "elevationM": 1035,
             "water": true,
             "sportsDrink": true,
@@ -1000,39 +1060,42 @@
             "cutoffDateTime": "2026-08-27T23:30:00"
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": true,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://montblanc.utmb.world/races/occ",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:14.031Z",
+            "retrievedAt": "2026-08-21T12:57:14.103Z",
             "event": "UTMB Mont-Blanc",
             "race": "OCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:13.286Z",
+            "retrievedAt": "2026-08-21T12:57:13.332Z",
             "event": "UTMB Mont-Blanc",
             "race": "OCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:13.590Z",
+            "retrievedAt": "2026-08-21T12:57:13.597Z",
             "event": "UTMB Mont-Blanc",
             "race": "OCC"
           },
           {
-            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127491/montblanc/Races/GPX/2026/OCC_2026_4ffbc4d07f.gpx",
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1787126004/montblanc/Races/GPX/2026/OCC_2026_V2_94a3b7427e.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:14.031Z",
+            "retrievedAt": "2026-08-21T12:57:14.103Z",
             "event": "UTMB Mont-Blanc",
             "race": "OCC"
           }
@@ -1045,6 +1108,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }
@@ -1075,6 +1141,7 @@
         "startLocation": "Courmayeur",
         "finishLocation": "Chamonix",
         "maxDurationMinutes": 2695,
+        "finishCutoffTime": null,
         "raceType": null,
         "terrainType": "trail",
         "nightStart": true,
@@ -1088,7 +1155,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-14T13:00:15.778Z",
+          "retrievedAt": "2026-08-21T13:01:59.552Z",
           "localFile": "gpx/2026/utmb/tds.gpx",
           "routeAsset": "generated/routes/utmb-tds-2026.json",
           "sha256": "a97a53f5eebe71a3dd5e31deb4cb0b7ed58d4585f9d9ed7a528608d0202456e6",
@@ -1103,6 +1170,13 @@
             "minElevationM": 721,
             "maxElevationM": 2589,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 9500,
+            "computedGainM": 9324,
+            "deltaM": 176,
+            "deltaPercent": 1.9
           }
         },
         "illustration": {
@@ -1111,6 +1185,14 @@
           "sourceUrl": "https://montblanc.utmb.world/races/tds"
         },
         "terrainDescription": "With its unique landscapes, its friendly and alpine atmosphere, the TDS is more than ever a world-class event.",
+        "description": {
+          "original": "With its unique landscapes, its friendly and alpine atmosphere, the TDS is more than ever a world-class event.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1426,39 +1508,42 @@
             "cutoffDateTime": "2026-08-26T20:45:00"
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": true,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://montblanc.utmb.world/races/tds",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:14.140Z",
+            "retrievedAt": "2026-08-21T12:57:14.311Z",
             "event": "UTMB Mont-Blanc",
             "race": "TDS"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:13.286Z",
+            "retrievedAt": "2026-08-21T12:57:13.332Z",
             "event": "UTMB Mont-Blanc",
             "race": "TDS"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:13.590Z",
+            "retrievedAt": "2026-08-21T12:57:13.597Z",
             "event": "UTMB Mont-Blanc",
             "race": "TDS"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1786442970/montblanc/Races/GPX/2026/TDS_2026_098e06c78e.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:14.140Z",
+            "retrievedAt": "2026-08-21T12:57:14.311Z",
             "event": "UTMB Mont-Blanc",
             "race": "TDS"
           }
@@ -1471,6 +1556,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }
@@ -1497,38 +1585,46 @@
         "startTime": "10:00",
         "distanceKm": 40,
         "elevationGainM": 2350,
-        "elevationLossM": 1834,
+        "elevationLossM": 1770,
         "startLocation": "Martigny-Combe",
         "finishLocation": "Chamonix",
         "maxDurationMinutes": 600,
+        "finishCutoffTime": null,
         "raceType": null,
         "terrainType": "trail",
         "nightStart": false,
         "polesAllowed": null,
-        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127488/montblanc/Races/GPX/2026/MCC_2026_c1d5b84b2c.gpx",
+        "gpxUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1787126004/montblanc/Races/GPX/2026/MCC_2026_V2_499847f410.gpx",
         "gpx": {
           "status": "available",
           "sourceUrl": "https://montblanc.utmb.world/races/mcc",
-          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127488/montblanc/Races/GPX/2026/MCC_2026_c1d5b84b2c.gpx",
+          "downloadUrl": "https://res.cloudinary.com/utmb-world/raw/upload/v1787126004/montblanc/Races/GPX/2026/MCC_2026_V2_499847f410.gpx",
           "downloadMethod": "GET",
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-14T13:00:16.050Z",
+          "retrievedAt": "2026-08-21T13:01:59.816Z",
           "localFile": "gpx/2026/utmb/mcc.gpx",
           "routeAsset": "generated/routes/utmb-mcc-2026.json",
-          "sha256": "a32bd3f74624da03b2fcc339ed86053e931c0a57bc5b10a7f5d62f0214e91a8a",
+          "sha256": "c1e9cb64d475e928cc09c49ceb9c69e8c07936114c532f60917bf9b9b161b124",
           "trackCount": 1,
           "routeCount": 0,
-          "pointCount": 3451,
+          "pointCount": 3199,
           "hasElevation": true,
           "computed": {
-            "distanceKm": 37.99,
-            "elevationGainM": 2362,
-            "elevationLossM": 1832,
-            "minElevationM": 506,
+            "distanceKm": 38.06,
+            "elevationGainM": 2300,
+            "elevationLossM": 1770,
+            "minElevationM": 507,
             "maxElevationM": 2222,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 2350,
+            "computedGainM": 2300,
+            "deltaM": 50,
+            "deltaPercent": 2.1
           }
         },
         "illustration": {
@@ -1537,6 +1633,14 @@
           "sourceUrl": "https://montblanc.utmb.world/races/mcc"
         },
         "terrainDescription": "From Martigny-Combe to Chamonix, the MCC is a 40 km race reserved primarily for UTMB volunteers, partners and local residents.",
+        "description": {
+          "original": "From Martigny-Combe to Chamonix, the MCC is a 40 km race reserved primarily for UTMB volunteers, partners and local residents.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1562,7 +1666,7 @@
           {
             "name": "Col de Balme",
             "distanceKm": 17.4,
-            "elevationGainFromStartM": 1966,
+            "elevationGainFromStartM": 1982,
             "cutoffDateTime": "2026-08-24T15:45:00",
             "cutoffElapsedMinutes": 345,
             "aidStation": true,
@@ -1571,7 +1675,7 @@
           {
             "name": "Argentière",
             "distanceKm": 27.8,
-            "elevationGainFromStartM": 2101,
+            "elevationGainFromStartM": 2117,
             "cutoffDateTime": "2026-08-24T18:00:00",
             "cutoffElapsedMinutes": 480,
             "aidStation": true,
@@ -1580,7 +1684,7 @@
           {
             "name": "Chamonix",
             "distanceKm": 38.7,
-            "elevationGainFromStartM": 2364,
+            "elevationGainFromStartM": 2300,
             "cutoffDateTime": "2026-08-24T20:30:00",
             "cutoffElapsedMinutes": 630,
             "aidStation": true,
@@ -1654,39 +1758,42 @@
             "cutoffDateTime": "2026-08-24T20:30:00"
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": true,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://montblanc.utmb.world/races/mcc",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:14.298Z",
+            "retrievedAt": "2026-08-21T12:57:14.644Z",
             "event": "UTMB Mont-Blanc",
             "race": "MCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:13.286Z",
+            "retrievedAt": "2026-08-21T12:57:13.332Z",
             "event": "UTMB Mont-Blanc",
             "race": "MCC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:13.590Z",
+            "retrievedAt": "2026-08-21T12:57:13.597Z",
             "event": "UTMB Mont-Blanc",
             "race": "MCC"
           },
           {
-            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127488/montblanc/Races/GPX/2026/MCC_2026_c1d5b84b2c.gpx",
+            "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1787126004/montblanc/Races/GPX/2026/MCC_2026_V2_499847f410.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:14.298Z",
+            "retrievedAt": "2026-08-21T12:57:14.644Z",
             "event": "UTMB Mont-Blanc",
             "race": "MCC"
           }
@@ -1699,6 +1806,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }
@@ -1729,6 +1839,7 @@
         "startLocation": "Courmayeur",
         "finishLocation": "Courmayeur",
         "maxDurationMinutes": 270,
+        "finishCutoffTime": null,
         "raceType": null,
         "terrainType": "trail",
         "nightStart": false,
@@ -1742,7 +1853,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-14T13:00:16.244Z",
+          "retrievedAt": "2026-08-21T13:02:00.075Z",
           "localFile": "gpx/2026/utmb/etc.gpx",
           "routeAsset": "generated/routes/utmb-etc-2026.json",
           "sha256": "5985954852b4d53314749f89fc46cb5d2e68761ef8f2c79c212f217660a2c908",
@@ -1757,6 +1868,13 @@
             "minElevationM": 1222,
             "maxElevationM": 1955,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 1200,
+            "computedGainM": 1164,
+            "deltaM": 36,
+            "deltaPercent": 3
           }
         },
         "illustration": {
@@ -1765,6 +1883,14 @@
           "sourceUrl": "https://montblanc.utmb.world/races/etc"
         },
         "terrainDescription": "Take on the adventure of a 15km race with 1200 meters of elevation gain in the heart of the Italian Alps.",
+        "description": {
+          "original": "Take on the adventure of a 15km race with 1200 meters of elevation gain in the heart of the Italian Alps.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -1838,39 +1964,42 @@
             "cutoffDateTime": "2026-08-25T19:10:00"
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": true,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://montblanc.utmb.world/races/etc",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:14.419Z",
+            "retrievedAt": "2026-08-21T12:57:14.800Z",
             "event": "UTMB Mont-Blanc",
             "race": "ETC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:13.286Z",
+            "retrievedAt": "2026-08-21T12:57:13.332Z",
             "event": "UTMB Mont-Blanc",
             "race": "ETC"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:13.590Z",
+            "retrievedAt": "2026-08-21T12:57:13.597Z",
             "event": "UTMB Mont-Blanc",
             "race": "ETC"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1784127487/montblanc/Races/GPX/2026/ETC_2026_ed5c8a96b4.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:14.419Z",
+            "retrievedAt": "2026-08-21T12:57:14.800Z",
             "event": "UTMB Mont-Blanc",
             "race": "ETC"
           }
@@ -1883,6 +2012,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }
@@ -1913,6 +2045,7 @@
         "startLocation": "Chamonix",
         "finishLocation": "Chamonix",
         "maxDurationMinutes": 9060,
+        "finishCutoffTime": null,
         "raceType": null,
         "terrainType": "trail",
         "nightStart": false,
@@ -1926,7 +2059,7 @@
           "downloadParams": null,
           "sourceType": "official-race-page",
           "sourcePlatform": null,
-          "retrievedAt": "2026-08-14T13:00:16.413Z",
+          "retrievedAt": "2026-08-21T13:02:00.286Z",
           "localFile": "gpx/2026/utmb/ptl.gpx",
           "routeAsset": "generated/routes/utmb-ptl-2026.json",
           "sha256": "7a9ee3cfda9b66cfc0168349d34d4298822e2a441686c88441097c0195634808",
@@ -1941,6 +2074,13 @@
             "minElevationM": 876,
             "maxElevationM": 3202,
             "elevationMethod": "Cumulative elevation with 3 m noise threshold"
+          },
+          "elevationQuality": {
+            "status": "consistent",
+            "officialGainM": 25000,
+            "computedGainM": 27331,
+            "deltaM": 2331,
+            "deltaPercent": 9.3
           }
         },
         "illustration": {
@@ -1949,6 +2089,14 @@
           "sourceUrl": "https://montblanc.utmb.world/races/ptl"
         },
         "terrainDescription": "Mental toughness, team spirit, a sense of adventure, and core mountain values are essential to experience this adventure of a lifetime, a grand tour of the Mont-Blanc as a team.",
+        "description": {
+          "original": "Mental toughness, team spirit, a sense of adventure, and core mountain values are essential to experience this adventure of a lifetime, a grand tour of the Mont-Blanc as a team.",
+          "originalLanguage": null,
+          "french": null,
+          "frenchValidated": false
+        },
+        "program": [],
+        "logistics": null,
         "technicalScore": null,
         "technicalScoreSource": null,
         "registration": {
@@ -2185,39 +2333,42 @@
             "cutoffDateTime": null
           }
         ],
+        "dataAvailability": {},
         "mandatoryEquipment": [],
         "rules": {
           "personalAssistanceAllowed": null,
           "pacersAllowed": null,
+          "companionsAllowed": null,
           "dropBagAllowed": true,
-          "minimumWaterLiters": null
+          "minimumWaterLiters": null,
+          "details": null
         },
         "sources": [
           {
             "url": "https://montblanc.utmb.world/races/ptl",
             "type": "official-race-page",
-            "retrievedAt": "2026-08-14T13:00:14.582Z",
+            "retrievedAt": "2026-08-21T12:57:14.937Z",
             "event": "UTMB Mont-Blanc",
             "race": "PTL"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/registrationconditions",
             "type": "official-registration",
-            "retrievedAt": "2026-08-14T13:00:13.286Z",
+            "retrievedAt": "2026-08-21T12:57:13.332Z",
             "event": "UTMB Mont-Blanc",
             "race": "PTL"
           },
           {
             "url": "https://montblanc.utmb.world/en/races-runners/other-information/regulation",
             "type": "official-rules",
-            "retrievedAt": "2026-08-14T13:00:13.590Z",
+            "retrievedAt": "2026-08-21T12:57:13.597Z",
             "event": "UTMB Mont-Blanc",
             "race": "PTL"
           },
           {
             "url": "https://res.cloudinary.com/utmb-world/raw/upload/v1723798810/montblanc/Races/GPX/2024/track_5_53fd1bf5e0.gpx",
             "type": "official-gpx",
-            "retrievedAt": "2026-08-14T13:00:14.582Z",
+            "retrievedAt": "2026-08-21T12:57:14.937Z",
             "event": "UTMB Mont-Blanc",
             "race": "PTL"
           }
@@ -2230,6 +2381,9 @@
       },
       "quality": {
         "status": "complete",
+        "sportCompleteness": "complete",
+        "logisticsCompleteness": "complete",
+        "registrationCompleteness": "complete",
         "warnings": [],
         "missingFields": []
       }

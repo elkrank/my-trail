@@ -6,6 +6,7 @@ import {
 } from "../../common/cutoffs.mjs";
 import {
   createEdition,
+  createDataAvailability,
   createEvent,
   createIllustration,
   createRace,
@@ -13,7 +14,7 @@ import {
   createSource,
   sourceFromFetch,
 } from "../../common/model.mjs";
-import { extractIllustration, parseDate, parseTime, stripHtml, textNoAccents } from "../../common/parse.mjs";
+import { extractIllustration, extractRegistrationUrl, parseDate, parseTime, stripHtml, textNoAccents } from "../../common/parse.mjs";
 import { fetchPdfText } from "../../common/pdf.mjs";
 
 const BASE_URL = "https://www.maxi-race.org";
@@ -80,7 +81,10 @@ export const MAXI_RACE_RACES = [
     shortName: "Marathon-eXperience",
     raceType: "solo",
     aidKey: "marathon",
-    fallbackStats: { date: "2026-05-30", distanceKm: 39.88, elevationGainM: 1713, elevationLossM: 1756 },
+    fallbackStats: { date: "2026-05-31", distanceKm: 39.88, elevationGainM: 1713, elevationLossM: 1756 },
+    startTimeOverride: "06:00",
+    finishCutoffTime: "14:50",
+    roadbookUrl: "https://www.maxi-race.org/wp-content/uploads/2026/04/MXR-2026-Livret-Marathon-eXperience.pdf",
   },
   {
     slug: "quart-de-tour-du-lac",
@@ -92,6 +96,8 @@ export const MAXI_RACE_RACES = [
     raceType: "solo",
     fallbackStats: { date: "2026-05-30", distanceKm: 19.95, elevationGainM: 412, elevationLossM: 1439 },
     conflictDateSource: "2026-05-29",
+    authoritativeDate: "2026-05-30",
+    roadbookUrl: "https://www.maxi-race.org/wp-content/uploads/2026/04/MXR-2026-Livret-Quart-de-tOur-du-Lac.pdf",
   },
 ];
 
@@ -127,7 +133,11 @@ export async function collect({ year }) {
     try {
       const page = await fetchText(url);
       const cutoffPdfs = [];
-      for (const pdfUrl of extractCutoffPdfUrls(page.content, page.finalUrl ?? page.url)) {
+      const pdfUrls = new Set([
+        ...extractCutoffPdfUrls(page.content, page.finalUrl ?? page.url),
+        ...(raceConfig.roadbookUrl ? [raceConfig.roadbookUrl] : []),
+      ]);
+      for (const pdfUrl of pdfUrls) {
         try {
           cutoffPdfs.push(await fetchPdfText(pdfUrl));
         } catch (error) {
@@ -177,6 +187,14 @@ export function buildMaxiRaceEntry({ event, raceConfig, page, traceEvent, roadbo
       race: race.shortName,
     }));
   }
+  if (raceConfig.roadbookUrl) {
+    sources.push(sourceFromUrl(raceConfig.roadbookUrl, {
+      type: "official-roadbook",
+      retrievedAt: cutoffPdfs.find((pdf) => (pdf.finalUrl ?? pdf.url) === raceConfig.roadbookUrl)?.retrievedAt ?? page?.retrievedAt ?? new Date().toISOString(),
+      event: event.name,
+      race: race.shortName,
+    }));
+  }
   for (const url of [raceConfig.traceUrl, ...(raceConfig.traceUrls ?? [])].filter(Boolean)) {
     sources.push(sourceFromUrl(url, {
       type: "official-map-platform",
@@ -186,14 +204,14 @@ export function buildMaxiRaceEntry({ event, raceConfig, page, traceEvent, roadbo
     }));
   }
 
-  let date = stats.date ?? null;
+  let date = raceConfig.authoritativeDate ?? stats.date ?? null;
   if (raceConfig.conflictDateSource && date && raceConfig.conflictDateSource !== date) {
-    warnings.push(`Official sources conflict on 2026 date: race page ${raceConfig.conflictDateSource}, Trace de Trail ${date}.`);
-    date = null;
+    warnings.push(`Official sources conflict on 2026 date: race page ${raceConfig.conflictDateSource}; final runner roadbook/program ${date} takes precedence.`);
   }
+  const startTime = raceConfig.startTimeOverride ?? pageSignals.startTime;
   const parsedCutoffs = mergeMaxiRaceCutoffs(cutoffPdfs, {
     date,
-    startTime: pageSignals.startTime,
+    startTime,
   });
   warnings.push(...parsedCutoffs.warnings);
 
@@ -215,19 +233,23 @@ export function buildMaxiRaceEntry({ event, raceConfig, page, traceEvent, roadbo
 
   const edition = createEdition(year, {
     date,
-    startTime: pageSignals.startTime,
+    startTime,
     distanceKm: stats.distanceKm ?? null,
     elevationGainM: stats.elevationGainM ?? null,
     elevationLossM: stats.elevationLossM ?? null,
     startLocation: null,
     finishLocation: null,
     maxDurationMinutes: parsedCutoffs.maxDurationMinutes,
+    finishCutoffTime: raceConfig.finishCutoffTime ?? null,
     raceType: raceConfig.raceType,
     terrainType: "trail",
     terrainDescription: pageSignals.description,
-    nightStart: pageSignals.startTime ? pageSignals.startTime < "06:00" || pageSignals.startTime >= "20:00" : null,
+    nightStart: startTime ? startTime < "06:00" || startTime >= "20:00" : null,
     illustration,
     gpx: multiStageGpx,
+    registration: {
+      url: page ? extractRegistrationUrl(page.content, page.finalUrl ?? page.url) : null,
+    },
     checkpoints: parsedCutoffs.checkpoints,
     aidStations: roadbook && raceConfig.aidKey ? aidStationsFor(raceConfig.aidKey) : [],
     mandatoryEquipment: roadbook && raceConfig.aidKey
@@ -248,6 +270,37 @@ export function buildMaxiRaceEntry({ event, raceConfig, page, traceEvent, roadbo
       stageDates: raceConfig.stageDates ?? null,
       distanceRangeKm: pageSignals.distanceRangeKm,
       elevationRangeM: pageSignals.elevationRangeM,
+    },
+    dataAvailability: {
+      ...(raceConfig.authoritativeDate ? {
+        date: createDataAvailability("known", {
+          sourceUrl: raceConfig.roadbookUrl,
+          checkedAt: cutoffPdfs.find((pdf) => (pdf.finalUrl ?? pdf.url) === raceConfig.roadbookUrl)?.retrievedAt ?? page?.retrievedAt,
+          reason: "Final 2026 runner roadbook and official program take precedence over the stale race-page date.",
+        }),
+      } : {}),
+      ...(raceConfig.slug === "marathon-experience" ? {
+        maxDurationMinutes: createDataAvailability("not_applicable", {
+          sourceUrl: raceConfig.roadbookUrl,
+          checkedAt: cutoffPdfs.find((pdf) => (pdf.finalUrl ?? pdf.url) === raceConfig.roadbookUrl)?.retrievedAt ?? page?.retrievedAt,
+          reason: "Wave starts run from 06:00 to 06:40, so no single maximum duration is valid for every runner.",
+        }),
+        finishCutoffTime: createDataAvailability("known", {
+          sourceUrl: raceConfig.roadbookUrl,
+          checkedAt: cutoffPdfs.find((pdf) => (pdf.finalUrl ?? pdf.url) === raceConfig.roadbookUrl)?.retrievedAt ?? page?.retrievedAt,
+          reason: "Final runner roadbook publishes an arrival cutoff of 14:50.",
+        }),
+        checkpoints: parsedCutoffs.checkpoints.length
+          ? createDataAvailability("known", {
+            sourceUrl: raceConfig.roadbookUrl,
+            checkedAt: cutoffPdfs.find((pdf) => (pdf.finalUrl ?? pdf.url) === raceConfig.roadbookUrl)?.retrievedAt ?? page?.retrievedAt,
+          })
+          : createDataAvailability("extraction_error", {
+            sourceUrl: raceConfig.roadbookUrl,
+            checkedAt: cutoffPdfs.find((pdf) => (pdf.finalUrl ?? pdf.url) === raceConfig.roadbookUrl)?.retrievedAt ?? page?.retrievedAt,
+            reason: "The official timetable exists but no reliable checkpoint rows were extracted.",
+          }),
+      } : {}),
     },
     sources: dedupeSources(sources),
   });
