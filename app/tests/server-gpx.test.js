@@ -214,6 +214,15 @@ test('course pages have race-specific metadata, canonical URLs and real 404 resp
   }
 });
 
+test('profile route serves the SPA and detailed races expose technical data explicitly', async () => {
+  const profilePage = await requestRaw('/profil?course=fixture-valid-2026');
+  const race = await request('/api/races/1');
+  assert.equal(profilePage.status, 200);
+  assert.match(profilePage.text, /id="profile-view"/);
+  assert.equal(Object.hasOwn(race.body.race, 'technicalScore'), true);
+  assert.equal(Object.hasOwn(race.body.race, 'technicalScoreSource'), true);
+});
+
 test('sitemap contains every race slug in addition to the homepage', async () => {
   process.env.PUBLIC_BASE_URL = 'https://trailcompare.example';
   try {

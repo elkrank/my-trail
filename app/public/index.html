@@ -56,6 +56,12 @@
             </span>
             Favoris
           </a>
+          <a class="side-link" href="/profil" data-profile-navigation>
+            <span class="side-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 21a7 7 0 0 1 14 0"></path></svg>
+            </span>
+            Mon profil
+          </a>
         </nav>
 
         <div class="sidebar-bottom">
@@ -71,10 +77,10 @@
             <span>Dark</span>
           </div>
 
-          <button class="profile-button" type="button" aria-label="Profil">
+          <a class="profile-button" href="/profil" aria-label="Profil coureur">
             <span class="profile-avatar" aria-hidden="true">TC</span>
             <span>Profil</span>
-          </button>
+          </a>
         </div>
       </aside>
 
@@ -270,6 +276,11 @@
         <section id="course-view" class="view course-view" data-view="course" hidden>
           <p id="course-status" class="status course-status" role="status">Chargement de la fiche course...</p>
           <div id="course-content"></div>
+        </section>
+
+        <section id="profile-view" class="view profile-view" data-view="profile" hidden>
+          <p id="profile-status" class="status" role="status"></p>
+          <div id="profile-content"></div>
         </section>
       </main>
     </div>

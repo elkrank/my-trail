@@ -24,6 +24,7 @@ const port = Number(process.env.PORT ?? 3000);
 
 app.get('/', serveIndex);
 app.get('/index.html', serveIndex);
+app.get('/profil', serveIndex);
 app.get('/courses/:slug', serveCourse);
 app.get('/robots.txt', (_request, response) => {
   const publicBaseUrl = getPublicBaseUrl();

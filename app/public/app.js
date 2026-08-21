@@ -1,3 +1,7 @@
+import { STATUS } from './profile-config.js';
+import { compareRunnerToRace, formatMinutesAsHoursMinutes } from './profile-comparison.js';
+import { createProfileRepository, emptyProfile, formatDurationInput, parseDurationInput, ProfileValidationError } from './profile-repository.js';
+
 const raceASelect = document.querySelector('#race-a');
 const raceBSelect = document.querySelector('#race-b');
 const swapButton = document.querySelector('#swap-races');
@@ -30,6 +34,15 @@ const favoritesResultsEl = document.querySelector('#favorites-results');
 const courseView = document.querySelector('#course-view');
 const courseStatusEl = document.querySelector('#course-status');
 const courseContentEl = document.querySelector('#course-content');
+const profileView = document.querySelector('#profile-view');
+const profileStatusEl = document.querySelector('#profile-status');
+const profileContentEl = document.querySelector('#profile-content');
+let profileRepository;
+try {
+  profileRepository = createProfileRepository(window.localStorage);
+} catch {
+  profileRepository = createProfileRepository(null);
+}
 
 const confidenceLabels = {
   official: 'Source officielle',
@@ -65,6 +78,10 @@ const viewMeta = {
   favorites: {
     title: 'TrailCompare - Favoris',
     description: 'Retrouvez vos trails favoris sauvegardés localement sur cet appareil.',
+  },
+  profile: {
+    title: 'TrailCompare - Profil coureur',
+    description: 'Créez votre profil coureur et confrontez vos repères récents aux exigences d’une course trail.',
   },
 };
 
@@ -104,6 +121,8 @@ const state = {
   courseMap: null,
   courseMapCleanup: null,
   comparisonMaps: [],
+  runnerProfile: null,
+  profileRace: null,
 };
 
 let leafletLoadPromise = null;
@@ -862,6 +881,7 @@ function gpxDownloadLinkTemplate(race, className = '') {
 
 function raceActionsTemplate(race) {
   const actions = [
+    `<a class="button button-primary button-small" href="/profil?course=${escapeHtml(race.slug)}">Comparer avec mon profil</a>`,
     registrationLinkTemplate(race),
     gpxDownloadLinkTemplate(race),
   ].filter(Boolean);
@@ -1683,6 +1703,7 @@ function courseDetailTemplate(race) {
           <div class="course-hero-actions">
             ${favoriteButtonTemplate(race)}
             <a class="button button-secondary button-small" href="/?raceA=${escapeHtml(race.id)}#compare">Comparer</a>
+            <a class="button button-primary button-small" href="/profil?course=${escapeHtml(race.slug)}">Comparer avec mon profil</a>
             <button class="button button-secondary button-small" type="button" data-course-share>Partager</button>
             ${actions}
           </div>
@@ -1983,6 +2004,296 @@ function bindCourseActions() {
   });
 }
 
+const profileStatusLabels = {
+  [STATUS.VALIDATED]: 'Validé',
+  [STATUS.CONSOLIDATE]: 'À consolider',
+  [STATUS.IMPORTANT_GAP]: 'Écart important',
+  [STATUS.CRITICAL]: 'Critique',
+  [STATUS.INSUFFICIENT]: 'Données insuffisantes',
+};
+
+const verdictLabels = {
+  accessible_now: 'Accessible actuellement',
+  ambitious_coherent: 'Ambitieux mais cohérent',
+  preparation_insufficient: 'Préparation encore insuffisante',
+  insufficient_data: 'Données insuffisantes',
+};
+
+const confidenceLevelLabels = { high: 'Confiance élevée', medium: 'Confiance moyenne', low: 'Confiance faible' };
+
+function inputValue(value) {
+  return value === null || value === undefined ? '' : escapeHtml(value);
+}
+
+function profileNumberField(name, label, unit, value, { step = 'any', min = 0 } = {}) {
+  return `
+    <label class="profile-field">
+      <span>${escapeHtml(label)}</span>
+      <span class="input-with-unit"><input name="${escapeHtml(name)}" type="number" min="${min}" step="${step}" value="${inputValue(value)}"><small>${escapeHtml(unit)}</small></span>
+    </label>`;
+}
+
+function profileDurationField(name, label, value) {
+  return `
+    <label class="profile-field">
+      <span>${escapeHtml(label)}</span>
+      <input name="${escapeHtml(name)}" type="text" inputmode="numeric" placeholder="h:mm" value="${inputValue(formatDurationInput(value))}">
+      <small>Format h:mm, par exemple 2:30</small>
+    </label>`;
+}
+
+function performanceRowTemplate(reference = {}, index = 0) {
+  const selectedType = reference.type || 'trail';
+  const fixedDistance = { '5k': 5, '10k': 10, half_marathon: 21.0975, marathon: 42.195 }[selectedType];
+  const distanceValue = fixedDistance ?? reference.distanceKm;
+  const durationValue = selectedType === 'six_minute_test' ? 6 : reference.durationMinutes;
+  return `
+    <fieldset class="performance-row" data-performance-row>
+      <legend>Référence ${index + 1}</legend>
+      <input type="hidden" data-performance-field="id" value="${inputValue(reference.id || `reference-${Date.now()}-${index}`)}">
+      <label class="profile-field"><span>Type</span>
+        <select data-performance-field="type">
+          ${[
+            ['5k', '5 km'], ['10k', '10 km'], ['half_marathon', 'Semi-marathon'], ['marathon', 'Marathon'], ['six_minute_test', 'Test de six minutes'], ['trail', 'Trail'],
+          ].map(([value, label]) => `<option value="${value}" ${selectedType === value ? 'selected' : ''}>${label}</option>`).join('')}
+        </select>
+      </label>
+      <label class="profile-field"><span>Distance</span><span class="input-with-unit"><input name="performance-distance" type="number" min="0" step="any" value="${inputValue(distanceValue)}" ${fixedDistance ? 'readonly' : ''}><small>km</small></span></label>
+      <label class="profile-field"><span>Durée</span><input name="performance-duration" type="text" inputmode="numeric" placeholder="h:mm" value="${inputValue(formatDurationInput(durationValue))}" ${selectedType === 'six_minute_test' ? 'readonly' : ''}><small>Format h:mm, par exemple 2:30</small></label>
+      <label class="profile-field" ${selectedType === 'trail' ? '' : 'hidden'}><span>D+</span><span class="input-with-unit"><input name="performance-elevation" type="number" min="0" step="1" value="${inputValue(reference.elevationGainM)}"><small>m</small></span></label>
+      <label class="profile-field"><span>Date</span><input name="performance-date" type="date" value="${inputValue(reference.date)}"></label>
+      <label class="profile-field performance-name"><span>Nom de la course <small>(facultatif)</small></span><input name="performance-name" type="text" maxlength="120" value="${inputValue(reference.name)}"></label>
+      <button class="button button-secondary button-small remove-performance" type="button" data-remove-performance>Supprimer</button>
+    </fieldset>`;
+}
+
+function profileFormTemplate(profile, { selectedRace = null } = {}) {
+  const data = profile ?? emptyProfile();
+  return `
+    <header class="page-header profile-header">
+      <div>
+        <p class="eyebrow">PROFIL COUREUR</p>
+        <h1>${profile ? 'Mettre à jour mon profil' : 'Créer mon profil coureur'}</h1>
+        <p class="subtitle">Des repères simples pour confronter votre niveau actuel aux exigences réelles d’une course.</p>
+      </div>
+    </header>
+    ${selectedRace ? `<div class="selected-profile-race"><span>Course conservée</span><strong>${escapeHtml(selectedRace.name)}</strong><small>${formatKm(selectedRace.distanceKm)} · ${formatElevation(selectedRace.elevationGainM)}</small></div>` : ''}
+    <form id="runner-profile-form" class="runner-profile-form" novalidate>
+      <div id="profile-errors" class="profile-errors" role="alert" tabindex="-1" hidden></div>
+      <section class="profile-form-section">
+        <div class="profile-section-heading"><span>01</span><div><h2>Entraînement récent</h2><p>Moyennes des quatre dernières semaines.</p></div></div>
+        <div class="profile-field-grid">
+          ${profileNumberField('weeklyDistanceKm', 'Distance hebdomadaire moyenne', 'km/sem', data.training.weeklyDistanceKm)}
+          ${profileNumberField('weeklyElevationGainM', 'D+ hebdomadaire moyen', 'm/sem', data.training.weeklyElevationGainM, { step: 1 })}
+          ${profileNumberField('weeklyHours', 'Temps moyen', 'h/sem', data.training.weeklyHours)}
+          ${profileNumberField('weeklySessions', 'Nombre moyen de séances', 'séances/sem', data.training.weeklySessions, { step: 1 })}
+          ${profileNumberField('longRunDistanceKm', 'Plus longue sortie récente', 'km', data.training.longRun.distanceKm)}
+          ${profileDurationField('longRunDuration', 'Durée de cette sortie', data.training.longRun.durationMinutes)}
+          ${profileNumberField('longRunElevationGainM', 'D+ de cette sortie', 'm', data.training.longRun.elevationGainM, { step: 1 })}
+          <label class="profile-field"><span>Date de cette sortie</span><input name="longRunDate" type="date" value="${inputValue(data.training.longRun.date)}"></label>
+        </div>
+      </section>
+
+      <section class="profile-form-section">
+        <div class="profile-section-heading"><span>02</span><div><h2>Références de performance</h2><p>Facultatives. Un chrono route seul ne sert jamais à prédire un trail.</p></div></div>
+        <div id="performance-list" class="performance-list">${data.performances.map(performanceRowTemplate).join('')}</div>
+        <button id="add-performance" class="button button-secondary" type="button">Ajouter une référence</button>
+      </section>
+
+      <section class="profile-form-section">
+        <div class="profile-section-heading"><span>03</span><div><h2>Expérience trail</h2><p>Choisissez des niveaux simples, sans fausse précision.</p></div></div>
+        <div class="profile-field-grid">
+          ${profileNumberField('longestCompletedDistanceKm', 'Plus longue distance terminée', 'km', data.experience.longestCompletedDistanceKm)}
+          ${profileDurationField('longestEffortDuration', 'Plus longue durée d’effort', data.experience.longestEffortMinutes)}
+          ${profileNumberField('maximumElevationGainM', 'Plus gros D+ réalisé', 'm', data.experience.maximumElevationGainM, { step: 1 })}
+          ${experienceSelect('technicalLevel', 'Terrain technique', data.experience.technicalLevel, [['', 'Non renseigné'], ['beginner', 'Peu ou pas d’expérience'], ['comfortable', 'À l’aise régulièrement'], ['confirmed', 'Confirmé sur terrain exigeant']])}
+          ${experienceSelect('nightExperience', 'Course nocturne', data.experience.nightExperience, [['', 'Non renseigné'], ['none', 'Aucune expérience'], ['some', 'Quelques expériences'], ['regular', 'Expérience régulière']])}
+          ${experienceSelect('autonomyExperience', 'Autonomie', data.experience.autonomyExperience, [['', 'Non renseigné'], ['none', 'Aucune expérience'], ['some', 'Quelques expériences'], ['regular', 'Expérience régulière']])}
+        </div>
+      </section>
+
+      <section class="profile-form-section">
+        <div class="profile-section-heading"><span>04</span><div><h2>Objectif</h2><p>Ce choix ajuste prudemment les exigences, pas votre niveau.</p></div></div>
+        <div class="goal-options" role="radiogroup" aria-label="Objectif">
+          ${goalOption('finish_cutoffs', 'Terminer dans les délais', data.goal)}
+          ${goalOption('finish_comfortably', 'Terminer confortablement', data.goal)}
+          ${goalOption('performance', 'Rechercher une performance', data.goal)}
+        </div>
+      </section>
+
+      <div class="profile-form-actions">
+        <button class="button button-primary" type="submit">${selectedRace ? 'Enregistrer et comparer' : 'Enregistrer mon profil'}</button>
+        ${profile ? '<button class="button button-secondary" type="button" data-cancel-profile>Annuler</button>' : ''}
+      </div>
+    </form>`;
+}
+
+function experienceSelect(name, label, selected, options) {
+  return `<label class="profile-field"><span>${escapeHtml(label)}</span><select name="${escapeHtml(name)}">${options.map(([value, text]) => `<option value="${value}" ${selected === value ? 'selected' : ''}>${escapeHtml(text)}</option>`).join('')}</select></label>`;
+}
+
+function goalOption(value, label, selected) {
+  return `<label class="goal-option"><input type="radio" name="goal" value="${value}" ${selected === value ? 'checked' : ''}><span>${escapeHtml(label)}</span></label>`;
+}
+
+function readProfileForm(form) {
+  const value = (name) => form.elements.namedItem(name)?.value ?? null;
+  const performances = Array.from(form.querySelectorAll('[data-performance-row]')).map((row) => ({
+    id: row.querySelector('[data-performance-field="id"]')?.value,
+    type: row.querySelector('[data-performance-field="type"]')?.value,
+    distanceKm: row.querySelector('[name="performance-distance"]')?.value,
+    durationMinutes: parseDurationInput(row.querySelector('[name="performance-duration"]')?.value),
+    elevationGainM: row.querySelector('[name="performance-elevation"]')?.value,
+    date: row.querySelector('[name="performance-date"]')?.value,
+    name: row.querySelector('[name="performance-name"]')?.value,
+  }));
+  return {
+    training: {
+      weeklyDistanceKm: value('weeklyDistanceKm'), weeklyElevationGainM: value('weeklyElevationGainM'), weeklyHours: value('weeklyHours'), weeklySessions: value('weeklySessions'),
+      longRun: { distanceKm: value('longRunDistanceKm'), durationMinutes: parseDurationInput(value('longRunDuration')), elevationGainM: value('longRunElevationGainM'), date: value('longRunDate') },
+    },
+    performances,
+    experience: {
+      longestCompletedDistanceKm: value('longestCompletedDistanceKm'), longestEffortMinutes: parseDurationInput(value('longestEffortDuration')), maximumElevationGainM: value('maximumElevationGainM'),
+      technicalLevel: value('technicalLevel'), nightExperience: value('nightExperience'), autonomyExperience: value('autonomyExperience'),
+    },
+    goal: form.querySelector('[name="goal"]:checked')?.value ?? null,
+  };
+}
+
+function showProfileErrors(errors) {
+  const container = document.querySelector('#profile-errors');
+  if (!container) return;
+  const messages = [...new Set(Object.values(errors))];
+  container.hidden = false;
+  container.innerHTML = `<strong>Vérifiez les informations saisies.</strong><ul>${messages.map((message) => `<li>${escapeHtml(message)}</li>`).join('')}</ul>`;
+  container.focus?.();
+}
+
+function statusBadge(status) {
+  return `<span class="diagnostic-status status-${escapeHtml(status)}">${escapeHtml(profileStatusLabels[status] ?? status)}</span>`;
+}
+
+function diagnosticTemplate(profile, race) {
+  const result = compareRunnerToRace(profile, race, new Date());
+  const confidence = result.confidence;
+  return `
+    <a class="course-back" href="${escapeHtml(courseHref(race))}">← Retour à la course</a>
+    <header class="diagnostic-hero">
+      <div><p class="eyebrow">COMPARAISON PERSONNALISÉE · V0</p><h1>${escapeHtml(race.name)}</h1><p>Un indicateur d’adéquation actuel, pas une prédiction de résultat.</p></div>
+      <div class="verdict-panel"><span>Verdict général</span><strong>${escapeHtml(verdictLabels[result.verdict])}</strong>${statusBadge(verdictStatus(result.verdict))}</div>
+    </header>
+    <section class="confidence-panel confidence-${escapeHtml(confidence.level)}">
+      <div><span>Niveau de confiance</span><strong>${escapeHtml(confidenceLevelLabels[confidence.level])}</strong></div>
+      <p>${escapeHtml(confidence.reasons[0])}</p>
+      ${confidence.missing.length ? `<details><summary>Voir les limites (${confidence.missing.length})</summary><ul>${confidence.missing.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></details>` : ''}
+    </section>
+    <div class="diagnostic-axes">${result.axes.map(axisTemplate).join('')}</div>
+    <aside class="method-note"><strong>À garder en tête</strong><p>Les seuils sont conservateurs, explicables et ajustables. Ils ne garantissent ni réussite ni échec.</p></aside>
+    <div class="profile-form-actions"><button class="button button-primary" type="button" data-edit-profile>Modifier mon profil</button><a class="button button-secondary" href="${escapeHtml(courseHref(race))}">Voir la fiche course</a></div>`;
+}
+
+function axisTemplate(axis) {
+  return `<article class="diagnostic-axis status-border-${escapeHtml(axis.status)}">
+    <header><div><span>AXE</span><h2>${escapeHtml(axis.label)}</h2></div>${statusBadge(axis.status)}</header>
+    <div class="axis-comparison"><div><span>Niveau actuel</span><strong>${escapeHtml(axis.current)}</strong></div><div><span>Exigence course</span><strong>${escapeHtml(axis.requirement)}</strong></div><div><span>Écart</span><strong>${escapeHtml(axis.gap)}</strong></div></div>
+    <p>${escapeHtml(axis.explanation)}</p>
+    ${axis.indicators?.length ? `<ul class="axis-indicators">${axis.indicators.map((item) => `<li><span>${escapeHtml(item.label)}</span>${statusBadge(item.status)}</li>`).join('')}</ul>` : ''}
+    ${axis.barriers?.length ? barriersTemplate(axis.barriers) : ''}
+    <div class="axis-recommendation"><span>Validation recommandée</span><strong>${escapeHtml(axis.recommendation)}</strong></div>
+  </article>`;
+}
+
+function barriersTemplate(barriers) {
+  return `<div class="barrier-table-wrap"><table class="barrier-table"><thead><tr><th>Point</th><th>Barrière</th><th>Disponible</th><th>Allure minimale</th><th>Passage estimé</th><th>Marge</th></tr></thead><tbody>${barriers.map((barrier) => `<tr>
+    <th>${escapeHtml(barrier.name)}<small>${formatKm(barrier.distanceKm)}</small></th>
+    <td>${barrier.cutoffTime?.hour ? escapeHtml(barrier.cutoffTime.hour) : 'Non renseignée'}</td>
+    <td>${formatMinutesAsHoursMinutes(barrier.elapsedLimitMinutes)}</td>
+    <td>${barrier.requiredMinutesPerKm === null ? 'Indisponible' : `${formatPace(barrier.requiredMinutesPerKm)} min/km`}<small>${barrier.requiredSpeedKmh === null ? '' : `${formatNumber(barrier.requiredSpeedKmh, 1)} km/h`}</small></td>
+    <td>${barrier.estimatedTime?.hour ? `${escapeHtml(barrier.estimatedTime.hour)}<small>Fiabilité ${barrier.reliability === 'medium' ? 'moyenne' : 'faible'}</small>` : 'Données insuffisantes'}</td>
+    <td>${barrier.marginMinutes === null ? 'Données insuffisantes' : formatMinutesAsHoursMinutes(barrier.marginMinutes, { signed: true })}</td>
+  </tr>`).join('')}</tbody></table></div>`;
+}
+
+function formatPace(minutes) {
+  const totalSeconds = Math.round(minutes * 60);
+  return `${Math.floor(totalSeconds / 60)}:${String(totalSeconds % 60).padStart(2, '0')}`;
+}
+
+function verdictStatus(verdict) {
+  if (verdict === 'accessible_now') return STATUS.VALIDATED;
+  if (verdict === 'ambitious_coherent') return STATUS.CONSOLIDATE;
+  if (verdict === 'preparation_insufficient') return STATUS.CRITICAL;
+  return STATUS.INSUFFICIENT;
+}
+
+function renderProfile({ editing = false } = {}) {
+  if (!profileContentEl) return;
+  if (state.runnerProfile && state.profileRace && !editing) profileContentEl.innerHTML = diagnosticTemplate(state.runnerProfile, state.profileRace);
+  else profileContentEl.innerHTML = profileFormTemplate(state.runnerProfile, { selectedRace: state.profileRace });
+}
+
+function bindProfileActions() {
+  profileContentEl?.addEventListener('click', (event) => {
+    if (event.target.closest?.('#add-performance')) {
+      const list = document.querySelector('#performance-list');
+      if (list) list.insertAdjacentHTML('beforeend', performanceRowTemplate({}, list.querySelectorAll('[data-performance-row]').length));
+      return;
+    }
+    const remove = event.target.closest?.('[data-remove-performance]');
+    if (remove) { remove.closest('[data-performance-row]')?.remove(); return; }
+    if (event.target.closest?.('[data-edit-profile]')) { renderProfile({ editing: true }); return; }
+    if (event.target.closest?.('[data-cancel-profile]')) { renderProfile(); }
+  });
+  profileContentEl?.addEventListener('submit', (event) => {
+    if (event.target.id !== 'runner-profile-form') return;
+    event.preventDefault();
+    try {
+      state.runnerProfile = profileRepository.save(readProfileForm(event.target));
+      profileStatusEl.textContent = 'Profil enregistré sur cet appareil.';
+      renderProfile();
+      showToast('Profil enregistré.');
+    } catch (error) {
+      if (error instanceof ProfileValidationError) showProfileErrors(error.errors);
+      else profileStatusEl.textContent = 'Impossible d’enregistrer le profil dans ce navigateur.';
+    }
+  });
+  profileContentEl?.addEventListener('change', (event) => {
+    const row = event.target.closest?.('[data-performance-row]');
+    if (!row || event.target.dataset.performanceField !== 'type') return;
+    const fixed = { '5k': 5, '10k': 10, half_marathon: 21.0975, marathon: 42.195 }[event.target.value];
+    const distance = row.querySelector('[name="performance-distance"]');
+    const duration = row.querySelector('[name="performance-duration"]');
+    const elevation = row.querySelector('[name="performance-elevation"]');
+    if (distance) { if (fixed) distance.value = fixed; distance.readOnly = Boolean(fixed); }
+    if (duration && event.target.value === 'six_minute_test') { duration.value = '0:06'; duration.readOnly = true; } else if (duration) duration.readOnly = false;
+    if (elevation) elevation.closest('.profile-field').hidden = event.target.value !== 'trail';
+  });
+}
+
+async function initProfile() {
+  destroyCourseMap();
+  compareView.hidden = true;
+  explorerView.hidden = true;
+  favoritesView.hidden = true;
+  courseView.hidden = true;
+  profileView.hidden = false;
+  document.body?.classList?.add('is-profile-page');
+  state.runnerProfile = profileRepository.load();
+  const slug = new URLSearchParams(window.location.search).get('course');
+  if (slug && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+    try {
+      const { race } = await fetchJson(`/api/races/slug/${encodeURIComponent(slug)}`);
+      state.profileRace = race;
+    } catch (error) {
+      profileStatusEl.textContent = `Course sélectionnée indisponible : ${error.message}`;
+    }
+  }
+  updateDocumentMeta('profile');
+  bindProfileActions();
+  renderProfile();
+}
+
 async function initCourse(slug) {
   destroyCourseMap();
   compareView.hidden = true;
@@ -2038,7 +2349,9 @@ async function init() {
 }
 
 const courseSlug = getCourseSlugFromPath();
-if (courseSlug) {
+if (window.location.pathname === '/profil' || window.location.pathname === '/profil/') {
+  initProfile();
+} else if (courseSlug) {
   initCourse(courseSlug);
 } else {
   init();

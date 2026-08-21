@@ -82,6 +82,12 @@ trailcompare:favorites:v1
 
 Le stockage utilise le `sourceId` stable de la course. Les favoris sont restaures au chargement, peuvent etre ajoutes ou retires depuis Explorer et le comparateur, et les favoris obsoletes sont ignores proprement si une course n'existe plus dans le dataset.
 
+### Profil coureur
+
+Le profil coureur est disponible sur `/profil`. En l'absence de compte utilisateur, il reste sur l'appareil dans `localStorage` sous la cle versionnee `trailcompare:runner-profile:v1`.
+
+Les fiches et cartes course proposent « Comparer avec mon profil ». Le diagnostic separe endurance, denivele, barrieres horaires, experience longue, technicite et autonomie, puis affiche les donnees manquantes et la confiance. Les hypotheses V0 sont documentees dans `app/docs/profile-comparison-v0.md`.
+
 ### GPX officiel
 
 Quand une course a un GPX officiel local (`race.gpx.localFile`), l'interface propose le telechargement du fichier original. L'application ne telecharge jamais de ressource distante pendant une requete utilisateur.

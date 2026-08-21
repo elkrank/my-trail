@@ -2365,3 +2365,486 @@ input:focus {
     gap: 4px;
   }
 }
+/* Runner profile and personalized comparison */
+.profile-view {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.profile-button {
+  text-decoration: none;
+}
+
+.profile-header {
+  margin-bottom: 26px;
+}
+
+.selected-profile-race {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  padding: 15px 18px;
+  border: 1px solid color-mix(in srgb, var(--green-700) 28%, var(--border));
+  border-radius: 12px;
+  background: var(--surface-green);
+}
+
+.selected-profile-race span,
+.selected-profile-race small,
+.profile-section-heading p,
+.profile-field small {
+  color: var(--text-secondary);
+}
+
+.runner-profile-form {
+  display: grid;
+  gap: 22px;
+}
+
+.profile-form-section,
+.diagnostic-axis,
+.confidence-panel,
+.diagnostic-hero {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.profile-form-section {
+  padding: clamp(20px, 3vw, 32px);
+}
+
+.profile-section-heading {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.profile-section-heading > span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--green-900);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.profile-section-heading h2,
+.diagnostic-axis h2 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  color: var(--green-900);
+}
+
+.profile-section-heading p {
+  margin: 0;
+}
+
+.profile-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 20px;
+}
+
+.profile-field {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  color: var(--text-main);
+  font-weight: 650;
+}
+
+.profile-field input,
+.profile-field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text-main);
+  font: inherit;
+  font-weight: 500;
+}
+
+.profile-field input:focus-visible,
+.profile-field select:focus-visible,
+.goal-option input:focus-visible + span {
+  outline: 3px solid color-mix(in srgb, var(--orange) 35%, transparent);
+  outline-offset: 2px;
+  border-color: var(--orange);
+}
+
+.input-with-unit {
+  position: relative;
+  display: block;
+  min-width: 0;
+  width: 100%;
+}
+
+.input-with-unit input {
+  padding-right: 92px;
+}
+
+.input-with-unit small {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.performance-list {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.performance-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  margin: 0;
+  padding: 18px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--surface-muted);
+}
+
+.performance-row legend {
+  padding: 0 7px;
+  color: var(--green-900);
+  font-weight: 800;
+}
+
+.performance-name {
+  grid-column: span 2;
+}
+
+.remove-performance {
+  align-self: end;
+  justify-self: end;
+}
+
+.goal-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.goal-option input {
+  position: absolute;
+  opacity: 0;
+}
+
+.goal-option span {
+  display: grid;
+  min-height: 64px;
+  place-items: center;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.goal-option input:checked + span {
+  border-color: var(--green-700);
+  background: var(--surface-green);
+  color: var(--green-900);
+  box-shadow: inset 0 0 0 1px var(--green-700);
+  font-weight: 750;
+}
+
+.profile-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.profile-errors {
+  padding: 16px 18px;
+  border: 1px solid #b84b43;
+  border-radius: 10px;
+  background: #fff3f1;
+  color: #7d2520;
+}
+
+.profile-errors ul {
+  margin: 8px 0 0;
+}
+
+.diagnostic-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.36fr);
+  gap: 28px;
+  margin: 18px 0;
+  padding: clamp(22px, 4vw, 42px);
+  background: linear-gradient(125deg, var(--surface) 55%, var(--surface-green));
+}
+
+.diagnostic-hero h1 {
+  margin: 6px 0 10px;
+  font-family: var(--font-display);
+  color: var(--green-900);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+.verdict-panel {
+  display: grid;
+  align-content: center;
+  gap: 9px;
+  padding: 20px;
+  border-left: 1px solid var(--border);
+}
+
+.verdict-panel > span,
+.confidence-panel span,
+.axis-comparison span,
+.axis-recommendation span,
+.diagnostic-axis header span:first-child {
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.verdict-panel strong {
+  font-family: var(--font-display);
+  color: var(--green-900);
+  font-size: 1.55rem;
+}
+
+.confidence-panel {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 17px 20px;
+}
+
+.confidence-panel > div {
+  display: grid;
+  gap: 3px;
+}
+
+.confidence-panel p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.confidence-panel details {
+  max-width: 350px;
+}
+
+.confidence-panel summary {
+  cursor: pointer;
+  color: var(--green-700);
+  font-weight: 700;
+}
+
+.diagnostic-axes {
+  display: grid;
+  gap: 18px;
+}
+
+.diagnostic-axis {
+  overflow: hidden;
+  border-left-width: 5px;
+  padding: clamp(20px, 3vw, 28px);
+}
+
+.diagnostic-axis > header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+}
+
+.diagnostic-status {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 27px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.status-validated { background: #e5f4e9; color: #1f6a3c; }
+.status-consolidate { background: #fff0cf; color: #82570a; }
+.status-important_gap { background: #fee4d2; color: #984615; }
+.status-critical { background: #f9dedd; color: #8e2e29; }
+.status-insufficient_data { background: #eceeeb; color: #5d655f; }
+.status-border-validated { border-left-color: #4f9665; }
+.status-border-consolidate { border-left-color: #d49a28; }
+.status-border-important_gap { border-left-color: var(--orange); }
+.status-border-critical { border-left-color: #b84b43; }
+.status-border-insufficient_data { border-left-color: #939a95; }
+
+.axis-comparison {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: 20px 0;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  background: var(--border-soft);
+}
+
+.axis-comparison > div {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  background: var(--surface-muted);
+}
+
+.axis-comparison strong {
+  overflow-wrap: anywhere;
+}
+
+.axis-indicators {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.axis-indicators li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.axis-recommendation {
+  display: grid;
+  gap: 5px;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 9px;
+  background: var(--surface-green);
+  color: var(--green-900);
+}
+
+.barrier-table-wrap {
+  margin-top: 18px;
+  overflow-x: auto;
+}
+
+.barrier-table {
+  width: 100%;
+  min-width: 780px;
+  border-collapse: collapse;
+  font-size: 0.87rem;
+}
+
+.barrier-table th,
+.barrier-table td {
+  padding: 11px 9px;
+  border-bottom: 1px solid var(--border-soft);
+  text-align: left;
+  vertical-align: top;
+}
+
+.barrier-table th small,
+.barrier-table td small {
+  display: block;
+  margin-top: 3px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.method-note {
+  margin: 18px 0;
+  padding: 16px 18px;
+  border-left: 3px solid var(--orange);
+  background: var(--surface-orange);
+}
+
+.method-note p {
+  margin: 4px 0 0;
+}
+
+@media (max-width: 800px) {
+  .profile-field-grid,
+  .diagnostic-hero,
+  .confidence-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .performance-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .verdict-panel {
+    border-top: 1px solid var(--border);
+    border-left: 0;
+    padding: 18px 0 0;
+  }
+
+  .selected-profile-race {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .is-profile-page .page {
+    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
+
+  .profile-view,
+  .profile-header,
+  .profile-header > div,
+  .runner-profile-form,
+  .profile-form-section,
+  .profile-field,
+  .input-with-unit {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .profile-header h1 {
+    overflow-wrap: break-word;
+    font-size: clamp(2rem, 10vw, 2.35rem);
+    line-height: 1.02;
+  }
+
+  .profile-field-grid,
+  .performance-row,
+  .goal-options,
+  .axis-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .performance-name {
+    grid-column: auto;
+  }
+
+  .remove-performance {
+    justify-self: stretch;
+  }
+
+  .profile-form-actions .button {
+    width: 100%;
+  }
+}

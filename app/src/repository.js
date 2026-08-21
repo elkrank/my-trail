@@ -48,6 +48,8 @@ function normalizeDataset(payload) {
       registration: normalizeRegistration(edition.registration),
       raceType: textOrNull(edition.raceType),
       terrainType: textOrNull(edition.terrainType),
+      technicalScore: numberOrNull(edition.technicalScore),
+      technicalScoreSource: textOrNull(edition.technicalScoreSource),
       nightStart: booleanOrNull(edition.nightStart),
       polesAllowed: booleanOrNull(edition.polesAllowed),
       description: normalizeDescription(edition),
@@ -135,6 +137,8 @@ function publicRace(race, { includeDetails = false } = {}) {
     registration: race.registration,
     raceType: race.raceType,
     terrainType: race.terrainType,
+    technicalScore: race.technicalScore,
+    technicalScoreSource: race.technicalScoreSource,
     nightStart: race.nightStart,
     polesAllowed: race.polesAllowed,
   };

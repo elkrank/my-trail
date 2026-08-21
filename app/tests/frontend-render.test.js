@@ -2,8 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
+import { STATUS } from '../public/profile-config.js';
+import { compareRunnerToRace, formatMinutesAsHoursMinutes } from '../public/profile-comparison.js';
+import { createProfileRepository, emptyProfile, formatDurationInput, parseDurationInput, ProfileValidationError } from '../public/profile-repository.js';
 
-const appSource = await readFile(new URL('../public/app.js', import.meta.url), 'utf8');
+const appSource = (await readFile(new URL('../public/app.js', import.meta.url), 'utf8')).replace(/^import .*;\r?\n/gm, '');
 
 function classListStub() {
   const classes = new Set();
@@ -101,7 +104,7 @@ function viewLinkStub(view) {
   };
 }
 
-async function renderApp({ races, comparison = null, hash = '', pathname = '/', storage = null, sessionStorage = null, gpxPayloads = {}, extraElements = {}, leaflet = null }) {
+async function renderApp({ races, comparison = null, hash = '', pathname = '/', search = '', storage = null, sessionStorage = null, gpxPayloads = {}, extraElements = {}, leaflet = null }) {
   const compareLink = viewLinkStub('compare');
   const explorerLink = viewLinkStub('explorer');
   const favoritesLink = viewLinkStub('favorites');
@@ -137,6 +140,9 @@ async function renderApp({ races, comparison = null, hash = '', pathname = '/', 
     '#course-view': elementStub(),
     '#course-status': elementStub(),
     '#course-content': htmlStub(),
+    '#profile-view': elementStub(),
+    '#profile-status': elementStub(),
+    '#profile-content': htmlStub(),
     ...extraElements,
   };
   elements['#explorer-sort'].value = 'date-asc';
@@ -148,6 +154,14 @@ async function renderApp({ races, comparison = null, hash = '', pathname = '/', 
     URL,
     URLSearchParams,
     console,
+    STATUS,
+    compareRunnerToRace,
+    formatMinutesAsHoursMinutes,
+    createProfileRepository,
+    emptyProfile,
+    formatDurationInput,
+    parseDurationInput,
+    ProfileValidationError,
     document: {
       title: 'TrailCompare',
       referrer: '',
@@ -171,7 +185,7 @@ async function renderApp({ races, comparison = null, hash = '', pathname = '/', 
       },
     },
     window: {
-      location: { href: `http://localhost${pathname}${hash}`, pathname, hash },
+      location: { href: `http://localhost${pathname}${search}${hash}`, pathname, search, hash },
       localStorage: storage,
       sessionStorage,
       history: { length: 1, back() {} },
@@ -365,6 +379,44 @@ test('frontend renders comparison cards with real values and empty states', asyn
   assert.match(html, /Aucun checkpoint de barri.re d.fini pour cette course/);
   assert.match(html, /Trac. GPX non disponible/);
   assert.match(html, /Profil GPX r.el non disponible/);
+  assert.match(html, /Comparer avec mon profil/);
+});
+
+test('profile route renders an optional-data form without fetching the race list', async () => {
+  const { elements, fetchCalls } = await renderApp({ races: [raceFixture(), raceFixture({ id: 2 })], pathname: '/profil', storage: storageStub() });
+  const html = elements['#profile-content'].innerHTML;
+  assert.equal(fetchCalls.includes('/api/races'), false);
+  assert.equal(elements['#profile-view'].hidden, false);
+  assert.match(html, /Créer mon profil coureur/);
+  assert.match(html, /Entraînement récent/);
+  assert.match(html, /Références de performance/);
+  assert.match(html, /Expérience trail/);
+  assert.match(html, /Terminer dans les délais/);
+});
+
+test('profile route reloads a stored profile and renders the selected race diagnosis', async () => {
+  const race = raceFixture({
+    technicalScore: 3,
+    nightStart: false,
+    aidStations: [{ distanceKm: 20 }, { distanceKm: 40 }, { distanceKm: 70 }, { distanceKm: 95 }],
+    checkpoints: [{ name: 'Boescheppe', distanceKm: 74.5, elevationGainFromStartM: 1700, elapsedLimitMinutes: 660 }],
+  });
+  const storage = storageStub();
+  storage.setItem('trailcompare:runner-profile:v1', JSON.stringify({
+    version: 1,
+    updatedAt: '2026-08-20T10:00:00Z',
+    training: { weeklyDistanceKm: 75, weeklyElevationGainM: 2000, weeklyHours: 9, weeklySessions: 5, longRun: { distanceKm: 45, durationMinutes: 360, elevationGainM: 1500, date: '2026-08-01' } },
+    performances: [{ id: 'trail', type: 'trail', distanceKm: 60, durationMinutes: 500, elevationGainM: 1800, date: '2026-06-01', name: 'Référence' }],
+    experience: { longestCompletedDistanceKm: 80, longestEffortMinutes: 720, maximumElevationGainM: 2500, technicalLevel: 'comfortable', nightExperience: 'some', autonomyExperience: 'some' },
+    goal: 'finish_cutoffs',
+  }));
+  const { elements, fetchCalls } = await renderApp({ races: [race, raceFixture({ id: 2 })], pathname: '/profil', search: `?course=${race.slug}`, storage });
+  const html = elements['#profile-content'].innerHTML;
+  assert.equal(fetchCalls.includes(`/api/races/slug/${race.slug}`), true);
+  assert.match(html, /COMPARAISON PERSONNALISÉE/);
+  assert.match(html, /Respect des barrières horaires/);
+  assert.match(html, /Niveau de confiance/);
+  assert.match(html, /Validation recommandée/);
 });
 
 function gpxPayloadFixture(elevationQuality) {
