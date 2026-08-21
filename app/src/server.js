@@ -5,17 +5,26 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { resolveDataAssetPath } from '../scrapers/common/gpx.mjs';
 import { enrichRaceWithScores } from './metrics.js';
-import { getDataRoot, getDatasetInfo, getRaceWithCheckpoints, listRaces } from './repository.js';
+import {
+  getDataRoot,
+  getDatasetInfo,
+  getRaceBySlug,
+  getRaceWithCheckpoints,
+  listRaceSlugs,
+  listRaces,
+} from './repository.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const publicDir = path.join(__dirname, '..', 'public');
+const leafletDistDir = path.join(__dirname, '..', 'node_modules', 'leaflet', 'dist');
 
 export const app = express();
 const port = Number(process.env.PORT ?? 3000);
 
 app.get('/', serveIndex);
 app.get('/index.html', serveIndex);
+app.get('/courses/:slug', serveCourse);
 app.get('/robots.txt', (_request, response) => {
   const publicBaseUrl = getPublicBaseUrl();
   response.type('text/plain').send([
@@ -25,22 +34,35 @@ app.get('/robots.txt', (_request, response) => {
     '',
   ].filter((line) => line !== null).join('\n'));
 });
-app.get('/sitemap.xml', (_request, response) => {
+app.get('/sitemap.xml', async (_request, response, next) => {
   const publicBaseUrl = getPublicBaseUrl();
   if (!publicBaseUrl) {
     response.status(404).type('text/plain').send('Not found');
     return;
   }
 
-  response.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>
+  try {
+    const courseUrls = (await listRaceSlugs())
+      .map((slug) => `  <url>\n    <loc>${escapeXml(`${publicBaseUrl}/courses/${slug}`)}</loc>\n  </url>`)
+      .join('\n');
+    response.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${escapeXml(publicBaseUrl)}</loc>
   </url>
+${courseUrls}
 </urlset>
 `);
+  } catch (error) {
+    next(error);
+  }
 });
 
+app.use('/vendor/leaflet-1.9.4', express.static(leafletDistDir, {
+  index: false,
+  immutable: true,
+  maxAge: '1y',
+}));
 app.use(express.static(publicDir, { index: false }));
 
 function parseId(value, name) {
@@ -70,6 +92,19 @@ app.get('/api/health', async (_request, response, next) => {
 app.get('/api/races', async (_request, response, next) => {
   try {
     response.json({ races: await listRaces() });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.get('/api/races/slug/:slug', async (request, response, next) => {
+  try {
+    const race = await getRaceBySlug(request.params.slug);
+    if (!race) {
+      response.status(404).json({ error: 'Race not found' });
+      return;
+    }
+    response.json({ race: enrichRaceWithScores(race, race.checkpoints) });
   } catch (error) {
     next(error);
   }
@@ -230,6 +265,74 @@ async function serveIndex(_request, response, next) {
   }
 }
 
+async function serveCourse(request, response, next) {
+  try {
+    const race = await getRaceBySlug(request.params.slug);
+    if (!race) {
+      response.status(404).type('html').send(await renderNotFoundPage());
+      return;
+    }
+
+    let html = await readFile(path.join(publicDir, 'index.html'), 'utf8');
+    const location = [race.event.city, race.event.region, race.event.country].filter(Boolean).join(', ');
+    const title = `${race.shortName} ${race.edition} - ${race.eventName} | TrailCompare`;
+    const fallbackDescription = `${race.raceName}, ${formatSeoNumber(race.distanceKm)} km et ${formatSeoNumber(race.elevationGainM)} m D+${location ? ` à ${location}` : ''}. Parcours, barrières, ravitaillements et informations officielles.`;
+    const description = truncateDescription(race.description?.french ?? race.description?.original ?? fallbackDescription);
+    const publicBaseUrl = getPublicBaseUrl();
+    const canonicalUrl = publicBaseUrl ? `${publicBaseUrl}/courses/${race.slug}` : null;
+    const imageUrl = normalizeHttpUrl(race.illustration?.url);
+
+    html = replaceDocumentMetadata(html, { title, description, canonicalUrl, imageUrl });
+    response.type('html').send(html);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function renderNotFoundPage() {
+  let html = await readFile(path.join(publicDir, 'index.html'), 'utf8');
+  html = replaceDocumentMetadata(html, {
+    title: 'Course introuvable | TrailCompare',
+    description: 'Cette fiche course n’existe pas ou n’est plus disponible.',
+  });
+  return html.replace('<body>', '<body data-course-not-found="true">');
+}
+
+function replaceDocumentMetadata(html, { title, description, canonicalUrl = null, imageUrl = null }) {
+  const safeTitle = escapeHtml(title);
+  const safeDescription = escapeHtml(description);
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${safeTitle}</title>`);
+  html = replaceMetaContent(html, 'name', 'description', safeDescription);
+  html = replaceMetaContent(html, 'property', 'og:title', safeTitle);
+  html = replaceMetaContent(html, 'property', 'og:description', safeDescription);
+  html = replaceMetaContent(html, 'name', 'twitter:title', safeTitle);
+  html = replaceMetaContent(html, 'name', 'twitter:description', safeDescription);
+
+  const extraTags = [
+    canonicalUrl ? `<link rel="canonical" href="${escapeHtml(canonicalUrl)}">` : null,
+    canonicalUrl ? `<meta property="og:url" content="${escapeHtml(canonicalUrl)}">` : null,
+    imageUrl ? `<meta property="og:image" content="${escapeHtml(imageUrl)}">` : null,
+    '<meta property="og:type" content="article">',
+  ].filter(Boolean).join('\n    ');
+  html = html.replace(/<meta property="og:type"[^>]*>\s*/i, '');
+  return html.replace('</head>', `    ${extraTags}\n  </head>`);
+}
+
+function replaceMetaContent(html, attribute, key, content) {
+  const expression = new RegExp(`<meta\\s+${attribute}="${key}"\\s+content="[^"]*">`, 'i');
+  const tag = `<meta ${attribute}="${key}" content="${content}">`;
+  return expression.test(html) ? html.replace(expression, tag) : html.replace('</head>', `    ${tag}\n  </head>`);
+}
+
+function truncateDescription(value) {
+  const text = String(value ?? '').replace(/\s+/g, ' ').trim();
+  return text.length > 180 ? `${text.slice(0, 177).trimEnd()}…` : text;
+}
+
+function formatSeoNumber(value) {
+  return Number.isFinite(Number(value)) ? new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(Number(value)) : '—';
+}
+
 function getPublicBaseUrl() {
   return normalizePublicBaseUrl(process.env.PUBLIC_BASE_URL);
 }
@@ -242,6 +345,16 @@ function normalizePublicBaseUrl(value) {
     url.hash = '';
     url.search = '';
     return url.href.replace(/\/$/, '');
+  } catch {
+    return null;
+  }
+}
+
+function normalizeHttpUrl(value) {
+  if (!value) return null;
+  try {
+    const url = new URL(String(value));
+    return ['http:', 'https:'].includes(url.protocol) ? url.href : null;
   } catch {
     return null;
   }

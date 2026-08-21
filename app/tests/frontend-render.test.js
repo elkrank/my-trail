@@ -101,7 +101,7 @@ function viewLinkStub(view) {
   };
 }
 
-async function renderApp({ races, comparison = null, hash = '', storage = null, gpxPayloads = {} }) {
+async function renderApp({ races, comparison = null, hash = '', pathname = '/', storage = null, sessionStorage = null, gpxPayloads = {}, extraElements = {}, leaflet = null }) {
   const compareLink = viewLinkStub('compare');
   const explorerLink = viewLinkStub('explorer');
   const favoritesLink = viewLinkStub('favorites');
@@ -134,6 +134,10 @@ async function renderApp({ races, comparison = null, hash = '', storage = null, 
     '#explorer-results': htmlStub(),
     '#favorites-count': elementStub(),
     '#favorites-results': htmlStub(),
+    '#course-view': elementStub(),
+    '#course-status': elementStub(),
+    '#course-content': htmlStub(),
+    ...extraElements,
   };
   elements['#explorer-sort'].value = 'date-asc';
 
@@ -145,6 +149,15 @@ async function renderApp({ races, comparison = null, hash = '', storage = null, 
     URLSearchParams,
     console,
     document: {
+      title: 'TrailCompare',
+      referrer: '',
+      body: {
+        classList: classListStub(),
+        contains() { return true; },
+      },
+      head: {
+        appendChild() {},
+      },
       querySelector(selector) {
         return elements[selector];
       },
@@ -158,19 +171,27 @@ async function renderApp({ races, comparison = null, hash = '', storage = null, 
       },
     },
     window: {
-      location: { href: `http://localhost/${hash}`, hash },
+      location: { href: `http://localhost${pathname}${hash}`, pathname, hash },
       localStorage: storage,
+      sessionStorage,
+      history: { length: 1, back() {} },
       clearTimeout() {},
       setTimeout() {
         return 1;
       },
       addEventListener() {},
+      ...(leaflet ? { L: leaflet } : {}),
     },
     navigator: {},
     fetch: async (url) => {
       fetchCalls.push(String(url));
       if (url === '/api/races') {
         return jsonResponse({ races });
+      }
+      if (String(url).startsWith('/api/races/slug/')) {
+        const slug = String(url).split('/').at(-1);
+        const race = races.find((candidate) => candidate.slug === slug);
+        return race ? jsonResponse({ race }) : jsonResponse({ error: 'Race not found' }, false);
       }
       if (String(url).startsWith('/api/compare')) {
         return jsonResponse(selectedComparison);
@@ -189,8 +210,9 @@ async function renderApp({ races, comparison = null, hash = '', storage = null, 
   await vm.runInContext(appSource, context, { timeout: 1000 });
   await Promise.resolve();
   await Promise.resolve();
+  await new Promise((resolve) => setImmediate(resolve));
 
-  return { elements, fetchCalls, links: { compareLink, explorerLink, favoritesLink } };
+  return { context, elements, fetchCalls, links: { compareLink, explorerLink, favoritesLink } };
 }
 
 function jsonResponse(body, ok = true) {
@@ -226,6 +248,7 @@ function raceFixture(overrides = {}) {
   return {
     id: fixtureId,
     sourceId: `fixture:${fixtureId}:2026`,
+    slug: `fixture-${fixtureId}-2026`,
     name: 'Nord Trail Monts de Flandres - 115 km',
     event: {
       id: 'ntmf',
@@ -243,6 +266,7 @@ function raceFixture(overrides = {}) {
     startTime: '06:00',
     distanceKm: 115,
     elevationGainM: 2150,
+    elevationLossM: 2100,
     startLocation: 'Saint-Jans-Cappel',
     finishLocation: 'Saint-Jans-Cappel',
     timeLimitMinutes: 1110,
@@ -271,6 +295,12 @@ function raceFixture(overrides = {}) {
     gpxUrl: null,
     gpx: null,
     aidStations: [],
+    mandatoryEquipment: [],
+    rules: {},
+    program: [],
+    logistics: null,
+    sources: [],
+    verifiedAt: '2026-08-14T00:00:00.000Z',
     criticalBarrier: {
       name: 'Boescheppe',
       distanceKm: 74.5,
@@ -387,9 +417,84 @@ test('frontend keeps map profile and download for a consistent GPX', async () =>
   const html = elements['#comparison'].innerHTML;
 
   assert.equal(html.includes('route-map'), true);
+  assert.equal(html.includes('id="comparison-map-a"'), true);
+  assert.equal(html.includes('comparison-map-canvas'), true);
   assert.equal(html.includes('profile-chart'), true);
   assert.equal(html.includes('/api/races/1/gpx/download'), true);
   assert.equal(html.includes('Profil altimétrique non affiché'), false);
+});
+
+test('frontend renders comparison GPX on OpenStreetMap tiles with Leaflet', async () => {
+  const raceA = raceFixture({
+    id: 1,
+    name: 'Mapped GPX Trail',
+    gpx: { status: 'available', localFile: 'gpx/2026/fixture/route.gpx' },
+  });
+  const raceB = raceFixture({ id: 2, name: 'No GPX Trail', gpx: null });
+  const shell = elementStub();
+  const canvas = htmlStub();
+  canvas.closest = () => shell;
+  const calls = { maps: [], tiles: [], polylines: [], fitBounds: [] };
+  const tileEvents = {};
+  const map = {
+    fitBounds(bounds, options) { calls.fitBounds.push({ bounds, options }); },
+    invalidateSize() {},
+    remove() {},
+  };
+  const route = {
+    addTo() { return this; },
+    getBounds() { return 'route-bounds'; },
+  };
+  const leaflet = {
+    map(element, options) {
+      calls.maps.push({ element, options });
+      return map;
+    },
+    tileLayer(url, options) {
+      calls.tiles.push({ url, options });
+      return {
+        on(event, listener) {
+          tileEvents[event] = listener;
+          return this;
+        },
+        addTo() {
+          tileEvents.tileload?.();
+          tileEvents.load?.();
+          return this;
+        },
+      };
+    },
+    polyline(segments, options) {
+      calls.polylines.push({ segments, options });
+      return route;
+    },
+  };
+
+  await renderApp({
+    races: [raceA, raceB],
+    comparison: { raceA, raceB },
+    gpxPayloads: {
+      1: gpxPayloadFixture({
+        status: 'consistent',
+        officialGainM: 6200,
+        computedGainM: 6400,
+        deltaM: 200,
+        deltaPercent: 3.2,
+      }),
+    },
+    extraElements: { '#comparison-map-a': canvas },
+    leaflet,
+  });
+
+  assert.equal(calls.maps.length, 1);
+  assert.equal(calls.maps[0].element, canvas);
+  assert.equal(calls.maps[0].options.scrollWheelZoom, false);
+  assert.equal(calls.tiles[0].url, 'https://tile.openstreetmap.org/{z}/{x}/{y}.png');
+  assert.match(calls.tiles[0].options.attribution, /OpenStreetMap/);
+  assert.equal(JSON.stringify(calls.polylines[0].segments), JSON.stringify([[[45.1, 6.1], [45.2, 6.2]]]));
+  assert.equal(calls.fitBounds[0].bounds, 'route-bounds');
+  assert.equal(JSON.stringify(calls.fitBounds[0].options.padding), JSON.stringify([18, 18]));
+  assert.equal(shell.classList.contains('tiles-loading'), false);
 });
 
 test('frontend hides inconsistent GPX elevation profile but keeps map and download', async () => {
@@ -720,4 +825,90 @@ test('favorites tolerate corrupted or unavailable localStorage', async () => {
   });
 
   assert.match(unavailable.elements['#explorer-results'].innerHTML, /aria-pressed="true"/);
+});
+
+test('course detail renders available sections, labels translations and hides empty data safely', async () => {
+  const race = raceFixture({
+    id: 7,
+    slug: 'fixture-detail-2026',
+    sourceId: 'fixture:detail:2026',
+    raceType: 'Ultra trail',
+    terrainType: 'Montagne',
+    nightStart: true,
+    polesAllowed: false,
+    description: {
+      original: 'A demanding mountain loop.',
+      originalLanguage: 'en',
+      french: 'Une boucle de montagne exigeante.',
+      frenchValidated: true,
+    },
+    registration: { priceEur: null, status: 'unknown', lottery: null, url: 'javascript:alert(1)' },
+    checkpoints: [],
+    aidStations: [],
+    program: [],
+    logistics: null,
+    rules: { personalAssistanceAllowed: false, minimumWaterLiters: 1 },
+    mandatoryEquipment: [{ name: 'Veste imperméable', details: null, category: null }],
+    sources: [
+      { url: 'https://example.test/race', type: 'official-race-page', retrievedAt: '2026-08-14T00:00:00.000Z' },
+      { url: 'javascript:alert(1)', type: 'official-rules', retrievedAt: null },
+    ],
+    missingOfficialInformation: ['checkpoints', 'aidStations'],
+  });
+
+  const { elements, fetchCalls } = await renderApp({ races: [race], pathname: '/courses/fixture-detail-2026' });
+  const html = elements['#course-content'].innerHTML;
+
+  assert.equal(fetchCalls.includes('/api/races/slug/fixture-detail-2026'), true);
+  assert.equal(elements['#course-view'].hidden, false);
+  assert.equal(elements['#compare-view'].hidden, true);
+  assert.match(html, /Traduction française validée/);
+  assert.match(html, /Une boucle de montagne exigeante/);
+  assert.match(html, /Donnée officielle/);
+  assert.match(html, /Estimation TrailCompare/);
+  assert.match(html, /Veste imperméable/);
+  assert.match(html, /Informations officielles manquantes/);
+  assert.match(html, /https:\/\/example\.test\/race/);
+  assert.doesNotMatch(html, /javascript:alert/);
+  assert.doesNotMatch(html, /id="barrieres"/);
+  assert.doesNotMatch(html, /id="ravitaillements"/);
+  assert.doesNotMatch(html, /id="programme"/);
+  assert.doesNotMatch(html, /id="logistique"/);
+  assert.doesNotMatch(html, /id="inscription"/);
+});
+
+test('tile loading keeps partial OSM tiles and only enables neutral fallback when every tile fails', async () => {
+  const raceA = raceFixture({ id: 1 });
+  const raceB = raceFixture({ id: 2 });
+  const { context } = await renderApp({ races: [raceA, raceB] });
+  const createTracker = vm.runInContext('createTileLoadTracker', context);
+
+  const completeShell = elementStub();
+  const completeStatus = elementStub();
+  const complete = createTracker(completeShell, completeStatus);
+  complete.tileLoaded();
+  assert.equal(complete.settled(), 'complete');
+  assert.equal(completeShell.classList.contains('is-tile-fallback'), false);
+  assert.equal(completeStatus.textContent, '');
+
+  const partialShell = elementStub();
+  const partialStatus = elementStub();
+  const partial = createTracker(partialShell, partialStatus);
+  partial.tileLoaded();
+  partial.tileFailed();
+  assert.equal(partial.settled(), 'partial');
+  assert.equal(partialShell.classList.contains('has-tile-errors'), true);
+  assert.equal(partialShell.classList.contains('is-tile-fallback'), false);
+  assert.match(partialStatus.textContent, /tuiles chargées restent affichées/);
+
+  const fallbackShell = elementStub();
+  const fallbackStatus = elementStub();
+  const fallback = createTracker(fallbackShell, fallbackStatus);
+  fallback.tileFailed();
+  fallback.tileFailed();
+  assert.equal(fallback.settled(), 'fallback');
+  assert.equal(fallbackShell.classList.contains('is-tile-fallback'), true);
+  assert.match(fallbackStatus.textContent, /fond neutre/);
+  assert.equal(fallback.counts().loadedTiles, 0);
+  assert.equal(fallback.counts().failedTiles, 2);
 });

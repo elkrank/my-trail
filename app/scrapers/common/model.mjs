@@ -5,6 +5,9 @@ export const SOURCE_TYPES = new Set([
   "official-gpx",
   "official-map-platform",
   "official-registration",
+  "official-program",
+  "official-logistics",
+  "official-transport",
   "official-results",
 ]);
 
@@ -58,6 +61,14 @@ export function createEdition(year, overrides = {}) {
     gpx: null,
     illustration: null,
     terrainDescription: null,
+    description: {
+      original: overrides.description?.original ?? overrides.terrainDescription ?? null,
+      originalLanguage: overrides.description?.originalLanguage ?? null,
+      french: null,
+      frenchValidated: false,
+    },
+    program: [],
+    logistics: null,
     technicalScore: null,
     technicalScoreSource: null,
     registration: {
@@ -76,8 +87,10 @@ export function createEdition(year, overrides = {}) {
     rules: {
       personalAssistanceAllowed: null,
       pacersAllowed: null,
+      companionsAllowed: null,
       dropBagAllowed: null,
       minimumWaterLiters: null,
+      details: null,
     },
     sources: [],
     ...overrides,
@@ -92,11 +105,22 @@ export function createEdition(year, overrides = {}) {
       qualificationRequired: null,
       ...(overrides.registration ?? {}),
     },
+    description: {
+      original: overrides.description?.original ?? overrides.terrainDescription ?? null,
+      originalLanguage: overrides.description?.originalLanguage ?? null,
+      french: null,
+      frenchValidated: false,
+      ...(overrides.description ?? {}),
+    },
+    program: Array.isArray(overrides.program) ? overrides.program : [],
+    logistics: overrides.logistics ?? null,
     rules: {
       personalAssistanceAllowed: null,
       pacersAllowed: null,
+      companionsAllowed: null,
       dropBagAllowed: null,
       minimumWaterLiters: null,
+      details: null,
       ...(overrides.rules ?? {}),
     },
   };

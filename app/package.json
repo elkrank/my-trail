@@ -9,11 +9,13 @@
     "scrape:gpx": "node scrapers/cli.mjs --gpx-only",
     "test": "node --test tests/*.test.js tests/scrapers/*.test.mjs",
     "report:difficulty": "node scripts/difficulty-v1-report.mjs",
+    "report:course-pages": "node scripts/audit-course-pages.mjs",
     "report:assets": "node scripts/audit-data-assets.mjs",
     "clean:assets": "node scripts/audit-data-assets.mjs --delete"
   },
   "dependencies": {
     "express": "^4.19.2",
+    "leaflet": "^1.9.4",
     "pdf-parse": "^1.1.1"
   }
 }

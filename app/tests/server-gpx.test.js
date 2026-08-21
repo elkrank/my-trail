@@ -162,3 +162,69 @@ test('seo endpoints expose robots and optional sitemap without inventing a publi
   assert.match(sitemap.text, /<loc>https:\/\/trailcompare\.example<\/loc>/);
   delete process.env.PUBLIC_BASE_URL;
 });
+
+test('Leaflet assets are served locally and public pages do not depend on the unpkg CDN', async () => {
+  const css = await requestRaw('/vendor/leaflet-1.9.4/leaflet.css');
+  const script = await requestRaw('/vendor/leaflet-1.9.4/leaflet.js');
+  const index = await requestRaw('/');
+  const appScript = await requestRaw('/app.js');
+
+  assert.equal(css.status, 200);
+  assert.match(css.headers.get('content-type'), /text\/css/);
+  assert.match(css.text, /\.leaflet-container/);
+  assert.equal(script.status, 200);
+  assert.match(script.headers.get('content-type'), /javascript/);
+  assert.match(script.text, /Leaflet 1\.9\.4/);
+  assert.match(index.text, /href="\/vendor\/leaflet-1\.9\.4\/leaflet\.css"/);
+  assert.match(appScript.text, /\/vendor\/leaflet-1\.9\.4\/leaflet\.js/);
+  assert.doesNotMatch(index.text, /unpkg\.com/);
+  assert.doesNotMatch(appScript.text, /unpkg\.com/);
+});
+
+test('slug endpoint exposes the enriched detail contract and rejects unknown slugs', async () => {
+  const response = await request('/api/races/slug/fixture-valid-2026');
+  const missing = await request('/api/races/slug/fixture-unknown-2026');
+
+  assert.equal(response.status, 200);
+  assert.equal(response.body.race.slug, 'fixture-valid-2026');
+  assert.equal(response.body.race.raceType, 'trail');
+  assert.equal(response.body.race.rules.personalAssistanceAllowed, false);
+  assert.equal(response.body.race.aidStations[0].distanceKm, 2);
+  assert.equal(response.body.race.sourceFamilies.course.length, 1);
+  assert.equal(response.body.race.difficultyScoreVersion, 'v1');
+  assert.equal(missing.status, 404);
+  assert.equal(missing.body.error, 'Race not found');
+});
+
+test('course pages have race-specific metadata, canonical URLs and real 404 responses', async () => {
+  process.env.PUBLIC_BASE_URL = 'https://trailcompare.example/';
+  try {
+    const page = await requestRaw('/courses/fixture-valid-2026');
+    const missing = await requestRaw('/courses/fixture-unknown-2026');
+
+    assert.equal(page.status, 200);
+    assert.match(page.text, /<title>Valid GPX 2026 - Fixture Trail \| TrailCompare<\/title>/);
+    assert.match(page.text, /<link rel="canonical" href="https:\/\/trailcompare\.example\/courses\/fixture-valid-2026">/);
+    assert.match(page.text, /<meta property="og:url" content="https:\/\/trailcompare\.example\/courses\/fixture-valid-2026">/);
+    assert.match(page.text, /<meta property="og:image" content="https:\/\/example\.test\/images\/valid-gpx\.jpg">/);
+    assert.equal(missing.status, 404);
+    assert.match(missing.text, /Course introuvable \| TrailCompare/);
+  } finally {
+    delete process.env.PUBLIC_BASE_URL;
+  }
+});
+
+test('sitemap contains every race slug in addition to the homepage', async () => {
+  process.env.PUBLIC_BASE_URL = 'https://trailcompare.example';
+  try {
+    const sitemap = await requestRaw('/sitemap.xml');
+    const courseUrls = sitemap.text.match(/<loc>https:\/\/trailcompare\.example\/courses\//g) ?? [];
+
+    assert.equal(sitemap.status, 200);
+    assert.equal(courseUrls.length, 4);
+    assert.match(sitemap.text, /\/courses\/fixture-valid-2026<\/loc>/);
+    assert.match(sitemap.text, /\/courses\/fixture-empty-2026<\/loc>/);
+  } finally {
+    delete process.env.PUBLIC_BASE_URL;
+  }
+});

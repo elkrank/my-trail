@@ -12,6 +12,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="TrailCompare - Comparateur de trails">
     <meta name="twitter:description" content="Comparez et explorez des trails avec des données officielles, des filtres de course, les traces GPX disponibles et des favoris locaux.">
+    <link rel="stylesheet" href="/vendor/leaflet-1.9.4/leaflet.css">
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
@@ -31,13 +32,13 @@
         </a>
 
         <nav class="side-nav" aria-label="Sections">
-          <a class="side-link" href="#compare" data-view-link="compare">
+          <a class="side-link" href="/#compare" data-view-link="compare">
             <span class="side-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
             </span>
             Comparateur
           </a>
-          <a class="side-link" href="#explorer" data-view-link="explorer">
+          <a class="side-link" href="/#explorer" data-view-link="explorer">
             <span class="side-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false"><path d="M11 19a8 8 0 1 1 5.7-2.3L21 21"></path></svg>
             </span>
@@ -49,7 +50,7 @@
             </span>
             Mes courses
           </a>
-          <a class="side-link" href="#favorites" data-view-link="favorites">
+          <a class="side-link" href="/#favorites" data-view-link="favorites">
             <span class="side-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false"><path d="m12 5 2.1 4.3 4.7.7-3.4 3.3.8 4.7-4.2-2.2L7.8 18l.8-4.7L5.2 10l4.7-.7L12 5Z"></path></svg>
             </span>
@@ -264,6 +265,11 @@
           </div>
 
           <section id="favorites-results" class="explorer-results" aria-live="polite"></section>
+        </section>
+
+        <section id="course-view" class="view course-view" data-view="course" hidden>
+          <p id="course-status" class="status course-status" role="status">Chargement de la fiche course...</p>
+          <div id="course-content"></div>
         </section>
       </main>
     </div>

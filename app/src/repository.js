@@ -28,6 +28,7 @@ function normalizeDataset(payload) {
     return {
       id: index + 1,
       sourceId: `${entry.event.slug}:${entry.race.id}:${edition.year}`,
+      slug: createRaceSlug(entry.race.id, edition.year),
       event: entry.event,
       race: entry.race,
       name: `${entry.event.name} - ${entry.race.shortName}`,
@@ -45,14 +46,24 @@ function normalizeDataset(payload) {
       quality: entry.quality,
       computed: entry.computed,
       registration: normalizeRegistration(edition.registration),
-      rules: edition.rules,
-      aidStations: edition.aidStations,
-      mandatoryEquipment: edition.mandatoryEquipment,
+      raceType: textOrNull(edition.raceType),
+      terrainType: textOrNull(edition.terrainType),
+      nightStart: booleanOrNull(edition.nightStart),
+      polesAllowed: booleanOrNull(edition.polesAllowed),
+      description: normalizeDescription(edition),
+      program: normalizeProgram(edition.program ?? edition.schedule),
+      logistics: normalizeLogistics(edition.logistics),
+      rules: normalizeRules(edition.rules),
+      aidStations: normalizeAidStations(edition.aidStations),
+      mandatoryEquipment: normalizeEquipment(edition.mandatoryEquipment),
+      sources: normalizeSources(edition.sources),
+      sourceFamilies: groupSourcesByFamily(edition.sources),
       gpxUrl: edition.gpxUrl,
       gpx: normalizeGpx(edition.gpx, edition),
       illustration: normalizeIllustration(edition.illustration),
       rawEdition: edition,
       checkpoints: normalizeCheckpoints(index + 1, edition.checkpoints),
+      verifiedAt: latestRetrievedAt(edition.sources) ?? payload.generatedAt ?? null,
     };
   });
 
@@ -65,7 +76,7 @@ function normalizeDataset(payload) {
 }
 
 function normalizeCheckpoints(raceId, checkpoints) {
-  return checkpoints
+  return arrayOrEmpty(checkpoints)
     .filter((checkpoint) =>
       Number.isFinite(Number(checkpoint.distanceKm)) &&
       Number.isFinite(Number(checkpoint.cutoffElapsedMinutes)) &&
@@ -81,6 +92,10 @@ function normalizeCheckpoints(raceId, checkpoints) {
       cutoffDateTime: checkpoint.cutoffDateTime,
       aidStation: checkpoint.aidStation,
       personalAssistanceAllowed: checkpoint.personalAssistanceAllowed,
+      elevationM: numberOrNull(checkpoint.elevationM),
+      elevationGainFromStartM: numberOrNull(checkpoint.elevationGainFromStartM),
+      latitude: coordinateOrNull(checkpoint.latitude ?? checkpoint.lat, -90, 90),
+      longitude: coordinateOrNull(checkpoint.longitude ?? checkpoint.lon ?? checkpoint.lng, -180, 180),
     }));
 }
 
@@ -88,6 +103,7 @@ function publicRace(race, { includeDetails = false } = {}) {
   const output = {
     id: race.id,
     sourceId: race.sourceId,
+    slug: race.slug,
     event: {
       id: race.event.id,
       slug: race.event.slug,
@@ -117,13 +133,24 @@ function publicRace(race, { includeDetails = false } = {}) {
     gpx: race.gpx,
     illustration: race.illustration,
     registration: race.registration,
+    raceType: race.raceType,
+    terrainType: race.terrainType,
+    nightStart: race.nightStart,
+    polesAllowed: race.polesAllowed,
   };
 
   if (includeDetails) {
+    output.description = race.description;
+    output.program = race.program;
+    output.logistics = race.logistics;
     output.rules = race.rules;
     output.aidStations = race.aidStations;
     output.mandatoryEquipment = race.mandatoryEquipment;
     output.checkpoints = race.checkpoints;
+    output.sources = race.sources;
+    output.sourceFamilies = race.sourceFamilies;
+    output.verifiedAt = race.verifiedAt;
+    output.missingOfficialInformation = arrayOrEmpty(race.quality?.missingFields).map(String);
   }
 
   return output;
@@ -138,6 +165,18 @@ export async function getRaceById(id) {
   const dataset = await loadDataset();
   const race = dataset.races.find((candidate) => candidate.id === Number(id));
   return race ? publicRace(race, { includeDetails: true }) : null;
+}
+
+export async function getRaceBySlug(slug) {
+  if (typeof slug !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return null;
+  const dataset = await loadDataset();
+  const race = dataset.races.find((candidate) => candidate.slug === slug);
+  return race ? publicRace(race, { includeDetails: true }) : null;
+}
+
+export async function listRaceSlugs() {
+  const dataset = await loadDataset();
+  return dataset.races.map((race) => race.slug);
 }
 
 export async function listCheckpointsForRace(raceId) {
@@ -215,6 +254,155 @@ function normalizeRegistration(value) {
     qualificationRequired: registration.qualificationRequired ?? null,
     url: normalizeHttpUrl(registration.url),
   };
+}
+
+function normalizeDescription(edition) {
+  const description = edition.description ?? {};
+  const original = textOrNull(description.original ?? edition.descriptionOriginal ?? edition.terrainDescription);
+  const french = textOrNull(description.french ?? edition.descriptionFrench);
+  return {
+    original,
+    originalLanguage: textOrNull(description.originalLanguage ?? edition.descriptionOriginalLanguage),
+    french,
+    frenchValidated: french ? description.frenchValidated === true || edition.descriptionFrenchValidated === true : false,
+  };
+}
+
+function normalizeProgram(value) {
+  if (!value) return [];
+  const items = Array.isArray(value)
+    ? value
+    : Object.entries(value).map(([type, item]) => typeof item === 'object' && item !== null ? { type, ...item } : { type, label: item });
+  return items.map((item) => ({
+    type: textOrNull(item?.type),
+    label: textOrNull(item?.label ?? item?.name),
+    date: textOrNull(item?.date),
+    time: textOrNull(item?.time),
+    location: textOrNull(item?.location),
+    details: textOrNull(item?.details),
+  })).filter((item) => Object.values(item).some((value) => value !== null));
+}
+
+function normalizeLogistics(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const logistics = {
+    access: textOrNull(value.access),
+    shuttles: textOrNull(value.shuttles),
+    transport: textOrNull(value.transport ?? value.publicTransport),
+    parking: textOrNull(value.parking),
+    bagDrop: textOrNull(value.bagDrop ?? value.bagStorage),
+    contacts: arrayOrEmpty(value.contacts).map((contact) => typeof contact === 'string'
+      ? { label: contact, value: null, url: null }
+      : {
+          label: textOrNull(contact?.label ?? contact?.name),
+          value: textOrNull(contact?.value ?? contact?.email ?? contact?.phone),
+          url: normalizeHttpUrl(contact?.url),
+        }).filter((contact) => contact.label || contact.value || contact.url),
+  };
+  return Object.entries(logistics).some(([key, item]) => key === 'contacts' ? item.length : item !== null) ? logistics : null;
+}
+
+function normalizeRules(value) {
+  const rules = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  return {
+    personalAssistanceAllowed: booleanOrNull(rules.personalAssistanceAllowed),
+    pacersAllowed: booleanOrNull(rules.pacersAllowed),
+    companionsAllowed: booleanOrNull(rules.companionsAllowed),
+    dropBagAllowed: booleanOrNull(rules.dropBagAllowed),
+    minimumWaterLiters: numberOrNull(rules.minimumWaterLiters),
+    details: textOrNull(rules.details),
+  };
+}
+
+function normalizeEquipment(value) {
+  return arrayOrEmpty(value).map((item) => typeof item === 'string'
+    ? { name: textOrNull(item), details: null, category: null }
+    : {
+        name: textOrNull(item?.name ?? item?.label),
+        details: textOrNull(item?.details),
+        category: textOrNull(item?.category),
+      }).filter((item) => item.name || item.details);
+}
+
+function normalizeAidStations(value) {
+  return arrayOrEmpty(value).map((station) => ({
+    name: textOrNull(station?.name),
+    distanceKm: numberOrNull(station?.distanceKm),
+    elevationM: numberOrNull(station?.elevationM),
+    water: booleanOrNull(station?.water),
+    sportsDrink: booleanOrNull(station?.sportsDrink),
+    solidFood: booleanOrNull(station?.solidFood),
+    hotFood: booleanOrNull(station?.hotFood),
+    dropBag: booleanOrNull(station?.dropBag),
+    crewAccess: booleanOrNull(station?.crewAccess),
+    medical: booleanOrNull(station?.medical),
+    cutoffDateTime: textOrNull(station?.cutoffDateTime),
+    latitude: coordinateOrNull(station?.latitude ?? station?.lat, -90, 90),
+    longitude: coordinateOrNull(station?.longitude ?? station?.lon ?? station?.lng, -180, 180),
+    services: arrayOrEmpty(station?.services).map(textOrNull).filter(Boolean),
+  })).filter((station) => station.name || station.distanceKm !== null);
+}
+
+function normalizeSources(value) {
+  return arrayOrEmpty(value).map((source) => ({
+    url: normalizeHttpUrl(source?.url),
+    type: textOrNull(source?.type),
+    retrievedAt: textOrNull(source?.retrievedAt),
+    event: textOrNull(source?.event),
+    race: textOrNull(source?.race),
+  })).filter((source) => source.url);
+}
+
+function groupSourcesByFamily(value) {
+  const groups = { course: [], registration: [], schedule: [], logistics: [], rules: [], checkpoints: [], gpx: [] };
+  for (const source of normalizeSources(value)) {
+    const families = sourceFamiliesForType(source.type);
+    for (const family of families) groups[family].push(source);
+  }
+  return groups;
+}
+
+function sourceFamiliesForType(type) {
+  if (type === 'official-registration') return ['registration'];
+  if (type === 'official-rules') return ['rules'];
+  if (type === 'official-program') return ['schedule'];
+  if (type === 'official-logistics' || type === 'official-transport') return ['logistics'];
+  if (type === 'official-gpx' || type === 'official-map-platform') return ['course', 'gpx'];
+  if (type === 'official-roadbook') return ['course', 'schedule', 'logistics', 'checkpoints'];
+  if (type === 'official-race-page') return ['course', 'schedule', 'logistics', 'checkpoints'];
+  return ['course'];
+}
+
+function latestRetrievedAt(sources) {
+  return normalizeSources(sources).map((source) => source.retrievedAt).filter(Boolean).sort().at(-1) ?? null;
+}
+
+function createRaceSlug(raceId, year) {
+  return `${slugPart(raceId)}-${slugPart(year)}`;
+}
+
+function slugPart(value) {
+  return String(value ?? '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'course';
+}
+
+function textOrNull(value) {
+  if (value === null || value === undefined) return null;
+  const text = String(value).trim();
+  return text || null;
+}
+
+function coordinateOrNull(value, min, max) {
+  const number = numberOrNull(value);
+  return number !== null && number >= min && number <= max ? number : null;
+}
+
+function arrayOrEmpty(value) {
+  return Array.isArray(value) ? value : [];
 }
 
 function normalizeRegistrationStatus(value, lottery) {

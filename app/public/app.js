@@ -27,6 +27,9 @@ const explorerCountEl = document.querySelector('#explorer-count');
 const explorerResultsEl = document.querySelector('#explorer-results');
 const favoritesCountEl = document.querySelector('#favorites-count');
 const favoritesResultsEl = document.querySelector('#favorites-results');
+const courseView = document.querySelector('#course-view');
+const courseStatusEl = document.querySelector('#course-status');
+const courseContentEl = document.querySelector('#course-content');
 
 const confidenceLabels = {
   official: 'Source officielle',
@@ -66,6 +69,7 @@ const viewMeta = {
 };
 
 const favoriteStorageKey = 'trailcompare:favorites:v1';
+const explorerStorageKey = 'trailcompare:explorer-filters:v1';
 
 const htmlEscapeMap = {
   '&': '&amp;',
@@ -96,7 +100,13 @@ const state = {
   favorites: new Set(),
   isSwapping: false,
   activeView: 'compare',
+  currentCourse: null,
+  courseMap: null,
+  courseMapCleanup: null,
+  comparisonMaps: [],
 };
+
+let leafletLoadPromise = null;
 
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (character) => htmlEscapeMap[character]);
@@ -111,6 +121,10 @@ function safeHttpUrl(value) {
   } catch {
     return null;
   }
+}
+
+function courseHref(race) {
+  return race?.slug ? `/courses/${encodeURIComponent(race.slug)}` : '/#explorer';
 }
 
 function setStatus(message) {
@@ -348,6 +362,35 @@ function getExplorerFilters() {
   };
 }
 
+function persistExplorerFilters(filters = getExplorerFilters()) {
+  try {
+    window.sessionStorage?.setItem(explorerStorageKey, JSON.stringify(filters));
+  } catch {
+    // Session storage is optional; browser back still retains controls when possible.
+  }
+}
+
+function restoreExplorerFilters() {
+  try {
+    const filters = JSON.parse(window.sessionStorage?.getItem(explorerStorageKey) ?? 'null');
+    if (!filters || typeof filters !== 'object') return;
+    if (explorerSearchInput) explorerSearchInput.value = filters.search ?? '';
+    if (explorerLocationSelect) explorerLocationSelect.value = filters.location ?? '';
+    if (explorerDateFromInput) explorerDateFromInput.value = filters.dateFrom ?? '';
+    if (explorerDateToInput) explorerDateToInput.value = filters.dateTo ?? '';
+    if (explorerElevationSelect) explorerElevationSelect.value = filters.elevation ?? '';
+    if (explorerDistanceSelect) explorerDistanceSelect.value = filters.distance ?? '';
+    if (explorerMonthSelect) explorerMonthSelect.value = filters.month ?? '';
+    if (explorerPriceMaxSelect) explorerPriceMaxSelect.value = filters.priceMax ?? '';
+    if (explorerRegistrationStatusSelect) explorerRegistrationStatusSelect.value = filters.registrationStatus ?? '';
+    if (explorerDurationMaxSelect) explorerDurationMaxSelect.value = filters.durationMax ?? '';
+    if (explorerSortSelect) explorerSortSelect.value = filters.sort ?? 'date-asc';
+    if (explorerGpxOnlyInput) explorerGpxOnlyInput.checked = filters.gpxOnly === true;
+  } catch {
+    // Ignore malformed or unavailable session storage.
+  }
+}
+
 function matchesRange(value, rangeKey, ranges) {
   if (!rangeKey) return true;
   const range = ranges[rangeKey];
@@ -563,10 +606,12 @@ function mapTemplate(race, variant, gpxData) {
       ${
         hasGpx
           ? `
-            <svg class="route-map" viewBox="0 0 560 190" role="img" aria-label="Tracé GPX disponible">
-              ${polylines.map((polyline) => `<polyline class="route-shadow" points="${polyline}"></polyline>`).join('')}
-              ${polylines.map((polyline) => `<polyline points="${polyline}"></polyline>`).join('')}
-            </svg>
+            <div id="comparison-map-${variant}" class="comparison-map-canvas" data-comparison-map="${variant}">
+              <svg class="route-map" viewBox="0 0 560 190" role="img" aria-label="Tracé GPX disponible sur fond neutre">
+                ${polylines.map((polyline) => `<polyline class="route-shadow" points="${polyline}"></polyline>`).join('')}
+                ${polylines.map((polyline) => `<polyline points="${polyline}"></polyline>`).join('')}
+              </svg>
+            </div>
           `
           : `
             <div class="empty-visual">
@@ -933,14 +978,14 @@ function explorerMetricTemplate(label, value) {
 function explorerIllustrationTemplate(race) {
   const illustrationUrl = safeHttpUrl(race.illustration?.url);
   if (!illustrationUrl) {
-    return '<div class="explorer-card-media is-empty" aria-hidden="true"></div>';
+    return `<a class="explorer-card-media is-empty" href="${escapeHtml(courseHref(race))}" aria-label="Voir la fiche ${escapeHtml(race.name)}"></a>`;
   }
 
   const alt = race.illustration?.alt || `Illustration ${race.name}`;
   return `
-    <div class="explorer-card-media">
+    <a class="explorer-card-media" href="${escapeHtml(courseHref(race))}">
       <img src="${escapeHtml(illustrationUrl)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('is-empty'); this.remove();">
-    </div>
+    </a>
   `;
 }
 
@@ -956,7 +1001,7 @@ function explorerRaceCardTemplate(race) {
       <header class="explorer-card-header">
         <div>
           <span class="explorer-event">${escapeHtml(race.eventName)}</span>
-          <h2>${escapeHtml(race.name)}</h2>
+          <h2><a class="explorer-title-link" href="${escapeHtml(courseHref(race))}">${escapeHtml(race.name)}</a></h2>
         </div>
         <div class="explorer-card-toolbar">
           <span class="quality-badge ${qualityClass}">${qualityStatus}</span>
@@ -983,6 +1028,7 @@ function explorerRaceCardTemplate(race) {
           ${isGpxAvailable ? 'GPX disponible' : 'GPX absent'}
         </span>
         <div class="explorer-actions">
+          <a class="button button-primary button-small" href="${escapeHtml(courseHref(race))}">Voir la fiche</a>
           ${registrationLinkTemplate(race)}
           ${gpxDownloadLinkTemplate(race)}
           <button class="button button-secondary button-small" type="button" data-compare-target="a" data-race-id="${escapeHtml(race.id)}">Comparer A</button>
@@ -997,6 +1043,7 @@ function renderExplorer() {
   if (!explorerResultsEl) return;
 
   const filters = getExplorerFilters();
+  persistExplorerFilters(filters);
   const filteredRaces = sortExplorerRaces(
     state.races.filter((race) => matchesExplorerFilters(race, filters)),
     filters.sort,
@@ -1055,6 +1102,14 @@ function refreshFavoriteViews() {
       button.classList.toggle('is-active', selected);
       button.setAttribute('aria-pressed', selected ? 'true' : 'false');
       button.setAttribute('aria-label', selected ? `Retirer ${race.name} des favoris` : `Ajouter ${race.name} aux favoris`);
+    });
+  }
+  if (state.currentCourse && courseContentEl) {
+    courseContentEl.querySelectorAll?.('[data-favorite-source-id]').forEach((button) => {
+      const selected = isFavorite(state.currentCourse);
+      button.classList.toggle('is-active', selected);
+      button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      button.setAttribute('aria-label', selected ? `Retirer ${state.currentCourse.name} des favoris` : `Ajouter ${state.currentCourse.name} aux favoris`);
     });
   }
 }
@@ -1236,6 +1291,7 @@ async function compareSelectedRaces() {
   if (!raceA || !raceB) return;
   if (raceA === raceB) {
     setStatus('Sélectionne deux courses différentes.');
+    destroyComparisonMaps();
     comparisonEl.innerHTML = '';
     return;
   }
@@ -1252,11 +1308,17 @@ async function compareSelectedRaces() {
       loadGpxForRace(comparison.raceB),
     ]);
 
+    destroyComparisonMaps();
     comparisonEl.innerHTML =
       raceCardTemplate(comparison.raceA, 'a', gpxA) +
       raceCardTemplate(comparison.raceB, 'b', gpxB);
+    void renderComparisonMaps([
+      { race: comparison.raceA, variant: 'a', gpxData: gpxA },
+      { race: comparison.raceB, variant: 'b', gpxData: gpxB },
+    ]);
     setStatus('');
   } catch (error) {
+    destroyComparisonMaps();
     comparisonEl.innerHTML = '';
     setStatus(error.message);
   } finally {
@@ -1344,6 +1406,607 @@ function applyUrlSelection(races) {
   };
 }
 
+function getCourseSlugFromPath() {
+  let pathname = window.location.pathname;
+  if (!pathname) {
+    try {
+      pathname = new URL(window.location.href).pathname;
+    } catch {
+      pathname = '/';
+    }
+  }
+  const match = String(pathname).match(/^\/courses\/([a-z0-9]+(?:-[a-z0-9]+)*)\/?$/);
+  return match?.[1] ?? null;
+}
+
+function officialMetricTemplate(label, value, { calculated = false } = {}) {
+  if (value === null || value === undefined || value === 'Non disponible') return '';
+  return `
+    <div class="course-summary-metric ${calculated ? 'is-calculated' : 'is-official'}">
+      <span>${escapeHtml(label)}</span>
+      <strong>${escapeHtml(value)}</strong>
+      <small>${calculated ? 'Estimation TrailCompare' : 'Donnée officielle'}</small>
+    </div>
+  `;
+}
+
+function courseSectionTemplate(id, title, content, className = '') {
+  if (!content) return '';
+  return `
+    <section id="${escapeHtml(id)}" class="course-section ${escapeHtml(className)}">
+      <h2>${escapeHtml(title)}</h2>
+      ${content}
+    </section>
+  `;
+}
+
+function characteristicTemplate(label, value) {
+  if (value === null || value === undefined || value === '') return '';
+  return `<div class="course-characteristic"><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`;
+}
+
+function yesNo(value) {
+  if (value === true) return 'Oui';
+  if (value === false) return 'Non';
+  return null;
+}
+
+function translatedDescriptionTemplate(race) {
+  const description = race.description ?? {};
+  const hasValidatedFrench = Boolean(description.french && description.frenchValidated);
+  const primary = hasValidatedFrench ? description.french : description.original;
+  if (!primary) return '';
+  const originalIsDifferent = hasValidatedFrench && description.original && description.original !== description.french;
+  return `
+    <div class="course-description">
+      ${hasValidatedFrench ? '<span class="translation-badge">Traduction française validée</span>' : ''}
+      <p>${escapeHtml(primary)}</p>
+      ${originalIsDifferent ? `<details><summary>Voir la description originale${description.originalLanguage ? ` (${escapeHtml(description.originalLanguage)})` : ''}</summary><p lang="${escapeHtml(description.originalLanguage || 'en')}">${escapeHtml(description.original)}</p></details>` : ''}
+    </div>
+  `;
+}
+
+function characteristicsTemplate(race) {
+  const content = [
+    characteristicTemplate('Type de course', race.raceType),
+    characteristicTemplate('Terrain', race.terrainType),
+    characteristicTemplate('Départ nocturne', yesNo(race.nightStart)),
+    characteristicTemplate('Bâtons autorisés', yesNo(race.polesAllowed)),
+    characteristicTemplate('Départ', race.startLocation),
+    characteristicTemplate('Arrivée', race.finishLocation),
+  ].filter(Boolean).join('');
+  return content ? `<dl class="course-characteristics">${content}</dl>` : '';
+}
+
+function courseMapSectionTemplate(race) {
+  if (race.gpx?.status !== 'available') return '';
+  return `
+    <div class="course-map-shell tiles-loading">
+      <div id="course-map-canvas" class="course-map-canvas" role="img" aria-label="Carte interactive du parcours GPX"></div>
+      <p class="map-fallback-note">
+        <span>Fond © contributeurs OpenStreetMap.</span>
+        <span class="map-tile-status" data-map-tile-status role="status" aria-live="polite"></span>
+      </p>
+    </div>
+    <div id="course-elevation-profile" class="course-profile" aria-live="polite"></div>
+  `;
+}
+
+function checkpointRowsTemplate(checkpoints) {
+  return checkpoints.map((checkpoint) => `
+    <tr>
+      <th scope="row">${escapeHtml(checkpoint.name || 'Point de contrôle')}</th>
+      <td>${escapeHtml(formatKm(checkpoint.distanceKm))}</td>
+      <td>${escapeHtml(checkpoint.elevationM === null ? '—' : formatAltitude(checkpoint.elevationM))}</td>
+      <td>${escapeHtml(checkpoint.cutoffDateTime ? formatDateTime(checkpoint.cutoffDateTime) : formatDuration(checkpoint.elapsedLimitMinutes))}</td>
+      <td>${checkpoint.personalAssistanceAllowed === true ? 'Oui' : checkpoint.personalAssistanceAllowed === false ? 'Non' : '—'}</td>
+    </tr>
+  `).join('');
+}
+
+function checkpointsSectionTemplate(race) {
+  if (!race.checkpoints?.length) return '';
+  return `
+    <div class="course-table-wrap">
+      <table class="course-table">
+        <caption>${race.checkpoints.length} barrières ou points de contrôle officiels</caption>
+        <thead><tr><th scope="col">Point</th><th scope="col">Distance</th><th scope="col">Altitude</th><th scope="col">Limite</th><th scope="col">Assistance</th></tr></thead>
+        <tbody>${checkpointRowsTemplate(race.checkpoints)}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+function aidServices(station) {
+  return [
+    station.water && 'Eau',
+    station.sportsDrink && 'Boisson énergétique',
+    station.solidFood && 'Solide',
+    station.hotFood && 'Repas chaud',
+    station.dropBag && 'Sac de délestage',
+    station.crewAccess && 'Assistance',
+    station.medical && 'Médical',
+    ...(station.services ?? []),
+  ].filter(Boolean);
+}
+
+function aidStationsSectionTemplate(race) {
+  if (!race.aidStations?.length) return '';
+  const rows = race.aidStations.map((station) => `
+    <tr>
+      <th scope="row">${escapeHtml(station.name || 'Ravitaillement')}</th>
+      <td>${escapeHtml(formatKm(station.distanceKm))}</td>
+      <td>${escapeHtml(station.elevationM === null ? '—' : formatAltitude(station.elevationM))}</td>
+      <td>${escapeHtml(aidServices(station).join(', ') || 'Services non précisés')}</td>
+      <td data-course-position-for="aid" data-distance-km="${escapeHtml(station.distanceKm ?? '')}">${station.latitude !== null && station.longitude !== null ? 'Officielle' : 'À projeter sur le GPX'}</td>
+    </tr>
+  `).join('');
+  return `
+    <div class="course-table-wrap">
+      <table class="course-table">
+        <caption>${race.aidStations.length} ravitaillements recensés</caption>
+        <thead><tr><th scope="col">Point</th><th scope="col">Distance</th><th scope="col">Altitude</th><th scope="col">Services</th><th scope="col">Position carte</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+function registrationSectionTemplate(race) {
+  const registration = race.registration ?? {};
+  const items = [
+    characteristicTemplate('Prix', registration.priceEur === null ? null : formatPrice(registration.priceEur)),
+    characteristicTemplate('Statut', normalizeRegistrationStatus(registration.status) === 'unknown' ? null : registrationStatusLabel(registration.status)),
+    characteristicTemplate('Ouverture', registration.registrationOpenDate ? formatDate(registration.registrationOpenDate) : null),
+    characteristicTemplate('Clôture', registration.registrationCloseDate ? formatDate(registration.registrationCloseDate) : null),
+    characteristicTemplate('Loterie', yesNo(registration.lottery)),
+    characteristicTemplate('Capacité', numericValue(registration.maxParticipants) === null ? null : `${formatNumber(registration.maxParticipants, 0)} participants`),
+    characteristicTemplate('Qualifications', registration.qualificationRequired),
+  ].filter(Boolean).join('');
+  const action = registrationLinkTemplate(race, 'course-inline-action');
+  return items || action ? `<dl class="course-characteristics">${items}</dl>${action}` : '';
+}
+
+function programTemplate(program) {
+  if (!program?.length) return '';
+  return `<ol class="course-timeline">${program.map((item) => `
+    <li>
+      <time>${escapeHtml([item.date && formatDate(item.date), item.time].filter(Boolean).join(' · ') || 'Horaire à confirmer')}</time>
+      <strong>${escapeHtml(item.label || item.type || 'Programme')}</strong>
+      ${item.location ? `<span>${escapeHtml(item.location)}</span>` : ''}
+      ${item.details ? `<p>${escapeHtml(item.details)}</p>` : ''}
+    </li>
+  `).join('')}</ol>`;
+}
+
+function logisticsTemplate(logistics) {
+  if (!logistics) return '';
+  const items = [
+    characteristicTemplate('Accès', logistics.access),
+    characteristicTemplate('Navettes', logistics.shuttles),
+    characteristicTemplate('Transports', logistics.transport),
+    characteristicTemplate('Parking', logistics.parking),
+    characteristicTemplate('Consignes', logistics.bagDrop),
+  ].filter(Boolean).join('');
+  const contacts = logistics.contacts?.length
+    ? `<ul class="course-list">${logistics.contacts.map((contact) => {
+        const url = safeHttpUrl(contact.url);
+        const label = [contact.label, contact.value].filter(Boolean).join(' — ');
+        return `<li>${url ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label || url)}</a>` : escapeHtml(label)}</li>`;
+      }).join('')}</ul>`
+    : '';
+  return items || contacts ? `<dl class="course-characteristics">${items}</dl>${contacts}` : '';
+}
+
+function rulesTemplate(race) {
+  const rules = race.rules ?? {};
+  const items = [
+    characteristicTemplate('Assistance personnelle', yesNo(rules.personalAssistanceAllowed)),
+    characteristicTemplate('Accompagnateurs / pacers', yesNo(rules.pacersAllowed ?? rules.companionsAllowed)),
+    characteristicTemplate('Sac de délestage', yesNo(rules.dropBagAllowed)),
+    characteristicTemplate('Eau obligatoire', rules.minimumWaterLiters === null ? null : `${formatNumber(rules.minimumWaterLiters)} L minimum`),
+  ].filter(Boolean).join('');
+  const equipment = race.mandatoryEquipment?.length
+    ? `<h3>Matériel obligatoire</h3><ul class="course-list equipment-list">${race.mandatoryEquipment.map((item) => `<li><strong>${escapeHtml(item.name || item.details)}</strong>${item.details && item.name ? `<span>${escapeHtml(item.details)}</span>` : ''}</li>`).join('')}</ul>`
+    : '';
+  return items || equipment || rules.details
+    ? `<dl class="course-characteristics">${items}</dl>${rules.details ? `<p>${escapeHtml(rules.details)}</p>` : ''}${equipment}`
+    : '';
+}
+
+const sourceTypeLabels = {
+  'official-race-page': 'Page officielle de la course',
+  'official-rules': 'Règlement officiel',
+  'official-roadbook': 'Roadbook officiel',
+  'official-gpx': 'Trace GPX officielle',
+  'official-map-platform': 'Plateforme cartographique officielle',
+  'official-registration': 'Inscription officielle',
+  'official-program': 'Programme officiel',
+  'official-logistics': 'Logistique officielle',
+  'official-transport': 'Transport officiel',
+};
+
+function qualitySourcesTemplate(race) {
+  const safeSources = (race.sources ?? []).filter((source) => safeHttpUrl(source.url));
+  const sources = safeSources.map((source) => {
+    const url = safeHttpUrl(source.url);
+    if (!url) return '';
+    return `<li><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(sourceTypeLabels[source.type] || source.type || 'Source officielle')}</a>${source.retrievedAt ? `<time datetime="${escapeHtml(source.retrievedAt)}">Vérifiée le ${escapeHtml(formatDate(String(source.retrievedAt).slice(0, 10)))}</time>` : ''}</li>`;
+  }).filter(Boolean).join('');
+  const warnings = (race.quality?.warnings ?? []).map((warning) => `<li>${escapeHtml(warning)}</li>`).join('');
+  const missing = (race.missingOfficialInformation ?? race.quality?.missingFields ?? []).map((field) => `<li>${escapeHtml(field)}</li>`).join('');
+  return `
+    <div class="quality-grid">
+      <div><span>Complétude</span><strong>${race.quality?.status === 'complete' ? 'Complète' : race.quality?.status === 'invalid' ? 'À contrôler' : 'Partielle'}</strong></div>
+      <div><span>Dernière vérification</span><strong>${escapeHtml(race.verifiedAt ? formatDate(String(race.verifiedAt).slice(0, 10)) : 'Non renseignée')}</strong></div>
+      <div><span>Provenance</span><strong>${safeSources.length} source${safeSources.length > 1 ? 's' : ''} officielle${safeSources.length > 1 ? 's' : ''}</strong></div>
+    </div>
+    ${warnings ? `<div class="quality-alert"><h3>Avertissements</h3><ul>${warnings}</ul></div>` : ''}
+    ${missing ? `<div class="quality-alert is-muted"><h3>Informations officielles manquantes</h3><ul>${missing}</ul></div>` : ''}
+    ${sources ? `<h3>Sources officielles</h3><ul class="source-list">${sources}</ul>` : '<p>Aucune source officielle exploitable n’est publiée pour cette fiche.</p>'}
+  `;
+}
+
+function formatDateTime(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return String(value ?? '—');
+  return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short' }).format(date);
+}
+
+function courseDetailTemplate(race) {
+  const illustrationUrl = safeHttpUrl(race.illustration?.url);
+  const description = translatedDescriptionTemplate(race);
+  const characteristics = characteristicsTemplate(race);
+  const sections = [
+    { id: 'presentation', title: 'Description et caractéristiques', content: `${description}${characteristics}` },
+    { id: 'parcours', title: 'Carte et profil altimétrique', content: courseMapSectionTemplate(race) },
+    { id: 'barrieres', title: 'Barrières horaires', content: checkpointsSectionTemplate(race) },
+    { id: 'ravitaillements', title: 'Ravitaillements', content: aidStationsSectionTemplate(race) },
+    { id: 'inscription', title: 'Inscription et conditions', content: registrationSectionTemplate(race) },
+    { id: 'programme', title: 'Programme', content: programTemplate(race.program) },
+    { id: 'logistique', title: 'Logistique', content: logisticsTemplate(race.logistics) },
+    { id: 'reglement', title: 'Règlement et matériel', content: rulesTemplate(race) },
+    { id: 'qualite', title: 'Qualité des données et sources', content: qualitySourcesTemplate(race) },
+  ].filter((section) => section.content);
+  const nav = sections.map((section) => `<a href="#${escapeHtml(section.id)}">${escapeHtml(section.title)}</a>`).join('');
+  const actions = [registrationLinkTemplate(race), gpxDownloadLinkTemplate(race)].filter(Boolean).join('');
+  return `
+    <a class="course-back" href="/#explorer" data-course-back>← Retour aux courses</a>
+    <article class="course-detail">
+      <header class="course-hero ${illustrationUrl ? 'has-image' : 'is-empty'}">
+        ${illustrationUrl ? `<img src="${escapeHtml(illustrationUrl)}" alt="${escapeHtml(race.illustration?.alt || race.name)}" decoding="async" referrerpolicy="no-referrer">` : ''}
+        <div class="course-hero-overlay"></div>
+        <div class="course-hero-content">
+          <span class="course-event">${escapeHtml(race.eventName)} · ${escapeHtml(race.edition)}</span>
+          <h1>${escapeHtml(race.raceName)}</h1>
+          <p>${escapeHtml(formatRaceDateTime(race))}${raceLocationLabel(race) ? ` · ${escapeHtml(raceLocationLabel(race))}` : ''}</p>
+          <div class="course-hero-actions">
+            ${favoriteButtonTemplate(race)}
+            <a class="button button-secondary button-small" href="/?raceA=${escapeHtml(race.id)}#compare">Comparer</a>
+            <button class="button button-secondary button-small" type="button" data-course-share>Partager</button>
+            ${actions}
+          </div>
+        </div>
+      </header>
+
+      <div class="course-summary" aria-label="Résumé de la course">
+        ${officialMetricTemplate('Distance', formatKm(race.distanceKm))}
+        ${officialMetricTemplate('D+', formatElevation(race.elevationGainM))}
+        ${officialMetricTemplate('D-', numericValue(race.elevationLossM) === null ? null : `${formatNumber(race.elevationLossM, 0)} D-`)}
+        ${officialMetricTemplate('Temps limite', formatDuration(race.timeLimitMinutes))}
+        ${officialMetricTemplate('Km-effort', race.kmEffort === null ? null : `${formatNumber(race.kmEffort)} km`, { calculated: true })}
+        ${officialMetricTemplate('Difficulté', difficultyScoreValue(race) === null ? null : formatScore(difficultyScoreValue(race)), { calculated: true })}
+        ${officialMetricTemplate('Verticalité', race.verticalityLevel ? verticalityLabel(race.verticalityLevel) : null, { calculated: true })}
+      </div>
+
+      <nav class="course-toc" aria-label="Sommaire de la fiche">${nav}</nav>
+      <div class="course-body">${sections.map((section) => courseSectionTemplate(section.id, section.title, section.content)).join('')}</div>
+    </article>
+  `;
+}
+
+function elevationProfileTemplate(gpxData) {
+  const raw = Array.isArray(gpxData?.elevationProfile) && gpxData.elevationProfile.length
+    ? gpxData.elevationProfile.map((point) => ({ x: point.distanceKm, y: numericValue(point.elevationM) }))
+    : (gpxData?.points ?? []).map((point, index) => ({ x: point.distanceKm ?? index, y: numericValue(point.ele) }));
+  const points = simplifyPoints(raw.filter((point) => point.y !== null), 180);
+  if (gpxElevationQualityStatus(gpxData) === 'inconsistent') return `<p class="quality-alert">${escapeHtml(gpxElevationQualityMessage('inconsistent'))}</p>`;
+  if (points.length < 2) return '';
+  const line = createPolyline(points, 900, 220, 24);
+  const area = createAreaPath(points, 900, 220, 24);
+  return `
+    <h3>Profil altimétrique</h3>
+    <svg class="course-profile-svg" viewBox="0 0 900 220" role="img" aria-label="Profil altimétrique du parcours">
+      <path class="profile-area" d="${area}"></path><polyline class="profile-line" points="${line}"></polyline>
+    </svg>
+    <div class="profile-axis">${axisTicksTemplate(state.currentCourse?.distanceKm)}</div>
+    ${gpxElevationQualityMessage(gpxElevationQualityStatus(gpxData)) ? `<p class="map-fallback-note">${escapeHtml(gpxElevationQualityMessage(gpxElevationQualityStatus(gpxData)))}</p>` : ''}
+  `;
+}
+
+function projectedPosition(item, points) {
+  const latitude = numericValue(item?.latitude);
+  const longitude = numericValue(item?.longitude);
+  if (latitude !== null && longitude !== null) return { lat: latitude, lon: longitude, approximate: false };
+  const distance = numericValue(item?.distanceKm);
+  if (distance === null) return null;
+  const candidates = points.filter((point) => numericValue(point.lat) !== null && numericValue(point.lon) !== null && numericValue(point.distanceKm) !== null);
+  if (!candidates.length) return null;
+  const point = candidates.reduce((nearest, candidate) => Math.abs(Number(candidate.distanceKm) - distance) < Math.abs(Number(nearest.distanceKm) - distance) ? candidate : nearest);
+  return { lat: Number(point.lat), lon: Number(point.lon), approximate: true };
+}
+
+function updateProjectedPositionLabels(race, points) {
+  const labels = courseContentEl?.querySelectorAll?.('[data-course-position-for]') ?? [];
+  labels.forEach((label) => {
+    const distanceKm = numericValue(label.dataset.distanceKm);
+    const station = race.aidStations?.find((candidate) => numericValue(candidate.distanceKm) === distanceKm);
+    const position = projectedPosition(station, points);
+    label.textContent = position ? (position.approximate ? 'Position approximative' : 'Officielle') : 'Non positionnée';
+    label.classList.toggle('is-approximate', Boolean(position?.approximate));
+  });
+}
+
+function neutralRouteFallback(segments) {
+  const normalized = normalizeRouteSegments(segments).map((segment) => simplifyPoints(segment, 220).map((point) => ({ x: point.lon, y: point.lat })));
+  const lines = createRoutePolylines(normalized, 900, 420, 28);
+  return lines.length ? `<svg class="neutral-route-map" viewBox="0 0 900 420" role="img" aria-label="Trace GPX sur fond neutre">${lines.map((line) => `<polyline points="${line}"></polyline>`).join('')}</svg>` : '<p>Trace GPX indisponible.</p>';
+}
+
+function loadLeaflet() {
+  if (window.L) return Promise.resolve(window.L);
+  if (!document.head?.appendChild) return Promise.resolve(null);
+  if (leafletLoadPromise) return leafletLoadPromise;
+  leafletLoadPromise = new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = '/vendor/leaflet-1.9.4/leaflet.js';
+    script.onload = () => resolve(window.L ?? null);
+    script.onerror = () => {
+      leafletLoadPromise = null;
+      resolve(null);
+    };
+    document.head.appendChild(script);
+  });
+  return leafletLoadPromise;
+}
+
+function destroyComparisonMaps() {
+  state.comparisonMaps.forEach(({ map, cleanup }) => {
+    cleanup?.();
+    map?.remove?.();
+  });
+  state.comparisonMaps = [];
+}
+
+function destroyCourseMap() {
+  state.courseMapCleanup?.();
+  state.courseMapCleanup = null;
+  if (state.courseMap) {
+    state.courseMap.remove();
+    state.courseMap = null;
+  }
+}
+
+function createTileLoadTracker(shell, statusElement) {
+  let loadedTiles = 0;
+  let failedTiles = 0;
+
+  return {
+    tileLoaded() {
+      loadedTiles += 1;
+    },
+    tileFailed() {
+      failedTiles += 1;
+      shell?.classList.add('has-tile-errors');
+    },
+    settled() {
+      shell?.classList.remove('tiles-loading');
+      if (loadedTiles === 0 && failedTiles > 0) {
+        shell?.classList.add('is-tile-fallback');
+        if (statusElement) statusElement.textContent = 'Fond cartographique indisponible : trace affichée sur fond neutre.';
+        return 'fallback';
+      }
+
+      shell?.classList.remove('is-tile-fallback');
+      if (statusElement) {
+        statusElement.textContent = failedTiles > 0
+          ? 'Certaines tuiles sont indisponibles; les tuiles chargées restent affichées.'
+          : '';
+      }
+      return failedTiles > 0 ? 'partial' : 'complete';
+    },
+    counts() {
+      return { loadedTiles, failedTiles };
+    },
+  };
+}
+
+function observeCourseMapSize(canvas, map) {
+  let frameId = null;
+  const scheduleInvalidate = () => {
+    if (frameId !== null) return;
+    const run = () => {
+      frameId = null;
+      if (document.body?.contains?.(canvas)) map.invalidateSize({ pan: false });
+    };
+    if (window.requestAnimationFrame) {
+      frameId = window.requestAnimationFrame(run);
+    } else {
+      frameId = window.setTimeout(run, 0);
+    }
+  };
+
+  let observer = null;
+  if (window.ResizeObserver) {
+    observer = new window.ResizeObserver(scheduleInvalidate);
+    observer.observe(canvas);
+  } else {
+    window.addEventListener?.('resize', scheduleInvalidate);
+  }
+  scheduleInvalidate();
+
+  return () => {
+    observer?.disconnect();
+    if (!observer) window.removeEventListener?.('resize', scheduleInvalidate);
+    if (frameId !== null) {
+      if (window.cancelAnimationFrame) window.cancelAnimationFrame(frameId);
+      else window.clearTimeout?.(frameId);
+    }
+  };
+}
+
+async function renderComparisonMap(race, variant, gpxData) {
+  const canvas = document.querySelector(`#comparison-map-${variant}`);
+  if (!canvas) return;
+  const segments = normalizeRouteSegments(gpxData?.segments)
+    .map((segment) => segment
+      .map((point) => [Number(point.lat), Number(point.lon)])
+      .filter(([lat, lon]) => Number.isFinite(lat) && Number.isFinite(lon)))
+    .filter((segment) => segment.length > 1);
+  if (!segments.length) return;
+
+  const L = await loadLeaflet();
+  if (!L || !document.body?.contains?.(canvas) || document.querySelector(`#comparison-map-${variant}`) !== canvas) return;
+
+  const shell = canvas.closest?.('.map-panel');
+  shell?.classList.add('tiles-loading');
+  canvas.innerHTML = '';
+  const map = L.map(canvas, {
+    attributionControl: true,
+    scrollWheelZoom: false,
+    zoomControl: false,
+  });
+  const tileTracker = createTileLoadTracker(shell, null);
+  const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  });
+  tileLayer.on('tileload', () => tileTracker.tileLoaded());
+  tileLayer.on('tileerror', () => tileTracker.tileFailed());
+  tileLayer.on('load', () => tileTracker.settled());
+  tileLayer.addTo(map);
+
+  const route = L.polyline(segments, {
+    color: variant === 'b' ? '#e56b20' : '#196c50',
+    opacity: 0.95,
+    weight: 4,
+  }).addTo(map);
+  map.fitBounds(route.getBounds(), { padding: [18, 18] });
+  const cleanup = observeCourseMapSize(canvas, map);
+  state.comparisonMaps.push({ map, cleanup, raceId: race.id, variant });
+}
+
+async function renderComparisonMaps(items) {
+  await Promise.all(items.map((item) => renderComparisonMap(item.race, item.variant, item.gpxData)));
+}
+
+async function renderInteractiveCourseMap(race, gpxData) {
+  const canvas = document.querySelector('#course-map-canvas');
+  const profile = document.querySelector('#course-elevation-profile');
+  if (profile) profile.innerHTML = elevationProfileTemplate(gpxData);
+  if (!canvas) return;
+  const segments = normalizeRouteSegments(gpxData?.segments).filter((segment) => segment.length > 1);
+  const points = segments.flat();
+  updateProjectedPositionLabels(race, points);
+  canvas.innerHTML = neutralRouteFallback(segments);
+  const L = await loadLeaflet();
+  if (!L || !segments.length || !document.body?.contains?.(canvas)) return;
+
+  destroyCourseMap();
+  canvas.innerHTML = '';
+  const map = L.map(canvas, { scrollWheelZoom: false });
+  state.courseMap = map;
+  const shell = canvas.closest('.course-map-shell');
+  const tileStatus = shell?.querySelector?.('[data-map-tile-status]') ?? document.querySelector('[data-map-tile-status]');
+  const tileTracker = createTileLoadTracker(shell, tileStatus);
+  const tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  });
+  tileLayer.on('tileload', () => tileTracker.tileLoaded());
+  tileLayer.on('tileerror', () => tileTracker.tileFailed());
+  tileLayer.on('load', () => tileTracker.settled());
+  tileLayer.addTo(map);
+  const latLngSegments = segments.map((segment) => segment.map((point) => [Number(point.lat), Number(point.lon)]).filter(([lat, lon]) => Number.isFinite(lat) && Number.isFinite(lon))).filter((segment) => segment.length > 1);
+  const route = L.polyline(latLngSegments, { color: '#196c50', weight: 5, opacity: 0.95 }).addTo(map);
+  map.fitBounds(route.getBounds(), { padding: [24, 24] });
+  state.courseMapCleanup = observeCourseMapSize(canvas, map);
+
+  const markerItems = [
+    ...(race.checkpoints ?? []).map((item) => ({ ...item, markerType: 'Barrière' })),
+    ...(race.aidStations ?? []).map((item) => ({ ...item, markerType: 'Ravitaillement' })),
+  ];
+  markerItems.forEach((item) => {
+    const position = projectedPosition(item, points);
+    if (!position) return;
+    const marker = L.circleMarker([position.lat, position.lon], {
+      radius: item.markerType === 'Barrière' ? 6 : 5,
+      color: position.approximate ? '#9b6b16' : '#174f3b',
+      fillColor: position.approximate ? '#f2b84b' : '#2f9e73',
+      fillOpacity: 0.9,
+      weight: 2,
+    }).addTo(map);
+    marker.bindPopup(`<strong>${escapeHtml(item.name || item.markerType)}</strong><br>${escapeHtml(item.markerType)}${position.approximate ? '<br>Position approximative' : ''}`);
+  });
+}
+
+async function shareCourse() {
+  const url = window.location.href.split('#')[0];
+  if (navigator.share) {
+    await navigator.share({ title: document.title, url });
+    return;
+  }
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(url);
+    showToast('Lien de la fiche copié.');
+  } else {
+    showToast('Lien prêt dans la barre d’adresse.');
+  }
+}
+
+function bindCourseActions() {
+  courseContentEl?.addEventListener('click', (event) => {
+    const favoriteButton = event.target.closest?.('[data-favorite-source-id]');
+    if (favoriteButton) {
+      toggleFavorite(favoriteButton.dataset.favoriteSourceId);
+      return;
+    }
+    if (event.target.closest?.('[data-course-share]')) {
+      shareCourse().catch(() => showToast('Partage indisponible.'));
+      return;
+    }
+    const back = event.target.closest?.('[data-course-back]');
+    if (back && window.history?.length > 1 && document.referrer) {
+      event.preventDefault();
+      window.history.back();
+    }
+  });
+}
+
+async function initCourse(slug) {
+  destroyCourseMap();
+  compareView.hidden = true;
+  explorerView.hidden = true;
+  favoritesView.hidden = true;
+  courseView.hidden = false;
+  document.body?.classList?.add('is-course-page');
+  try {
+    const { race } = await fetchJson(`/api/races/slug/${encodeURIComponent(slug)}`);
+    state.currentCourse = race;
+    state.races = [race];
+    state.favorites = readFavoriteIds();
+    courseContentEl.innerHTML = courseDetailTemplate(race);
+    courseStatusEl.textContent = '';
+    bindCourseActions();
+    if (race.gpx?.status === 'available') {
+      const gpxData = await loadGpxForRace(race);
+      if (gpxData) await renderInteractiveCourseMap(race, gpxData);
+    }
+  } catch (error) {
+    courseStatusEl.textContent = `Impossible de charger cette fiche : ${error.message}`;
+  }
+}
+
 async function init() {
   try {
     const { races } = await fetchJson('/api/races');
@@ -1355,6 +2018,7 @@ async function init() {
     populateSelect(raceBSelect, races, selection.raceB);
     populateExplorerLocations(races);
     populateExplorerDynamicFilters(races);
+    restoreExplorerFilters();
 
     bindNavigation();
     bindExplorerEvents();
@@ -1373,4 +2037,9 @@ async function init() {
   }
 }
 
-init();
+const courseSlug = getCourseSlugFromPath();
+if (courseSlug) {
+  initCourse(courseSlug);
+} else {
+  init();
+}
