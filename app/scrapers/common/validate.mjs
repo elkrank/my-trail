@@ -31,6 +31,7 @@ export function validateEntry(entry, extraWarnings = []) {
   }
 
   validateAvailabilityRecords(entry.edition?.dataAvailability, validationErrors);
+  validateDistanceModel(entry.edition, validationErrors);
 
   const completeness = Object.fromEntries(
     Object.entries(COMPLETENESS_FIELDS).map(([category, fields]) => [
@@ -83,6 +84,34 @@ export function validateEntry(entry, extraWarnings = []) {
   };
 
   return refreshComputed(entry);
+}
+
+function validateDistanceModel(edition, errors) {
+  const nominal = finiteNumberOrNull(edition?.nominalDistanceKm);
+  const effective = finiteNumberOrNull(edition?.effectiveDistanceKm ?? edition?.distanceKm);
+  const legacyDistance = finiteNumberOrNull(edition?.distanceKm);
+  if (nominal !== null && nominal <= 0) errors.push('nominalDistanceKm must be positive.');
+  if (effective !== null && effective <= 0) errors.push('effectiveDistanceKm must be positive.');
+  if (nominal !== null && finiteNumberOrNull(edition?.effectiveDistanceKm) !== null && nominal === effective) {
+    errors.push('nominalDistanceKm must only be set when it differs from effectiveDistanceKm.');
+  }
+  for (const checkpoint of Array.isArray(edition?.checkpoints) ? edition.checkpoints : []) {
+    const checkpointDistance = finiteNumberOrNull(checkpoint?.distanceKm);
+    if (checkpointDistance === null || effective === null || checkpointDistance <= effective) continue;
+    const explicitlyNominalLegacyDistance = nominal !== null
+      && legacyDistance !== null
+      && legacyDistance === nominal
+      && finiteNumberOrNull(edition?.effectiveDistanceKm) === null;
+    if (!explicitlyNominalLegacyDistance) {
+      errors.push(`Checkpoint distance ${checkpointDistance} km exceeds effective race distance ${effective} km.`);
+    }
+  }
+}
+
+function finiteNumberOrNull(value) {
+  if (value === null || value === undefined || String(value).trim() === '') return null;
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
 }
 
 function assessFields(edition, fields, missingFields, validationErrors) {

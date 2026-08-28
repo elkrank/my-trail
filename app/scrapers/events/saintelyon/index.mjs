@@ -75,6 +75,8 @@ function buildRace(event, raceConfig, page, year) {
   const ravitoComing = /Ravitos?[\s\S]{0,80}?(?:a venir|Ã  venir)/i.test(text);
   const barrierComing = /Barri[Ã¨e]res horaires\s+(a venir|Ã  venir)/i.test(text);
   const checkpoints = parseSaintelyonCheckpoints(text, { date, startTime, distanceKm });
+  const lastCheckpointDistanceKm = checkpoints.at(-1)?.distanceKm ?? null;
+  const hasDistinctOfficialFinishDistance = Number.isFinite(lastCheckpointDistanceKm) && lastCheckpointDistanceKm > distanceKm;
   const maxDurationMinutes =
     parseDurationToMinutes(text.match(/Temps limite\s+([^\n]+)/i)?.[1] ?? null) ??
     maxCheckpointDuration(checkpoints);
@@ -96,6 +98,8 @@ function buildRace(event, raceConfig, page, year) {
     date,
     startTime,
     distanceKm,
+    nominalDistanceKm: hasDistinctOfficialFinishDistance ? distanceKm : null,
+    effectiveDistanceKm: hasDistinctOfficialFinishDistance ? lastCheckpointDistanceKm : null,
     elevationGainM: elevationText && !/venir/i.test(elevationText) ? numberFrom(elevationText) : null,
     startLocation,
     finishLocation: /Lyon/i.test(text) ? "Lyon" : null,

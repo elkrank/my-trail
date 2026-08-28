@@ -1,42 +1,43 @@
 import { PROFILE_LIMITS, STATUS } from './profile-config.js';
-import { compareRunnerToRace, formatMinutesAsHoursMinutes, getPastEditionInfo } from './profile-comparison.js';
+import { compareRunnerToRace, DATA_REASON, formatMinutesAsHoursMinutes, getPastEditionInfo } from './profile-comparison.js';
 import { createProfileRepository, emptyProfile, formatDurationInput, parseDurationInput, ProfileValidationError } from './profile-repository.js';
 
-const raceASelect = document.querySelector('#race-a');
-const raceBSelect = document.querySelector('#race-b');
-const swapButton = document.querySelector('#swap-races');
-const shareButton = document.querySelector('#share-button');
-const exportButton = document.querySelector('#export-button');
-const statusEl = document.querySelector('#status');
-const comparisonEl = document.querySelector('#comparison');
+let raceASelect;
+let raceBSelect;
+let swapButton;
+let shareButton;
+let exportButton;
+let statusEl;
+let comparisonEl;
 const toastEl = document.querySelector('#toast');
 const viewLinks = Array.from(document.querySelectorAll('[data-view-link]'));
-const compareView = document.querySelector('#compare-view');
-const explorerView = document.querySelector('#explorer-view');
-const favoritesView = document.querySelector('#favorites-view');
-const explorerSearchInput = document.querySelector('#explorer-search');
-const explorerLocationSelect = document.querySelector('#explorer-location');
-const explorerDateFromInput = document.querySelector('#explorer-date-from');
-const explorerDateToInput = document.querySelector('#explorer-date-to');
-const explorerElevationSelect = document.querySelector('#explorer-elevation');
-const explorerDistanceSelect = document.querySelector('#explorer-distance');
-const explorerMonthSelect = document.querySelector('#explorer-month');
-const explorerPriceMaxSelect = document.querySelector('#explorer-price-max');
-const explorerRegistrationStatusSelect = document.querySelector('#explorer-registration-status');
-const explorerDurationMaxSelect = document.querySelector('#explorer-duration-max');
-const explorerSortSelect = document.querySelector('#explorer-sort');
-const explorerGpxOnlyInput = document.querySelector('#explorer-gpx-only');
-const explorerResetButton = document.querySelector('#explorer-reset');
-const explorerCountEl = document.querySelector('#explorer-count');
-const explorerResultsEl = document.querySelector('#explorer-results');
-const favoritesCountEl = document.querySelector('#favorites-count');
-const favoritesResultsEl = document.querySelector('#favorites-results');
-const courseView = document.querySelector('#course-view');
-const courseStatusEl = document.querySelector('#course-status');
-const courseContentEl = document.querySelector('#course-content');
-const profileView = document.querySelector('#profile-view');
-const profileStatusEl = document.querySelector('#profile-status');
-const profileContentEl = document.querySelector('#profile-content');
+const viewRoot = document.querySelector('#view-root');
+let compareView;
+let explorerView;
+let favoritesView;
+let explorerSearchInput;
+let explorerLocationSelect;
+let explorerDateFromInput;
+let explorerDateToInput;
+let explorerElevationSelect;
+let explorerDistanceSelect;
+let explorerMonthSelect;
+let explorerPriceMaxSelect;
+let explorerRegistrationStatusSelect;
+let explorerDurationMaxSelect;
+let explorerSortSelect;
+let explorerGpxOnlyInput;
+let explorerResetButton;
+let explorerCountEl;
+let explorerResultsEl;
+let favoritesCountEl;
+let favoritesResultsEl;
+let courseView;
+let courseStatusEl;
+let courseContentEl;
+let profileView;
+let profileStatusEl;
+let profileContentEl;
 let profileRepository;
 try {
   profileRepository = createProfileRepository(window.localStorage);
@@ -52,8 +53,8 @@ const confidenceLabels = {
 
 const registrationStatusLabels = {
   open: 'Ouverte',
-  upcoming: 'A venir',
-  closed: 'Fermee',
+  upcoming: 'À venir',
+  closed: 'Fermée',
   lottery: "Liste d'attente ou loterie",
   unknown: 'Inconnue',
 };
@@ -87,6 +88,7 @@ const viewMeta = {
 
 const favoriteStorageKey = 'trailcompare:favorites:v1';
 const explorerStorageKey = 'trailcompare:explorer-filters:v1';
+const themeStorageKey = 'trailcompare:theme:v1';
 
 const htmlEscapeMap = {
   '&': '&amp;',
@@ -123,9 +125,91 @@ const state = {
   comparisonMaps: [],
   runnerProfile: null,
   profileRace: null,
+  raceAId: null,
+  raceBId: null,
+  viewRenderPromise: Promise.resolve(),
 };
 
 let leafletLoadPromise = null;
+
+function cacheViewElements() {
+  raceASelect = document.querySelector('#race-a');
+  raceBSelect = document.querySelector('#race-b');
+  swapButton = document.querySelector('#swap-races');
+  shareButton = document.querySelector('#share-button');
+  exportButton = document.querySelector('#export-button');
+  statusEl = document.querySelector('#status');
+  comparisonEl = document.querySelector('#comparison');
+  compareView = document.querySelector('#compare-view');
+  explorerView = document.querySelector('#explorer-view');
+  favoritesView = document.querySelector('#favorites-view');
+  explorerSearchInput = document.querySelector('#explorer-search');
+  explorerLocationSelect = document.querySelector('#explorer-location');
+  explorerDateFromInput = document.querySelector('#explorer-date-from');
+  explorerDateToInput = document.querySelector('#explorer-date-to');
+  explorerElevationSelect = document.querySelector('#explorer-elevation');
+  explorerDistanceSelect = document.querySelector('#explorer-distance');
+  explorerMonthSelect = document.querySelector('#explorer-month');
+  explorerPriceMaxSelect = document.querySelector('#explorer-price-max');
+  explorerRegistrationStatusSelect = document.querySelector('#explorer-registration-status');
+  explorerDurationMaxSelect = document.querySelector('#explorer-duration-max');
+  explorerSortSelect = document.querySelector('#explorer-sort');
+  explorerGpxOnlyInput = document.querySelector('#explorer-gpx-only');
+  explorerResetButton = document.querySelector('#explorer-reset');
+  explorerCountEl = document.querySelector('#explorer-count');
+  explorerResultsEl = document.querySelector('#explorer-results');
+  favoritesCountEl = document.querySelector('#favorites-count');
+  favoritesResultsEl = document.querySelector('#favorites-results');
+  courseView = document.querySelector('#course-view');
+  courseStatusEl = document.querySelector('#course-status');
+  courseContentEl = document.querySelector('#course-content');
+  profileView = document.querySelector('#profile-view');
+  profileStatusEl = document.querySelector('#profile-status');
+  profileContentEl = document.querySelector('#profile-content');
+}
+
+function mountView(view) {
+  const template = document.querySelector(`#${view}-template`);
+  if (viewRoot && template && viewRoot.dataset?.mountedView !== view) {
+    destroyComparisonMaps();
+    destroyCourseMap();
+    viewRoot.innerHTML = template.innerHTML;
+    viewRoot.dataset.mountedView = view;
+  }
+  cacheViewElements();
+  const mounted = document.querySelector(`#${view}-view`);
+  if (mounted) {
+    mounted.hidden = false;
+    mounted.classList?.add?.('is-active');
+  }
+}
+
+function currentTheme() {
+  return document.documentElement?.dataset?.theme === 'dark' ? 'dark' : 'light';
+}
+
+function applyTheme(theme, { persist = true } = {}) {
+  const selected = theme === 'dark' ? 'dark' : 'light';
+  if (document.documentElement) {
+    document.documentElement.dataset.theme = selected;
+    document.documentElement.style.colorScheme = selected;
+  }
+  document.querySelectorAll('[data-theme-choice]').forEach((button) => {
+    const active = button.dataset.themeChoice === selected;
+    button.setAttribute('aria-pressed', String(active));
+    button.classList.toggle('is-selected', active);
+  });
+  if (persist) {
+    try { window.localStorage?.setItem(themeStorageKey, selected); } catch { /* préférence non persistable */ }
+  }
+}
+
+function bindThemeControls() {
+  applyTheme(currentTheme(), { persist: false });
+  document.querySelectorAll('[data-theme-choice]').forEach((button) => {
+    button.addEventListener('click', () => applyTheme(button.dataset.themeChoice));
+  });
+}
 
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (character) => htmlEscapeMap[character]);
@@ -147,10 +231,11 @@ function courseHref(race) {
 }
 
 function setStatus(message) {
-  statusEl.textContent = message;
+  if (statusEl) statusEl.textContent = message;
 }
 
 function showToast(message) {
+  if (!toastEl) return;
   toastEl.textContent = message;
   toastEl.classList.add('is-visible');
   window.clearTimeout(showToast.timeoutId);
@@ -160,6 +245,7 @@ function showToast(message) {
 }
 
 function clearToast() {
+  if (!toastEl) return;
   window.clearTimeout(showToast.timeoutId);
   toastEl.textContent = '';
   toastEl.classList.remove('is-visible');
@@ -214,13 +300,22 @@ function formatKm(value) {
   return numericValue(value) !== null ? `${formatNumber(value, 1)} km` : 'Non disponible';
 }
 
+function formatRaceDistance(race) {
+  const nominal = numericValue(race?.nominalDistanceKm);
+  const effective = numericValue(race?.effectiveDistanceKm ?? race?.distanceKm);
+  if (nominal !== null && effective !== null && nominal !== effective) {
+    return `${formatNumber(nominal)} km nominal · ${formatNumber(effective)} km officiels`;
+  }
+  return formatKm(effective);
+}
+
 function formatElevation(value) {
   return numericValue(value) !== null ? `${formatNumber(value, 0)} D+` : 'Non disponible';
 }
 
 function formatDate(value) {
   const date = parseDateValue(value);
-  if (!date) return 'Date a preciser';
+  if (!date) return 'Date à préciser';
 
   return date.toLocaleDateString('fr-FR', {
     day: 'numeric',
@@ -357,16 +452,61 @@ function knownRaceLocationLabel(race) {
 }
 
 function raceLocationLabel(race) {
-  return knownRaceLocationLabel(race) || 'Lieu a preciser';
+  return translateUserLabel(knownRaceLocationLabel(race)) || 'Lieu à préciser';
 }
 
 function startFinishLabel(race) {
   const start = race.startLocation;
   const finish = race.finishLocation;
-  if (start && finish && normalizeText(start) !== normalizeText(finish)) return `Depart ${start} - Arrivee ${finish}`;
-  if (start) return `Depart ${start}`;
-  if (finish) return `Arrivee ${finish}`;
-  return 'Depart et arrivee a preciser';
+  if (start && finish && normalizeText(start) !== normalizeText(finish)) return `Départ ${translateUserLabel(start)} · Arrivée ${translateUserLabel(finish)}`;
+  if (start) return `Départ ${translateUserLabel(start)}`;
+  if (finish) return `Arrivée ${translateUserLabel(finish)}`;
+  return 'Départ et arrivée à préciser';
+}
+
+const translatedLabels = Object.freeze({
+  'rain jacket': 'Veste imperméable',
+  whistle: 'Sifflet',
+  'survival blanket': 'Couverture de survie',
+  'reusable cup/container': 'Gobelet ou récipient réutilisable',
+  'Official page exposes cutoff clock times; elapsed durations are computed from official start date/time.': 'La page officielle publie les heures de fermeture ; les durées écoulées sont calculées depuis la date et l’heure de départ officielles.',
+  'Official page does not expose elevation gain yet.': 'La page officielle ne publie pas encore le dénivelé positif.',
+  'Official race page marks elevation gain as coming soon.': 'La page officielle indique que le dénivelé positif sera publié prochainement.',
+  'Official race page marks the GPX as coming soon.': 'La page officielle indique que le GPX sera publié prochainement.',
+  'Official public race page does not publish the 2026 price and no previous-edition price is reused.': 'La page officielle ne publie pas encore le tarif 2026 ; aucun tarif d’une édition précédente n’est repris.',
+  'Official 2026 race page does not publish usable aid-station details yet.': 'La page officielle 2026 ne publie pas encore de détails exploitables sur les ravitaillements.',
+});
+
+function translateUserLabel(value) {
+  if (value === null || value === undefined) return '';
+  const text = translatedLabels[String(value)] ?? String(value);
+  return text
+    .replace(/\bArrivee\b/gi, 'Arrivée')
+    .replace(/\bDepart\b/gi, 'Départ')
+    .replace(/\bEglise\b/gi, 'Église')
+    .replace(/\bChateau\b/gi, 'Château')
+    .replace(/\bSaintelyon\b/g, 'SaintéLyon');
+}
+
+function translateDataMessage(value) {
+  const translated = translatedLabels[String(value)] ?? null;
+  if (translated) return translated;
+  const text = String(value ?? '');
+  if (!text) return '';
+  if (/cancelled/i.test(text)) return 'La source officielle indique que cette édition a été annulée.';
+  if (/no (?:eliminating time|maximum time|time barriers)/i.test(text)) return 'La source officielle indique qu’aucune barrière horaire éliminatoire ne s’applique.';
+  if (/provisional|can still be modified/i.test(text)) return 'Le parcours officiel publié reste provisoire et peut encore évoluer.';
+  if (/conflict|differs from/i.test(text)) return 'Des sources officielles présentent des informations contradictoires ; la source la plus récente ou la plus précise est privilégiée.';
+  if (/another edition|not a confirmed 2026|stale race-page date|not tied to 2026/i.test(text)) return 'La source publique disponible concerne une autre édition ; aucune valeur n’est réutilisée pour 2026.';
+  if (/elevation gain/i.test(text)) return 'Le dénivelé positif officiel n’est pas encore publié ou confirmé.';
+  if (/aid.station/i.test(text)) return 'Les détails officiels des ravitaillements ne sont pas encore exploitables.';
+  if (/price|tariff/i.test(text)) return 'Le tarif officiel 2026 n’est pas encore publié ou exploitable.';
+  if (/roadbook/i.test(text)) return 'Le guide coureur officiel n’est pas encore publié ou exploitable.';
+  if (/GPX|route trace|track/i.test(text)) return 'La trace GPX officielle n’est pas encore disponible ou n’a pas pu être validée.';
+  if (/cutoff|barrier|timetable/i.test(text)) return 'Les barrières horaires officielles n’ont pas pu être extraites de façon fiable.';
+  if (/date/i.test(text)) return 'La date officielle 2026 n’est pas encore confirmée de façon exploitable.';
+  if (/^Official |^Current |^The official |^GPX_/i.test(text)) return 'Une limite de la donnée officielle empêche son exploitation fiable.';
+  return text;
 }
 
 function raceSearchText(race) {
@@ -658,7 +798,7 @@ function mapTemplate(race, variant, gpxData) {
           `
       }
       <div class="map-stats">
-        <strong>${formatKm(race.distanceKm)}</strong>
+        <strong>${escapeHtml(formatRaceDistance(race))}</strong>
         <strong>${formatElevation(race.elevationGainM)}</strong>
       </div>
     </section>
@@ -910,9 +1050,7 @@ function pastEditionWarningTemplate(race, now = new Date()) {
 }
 
 function profileComparisonCtaLabel(race, now = new Date()) {
-  return getPastEditionInfo(race?.date, now)
-    ? 'Comparer les exigences avec mon profil'
-    : 'Comparer avec mon profil';
+  return 'Comparer les exigences avec mon profil';
 }
 
 function raceCardTemplate(race, variant, gpxData) {
@@ -930,8 +1068,8 @@ function raceCardTemplate(race, variant, gpxData) {
           ${favoriteButtonTemplate(race)}
         </div>
         <div>
-          <h2>${escapeHtml(race.name)}</h2>
-          <p>${formatKm(race.distanceKm)} · ${escapeHtml(race.edition)}</p>
+          <h2>${escapeHtml(translateUserLabel(race.name))}</h2>
+          <p>${escapeHtml(formatRaceDistance(race))} · ${escapeHtml(race.edition)}</p>
         </div>
       </header>
 
@@ -1058,7 +1196,7 @@ function explorerRaceCardTemplate(race) {
       <div class="explorer-metrics">
         ${explorerMetricTemplate('Date', formatRaceDateTime(race))}
         ${explorerMetricTemplate('Lieu', raceLocationLabel(race))}
-        ${explorerMetricTemplate('Distance', formatKm(race.distanceKm))}
+        ${explorerMetricTemplate('Distance', formatRaceDistance(race))}
         ${explorerMetricTemplate('D+', formatElevation(race.elevationGainM))}
         ${explorerMetricTemplate('Prix', formatPrice(race.registration?.priceEur))}
         ${explorerMetricTemplate('Inscription', registrationStatusLabel(race.registration?.status))}
@@ -1197,13 +1335,12 @@ function compareFromExplorer(raceId, target) {
   if (!race) return;
 
   if (target === 'b') {
-    raceBSelect.value = String(race.id);
+    state.raceBId = race.id;
   } else {
-    raceASelect.value = String(race.id);
+    state.raceAId = race.id;
   }
 
   setActiveView('compare');
-  compareSelectedRaces();
   showToast(`Course ajoutée en ${target === 'b' ? 'B' : 'A'}.`);
 }
 
@@ -1227,22 +1364,12 @@ function getInitialView() {
 
 function setActiveView(view, { updateHash = true } = {}) {
   const activeView = ['compare', 'explorer', 'favorites'].includes(view) ? view : 'compare';
+  if (state.activeView === 'compare') {
+    if (raceASelect?.value) state.raceAId = Number(raceASelect.value);
+    if (raceBSelect?.value) state.raceBId = Number(raceBSelect.value);
+  }
   state.activeView = activeView;
-
-  if (compareView) {
-    compareView.hidden = activeView !== 'compare';
-    compareView.classList.toggle('is-active', activeView === 'compare');
-  }
-
-  if (explorerView) {
-    explorerView.hidden = activeView !== 'explorer';
-    explorerView.classList.toggle('is-active', activeView === 'explorer');
-  }
-
-  if (favoritesView) {
-    favoritesView.hidden = activeView !== 'favorites';
-    favoritesView.classList.toggle('is-active', activeView === 'favorites');
-  }
+  mountView(activeView);
 
   viewLinks.forEach((link) => {
     const isActive = link.dataset.viewLink === activeView;
@@ -1262,8 +1389,40 @@ function setActiveView(view, { updateHash = true } = {}) {
   }
 
   updateDocumentMeta(activeView);
-  if (activeView === 'explorer') renderExplorer();
-  if (activeView === 'favorites') renderFavorites();
+  if (activeView === 'compare') {
+    populateSelect(raceASelect, state.races, state.raceAId);
+    populateSelect(raceBSelect, state.races, state.raceBId);
+    if (compareView && compareView.dataset.bound !== 'true') {
+      compareView.dataset.bound = 'true';
+      raceASelect?.addEventListener('change', () => {
+        state.raceAId = Number(raceASelect.value);
+        compareSelectedRaces();
+      });
+      raceBSelect?.addEventListener('change', () => {
+        state.raceBId = Number(raceBSelect.value);
+        compareSelectedRaces();
+      });
+      swapButton?.addEventListener('click', swapRaces);
+      shareButton?.addEventListener('click', () => shareComparison().catch(() => showToast('Copie indisponible.')));
+      exportButton?.addEventListener('click', exportComparison);
+      comparisonEl?.addEventListener('click', (event) => {
+        const favoriteButton = event.target.closest?.('[data-favorite-source-id]');
+        if (favoriteButton) toggleFavorite(favoriteButton.dataset.favoriteSourceId);
+      });
+    }
+    state.viewRenderPromise = compareSelectedRaces();
+  }
+  if (activeView === 'explorer') {
+    populateExplorerLocations(state.races);
+    populateExplorerDynamicFilters(state.races);
+    restoreExplorerFilters();
+    bindExplorerEvents();
+    renderExplorer();
+  }
+  if (activeView === 'favorites') {
+    favoritesResultsEl?.addEventListener('click', handleRaceListAction);
+    renderFavorites();
+  }
 }
 
 function bindNavigation() {
@@ -1300,11 +1459,6 @@ function bindExplorerEvents() {
 
   explorerResetButton?.addEventListener('click', resetExplorerFilters);
   explorerResultsEl?.addEventListener('click', handleRaceListAction);
-  favoritesResultsEl?.addEventListener('click', handleRaceListAction);
-  comparisonEl?.addEventListener('click', (event) => {
-    const favoriteButton = event.target.closest?.('[data-favorite-source-id]');
-    if (favoriteButton) toggleFavorite(favoriteButton.dataset.favoriteSourceId);
-  });
 }
 
 async function fetchJson(url) {
@@ -1541,7 +1695,7 @@ function courseMapSectionTemplate(race) {
 function checkpointRowsTemplate(checkpoints) {
   return checkpoints.map((checkpoint) => `
     <tr>
-      <th scope="row">${escapeHtml(checkpoint.name || 'Point de contrôle')}</th>
+      <th scope="row">${escapeHtml(translateUserLabel(checkpoint.name || 'Point de contrôle'))}</th>
       <td>${escapeHtml(formatKm(checkpoint.distanceKm))}</td>
       <td>${escapeHtml(checkpoint.elevationM === null ? '—' : formatAltitude(checkpoint.elevationM))}</td>
       <td>${checkpoint.elevationGainFromStartM === null ? '—' : `${escapeHtml(formatNumber(checkpoint.elevationGainFromStartM, 0))} m D+`}${checkpoint.elevationGainFromStartSource === 'gpx_estimate' ? '<small>Estimation calculée depuis le GPX</small>' : ''}</td>
@@ -1581,7 +1735,7 @@ function aidStationsSectionTemplate(race) {
   if (!race.aidStations?.length) return '';
   const rows = race.aidStations.map((station) => `
     <tr>
-      <th scope="row">${escapeHtml(station.name || 'Ravitaillement')}</th>
+      <th scope="row">${escapeHtml(translateUserLabel(station.name || 'Ravitaillement'))}</th>
       <td>${escapeHtml(formatKm(station.distanceKm))}</td>
       <td>${escapeHtml(station.elevationM === null ? '—' : formatAltitude(station.elevationM))}</td>
       <td>${escapeHtml(aidServices(station).join(', ') || 'Services non précisés')}</td>
@@ -1619,8 +1773,8 @@ function programTemplate(program) {
   return `<ol class="course-timeline">${program.map((item) => `
     <li>
       <time>${escapeHtml([item.date && formatDate(item.date), item.time].filter(Boolean).join(' · ') || 'Horaire à confirmer')}</time>
-      <strong>${escapeHtml(item.label || item.type || 'Programme')}</strong>
-      ${item.location ? `<span>${escapeHtml(item.location)}</span>` : ''}
+      <strong>${escapeHtml(translateUserLabel(item.label || item.type || 'Programme'))}</strong>
+      ${item.location ? `<span>${escapeHtml(translateUserLabel(item.location))}</span>` : ''}
       ${item.details ? `<p>${escapeHtml(item.details)}</p>` : ''}
     </li>
   `).join('')}</ol>`;
@@ -1654,7 +1808,7 @@ function rulesTemplate(race) {
     characteristicTemplate('Eau obligatoire', rules.minimumWaterLiters === null ? null : `${formatNumber(rules.minimumWaterLiters)} L minimum`),
   ].filter(Boolean).join('');
   const equipment = race.mandatoryEquipment?.length
-    ? `<h3>Matériel obligatoire</h3><ul class="course-list equipment-list">${race.mandatoryEquipment.map((item) => `<li><strong>${escapeHtml(item.name || item.details)}</strong>${item.details && item.name ? `<span>${escapeHtml(item.details)}</span>` : ''}</li>`).join('')}</ul>`
+    ? `<h3>Matériel obligatoire</h3><ul class="course-list equipment-list">${race.mandatoryEquipment.map((item) => `<li><strong>${escapeHtml(translateUserLabel(item.name || item.details))}</strong>${item.details && item.name ? `<span>${escapeHtml(translateUserLabel(item.details))}</span>` : ''}</li>`).join('')}</ul>`
     : '';
   return items || equipment || rules.details
     ? `<dl class="course-characteristics">${items}</dl>${rules.details ? `<p>${escapeHtml(rules.details)}</p>` : ''}${equipment}`
@@ -1680,12 +1834,12 @@ function qualitySourcesTemplate(race) {
     if (!url) return '';
     return `<li><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(sourceTypeLabels[source.type] || source.type || 'Source officielle')}</a>${source.retrievedAt ? `<time datetime="${escapeHtml(source.retrievedAt)}">Vérifiée le ${escapeHtml(formatDate(String(source.retrievedAt).slice(0, 10)))}</time>` : ''}</li>`;
   }).filter(Boolean).join('');
-  const warnings = (race.quality?.warnings ?? []).map((warning) => `<li>${escapeHtml(warning)}</li>`).join('');
-  const missing = (race.missingOfficialInformation ?? race.quality?.missingFields ?? []).map((field) => `<li>${escapeHtml(field)}</li>`).join('');
+  const warnings = (race.quality?.warnings ?? []).map((warning) => `<li>${escapeHtml(translateDataMessage(warning))}</li>`).join('');
+  const missing = (race.missingOfficialInformation ?? race.quality?.missingFields ?? []).map((field) => `<li>${escapeHtml(dataFieldLabel(field))}</li>`).join('');
   const availability = availabilityEntries(race.dataAvailability).map(({ path, record }) => {
     const sourceUrl = safeHttpUrl(record.sourceUrl);
     const source = sourceUrl ? ` <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">source</a>` : '';
-    const reason = record.reason ? ` — ${escapeHtml(record.reason)}` : '';
+    const reason = record.reason ? ` — ${escapeHtml(translateDataMessage(record.reason))}` : '';
     return `<li><strong>${escapeHtml(availabilityFieldLabel(path))}</strong> : ${escapeHtml(availabilityStatusLabel(record.status))}${reason}${source}</li>`;
   }).join('');
   return `
@@ -1727,7 +1881,7 @@ function availabilityStatusLabel(status) {
     not_published: 'pas encore publiée',
     extraction_error: 'source disponible, extraction en échec',
     unknown: 'inconnue',
-  })[status] ?? status ?? 'inconnue';
+  })[status] ?? 'statut inconnu';
 }
 
 function availabilityFieldLabel(path) {
@@ -1740,7 +1894,25 @@ function availabilityFieldLabel(path) {
     aidStations: 'Ravitaillements',
     gpx: 'GPX',
     'registration.priceEur': 'Prix',
-  })[path] ?? path;
+  })[path] ?? dataFieldLabel(path);
+}
+
+function dataFieldLabel(field) {
+  return ({
+    identity: 'Identité de la course',
+    distance: 'Distance',
+    distanceKm: 'Distance',
+    elevationGain: 'Dénivelé positif',
+    elevationGainM: 'Dénivelé positif',
+    maxDuration: 'Temps maximum',
+    finishCutoffTime: 'Heure limite d’arrivée',
+    checkpoints: 'Barrières horaires',
+    aidStations: 'Ravitaillements',
+    gpx: 'Trace GPX',
+    price: 'Tarif',
+    registrationInfo: 'Informations d’inscription',
+    sources: 'Sources officielles',
+  })[field] ?? 'Information officielle complémentaire';
 }
 
 function formatDateTime(value) {
@@ -1751,6 +1923,7 @@ function formatDateTime(value) {
 
 function courseDetailTemplate(race) {
   const illustrationUrl = safeHttpUrl(race.illustration?.url);
+  const illustrationIsLogo = illustrationUrl && race.illustration?.presentation === 'logo';
   const description = translatedDescriptionTemplate(race);
   const characteristics = characteristicsTemplate(race);
   const sections = [
@@ -1770,12 +1943,12 @@ function courseDetailTemplate(race) {
     <a class="course-back" href="/#explorer" data-course-back>← Retour aux courses</a>
     ${pastEditionWarningTemplate(race)}
     <article class="course-detail">
-      <header class="course-hero ${illustrationUrl ? 'has-image' : 'is-empty'}">
-        ${illustrationUrl ? `<img src="${escapeHtml(illustrationUrl)}" alt="${escapeHtml(race.illustration?.alt || race.name)}" decoding="async" referrerpolicy="no-referrer">` : ''}
+      <header class="course-hero ${illustrationIsLogo ? 'has-logo' : illustrationUrl ? 'has-image' : 'is-empty'}">
+        ${illustrationUrl ? `<img class="${illustrationIsLogo ? 'course-hero-logo' : 'course-hero-image'}" src="${escapeHtml(illustrationUrl)}" alt="${escapeHtml(race.illustration?.alt || `Illustration de ${race.name}`)}"${race.illustration?.width ? ` width="${escapeHtml(race.illustration.width)}"` : ''}${race.illustration?.height ? ` height="${escapeHtml(race.illustration.height)}"` : ''} decoding="async" fetchpriority="high" referrerpolicy="no-referrer"${illustrationIsLogo ? '' : ' sizes="(max-width: 700px) 100vw, 1280px"'}>` : ''}
         <div class="course-hero-overlay"></div>
         <div class="course-hero-content">
-          <span class="course-event">${escapeHtml(race.eventName)} · ${escapeHtml(race.edition)}</span>
-          <h1>${escapeHtml(race.raceName)}</h1>
+          <span class="course-event">${escapeHtml(translateUserLabel(race.eventName))} · ${escapeHtml(race.edition)}</span>
+          <h1>${escapeHtml(translateUserLabel(race.raceName))}</h1>
           <p>${escapeHtml(formatRaceDateTime(race))}${raceLocationLabel(race) ? ` · ${escapeHtml(raceLocationLabel(race))}` : ''}</p>
           <div class="course-hero-actions">
             ${favoriteButtonTemplate(race)}
@@ -1788,7 +1961,9 @@ function courseDetailTemplate(race) {
       </header>
 
       <div class="course-summary" aria-label="Résumé de la course">
-        ${officialMetricTemplate('Distance', formatKm(race.distanceKm))}
+        ${numericValue(race.nominalDistanceKm) !== null && numericValue(race.nominalDistanceKm) !== numericValue(race.effectiveDistanceKm)
+          ? `${officialMetricTemplate('Distance nominale', formatKm(race.nominalDistanceKm))}${officialMetricTemplate('Distance effective', formatKm(race.effectiveDistanceKm))}`
+          : officialMetricTemplate('Distance', formatKm(race.distanceKm))}
         ${officialMetricTemplate('D+', formatElevation(race.elevationGainM))}
         ${officialMetricTemplate('D-', numericValue(race.elevationLossM) === null ? null : `${formatNumber(race.elevationLossM, 0)} D-`)}
         ${officialMetricTemplate('Temps limite', formatRaceTimeLimit(race))}
@@ -2121,8 +2296,8 @@ function profileDurationField(name, label, value, { fieldKey, readonly = false }
     <div class="profile-field profile-duration-field" data-duration-field data-duration-key="${escapeHtml(fieldKey)}">
       <span>${escapeHtml(label)}</span>
       <div class="duration-inputs" role="group" aria-label="${escapeHtml(label)}">
-        <label class="duration-part"><span class="sr-only">Heures</span><input name="${escapeHtml(name)}-hours" data-duration-part="hours" type="number" inputmode="numeric" min="0" step="1" value="${inputValue(duration.hours)}" aria-label="Heures" aria-describedby="${errorId}"${readonlyAttribute}><small aria-hidden="true">h</small></label>
-        <label class="duration-part"><span class="sr-only">Minutes</span><input name="${escapeHtml(name)}-minutes" data-duration-part="minutes" type="number" inputmode="numeric" min="0" max="59" step="1" value="${inputValue(duration.minutes)}" aria-label="Minutes" aria-describedby="${errorId}"${readonlyAttribute}><small aria-hidden="true">min</small></label>
+        <label class="duration-part"><span class="sr-only">Heures</span><input name="${escapeHtml(name)}-hours" data-duration-part="hours" type="number" inputmode="numeric" min="0" step="1" value="${inputValue(duration.hours)}" aria-label="Heures" aria-invalid="false" aria-describedby="${errorId}"${readonlyAttribute}><small aria-hidden="true">h</small></label>
+        <label class="duration-part"><span class="sr-only">Minutes</span><input name="${escapeHtml(name)}-minutes" data-duration-part="minutes" type="number" inputmode="numeric" min="0" max="59" step="1" value="${inputValue(duration.minutes)}" aria-label="Minutes" aria-invalid="false" aria-describedby="${errorId}"${readonlyAttribute}><small aria-hidden="true">min</small></label>
       </div>
       <small id="${errorId}" class="profile-field-error" role="alert" hidden></small>
     </div>`;
@@ -2134,7 +2309,7 @@ function performanceRowTemplate(reference = {}, index = 0) {
   const distanceValue = fixedDistance ?? reference.distanceKm;
   const durationValue = selectedType === 'six_minute_test' ? 6 : reference.durationMinutes;
   return `
-    <fieldset class="performance-row" data-performance-row>
+    <fieldset class="performance-row" data-performance-row data-performance-type="${escapeHtml(selectedType)}">
       <legend>Référence ${index + 1}</legend>
       <input type="hidden" data-performance-field="id" value="${inputValue(reference.id || `reference-${Date.now()}-${index}`)}">
       <label class="profile-field"><span>Type</span>
@@ -2163,7 +2338,7 @@ function profileFormTemplate(profile, { selectedRace = null } = {}) {
         <p class="subtitle">Des repères simples pour confronter votre niveau actuel aux exigences réelles d’une course.</p>
       </div>
     </header>
-    ${selectedRace ? `<div class="selected-profile-race"><span>Course conservée</span><strong>${escapeHtml(selectedRace.name)}</strong><small>${formatKm(selectedRace.distanceKm)} · ${formatElevation(selectedRace.elevationGainM)}</small></div>` : ''}
+    ${selectedRace ? `<div class="selected-profile-race"><span>Course conservée</span><strong>${escapeHtml(translateUserLabel(selectedRace.name))}</strong><small>${escapeHtml(formatRaceDistance(selectedRace))} · ${formatElevation(selectedRace.elevationGainM)}</small></div>` : ''}
     <form id="runner-profile-form" class="runner-profile-form" novalidate>
       <div id="profile-errors" class="profile-errors" role="alert" tabindex="-1" hidden></div>
       <section class="profile-form-section">
@@ -2275,7 +2450,7 @@ function clearProfileErrors(form) {
     container.innerHTML = '';
   }
   form.querySelectorAll('[data-duration-field]').forEach((field) => {
-    field.querySelectorAll('input').forEach((input) => input.removeAttribute('aria-invalid'));
+    field.querySelectorAll('input').forEach((input) => input.setAttribute('aria-invalid', 'false'));
     const message = field.querySelector('.profile-field-error');
     if (message) {
       message.hidden = true;
@@ -2345,7 +2520,7 @@ function refreshDisplayedDurationError(input, form) {
       localError.hidden = false;
     }
   } else {
-    field.querySelectorAll('input').forEach((item) => item.removeAttribute('aria-invalid'));
+    field.querySelectorAll('input').forEach((item) => item.setAttribute('aria-invalid', 'false'));
     if (localError) {
       localError.textContent = '';
       localError.hidden = true;
@@ -2398,16 +2573,20 @@ function barriersTemplate(barriers) {
     <td>${formatMinutesAsHoursMinutes(barrier.elapsedLimitMinutes)}</td>
     <td>${barrier.requiredMinutesPerKm === null ? 'Indisponible' : `${formatPace(barrier.requiredMinutesPerKm)} min/km`}<small>${barrier.requiredSpeedKmh === null ? '' : `${formatNumber(barrier.requiredSpeedKmh, 1)} km/h`}</small></td>
     <td>${barrier.estimatedTime?.hour ? `${escapeHtml(barrier.estimatedTime.hour)}<small>Fiabilité ${barrier.reliability === 'medium' ? 'moyenne' : 'faible'}</small>` : escapeHtml(barrierMissingLabel(barrier))}</td>
-    <td>${barrier.marginMinutes === null ? escapeHtml(barrierMissingLabel(barrier)) : formatMinutesAsHoursMinutes(barrier.marginMinutes, { signed: true })}</td>
+    <td>${barrier.marginMinutes === null ? '<span aria-label="Marge non calculable">—</span>' : formatMinutesAsHoursMinutes(barrier.marginMinutes, { signed: true })}</td>
   </tr>`).join('')}</tbody></table></div>`;
 }
 
 function barrierMissingLabel(barrier) {
   return ({
-    missing_checkpoint_elevation_gain: 'D+ cumulé manquant',
-    missing_comparable_trail_reference: 'Référence comparable absente',
+    [DATA_REASON.RACE_ELEVATION_MISSING]: 'D+ officiel de la course manquant',
+    [DATA_REASON.NO_COMPARABLE_TRAIL_REFERENCE]: 'Aucune référence trail comparable',
+    [DATA_REASON.CHECKPOINT_ELEVATION_MISSING]: 'D+ cumulé du checkpoint manquant',
+    missing_race_elevation_gain: 'D+ officiel de la course manquant',
+    missing_comparable_trail_reference: 'Aucune référence trail comparable',
+    missing_checkpoint_elevation_gain: 'D+ cumulé du checkpoint manquant',
     missing_checkpoint_timing: 'Horaire du checkpoint manquant',
-  })[barrier.missingReason] ?? 'Estimation indisponible';
+  })[barrier.reasonCode ?? barrier.missingReason] ?? 'Estimation indisponible';
 }
 
 function formatPace(minutes) {
@@ -2469,25 +2648,34 @@ function bindProfileActions() {
     const durationHours = row.querySelector('[data-duration-part="hours"]');
     const durationMinutes = row.querySelector('[data-duration-part="minutes"]');
     const elevation = row.querySelector('[name="performance-elevation"]');
+    const rowState = row.dataset ?? (row.dataset = {});
+    const previousType = rowState.performanceType ?? '';
     if (distance) { if (fixed) distance.value = fixed; distance.readOnly = Boolean(fixed); }
     if (event.target.value === 'six_minute_test') {
+      if (previousType !== 'six_minute_test') {
+        rowState.previousDurationHours = durationHours?.value ?? '';
+        rowState.previousDurationMinutes = durationMinutes?.value ?? '';
+      }
       if (durationHours) { durationHours.value = '0'; durationHours.readOnly = true; }
       if (durationMinutes) { durationMinutes.value = '6'; durationMinutes.readOnly = true; }
     } else {
-      if (durationHours) durationHours.readOnly = false;
-      if (durationMinutes) durationMinutes.readOnly = false;
+      if (durationHours) {
+        if (previousType === 'six_minute_test') durationHours.value = rowState.previousDurationHours ?? '';
+        durationHours.readOnly = false;
+      }
+      if (durationMinutes) {
+        if (previousType === 'six_minute_test') durationMinutes.value = rowState.previousDurationMinutes ?? '';
+        durationMinutes.readOnly = false;
+      }
     }
     if (elevation) elevation.closest('.profile-field').hidden = event.target.value !== 'trail';
+    rowState.performanceType = event.target.value;
   });
 }
 
 async function initProfile() {
   destroyCourseMap();
-  compareView.hidden = true;
-  explorerView.hidden = true;
-  favoritesView.hidden = true;
-  courseView.hidden = true;
-  profileView.hidden = false;
+  mountView('profile');
   document.body?.classList?.add('is-profile-page');
   state.runnerProfile = profileRepository.load();
   const slug = new URLSearchParams(window.location.search).get('course');
@@ -2500,17 +2688,21 @@ async function initProfile() {
     }
   }
   updateDocumentMeta('profile');
+  viewLinks.forEach((link) => link.removeAttribute('aria-current'));
+  document.querySelector('[data-profile-navigation]')?.setAttribute('aria-current', 'page');
   bindProfileActions();
   renderProfile();
 }
 
 async function initCourse(slug) {
   destroyCourseMap();
-  compareView.hidden = true;
-  explorerView.hidden = true;
-  favoritesView.hidden = true;
-  courseView.hidden = false;
+  mountView('course');
   document.body?.classList?.add('is-course-page');
+  viewLinks.forEach((link) => {
+    const active = link.dataset.viewLink === 'explorer';
+    if (active) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
   try {
     const { race } = await fetchJson(`/api/races/slug/${encodeURIComponent(slug)}`);
     state.currentCourse = race;
@@ -2534,30 +2726,19 @@ async function init() {
     state.races = races;
     reconcileFavorites(races);
     const selection = applyUrlSelection(races);
-
-    populateSelect(raceASelect, races, selection.raceA);
-    populateSelect(raceBSelect, races, selection.raceB);
-    populateExplorerLocations(races);
-    populateExplorerDynamicFilters(races);
-    restoreExplorerFilters();
+    state.raceAId = selection.raceA;
+    state.raceBId = selection.raceB;
 
     bindNavigation();
-    bindExplorerEvents();
-    raceASelect.addEventListener('change', compareSelectedRaces);
-    raceBSelect.addEventListener('change', compareSelectedRaces);
-    swapButton.addEventListener('click', swapRaces);
-    shareButton.addEventListener('click', () => shareComparison().catch(() => showToast('Copie indisponible.')));
-    exportButton.addEventListener('click', exportComparison);
-
     setActiveView(getInitialView(), { updateHash: false });
-    renderExplorer();
-    renderFavorites();
-    await compareSelectedRaces();
+    await state.viewRenderPromise;
   } catch (error) {
+    mountView('compare');
     setStatus(`Impossible de charger les courses: ${error.message}`);
   }
 }
 
+bindThemeControls();
 const courseSlug = getCourseSlugFromPath();
 if (window.location.pathname === '/profil' || window.location.pathname === '/profil/') {
   initProfile();

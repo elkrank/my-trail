@@ -40,7 +40,9 @@ function normalizeDataset(payload) {
       edition: String(edition.year),
       date: edition.date,
       startTime: edition.startTime,
-      distanceKm: numberOrNull(edition.distanceKm),
+      distanceKm: numberOrNull(edition.effectiveDistanceKm ?? edition.distanceKm),
+      nominalDistanceKm: numberOrNull(edition.nominalDistanceKm),
+      effectiveDistanceKm: numberOrNull(edition.effectiveDistanceKm ?? edition.distanceKm),
       elevationGainM: numberOrNull(edition.elevationGainM),
       elevationLossM: numberOrNull(edition.elevationLossM),
       startLocation: edition.startLocation ?? null,
@@ -69,7 +71,7 @@ function normalizeDataset(payload) {
       sourceFamilies: groupSourcesByFamily(edition.sources),
       gpxUrl: edition.gpxUrl,
       gpx: normalizeGpx(edition.gpx, edition),
-      illustration: normalizeIllustration(edition.illustration),
+      illustration: normalizeIllustration(edition.illustration, entry.race.shortName),
       rawEdition: edition,
       checkpoints: normalizeCheckpoints(index + 1, edition.checkpoints),
       verifiedAt: latestRetrievedAt(edition.sources) ?? payload.generatedAt ?? null,
@@ -132,6 +134,8 @@ function publicRace(race, { includeDetails = false } = {}) {
     date: race.date,
     startTime: race.startTime,
     distanceKm: race.distanceKm,
+    nominalDistanceKm: race.nominalDistanceKm,
+    effectiveDistanceKm: race.effectiveDistanceKm,
     elevationGainM: race.elevationGainM,
     elevationLossM: race.elevationLossM,
     startLocation: race.startLocation,
@@ -306,15 +310,25 @@ function normalizeGpx(value, edition) {
     elevationQuality,
   };
 }
-function normalizeIllustration(value) {
+function normalizeIllustration(value, raceName = '') {
   const url = normalizeHttpUrl(value?.url);
   if (!url) return null;
+  const dimensions = imageDimensionsFromUrl(url);
+  if (/rond13\.png/i.test(url) && !/^13\s*km$/i.test(String(raceName).trim())) return null;
 
   return {
     url,
     alt: value.alt ? String(value.alt) : null,
     sourceUrl: normalizeHttpUrl(value.sourceUrl),
+    width: dimensions?.width ?? numberOrNull(value.width),
+    height: dimensions?.height ?? numberOrNull(value.height),
+    presentation: dimensions && Math.max(dimensions.width, dimensions.height) < 600 ? 'logo' : 'hero',
   };
+}
+
+function imageDimensionsFromUrl(url) {
+  const match = String(url).match(/\/w_(\d+),h_(\d+)[,/]/i);
+  return match ? { width: Number(match[1]), height: Number(match[2]) } : null;
 }
 
 function normalizeRegistration(value) {

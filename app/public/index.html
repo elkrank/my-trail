@@ -9,9 +9,23 @@
     <meta property="og:site_name" content="TrailCompare">
     <meta property="og:title" content="TrailCompare - Comparateur de trails">
     <meta property="og:description" content="Comparez et explorez des trails avec des données officielles, des filtres de course, les traces GPX disponibles et des favoris locaux.">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="TrailCompare - Comparateur de trails">
     <meta name="twitter:description" content="Comparez et explorez des trails avec des données officielles, des filtres de course, les traces GPX disponibles et des favoris locaux.">
+    <script>
+      (() => {
+        try {
+          const stored = localStorage.getItem('trailcompare:theme:v1');
+          const theme = stored === 'dark' || stored === 'light' ? stored : 'light';
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="/vendor/leaflet-1.9.4/leaflet.css">
     <link rel="stylesheet" href="/styles.css">
   </head>
@@ -44,12 +58,12 @@
             </span>
             Explorer
           </a>
-          <a class="side-link" href="#" aria-disabled="true">
+          <span class="side-link" aria-disabled="true">
             <span class="side-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false"><path d="M6 4h12v16H6zM9 8h6M9 12h6M9 16h4"></path></svg>
             </span>
             Mes courses
-          </a>
+          </span>
           <a class="side-link" href="/#favorites" data-view-link="favorites">
             <span class="side-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false"><path d="m12 5 2.1 4.3 4.7.7-3.4 3.3.8 4.7-4.2-2.2L7.8 18l.8-4.7L5.2 10l4.7-.7L12 5Z"></path></svg>
@@ -65,16 +79,16 @@
         </nav>
 
         <div class="sidebar-bottom">
-          <a class="side-link is-muted" href="#" aria-disabled="true">
+          <span class="side-link is-muted" aria-disabled="true">
             <span class="side-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false"><path d="M12 17v-5M12 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg>
             </span>
             À propos
-          </a>
+          </span>
 
-          <div class="theme-control" aria-label="Theme">
-            <span class="is-selected">Light</span>
-            <span>Dark</span>
+          <div class="theme-control" role="group" aria-label="Thème d’affichage">
+            <button type="button" data-theme-choice="light" aria-pressed="true">Clair</button>
+            <button type="button" data-theme-choice="dark" aria-pressed="false">Sombre</button>
           </div>
 
           <a class="profile-button" href="/profil" aria-label="Profil coureur">
@@ -86,7 +100,9 @@
 
       <main class="page">
         <div class="topography" aria-hidden="true"></div>
+        <div id="view-root"></div>
 
+        <template id="compare-template">
         <section id="compare-view" class="view is-active" data-view="compare">
         <header class="page-header">
           <div>
@@ -141,7 +157,9 @@
           <p>Conseil : comparez la difficulté physique estimée, la verticalité et les vitesses minimales entre deux courses.</p>
         </aside>
         </section>
+        </template>
 
+        <template id="explorer-template">
         <section id="explorer-view" class="view" data-view="explorer" hidden>
           <header class="page-header explorer-header">
             <div>
@@ -157,7 +175,7 @@
             <div class="filter-grid">
               <label class="filter-field filter-field-wide">
                 <span>Recherche</span>
-                <input id="explorer-search" type="search" placeholder="Nom de course ou evenement">
+                <input id="explorer-search" type="search" placeholder="Nom de course ou événement">
               </label>
 
               <label class="filter-field">
@@ -254,14 +272,16 @@
 
           <section id="explorer-results" class="explorer-results" aria-live="polite"></section>
         </section>
+        </template>
 
+        <template id="favorites-template">
         <section id="favorites-view" class="view" data-view="favorites" hidden>
           <header class="page-header explorer-header">
             <div>
               <p class="eyebrow">FAVORIS</p>
               <h1>Vos trails favoris</h1>
               <p class="subtitle">
-                Retrouvez les courses enregistrees sur cet appareil, sans compte utilisateur.
+                Retrouvez les courses enregistrées sur cet appareil, sans compte utilisateur.
               </p>
             </div>
           </header>
@@ -272,16 +292,21 @@
 
           <section id="favorites-results" class="explorer-results" aria-live="polite"></section>
         </section>
+        </template>
 
+        <template id="course-template">
         <section id="course-view" class="view course-view" data-view="course" hidden>
           <p id="course-status" class="status course-status" role="status">Chargement de la fiche course...</p>
           <div id="course-content"></div>
         </section>
+        </template>
 
+        <template id="profile-template">
         <section id="profile-view" class="view profile-view" data-view="profile" hidden>
           <p id="profile-status" class="status" role="status"></p>
           <div id="profile-content"></div>
         </section>
+        </template>
       </main>
     </div>
 

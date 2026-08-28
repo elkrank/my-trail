@@ -67,6 +67,8 @@ export function createEdition(year, overrides = {}) {
     date: null,
     startTime: null,
     distanceKm: null,
+    nominalDistanceKm: null,
+    effectiveDistanceKm: null,
     elevationGainM: null,
     elevationLossM: null,
     startLocation: null,
@@ -245,16 +247,17 @@ export function createRaceEntry({ event, race, edition }) {
 }
 
 export function computeMetrics(edition) {
-  const hasDistance = Number.isFinite(edition.distanceKm) && edition.distanceKm > 0;
+  const distanceKm = Number.isFinite(edition.effectiveDistanceKm) ? edition.effectiveDistanceKm : edition.distanceKm;
+  const hasDistance = Number.isFinite(distanceKm) && distanceKm > 0;
   const hasGain = Number.isFinite(edition.elevationGainM);
 
   return {
     source: "computed",
     elevationDensityMPerKm: hasDistance && hasGain
-      ? round(edition.elevationGainM / edition.distanceKm, 2)
+      ? round(edition.elevationGainM / distanceKm, 2)
       : null,
     kmEffort: hasDistance && hasGain
-      ? round(edition.distanceKm + edition.elevationGainM / 100, 2)
+      ? round(distanceKm + edition.elevationGainM / 100, 2)
       : null,
   };
 }

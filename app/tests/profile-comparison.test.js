@@ -4,12 +4,14 @@ import {
   assessConfidence,
   calculateMinimumCheckpointPace,
   compareRunnerToRace,
+  DATA_REASON,
   deriveVerdict,
   estimateTrailPerformance,
   formatMinutesAsHoursMinutes,
   getPastEditionInfo,
 } from '../public/profile-comparison.js';
 import { COMPARISON_THRESHOLDS, STATUS } from '../public/profile-config.js';
+import { getRaceBySlug } from '../src/repository.js';
 
 const now = new Date('2026-08-21T10:00:00Z');
 const profile = {
@@ -197,4 +199,68 @@ test('past-edition detection is injectable and ignores future, missing, or inval
   assert.equal(getPastEditionInfo(null, current), null);
   assert.equal(getPastEditionInfo('not-a-date', current), null);
   assert.equal(getPastEditionInfo('2026-02-30', current), null);
+});
+
+test('exposes the complete insufficient-data reason matrix including GPX provenance', () => {
+  const noReference = compareRunnerToRace({ ...profile, performances: [] }, completeRace, now)
+    .axes.find((axis) => axis.id === 'barriers').barriers[0];
+  assert.equal(noReference.reasonCode, DATA_REASON.NO_COMPARABLE_TRAIL_REFERENCE);
+
+  const raceElevationMissing = compareRunnerToRace(profile, {
+    ...completeRace,
+    elevationGainM: null,
+    checkpoints: [{ name: 'Lyon', distanceKm: 82, elapsedLimitMinutes: 990 }],
+  }, now).axes.find((axis) => axis.id === 'barriers');
+  assert.equal(raceElevationMissing.barriers[0].reasonCode, DATA_REASON.RACE_ELEVATION_MISSING);
+  assert.match(raceElevationMissing.explanation, /D\+ total officiel de la course manque/);
+  assert.doesNotMatch(raceElevationMissing.explanation, /Aucune référence trail/);
+
+  const checkpointElevationMissing = compareRunnerToRace(profile, {
+    ...completeRace,
+    checkpoints: [{ name: 'Village', distanceKm: 30, elapsedLimitMinutes: 420 }],
+  }, now).axes.find((axis) => axis.id === 'barriers').barriers[0];
+  assert.equal(checkpointElevationMissing.reasonCode, DATA_REASON.CHECKPOINT_ELEVATION_MISSING);
+
+  const gpxEstimate = compareRunnerToRace(profile, {
+    ...completeRace,
+    checkpoints: [{ name: 'Village', distanceKm: 30, elevationGainFromStartM: 1400, elevationGainFromStartSource: 'gpx_estimate', elapsedLimitMinutes: 420 }],
+  }, now).axes.find((axis) => axis.id === 'barriers').barriers[0];
+  assert.equal(gpxEstimate.reasonCode, DATA_REASON.GPX_ESTIMATE);
+  assert.notEqual(gpxEstimate.estimatedElapsedMinutes, null);
+});
+
+test('SaintéLyon keeps a present 60 km trail reference and reports the missing race D+', () => {
+  const saintelyonProfile = {
+    ...profile,
+    performances: [{ id: 'saintelyon-ref', type: 'trail', distanceKm: 60, durationMinutes: 510, elevationGainM: 1500, date: '2026-06-01', name: 'Référence trail 60 km' }],
+  };
+  const saintelyon = {
+    name: 'SaintéLyon', date: '2026-11-28', startTime: '23:30', distanceKm: 82,
+    nominalDistanceKm: 80, effectiveDistanceKm: 82, elevationGainM: null,
+    checkpoints: [{ name: 'Lyon', distanceKm: 82, elapsedLimitMinutes: 990 }],
+    aidStations: [], technicalScore: null, nightStart: true, quality: { status: 'partial' },
+  };
+  const result = compareRunnerToRace(saintelyonProfile, saintelyon, now);
+  const barriers = result.axes.find((axis) => axis.id === 'barriers');
+  assert.equal(barriers.barriers[0].reasonCode, DATA_REASON.RACE_ELEVATION_MISSING);
+  assert.equal(barriers.current, 'Référence trail présente · D+ course manquant');
+  assert.doesNotMatch(barriers.explanation, /Aucune référence comparable|Aucune référence trail/);
+});
+
+test('NTMF 115 km keeps GPX gains, estimated passages, margins and verdict unchanged', async () => {
+  const race = await getRaceBySlug('ntmf-115-km-2026');
+  const ntmfProfile = {
+    ...profile,
+    training: { weeklyDistanceKm: 50, weeklyElevationGainM: 1000, weeklyHours: 6, weeklySessions: 4, longRun: { distanceKm: 30, elevationGainM: 800, durationMinutes: 210, date: '2026-08-01' } },
+    performances: [{ type: 'trail', distanceKm: 60, elevationGainM: 1500, durationMinutes: 510, date: '2026-06-01', name: 'Référence 60 km' }],
+    experience: { longestCompletedDistanceKm: 60, longestEffortMinutes: 600, maximumElevationGainM: 2500, technicalLevel: 'comfortable', nightExperience: 'some', autonomyExperience: 'regular' },
+  };
+  const result = compareRunnerToRace(ntmfProfile, race, now);
+  const barriers = result.axes.find((axis) => axis.id === 'barriers').barriers;
+  assert.deepEqual(barriers.slice(0, 3).map((item) => item.elevationGainFromStartM), [1170, 1366, 1590]);
+  assert.equal(barriers[3].elevationGainFromStartM, 2150);
+  assert.equal(barriers[3].elevationGainFromStartSource, 'official_race_total');
+  assert.deepEqual(barriers.map((item) => item.estimatedTime.hour), ['12:14', '13:44', '15:32', '18:13']);
+  assert.deepEqual(barriers.map((item) => Math.round(item.marginMinutes)), [45, 96, 107, 136]);
+  assert.equal(result.verdict, 'ambitious_coherent');
 });

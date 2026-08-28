@@ -3,10 +3,11 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
 import { PROFILE_LIMITS, STATUS } from '../public/profile-config.js';
-import { compareRunnerToRace, formatMinutesAsHoursMinutes, getPastEditionInfo } from '../public/profile-comparison.js';
+import { compareRunnerToRace, DATA_REASON, formatMinutesAsHoursMinutes, getPastEditionInfo } from '../public/profile-comparison.js';
 import { createProfileRepository, emptyProfile, formatDurationInput, parseDurationInput, ProfileValidationError } from '../public/profile-repository.js';
 
 const appSource = (await readFile(new URL('../public/app.js', import.meta.url), 'utf8')).replace(/^import .*;\r?\n/gm, '');
+const indexSource = await readFile(new URL('../public/index.html', import.meta.url), 'utf8');
 
 function classListStub() {
   const classes = new Set();
@@ -104,11 +105,21 @@ function viewLinkStub(view) {
   };
 }
 
-async function renderApp({ races, comparison = null, hash = '', pathname = '/', search = '', storage = null, sessionStorage = null, gpxPayloads = {}, extraElements = {}, leaflet = null }) {
+async function renderApp({ races, comparison = null, hash = '', pathname = '/', search = '', storage = null, sessionStorage = null, gpxPayloads = {}, extraElements = {}, leaflet = null, initialTheme = 'light' }) {
   const compareLink = viewLinkStub('compare');
   const explorerLink = viewLinkStub('explorer');
   const favoritesLink = viewLinkStub('favorites');
+  const lightThemeButton = elementStub();
+  lightThemeButton.dataset = { themeChoice: 'light' };
+  const darkThemeButton = elementStub();
+  darkThemeButton.dataset = { themeChoice: 'dark' };
   const elements = {
+    '#view-root': htmlStub(),
+    '#compare-template': htmlStub(),
+    '#explorer-template': htmlStub(),
+    '#favorites-template': htmlStub(),
+    '#course-template': htmlStub(),
+    '#profile-template': htmlStub(),
     '#race-a': optionStub(),
     '#race-b': optionStub(),
     '#swap-races': elementStub(),
@@ -148,13 +159,23 @@ async function renderApp({ races, comparison = null, hash = '', pathname = '/', 
   elements['#explorer-sort'].value = 'date-asc';
 
   const fetchCalls = [];
+  const clipboardWrites = [];
+  const exportedBlobs = [];
+  const downloadLinks = [];
+  class TestURL extends URL {}
+  TestURL.createObjectURL = (blob) => {
+    exportedBlobs.push(blob);
+    return 'blob:trailcompare-test';
+  };
+  TestURL.revokeObjectURL = () => {};
   const selectedComparison = comparison ?? { raceA: races[0], raceB: races[1] };
   const context = {
     Blob,
-    URL,
+    URL: TestURL,
     URLSearchParams,
     console,
     STATUS,
+    DATA_REASON,
     PROFILE_LIMITS,
     compareRunnerToRace,
     formatMinutesAsHoursMinutes,
@@ -167,6 +188,7 @@ async function renderApp({ races, comparison = null, hash = '', pathname = '/', 
     document: {
       title: 'TrailCompare',
       referrer: '',
+      documentElement: { dataset: { theme: initialTheme }, style: {} },
       body: {
         classList: classListStub(),
         contains() { return true; },
@@ -178,12 +200,17 @@ async function renderApp({ races, comparison = null, hash = '', pathname = '/', 
         return elements[selector];
       },
       querySelectorAll(selector) {
-        return selector === '[data-view-link]' ? [compareLink, explorerLink, favoritesLink] : [];
+        if (selector === '[data-view-link]') return [compareLink, explorerLink, favoritesLink];
+        if (selector === '[data-theme-choice]') return [lightThemeButton, darkThemeButton];
+        return [];
       },
-      createElement() {
-        return {
-          click() {},
+      createElement(tagName) {
+        const link = {
+          clicked: false,
+          click() { this.clicked = true; },
         };
+        if (tagName === 'a') downloadLinks.push(link);
+        return link;
       },
     },
     window: {
@@ -198,7 +225,7 @@ async function renderApp({ races, comparison = null, hash = '', pathname = '/', 
       addEventListener() {},
       ...(leaflet ? { L: leaflet } : {}),
     },
-    navigator: {},
+    navigator: { clipboard: { async writeText(value) { clipboardWrites.push(value); } } },
     fetch: async (url) => {
       fetchCalls.push(String(url));
       if (url === '/api/races') {
@@ -228,7 +255,16 @@ async function renderApp({ races, comparison = null, hash = '', pathname = '/', 
   await Promise.resolve();
   await new Promise((resolve) => setImmediate(resolve));
 
-  return { context, elements, fetchCalls, links: { compareLink, explorerLink, favoritesLink } };
+  return {
+    context,
+    elements,
+    fetchCalls,
+    clipboardWrites,
+    exportedBlobs,
+    downloadLinks,
+    links: { compareLink, explorerLink, favoritesLink },
+    themeButtons: { lightThemeButton, darkThemeButton },
+  };
 }
 
 function jsonResponse(body, ok = true) {
@@ -381,7 +417,7 @@ test('frontend renders comparison cards with real values and empty states', asyn
   assert.match(html, /Aucun checkpoint de barri.re d.fini pour cette course/);
   assert.match(html, /Trac. GPX non disponible/);
   assert.match(html, /Profil GPX r.el non disponible/);
-  assert.match(html, /Comparer avec mon profil/);
+  assert.match(html, /Comparer les exigences avec mon profil/);
 });
 
 test('profile route renders an optional-data form without fetching the race list', async () => {
@@ -467,9 +503,10 @@ test('six minute performance renders and toggles both duration parts as read onl
   assert.match(html, /name="performance-duration-hours"[^>]*value="0"[^>]*readonly/);
   assert.match(html, /name="performance-duration-minutes"[^>]*value="6"[^>]*readonly/);
 
-  const hours = { value: '', readOnly: false };
-  const minutes = { value: '', readOnly: false };
+  const hours = { value: '8', readOnly: false };
+  const minutes = { value: '30', readOnly: false };
   const row = {
+    dataset: { performanceType: 'trail' },
     querySelector(selector) {
       if (selector === '[data-duration-part="hours"]') return hours;
       if (selector === '[data-duration-part="minutes"]') return minutes;
@@ -488,8 +525,15 @@ test('six minute performance renders and toggles both duration parts as read onl
 
   type.value = 'trail';
   elements['#profile-content'].listeners.change({ target: type });
+  assert.deepEqual({ hours: hours.value, minutes: minutes.value }, { hours: '8', minutes: '30' });
   assert.equal(hours.readOnly, false);
   assert.equal(minutes.readOnly, false);
+
+  row.dataset = { performanceType: 'six_minute_test' };
+  hours.value = '0';
+  minutes.value = '6';
+  elements['#profile-content'].listeners.change({ target: type });
+  assert.deepEqual({ hours: hours.value, minutes: minutes.value }, { hours: '', minutes: '' });
 });
 
 test('duration validation is shown under the group and clears a stale saved status', async () => {
@@ -598,8 +642,8 @@ test('reactive duration validation clears only the corrected error and hides an 
 
   minutes.value = '30';
   elements['#profile-content'].listeners.input({ target: minutes });
-  assert.equal(Object.hasOwn(hours, 'aria-invalid'), false);
-  assert.equal(Object.hasOwn(minutes, 'aria-invalid'), false);
+  assert.equal(hours['aria-invalid'], 'false');
+  assert.equal(minutes['aria-invalid'], 'false');
   assert.equal(localError.hidden, true);
   assert.equal(localError.textContent, '');
   assert.doesNotMatch(errorSummary.innerHTML, /durée|0 et 59/i);
@@ -654,7 +698,8 @@ test('barrier table explains missing cumulative gain and labels GPX provenance',
     },
   ]);
   assert.match(html, /Estimation calculée depuis le GPX/);
-  assert.equal((html.match(/D\+ cumulé manquant/g) ?? []).length, 2);
+  assert.equal((html.match(/D\+ cumulé du checkpoint manquant/g) ?? []).length, 1);
+  assert.match(html, /Marge non calculable/);
   assert.doesNotMatch(html, /Données insuffisantes/);
 });
 
@@ -1073,14 +1118,15 @@ test('registration and gpx actions render only when safe data is available', asy
     },
   });
 
-  const { elements } = await renderApp({ races: [withActions, invalidAction], hash: '#explorer' });
+  const { context, elements } = await renderApp({ races: [withActions, invalidAction], hash: '#explorer' });
   const explorerHtml = elements['#explorer-results'].innerHTML;
-  const comparisonHtml = elements['#comparison'].innerHTML;
+  const comparisonHtml = vm.runInContext('raceCardTemplate', context)(withActions, 'a', null);
 
   assert.match(explorerHtml, /href="https:\/\/example\.test\/register"[\s\S]*?S'inscrire sur le site officiel/);
   assert.match(explorerHtml, /href="\/api\/races\/1\/gpx\/download"[\s\S]*?Télécharger le GPX officiel/);
   assert.doesNotMatch(explorerHtml, /javascript:alert/);
   assert.doesNotMatch(explorerHtml, /\/api\/races\/2\/gpx\/download/);
+  assert.equal(elements['#comparison'].innerHTML, '');
   assert.match(comparisonHtml, /S'inscrire sur le site officiel/);
   assert.match(comparisonHtml, /Source officielle/);
 });
@@ -1177,7 +1223,7 @@ test('course detail renders available sections, labels translations and hides em
 
   assert.equal(fetchCalls.includes('/api/races/slug/fixture-detail-2026'), true);
   assert.equal(elements['#course-view'].hidden, false);
-  assert.equal(elements['#compare-view'].hidden, true);
+  assert.equal(elements['#course-view'].hidden, false);
   assert.match(html, /Traduction française validée/);
   assert.match(html, /Une boucle de montagne exigeante/);
   assert.match(html, /Donnée officielle/);
@@ -1227,4 +1273,83 @@ test('tile loading keeps partial OSM tiles and only enables neutral fallback whe
   assert.match(fallbackStatus.textContent, /fond neutre/);
   assert.equal(fallback.counts().loadedTiles, 0);
   assert.equal(fallback.counts().failedTiles, 2);
+});
+
+test('theme controls are real buttons with pressed state and persistent light/dark selection', async () => {
+  const storage = storageStub();
+  const { context, themeButtons } = await renderApp({
+    races: [raceFixture({ id: 1 }), raceFixture({ id: 2 })],
+    storage,
+    initialTheme: 'dark',
+  });
+  assert.equal(themeButtons.darkThemeButton['aria-pressed'], 'true');
+  assert.equal(themeButtons.lightThemeButton['aria-pressed'], 'false');
+  themeButtons.lightThemeButton.dispatch('click');
+  assert.equal(context.document.documentElement.dataset.theme, 'light');
+  assert.equal(storage.value('trailcompare:theme:v1'), 'light');
+  assert.equal(themeButtons.lightThemeButton['aria-pressed'], 'true');
+  assert.match(indexSource, /localStorage\.getItem\('trailcompare:theme:v1'\)[\s\S]*?<link rel="stylesheet"/);
+  assert.match(indexSource, /<button type="button" data-theme-choice="light" aria-pressed="true">Clair<\/button>/);
+});
+
+test('home mounts only the active template, keeps shared parameters and exposes aria-current', async () => {
+  const races = [raceFixture({ id: 1 }), raceFixture({ id: 2 })];
+  const explorer = await renderApp({ races, hash: '#explorer', search: '?raceA=1&raceB=2' });
+  assert.equal(explorer.elements['#view-root'].dataset.mountedView, 'explorer');
+  assert.equal(explorer.fetchCalls.includes('/api/compare?raceA=1&raceB=2'), false);
+  assert.equal(explorer.links.explorerLink['aria-current'], 'page');
+  assert.equal(Object.hasOwn(explorer.links.compareLink, 'aria-current'), false);
+  assert.equal(explorer.context.window.location.search, '?raceA=1&raceB=2');
+
+  const templates = indexSource.match(/<template id="(?:compare|explorer|favorites)-template">/g) ?? [];
+  const outsideTemplates = indexSource.replace(/<template\b[\s\S]*?<\/template>/g, '');
+  assert.equal(templates.length, 3);
+  assert.equal((outsideTemplates.match(/<h1\b/g) ?? []).length, 0);
+  assert.doesNotMatch(indexSource, /<a[^>]+aria-disabled="true"/);
+  assert.match(indexSource, /<span class="side-link" aria-disabled="true">/);
+});
+
+test('shared comparison link keeps race parameters when copied', async () => {
+  const { context, clipboardWrites } = await renderApp({
+    races: [raceFixture({ id: 1 }), raceFixture({ id: 2 })],
+    search: '?raceA=1&raceB=2',
+    hash: '#compare',
+  });
+  await vm.runInContext('shareComparison()', context);
+  const shared = new URL(clipboardWrites.at(-1));
+  assert.equal(shared.searchParams.get('raceA'), '1');
+  assert.equal(shared.searchParams.get('raceB'), '2');
+  assert.equal(shared.hash, '#compare');
+});
+
+test('race selection can be inverted and the current comparison exported as CSV', async () => {
+  const raceA = raceFixture({ id: 1 });
+  const raceB = raceFixture({ id: 2, name: 'Course B' });
+  const rendered = await renderApp({ races: [raceA, raceB], comparison: { raceA, raceB } });
+  const { context, elements, exportedBlobs, downloadLinks } = rendered;
+
+  assert.equal(elements['#race-a'].value, '1');
+  assert.equal(elements['#race-b'].value, '2');
+  vm.runInContext('swapRaces()', context);
+  assert.equal(elements['#race-a'].value, '2');
+  assert.equal(elements['#race-b'].value, '1');
+
+  vm.runInContext('exportComparison()', context);
+  assert.equal(downloadLinks.at(-1).download, 'trailcompare-comparaison.csv');
+  assert.equal(downloadLinks.at(-1).clicked, true);
+  assert.match(await exportedBlobs.at(-1).text(), /"Course","Distance","D\+"/);
+});
+
+test('technical keys, warnings and user-facing place labels are rendered in French', async () => {
+  const { context } = await renderApp({ races: [raceFixture({ id: 1 }), raceFixture({ id: 2 })] });
+  const rules = vm.runInContext('rulesTemplate', context)({
+    rules: {},
+    mandatoryEquipment: [{ name: 'rain jacket' }, { name: 'whistle' }, { name: 'survival blanket' }],
+  });
+  assert.match(rules, /Veste imperméable/);
+  assert.match(rules, /Sifflet/);
+  assert.match(rules, /Couverture de survie/);
+  assert.doesNotMatch(rules, /rain jacket|whistle|survival blanket/);
+  assert.equal(vm.runInContext("translateUserLabel('Arrivee Eglise Chateau')", context), 'Arrivée Église Château');
+  assert.equal(vm.runInContext("translateUserLabel('Official page does not expose elevation gain yet.')", context), 'La page officielle ne publie pas encore le dénivelé positif.');
 });

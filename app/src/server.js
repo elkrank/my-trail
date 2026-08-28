@@ -102,7 +102,7 @@ app.get('/api/races/slug/:slug', async (request, response, next) => {
   try {
     const race = await getRaceBySlug(request.params.slug);
     if (!race) {
-      response.status(404).json({ error: 'Race not found' });
+      response.status(404).json({ error: 'Course introuvable' });
       return;
     }
     response.json({ race: enrichRaceWithScores(race, race.checkpoints) });
@@ -116,11 +116,11 @@ app.get('/api/races/:id/gpx', async (request, response, next) => {
     const id = parseId(request.params.id, 'id');
     const race = await getRaceWithCheckpoints(id);
     if (!race) {
-      response.status(404).json({ error: 'Race not found' });
+      response.status(404).json({ error: 'Course introuvable' });
       return;
     }
     if (race.gpx?.status !== 'available' || !race.gpx.routeAsset) {
-      response.status(404).json({ error: 'GPX not available' });
+      response.status(404).json({ error: 'GPX indisponible' });
       return;
     }
 
@@ -129,7 +129,7 @@ app.get('/api/races/:id/gpx', async (request, response, next) => {
       const assetPath = resolveDataAssetPath(getDataRoot(), race.gpx.routeAsset);
       asset = JSON.parse(await readFile(assetPath, 'utf8'));
     } catch {
-      response.status(404).json({ error: 'GPX asset not available' });
+      response.status(404).json({ error: 'Données GPX indisponibles' });
       return;
     }
 
@@ -154,11 +154,11 @@ app.get('/api/races/:id/gpx/download', async (request, response, next) => {
     const id = parseId(request.params.id, 'id');
     const race = await getRaceWithCheckpoints(id);
     if (!race) {
-      response.status(404).json({ error: 'Race not found' });
+      response.status(404).json({ error: 'Course introuvable' });
       return;
     }
     if (race.gpx?.status !== 'available' || !race.gpx.localFile) {
-      response.status(404).json({ error: 'GPX not available' });
+      response.status(404).json({ error: 'GPX indisponible' });
       return;
     }
 
@@ -166,7 +166,7 @@ app.get('/api/races/:id/gpx/download', async (request, response, next) => {
     try {
       filePath = resolveDataAssetPath(getDataRoot(), race.gpx.localFile);
     } catch {
-      response.status(404).json({ error: 'GPX file not available' });
+      response.status(404).json({ error: 'Fichier GPX indisponible' });
       return;
     }
 
@@ -177,7 +177,7 @@ app.get('/api/races/:id/gpx/download', async (request, response, next) => {
     const stream = createReadStream(filePath);
     stream.on('error', () => {
       if (!response.headersSent) {
-        response.status(404).json({ error: 'GPX file not available' });
+        response.status(404).json({ error: 'Fichier GPX indisponible' });
       } else {
         response.destroy();
       }
@@ -193,7 +193,7 @@ app.get('/api/races/:id', async (request, response, next) => {
     const id = parseId(request.params.id, 'id');
     const race = await loadEnrichedRace(id);
     if (!race) {
-      response.status(404).json({ error: 'Race not found' });
+      response.status(404).json({ error: 'Course introuvable' });
       return;
     }
     response.json({ race });
@@ -218,7 +218,7 @@ app.get('/api/compare', async (request, response, next) => {
     ]);
 
     if (!raceA || !raceB) {
-      response.status(404).json({ error: 'Race not found' });
+      response.status(404).json({ error: 'Course introuvable' });
       return;
     }
 
@@ -229,13 +229,13 @@ app.get('/api/compare', async (request, response, next) => {
 });
 
 app.use('/api', (_request, response) => {
-  response.status(404).json({ error: 'API route not found' });
+  response.status(404).json({ error: 'Route API introuvable' });
 });
 
 app.use((error, _request, response, _next) => {
   const status = error.status ?? 500;
   response.status(status).json({
-    error: status >= 500 ? 'Internal server error' : error.message,
+    error: status >= 500 ? 'Erreur interne du serveur' : error.message,
   });
 });
 
@@ -249,14 +249,18 @@ function flattenSegments(segments) {
   return segments.flatMap((segment) => segment);
 }
 
-async function serveIndex(_request, response, next) {
+async function serveIndex(request, response, next) {
   try {
     let html = await readFile(path.join(publicDir, 'index.html'), 'utf8');
     const publicBaseUrl = getPublicBaseUrl();
     if (publicBaseUrl) {
+      const pageUrl = request.path === '/profil' ? `${publicBaseUrl}/profil` : publicBaseUrl;
+      const imageUrl = `${publicBaseUrl}/og.png`;
       const tags = [
-        `<link rel="canonical" href="${escapeHtml(publicBaseUrl)}">`,
-        `<meta property="og:url" content="${escapeHtml(publicBaseUrl)}">`,
+        `<link rel="canonical" href="${escapeHtml(pageUrl)}">`,
+        `<meta property="og:url" content="${escapeHtml(pageUrl)}">`,
+        `<meta property="og:image" content="${escapeHtml(imageUrl)}">`,
+        `<meta name="twitter:image" content="${escapeHtml(imageUrl)}">`,
       ].join('\n    ');
       html = html.replace('</head>', `    ${tags}\n  </head>`);
     }
@@ -277,11 +281,11 @@ async function serveCourse(request, response, next) {
     let html = await readFile(path.join(publicDir, 'index.html'), 'utf8');
     const location = [race.event.city, race.event.region, race.event.country].filter(Boolean).join(', ');
     const title = `${race.shortName} ${race.edition} - ${race.eventName} | TrailCompare`;
-    const fallbackDescription = `${race.raceName}, ${formatSeoNumber(race.distanceKm)} km et ${formatSeoNumber(race.elevationGainM)} m D+${location ? ` à ${location}` : ''}. Parcours, barrières, ravitaillements et informations officielles.`;
+    const fallbackDescription = naturalRaceDescription(race, location);
     const description = truncateDescription(race.description?.french ?? race.description?.original ?? fallbackDescription);
     const publicBaseUrl = getPublicBaseUrl();
     const canonicalUrl = publicBaseUrl ? `${publicBaseUrl}/courses/${race.slug}` : null;
-    const imageUrl = normalizeHttpUrl(race.illustration?.url);
+    const imageUrl = publicBaseUrl ? `${publicBaseUrl}/og.png` : null;
 
     html = replaceDocumentMetadata(html, { title, description, canonicalUrl, imageUrl });
     response.type('html').send(html);
@@ -290,13 +294,17 @@ async function serveCourse(request, response, next) {
   }
 }
 
-async function renderNotFoundPage() {
-  let html = await readFile(path.join(publicDir, 'index.html'), 'utf8');
-  html = replaceDocumentMetadata(html, {
-    title: 'Course introuvable | TrailCompare',
-    description: 'Cette fiche course n’existe pas ou n’est plus disponible.',
-  });
-  return html.replace('<body>', '<body data-course-not-found="true">');
+function renderNotFoundPage() {
+  return `<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course introuvable | TrailCompare</title>
+<meta name="description" content="Cette fiche course n’existe pas ou n’est plus disponible.">
+<meta name="robots" content="noindex,follow"><link rel="stylesheet" href="/styles.css"></head>
+<body class="not-found-page"><main class="not-found-content">
+<p class="eyebrow">ERREUR 404</p><h1>Course introuvable</h1>
+<p>Cette fiche course n’existe pas ou n’est plus disponible.</p>
+<div class="not-found-actions"><a class="button button-primary" href="/#explorer">Explorer les courses</a><a class="button button-secondary" href="/">Retour à l’accueil</a></div>
+</main></body></html>`;
 }
 
 function replaceDocumentMetadata(html, { title, description, canonicalUrl = null, imageUrl = null }) {
@@ -313,6 +321,7 @@ function replaceDocumentMetadata(html, { title, description, canonicalUrl = null
     canonicalUrl ? `<link rel="canonical" href="${escapeHtml(canonicalUrl)}">` : null,
     canonicalUrl ? `<meta property="og:url" content="${escapeHtml(canonicalUrl)}">` : null,
     imageUrl ? `<meta property="og:image" content="${escapeHtml(imageUrl)}">` : null,
+    imageUrl ? `<meta name="twitter:image" content="${escapeHtml(imageUrl)}">` : null,
     '<meta property="og:type" content="article">',
   ].filter(Boolean).join('\n    ');
   html = html.replace(/<meta property="og:type"[^>]*>\s*/i, '');
@@ -323,6 +332,26 @@ function replaceMetaContent(html, attribute, key, content) {
   const expression = new RegExp(`<meta\\s+${attribute}="${key}"\\s+content="[^"]*">`, 'i');
   const tag = `<meta ${attribute}="${key}" content="${content}">`;
   return expression.test(html) ? html.replace(expression, tag) : html.replace('</head>', `    ${tag}\n  </head>`);
+}
+
+function naturalRaceDescription(race, location) {
+  const distance = numberOrNull(race.effectiveDistanceKm ?? race.distanceKm);
+  const elevation = numberOrNull(race.elevationGainM);
+  const label = `${race.raceName ?? ''} ${race.eventName ?? ''}`.trim();
+  const distancePattern = distance === null ? null : String(distance).replace('.', '[.,]');
+  const includesDistance = distancePattern ? new RegExp(`\\b${distancePattern}\\s*km\\b`, 'i').test(label) : false;
+  const details = [
+    !includesDistance && distance !== null ? `un parcours de ${formatSeoNumber(distance)} km` : null,
+    elevation !== null ? `${formatSeoNumber(elevation)} m de dénivelé positif` : null,
+    location ? `à ${location}` : null,
+  ].filter(Boolean);
+  return `Découvrez ${race.raceName} du ${race.eventName}${details.length ? ` : ${details.join(', ')}` : ''}. Retrouvez le parcours, les barrières, les ravitaillements et les sources officielles disponibles.`;
+}
+
+function numberOrNull(value) {
+  if (value === null || value === undefined || String(value).trim() === '') return null;
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
 }
 
 function truncateDescription(value) {

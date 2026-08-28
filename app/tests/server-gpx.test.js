@@ -105,7 +105,7 @@ test('gpx endpoint returns a clean empty-data error when a race has no gpx', asy
   const response = await request('/api/races/2/gpx');
 
   assert.equal(response.status, 404);
-  assert.equal(response.body.error, 'GPX not available');
+  assert.equal(response.body.error, 'GPX indisponible');
 });
 
 test('gpx download endpoint serves the original local GPX as an attachment', async () => {
@@ -121,14 +121,14 @@ test('gpx download endpoint returns 404 when a race has no gpx', async () => {
   const response = await request('/api/races/2/gpx/download');
 
   assert.equal(response.status, 404);
-  assert.equal(response.body.error, 'GPX not available');
+  assert.equal(response.body.error, 'GPX indisponible');
 });
 
 test('gpx download endpoint returns 404 when the local asset is missing', async () => {
   const response = await request('/api/races/3/gpx/download');
 
   assert.equal(response.status, 404);
-  assert.equal(response.body.error, 'GPX file not available');
+  assert.equal(response.body.error, 'Fichier GPX indisponible');
 });
 
 test('gpx endpoints reject paths outside the data root', async () => {
@@ -136,9 +136,9 @@ test('gpx endpoints reject paths outside the data root', async () => {
   const downloadResponse = await request('/api/races/4/gpx/download');
 
   assert.equal(assetResponse.status, 404);
-  assert.equal(assetResponse.body.error, 'GPX asset not available');
+  assert.equal(assetResponse.body.error, 'Données GPX indisponibles');
   assert.equal(downloadResponse.status, 404);
-  assert.equal(downloadResponse.body.error, 'GPX file not available');
+  assert.equal(downloadResponse.body.error, 'Fichier GPX indisponible');
 });
 
 test('seo endpoints expose robots and optional sitemap without inventing a public URL', async () => {
@@ -157,6 +157,8 @@ test('seo endpoints expose robots and optional sitemap without inventing a publi
   const sitemap = await requestRaw('/sitemap.xml');
 
   assert.match(index.text, /<link rel="canonical" href="https:\/\/trailcompare\.example">/);
+  assert.match(index.text, /<meta property="og:url" content="https:\/\/trailcompare\.example">/);
+  assert.match(index.text, /<meta property="og:image" content="https:\/\/trailcompare\.example\/og\.png">/);
   assert.match(robotsWithSitemap.text, /Sitemap: https:\/\/trailcompare\.example\/sitemap\.xml/);
   assert.equal(sitemap.status, 200);
   assert.match(sitemap.text, /<loc>https:\/\/trailcompare\.example<\/loc>/);
@@ -197,7 +199,7 @@ test('slug endpoint exposes the enriched detail contract and rejects unknown slu
   assert.equal(response.body.race.sourceFamilies.course.length, 1);
   assert.equal(response.body.race.difficultyScoreVersion, 'v1');
   assert.equal(missing.status, 404);
-  assert.equal(missing.body.error, 'Race not found');
+  assert.equal(missing.body.error, 'Course introuvable');
 });
 
 test('course pages have race-specific metadata, canonical URLs and real 404 responses', async () => {
@@ -210,9 +212,17 @@ test('course pages have race-specific metadata, canonical URLs and real 404 resp
     assert.match(page.text, /<title>Valid GPX 2026 - Fixture Trail \| TrailCompare<\/title>/);
     assert.match(page.text, /<link rel="canonical" href="https:\/\/trailcompare\.example\/courses\/fixture-valid-2026">/);
     assert.match(page.text, /<meta property="og:url" content="https:\/\/trailcompare\.example\/courses\/fixture-valid-2026">/);
-    assert.match(page.text, /<meta property="og:image" content="https:\/\/example\.test\/images\/valid-gpx\.jpg">/);
+    assert.match(page.text, /<meta property="og:image" content="https:\/\/trailcompare\.example\/og\.png">/);
+    assert.match(page.text, /<meta name="twitter:image" content="https:\/\/trailcompare\.example\/og\.png">/);
+    assert.match(page.text, /<meta name="twitter:card" content="summary_large_image">/);
     assert.equal(missing.status, 404);
     assert.match(missing.text, /Course introuvable \| TrailCompare/);
+    assert.match(missing.text, /<h1>Course introuvable<\/h1>/);
+    assert.match(missing.text, /href="\/#explorer">Explorer les courses<\/a>/);
+    assert.match(missing.text, /href="\/">Retour à l’accueil<\/a>/);
+    assert.doesNotMatch(missing.text, /Race not found/);
+    assert.equal((missing.text.match(/<h1\b/g) ?? []).length, 1);
+    assert.doesNotMatch(page.text, /115 km, 115 km/);
   } finally {
     delete process.env.PUBLIC_BASE_URL;
   }

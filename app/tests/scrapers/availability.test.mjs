@@ -150,6 +150,27 @@ test("invalid availability metadata is rejected by quality validation", () => {
   assert.match(entry.quality.warnings.join("\n"), /checkedAt must be an ISO date/);
 });
 
+test("checkpoint distance validation uses the effective distance and accepts an explicit nominal distance", () => {
+  const valid = completeEntry({
+    distanceKm: 80,
+    nominalDistanceKm: 80,
+    effectiveDistanceKm: 82,
+    checkpoints: [{ name: "Arrivée", distanceKm: 82, cutoffElapsedMinutes: 240 }],
+  });
+  validateEntry(valid);
+  assert.doesNotMatch(valid.quality.warnings.join("\n"), /exceeds effective race distance/);
+
+  const invalid = completeEntry({
+    distanceKm: 80,
+    nominalDistanceKm: 80,
+    effectiveDistanceKm: 82,
+    checkpoints: [{ name: "Après arrivée", distanceKm: 83, cutoffElapsedMinutes: 240 }],
+  });
+  validateEntry(invalid);
+  assert.equal(invalid.quality.status, "invalid");
+  assert.match(invalid.quality.warnings.join("\n"), /83 km exceeds effective race distance 82 km/);
+});
+
 function completeEntry(overrides = {}) {
   const event = createEvent({ id: "fixture", name: "Fixture", slug: "fixture" });
   const race = createRace(event, { id: "fixture-race", name: "Fixture Race", shortName: "Fixture" });

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { getRaceBySlug as getRealRaceBySlug } from '../src/repository.js';
 
 function raceEntry(overrides = {}) {
   const { event, race, edition, ...rest } = overrides;
@@ -201,4 +202,21 @@ test('repository exposes a stable slug and normalizes optional detail families w
   assert.equal(detail.sources.length, 3);
   assert.equal(detail.verifiedAt, '2026-08-14T12:00:00.000Z');
   assert.equal(await getRaceBySlug('../fixture'), null);
+});
+
+test('real SaintéLyon data exposes 80 km nominal and 82 km effective from the official finish checkpoint', async () => {
+  const race = await getRealRaceBySlug('saintelyon-saintelyon-2026');
+  assert.equal(race.nominalDistanceKm, 80);
+  assert.equal(race.effectiveDistanceKm, 82);
+  assert.equal(race.distanceKm, 82);
+  assert.equal(race.checkpoints.at(-1).distanceKm, 82);
+});
+
+test('NTMF does not reuse the 13 km thumbnail as a 115 km hero illustration', async () => {
+  const race = await getRealRaceBySlug('ntmf-115-km-2026');
+  assert.equal(race.illustration, null);
+  const shortRace = await getRealRaceBySlug('ntmf-13-km-2026');
+  assert.equal(shortRace.illustration.presentation, 'logo');
+  assert.equal(shortRace.illustration.width, 142);
+  assert.equal(shortRace.illustration.height, 142);
 });
