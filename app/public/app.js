@@ -1,5 +1,5 @@
-import { STATUS } from './profile-config.js';
-import { compareRunnerToRace, formatMinutesAsHoursMinutes } from './profile-comparison.js';
+import { PROFILE_LIMITS, STATUS } from './profile-config.js';
+import { compareRunnerToRace, formatMinutesAsHoursMinutes, getPastEditionInfo } from './profile-comparison.js';
 import { createProfileRepository, emptyProfile, formatDurationInput, parseDurationInput, ProfileValidationError } from './profile-repository.js';
 
 const raceASelect = document.querySelector('#race-a');
@@ -157,6 +157,12 @@ function showToast(message) {
   showToast.timeoutId = window.setTimeout(() => {
     toastEl.classList.remove('is-visible');
   }, 2200);
+}
+
+function clearToast() {
+  window.clearTimeout(showToast.timeoutId);
+  toastEl.textContent = '';
+  toastEl.classList.remove('is-visible');
 }
 
 function numericValue(value) {
@@ -889,12 +895,24 @@ function gpxDownloadLinkTemplate(race, className = '') {
 
 function raceActionsTemplate(race) {
   const actions = [
-    `<a class="button button-primary button-small" href="/profil?course=${escapeHtml(race.slug)}">Comparer avec mon profil</a>`,
+    `<a class="button button-primary button-small" href="/profil?course=${escapeHtml(race.slug)}">${escapeHtml(profileComparisonCtaLabel(race))}</a>`,
     registrationLinkTemplate(race),
     gpxDownloadLinkTemplate(race),
   ].filter(Boolean);
   if (!actions.length) return '';
   return `<div class="race-actions">${actions.join('')}</div>`;
+}
+
+function pastEditionWarningTemplate(race, now = new Date()) {
+  const pastEdition = getPastEditionInfo(race?.date, now);
+  if (!pastEdition) return '';
+  return `<aside class="past-edition-warning" role="note"><strong>Édition passée</strong><span>— comparaison indicative avec l’édition ${escapeHtml(pastEdition.year)}. Le parcours, les barrières et le règlement peuvent évoluer.</span></aside>`;
+}
+
+function profileComparisonCtaLabel(race, now = new Date()) {
+  return getPastEditionInfo(race?.date, now)
+    ? 'Comparer les exigences avec mon profil'
+    : 'Comparer avec mon profil';
 }
 
 function raceCardTemplate(race, variant, gpxData) {
@@ -1526,6 +1544,7 @@ function checkpointRowsTemplate(checkpoints) {
       <th scope="row">${escapeHtml(checkpoint.name || 'Point de contrôle')}</th>
       <td>${escapeHtml(formatKm(checkpoint.distanceKm))}</td>
       <td>${escapeHtml(checkpoint.elevationM === null ? '—' : formatAltitude(checkpoint.elevationM))}</td>
+      <td>${checkpoint.elevationGainFromStartM === null ? '—' : `${escapeHtml(formatNumber(checkpoint.elevationGainFromStartM, 0))} m D+`}${checkpoint.elevationGainFromStartSource === 'gpx_estimate' ? '<small>Estimation calculée depuis le GPX</small>' : ''}</td>
       <td>${escapeHtml(checkpoint.cutoffDateTime ? formatDateTime(checkpoint.cutoffDateTime) : formatDuration(checkpoint.elapsedLimitMinutes))}</td>
       <td>${checkpoint.personalAssistanceAllowed === true ? 'Oui' : checkpoint.personalAssistanceAllowed === false ? 'Non' : '—'}</td>
     </tr>
@@ -1537,8 +1556,8 @@ function checkpointsSectionTemplate(race) {
   return `
     <div class="course-table-wrap">
       <table class="course-table">
-        <caption>${race.checkpoints.length} barrières ou points de contrôle officiels</caption>
-        <thead><tr><th scope="col">Point</th><th scope="col">Distance</th><th scope="col">Altitude</th><th scope="col">Limite</th><th scope="col">Assistance</th></tr></thead>
+        <caption>${race.checkpoints.length} barrières ou points de contrôle recensés</caption>
+        <thead><tr><th scope="col">Point</th><th scope="col">Distance</th><th scope="col">Altitude</th><th scope="col">D+ cumulé</th><th scope="col">Limite</th><th scope="col">Assistance</th></tr></thead>
         <tbody>${checkpointRowsTemplate(race.checkpoints)}</tbody>
       </table>
     </div>
@@ -1749,6 +1768,7 @@ function courseDetailTemplate(race) {
   const actions = [registrationLinkTemplate(race), gpxDownloadLinkTemplate(race)].filter(Boolean).join('');
   return `
     <a class="course-back" href="/#explorer" data-course-back>← Retour aux courses</a>
+    ${pastEditionWarningTemplate(race)}
     <article class="course-detail">
       <header class="course-hero ${illustrationUrl ? 'has-image' : 'is-empty'}">
         ${illustrationUrl ? `<img src="${escapeHtml(illustrationUrl)}" alt="${escapeHtml(race.illustration?.alt || race.name)}" decoding="async" referrerpolicy="no-referrer">` : ''}
@@ -1760,7 +1780,7 @@ function courseDetailTemplate(race) {
           <div class="course-hero-actions">
             ${favoriteButtonTemplate(race)}
             <a class="button button-secondary button-small" href="/?raceA=${escapeHtml(race.id)}#compare">Comparer</a>
-            <a class="button button-primary button-small" href="/profil?course=${escapeHtml(race.slug)}">Comparer avec mon profil</a>
+            <a class="button button-primary button-small" href="/profil?course=${escapeHtml(race.slug)}">${escapeHtml(profileComparisonCtaLabel(race))}</a>
             <button class="button button-secondary button-small" type="button" data-course-share>Partager</button>
             ${actions}
           </div>
@@ -2090,13 +2110,22 @@ function profileNumberField(name, label, unit, value, { step = 'any', min = 0 } 
     </label>`;
 }
 
-function profileDurationField(name, label, value) {
+let durationFieldSequence = 0;
+
+function profileDurationField(name, label, value, { fieldKey, readonly = false } = {}) {
+  const duration = formatDurationInput(value);
+  const fieldId = `profile-duration-${durationFieldSequence += 1}`;
+  const errorId = `${fieldId}-error`;
+  const readonlyAttribute = readonly ? ' readonly' : '';
   return `
-    <label class="profile-field">
+    <div class="profile-field profile-duration-field" data-duration-field data-duration-key="${escapeHtml(fieldKey)}">
       <span>${escapeHtml(label)}</span>
-      <input name="${escapeHtml(name)}" type="text" inputmode="numeric" placeholder="h:mm" value="${inputValue(formatDurationInput(value))}">
-      <small>Format h:mm, par exemple 2:30</small>
-    </label>`;
+      <div class="duration-inputs" role="group" aria-label="${escapeHtml(label)}">
+        <label class="duration-part"><span class="sr-only">Heures</span><input name="${escapeHtml(name)}-hours" data-duration-part="hours" type="number" inputmode="numeric" min="0" step="1" value="${inputValue(duration.hours)}" aria-label="Heures" aria-describedby="${errorId}"${readonlyAttribute}><small aria-hidden="true">h</small></label>
+        <label class="duration-part"><span class="sr-only">Minutes</span><input name="${escapeHtml(name)}-minutes" data-duration-part="minutes" type="number" inputmode="numeric" min="0" max="59" step="1" value="${inputValue(duration.minutes)}" aria-label="Minutes" aria-describedby="${errorId}"${readonlyAttribute}><small aria-hidden="true">min</small></label>
+      </div>
+      <small id="${errorId}" class="profile-field-error" role="alert" hidden></small>
+    </div>`;
 }
 
 function performanceRowTemplate(reference = {}, index = 0) {
@@ -2116,7 +2145,7 @@ function performanceRowTemplate(reference = {}, index = 0) {
         </select>
       </label>
       <label class="profile-field"><span>Distance</span><span class="input-with-unit"><input name="performance-distance" type="number" min="0" step="any" value="${inputValue(distanceValue)}" ${fixedDistance ? 'readonly' : ''}><small>km</small></span></label>
-      <label class="profile-field"><span>Durée</span><input name="performance-duration" type="text" inputmode="numeric" placeholder="h:mm" value="${inputValue(formatDurationInput(durationValue))}" ${selectedType === 'six_minute_test' ? 'readonly' : ''}><small>Format h:mm, par exemple 2:30</small></label>
+      ${profileDurationField('performance-duration', 'Durée', durationValue, { fieldKey: `performances.${index}.durationMinutes`, readonly: selectedType === 'six_minute_test' })}
       <label class="profile-field" ${selectedType === 'trail' ? '' : 'hidden'}><span>D+</span><span class="input-with-unit"><input name="performance-elevation" type="number" min="0" step="1" value="${inputValue(reference.elevationGainM)}"><small>m</small></span></label>
       <label class="profile-field"><span>Date</span><input name="performance-date" type="date" value="${inputValue(reference.date)}"></label>
       <label class="profile-field performance-name"><span>Nom de la course <small>(facultatif)</small></span><input name="performance-name" type="text" maxlength="120" value="${inputValue(reference.name)}"></label>
@@ -2145,7 +2174,7 @@ function profileFormTemplate(profile, { selectedRace = null } = {}) {
           ${profileNumberField('weeklyHours', 'Temps moyen', 'h/sem', data.training.weeklyHours)}
           ${profileNumberField('weeklySessions', 'Nombre moyen de séances', 'séances/sem', data.training.weeklySessions, { step: 1 })}
           ${profileNumberField('longRunDistanceKm', 'Plus longue sortie récente', 'km', data.training.longRun.distanceKm)}
-          ${profileDurationField('longRunDuration', 'Durée de cette sortie', data.training.longRun.durationMinutes)}
+          ${profileDurationField('longRunDuration', 'Durée de cette sortie', data.training.longRun.durationMinutes, { fieldKey: 'training.longRun.durationMinutes' })}
           ${profileNumberField('longRunElevationGainM', 'D+ de cette sortie', 'm', data.training.longRun.elevationGainM, { step: 1 })}
           <label class="profile-field"><span>Date de cette sortie</span><input name="longRunDate" type="date" value="${inputValue(data.training.longRun.date)}"></label>
         </div>
@@ -2161,7 +2190,7 @@ function profileFormTemplate(profile, { selectedRace = null } = {}) {
         <div class="profile-section-heading"><span>03</span><div><h2>Expérience trail</h2><p>Choisissez des niveaux simples, sans fausse précision.</p></div></div>
         <div class="profile-field-grid">
           ${profileNumberField('longestCompletedDistanceKm', 'Plus longue distance terminée', 'km', data.experience.longestCompletedDistanceKm)}
-          ${profileDurationField('longestEffortDuration', 'Plus longue durée d’effort', data.experience.longestEffortMinutes)}
+          ${profileDurationField('longestEffortDuration', 'Plus longue durée d’effort', data.experience.longestEffortMinutes, { fieldKey: 'experience.longestEffortMinutes' })}
           ${profileNumberField('maximumElevationGainM', 'Plus gros D+ réalisé', 'm', data.experience.maximumElevationGainM, { step: 1 })}
           ${experienceSelect('technicalLevel', 'Terrain technique', data.experience.technicalLevel, [['', 'Non renseigné'], ['beginner', 'Peu ou pas d’expérience'], ['comfortable', 'À l’aise régulièrement'], ['confirmed', 'Confirmé sur terrain exigeant']])}
           ${experienceSelect('nightExperience', 'Course nocturne', data.experience.nightExperience, [['', 'Non renseigné'], ['none', 'Aucune expérience'], ['some', 'Quelques expériences'], ['regular', 'Expérience régulière']])}
@@ -2193,13 +2222,20 @@ function goalOption(value, label, selected) {
   return `<label class="goal-option"><input type="radio" name="goal" value="${value}" ${selected === value ? 'checked' : ''}><span>${escapeHtml(label)}</span></label>`;
 }
 
+function readDurationField(field) {
+  return parseDurationInput(
+    field?.querySelector('[data-duration-part="hours"]')?.value,
+    field?.querySelector('[data-duration-part="minutes"]')?.value,
+  );
+}
+
 function readProfileForm(form) {
   const value = (name) => form.elements.namedItem(name)?.value ?? null;
   const performances = Array.from(form.querySelectorAll('[data-performance-row]')).map((row) => ({
     id: row.querySelector('[data-performance-field="id"]')?.value,
     type: row.querySelector('[data-performance-field="type"]')?.value,
     distanceKm: row.querySelector('[name="performance-distance"]')?.value,
-    durationMinutes: parseDurationInput(row.querySelector('[name="performance-duration"]')?.value),
+    durationMinutes: readDurationField(row.querySelector('[data-duration-field]')),
     elevationGainM: row.querySelector('[name="performance-elevation"]')?.value,
     date: row.querySelector('[name="performance-date"]')?.value,
     name: row.querySelector('[name="performance-name"]')?.value,
@@ -2207,24 +2243,116 @@ function readProfileForm(form) {
   return {
     training: {
       weeklyDistanceKm: value('weeklyDistanceKm'), weeklyElevationGainM: value('weeklyElevationGainM'), weeklyHours: value('weeklyHours'), weeklySessions: value('weeklySessions'),
-      longRun: { distanceKm: value('longRunDistanceKm'), durationMinutes: parseDurationInput(value('longRunDuration')), elevationGainM: value('longRunElevationGainM'), date: value('longRunDate') },
+      longRun: { distanceKm: value('longRunDistanceKm'), durationMinutes: readDurationField(form.querySelector('[data-duration-key="training.longRun.durationMinutes"]')), elevationGainM: value('longRunElevationGainM'), date: value('longRunDate') },
     },
     performances,
     experience: {
-      longestCompletedDistanceKm: value('longestCompletedDistanceKm'), longestEffortMinutes: parseDurationInput(value('longestEffortDuration')), maximumElevationGainM: value('maximumElevationGainM'),
+      longestCompletedDistanceKm: value('longestCompletedDistanceKm'), longestEffortMinutes: readDurationField(form.querySelector('[data-duration-key="experience.longestEffortMinutes"]')), maximumElevationGainM: value('maximumElevationGainM'),
       technicalLevel: value('technicalLevel'), nightExperience: value('nightExperience'), autonomyExperience: value('autonomyExperience'),
     },
     goal: form.querySelector('[name="goal"]:checked')?.value ?? null,
   };
 }
 
-function showProfileErrors(errors) {
+function durationInputError(field) {
+  const hoursText = field.querySelector('[data-duration-part="hours"]')?.value.trim() ?? '';
+  const minutesText = field.querySelector('[data-duration-part="minutes"]')?.value.trim() ?? '';
+  if (!hoursText && !minutesText) return null;
+  if ((hoursText && !/^\d+$/.test(hoursText)) || (minutesText && !/^\d+$/.test(minutesText))) {
+    return 'Saisissez des heures et des minutes entières, positives ou nulles.';
+  }
+  if (Number(minutesText || 0) > 59) return 'Les minutes doivent être comprises entre 0 et 59.';
+  if (Number.isNaN(parseDurationInput(hoursText, minutesText))) {
+    return `La durée ne doit pas dépasser ${PROFILE_LIMITS.durationMinutes / 60} heures.`;
+  }
+  return null;
+}
+
+function clearProfileErrors(form) {
+  const container = document.querySelector('#profile-errors');
+  if (container) {
+    container.hidden = true;
+    container.innerHTML = '';
+  }
+  form.querySelectorAll('[data-duration-field]').forEach((field) => {
+    field.querySelectorAll('input').forEach((input) => input.removeAttribute('aria-invalid'));
+    const message = field.querySelector('.profile-field-error');
+    if (message) {
+      message.hidden = true;
+      message.textContent = '';
+    }
+  });
+  form.profileDisplayedErrors = {};
+}
+
+function showProfileErrors(errors, form) {
+  const displayedErrors = { ...errors };
+  const performanceRows = Array.from(form.querySelectorAll('[data-performance-row]'));
+  form.querySelectorAll('[data-duration-field]').forEach((field) => {
+    const row = field.closest('[data-performance-row]');
+    const key = row ? `performances.${performanceRows.indexOf(row)}.durationMinutes` : field.dataset.durationKey;
+    if (!displayedErrors[key]) return;
+    const message = durationInputError(field) ?? displayedErrors[key];
+    displayedErrors[key] = message;
+    field.querySelectorAll('input').forEach((input) => input.setAttribute('aria-invalid', 'true'));
+    const error = field.querySelector('.profile-field-error');
+    if (error) {
+      error.textContent = message;
+      error.hidden = false;
+    }
+  });
+  form.profileDisplayedErrors = displayedErrors;
+  renderProfileErrorSummary(form, { focus: true });
+}
+
+function durationFieldKey(field, form) {
+  const row = field.closest?.('[data-performance-row]');
+  if (!row) return field.dataset.durationKey;
+  const performanceRows = Array.from(form.querySelectorAll('[data-performance-row]'));
+  return `performances.${performanceRows.indexOf(row)}.durationMinutes`;
+}
+
+function renderProfileErrorSummary(form, { focus = false } = {}) {
   const container = document.querySelector('#profile-errors');
   if (!container) return;
-  const messages = [...new Set(Object.values(errors))];
-  container.hidden = false;
-  container.innerHTML = `<strong>Vérifiez les informations saisies.</strong><ul>${messages.map((message) => `<li>${escapeHtml(message)}</li>`).join('')}</ul>`;
-  container.focus?.();
+  const messages = [...new Set(Object.values(form.profileDisplayedErrors ?? {}).filter(Boolean))];
+  container.hidden = messages.length === 0;
+  container.innerHTML = messages.length
+    ? `<strong>Vérifiez les informations saisies.</strong><ul>${messages.map((message) => `<li>${escapeHtml(message)}</li>`).join('')}</ul>`
+    : '';
+  if (focus && messages.length) container.focus?.();
+}
+
+function refreshDisplayedDurationError(input, form) {
+  const field = input.closest?.('[data-duration-field]');
+  if (!field) return;
+  const key = durationFieldKey(field, form);
+  const localError = field.querySelector('.profile-field-error');
+  const wasDisplayed = Boolean(form.profileDisplayedErrors?.[key])
+    || localError?.hidden === false
+    || Array.from(field.querySelectorAll('input')).some((item) => item['aria-invalid'] === 'true');
+  if (!wasDisplayed) return;
+
+  const message = durationInputError(field)
+    ?? (key?.startsWith('performances.') && readDurationField(field) === null
+      ? form.profileDisplayedErrors?.[key] ?? 'Ce champ est requis.'
+      : null);
+  if (message) {
+    form.profileDisplayedErrors = { ...(form.profileDisplayedErrors ?? {}), [key]: message };
+    field.querySelectorAll('input').forEach((item) => item.setAttribute('aria-invalid', 'true'));
+    if (localError) {
+      localError.textContent = message;
+      localError.hidden = false;
+    }
+  } else {
+    field.querySelectorAll('input').forEach((item) => item.removeAttribute('aria-invalid'));
+    if (localError) {
+      localError.textContent = '';
+      localError.hidden = true;
+    }
+    if (form.profileDisplayedErrors) delete form.profileDisplayedErrors[key];
+  }
+  renderProfileErrorSummary(form);
 }
 
 function statusBadge(status) {
@@ -2236,6 +2364,7 @@ function diagnosticTemplate(profile, race) {
   const confidence = result.confidence;
   return `
     <a class="course-back" href="${escapeHtml(courseHref(race))}">← Retour à la course</a>
+    ${pastEditionWarningTemplate(race)}
     <header class="diagnostic-hero">
       <div><p class="eyebrow">COMPARAISON PERSONNALISÉE · V0</p><h1>${escapeHtml(race.name)}</h1><p>Un indicateur d’adéquation actuel, pas une prédiction de résultat.</p></div>
       <div class="verdict-panel"><span>Verdict général</span><strong>${escapeHtml(verdictLabels[result.verdict])}</strong>${statusBadge(verdictStatus(result.verdict))}</div>
@@ -2262,14 +2391,23 @@ function axisTemplate(axis) {
 }
 
 function barriersTemplate(barriers) {
-  return `<div class="barrier-table-wrap"><table class="barrier-table"><thead><tr><th>Point</th><th>Barrière</th><th>Disponible</th><th>Allure minimale</th><th>Passage estimé</th><th>Marge</th></tr></thead><tbody>${barriers.map((barrier) => `<tr>
+  return `<div class="barrier-table-wrap"><table class="barrier-table"><thead><tr><th>Point</th><th>D+ cumulé</th><th>Barrière</th><th>Disponible</th><th>Allure minimale</th><th>Passage estimé</th><th>Marge</th></tr></thead><tbody>${barriers.map((barrier) => `<tr>
     <th>${escapeHtml(barrier.name)}<small>${formatKm(barrier.distanceKm)}</small></th>
+    <td>${barrier.elevationGainFromStartM === null ? 'Non renseigné' : `${formatNumber(barrier.elevationGainFromStartM, 0)} m D+`}${barrier.elevationGainFromStartSource === 'gpx_estimate' ? '<small>Estimation calculée depuis le GPX</small>' : ''}</td>
     <td>${barrier.cutoffTime?.hour ? escapeHtml(barrier.cutoffTime.hour) : 'Non renseignée'}</td>
     <td>${formatMinutesAsHoursMinutes(barrier.elapsedLimitMinutes)}</td>
     <td>${barrier.requiredMinutesPerKm === null ? 'Indisponible' : `${formatPace(barrier.requiredMinutesPerKm)} min/km`}<small>${barrier.requiredSpeedKmh === null ? '' : `${formatNumber(barrier.requiredSpeedKmh, 1)} km/h`}</small></td>
-    <td>${barrier.estimatedTime?.hour ? `${escapeHtml(barrier.estimatedTime.hour)}<small>Fiabilité ${barrier.reliability === 'medium' ? 'moyenne' : 'faible'}</small>` : 'Données insuffisantes'}</td>
-    <td>${barrier.marginMinutes === null ? 'Données insuffisantes' : formatMinutesAsHoursMinutes(barrier.marginMinutes, { signed: true })}</td>
+    <td>${barrier.estimatedTime?.hour ? `${escapeHtml(barrier.estimatedTime.hour)}<small>Fiabilité ${barrier.reliability === 'medium' ? 'moyenne' : 'faible'}</small>` : escapeHtml(barrierMissingLabel(barrier))}</td>
+    <td>${barrier.marginMinutes === null ? escapeHtml(barrierMissingLabel(barrier)) : formatMinutesAsHoursMinutes(barrier.marginMinutes, { signed: true })}</td>
   </tr>`).join('')}</tbody></table></div>`;
+}
+
+function barrierMissingLabel(barrier) {
+  return ({
+    missing_checkpoint_elevation_gain: 'D+ cumulé manquant',
+    missing_comparable_trail_reference: 'Référence comparable absente',
+    missing_checkpoint_timing: 'Horaire du checkpoint manquant',
+  })[barrier.missingReason] ?? 'Estimation indisponible';
 }
 
 function formatPace(minutes) {
@@ -2305,25 +2443,40 @@ function bindProfileActions() {
   profileContentEl?.addEventListener('submit', (event) => {
     if (event.target.id !== 'runner-profile-form') return;
     event.preventDefault();
+    profileStatusEl.textContent = '';
+    clearToast();
+    clearProfileErrors(event.target);
     try {
       state.runnerProfile = profileRepository.save(readProfileForm(event.target));
       profileStatusEl.textContent = 'Profil enregistré sur cet appareil.';
       renderProfile();
       showToast('Profil enregistré.');
     } catch (error) {
-      if (error instanceof ProfileValidationError) showProfileErrors(error.errors);
+      if (error instanceof ProfileValidationError) showProfileErrors(error.errors, event.target);
       else profileStatusEl.textContent = 'Impossible d’enregistrer le profil dans ce navigateur.';
     }
+  });
+  profileContentEl?.addEventListener('input', (event) => {
+    if (!event.target.matches?.('[data-duration-part]')) return;
+    const form = event.target.closest?.('#runner-profile-form');
+    if (form) refreshDisplayedDurationError(event.target, form);
   });
   profileContentEl?.addEventListener('change', (event) => {
     const row = event.target.closest?.('[data-performance-row]');
     if (!row || event.target.dataset.performanceField !== 'type') return;
     const fixed = { '5k': 5, '10k': 10, half_marathon: 21.0975, marathon: 42.195 }[event.target.value];
     const distance = row.querySelector('[name="performance-distance"]');
-    const duration = row.querySelector('[name="performance-duration"]');
+    const durationHours = row.querySelector('[data-duration-part="hours"]');
+    const durationMinutes = row.querySelector('[data-duration-part="minutes"]');
     const elevation = row.querySelector('[name="performance-elevation"]');
     if (distance) { if (fixed) distance.value = fixed; distance.readOnly = Boolean(fixed); }
-    if (duration && event.target.value === 'six_minute_test') { duration.value = '0:06'; duration.readOnly = true; } else if (duration) duration.readOnly = false;
+    if (event.target.value === 'six_minute_test') {
+      if (durationHours) { durationHours.value = '0'; durationHours.readOnly = true; }
+      if (durationMinutes) { durationMinutes.value = '6'; durationMinutes.readOnly = true; }
+    } else {
+      if (durationHours) durationHours.readOnly = false;
+      if (durationMinutes) durationMinutes.readOnly = false;
+    }
     if (elevation) elevation.closest('.profile-field').hidden = event.target.value !== 'trail';
   });
 }

@@ -61,11 +61,45 @@ test('rejects future dates, invalid durations and a missing goal', () => {
   }, { now }), (error) => Boolean(error instanceof ProfileValidationError && error.errors.goal && error.errors['training.longRun.durationMinutes']));
 });
 
-test('duration input supports decimal hours and h:mm:ss', () => {
-  assert.equal(parseDurationInput('2,5'), 150);
-  assert.equal(parseDurationInput('1:30:30'), 90.5);
-  assert.equal(Number.isNaN(parseDurationInput('1:70')), true);
-  assert.equal(formatDurationInput(null), '');
+test('duration input combines separate hours and minutes', () => {
+  assert.equal(parseDurationInput('2', '30'), 150);
+  assert.equal(parseDurationInput('18', '30'), 1110);
+  assert.equal(parseDurationInput('', ''), null);
+  assert.equal(parseDurationInput('', '45'), 45);
+  assert.equal(parseDurationInput('7', ''), 420);
+});
+
+test('duration input rejects invalid minute, negative, decimal and excessive values', () => {
+  assert.equal(Number.isNaN(parseDurationInput('1', '60')), true);
+  assert.equal(Number.isNaN(parseDurationInput('-1', '30')), true);
+  assert.equal(Number.isNaN(parseDurationInput('1', '-1')), true);
+  assert.equal(Number.isNaN(parseDurationInput('2.5', '0')), true);
+  assert.equal(Number.isNaN(parseDurationInput('2,30', '')), true);
+  assert.equal(Number.isNaN(parseDurationInput('2', '30.5')), true);
+  assert.equal(parseDurationInput('336', '0'), 20160);
+  assert.equal(Number.isNaN(parseDurationInput('336', '1')), true);
+});
+
+test('stored minutes are split into unrestricted hours and minute remainder', () => {
+  assert.deepEqual(formatDurationInput(150), { hours: 2, minutes: 30 });
+  assert.deepEqual(formatDurationInput(1110), { hours: 18, minutes: 30 });
+  assert.deepEqual(formatDurationInput(1815), { hours: 30, minutes: 15 });
+  assert.deepEqual(formatDurationInput(null), { hours: '', minutes: '' });
+});
+
+test('duration minutes persist and reload without loss', () => {
+  const repository = createProfileRepository(storageStub());
+  repository.save({
+    training: { longRun: { durationMinutes: parseDurationInput('2', '30') } },
+    performances: [{ type: 'trail', distanceKm: 50, durationMinutes: parseDurationInput('18', '30'), elevationGainM: 2000, date: '2026-06-01' }],
+    experience: { longestEffortMinutes: parseDurationInput('30', '15') },
+    goal: 'finish_cutoffs',
+  }, { now });
+
+  const loaded = repository.load();
+  assert.equal(loaded.training.longRun.durationMinutes, 150);
+  assert.equal(loaded.performances[0].durationMinutes, 1110);
+  assert.equal(loaded.experience.longestEffortMinutes, 1815);
 });
 
 test('corrupted and unknown stored versions are ignored', () => {

@@ -10,17 +10,10 @@ const DAY_MS = 86400000;
 const LEVEL_VALUE = Object.freeze({ none: 0, beginner: 0, some: 1, comfortable: 1, regular: 2, confirmed: 2 });
 
 export function compareRunnerToRace(profile, race, now = new Date()) {
-  const goalFactor = GOAL_FACTORS[profile?.goal] ?? 1;
   const trailEstimate = estimateTrailPerformance(profile, race, now);
-  const axes = [
-    assessEndurance(profile, race, goalFactor),
-    assessElevation(profile, race, goalFactor),
-    assessBarriers(profile, race, trailEstimate),
-    assessLongExperience(profile, race, trailEstimate, goalFactor),
-    assessTechnicalAutonomy(profile, race),
-  ];
+  const axes = assessAxes(profile, race, trailEstimate);
   const verdict = deriveVerdict(axes);
-  const confidence = assessConfidence(profile, race, now, trailEstimate);
+  const confidence = assessConfidence(profile, race, now, trailEstimate, axes);
   return {
     version: COMPARISON_VERSION,
     verdict,
@@ -31,6 +24,39 @@ export function compareRunnerToRace(profile, race, now = new Date()) {
       'Aucune estimation de passage n’est produite depuis un chrono route ou une sortie longue.',
     ],
   };
+}
+
+function assessAxes(profile, race, trailEstimate) {
+  const goalFactor = GOAL_FACTORS[profile?.goal] ?? 1;
+  return [
+    assessEndurance(profile, race, goalFactor),
+    assessElevation(profile, race, goalFactor),
+    assessBarriers(profile, race, trailEstimate),
+    assessLongExperience(profile, race, trailEstimate, goalFactor),
+    assessTechnicalAutonomy(profile, race),
+  ];
+}
+
+export function getPastEditionInfo(value, now = new Date()) {
+  if (!value || !now || typeof now.getTime !== 'function' || Number.isNaN(now.getTime())) return null;
+  const dateOnly = String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  let year;
+  let month;
+  let day;
+  if (dateOnly) {
+    [, year, month, day] = dateOnly.map(Number);
+    const validated = new Date(Date.UTC(year, month - 1, day));
+    if (validated.getUTCFullYear() !== year || validated.getUTCMonth() !== month - 1 || validated.getUTCDate() !== day) return null;
+  } else {
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) return null;
+    year = parsed.getFullYear();
+    month = parsed.getMonth() + 1;
+    day = parsed.getDate();
+  }
+  const raceDay = Date.UTC(year, month - 1, day);
+  const currentDay = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  return raceDay < currentDay ? { year, date: String(value) } : null;
 }
 
 export function calculateKmEffort(distanceKm, elevationGainM) {
@@ -120,10 +146,35 @@ function assessBarriers(profile, race, estimate) {
   const checkpoints = Array.isArray(race?.checkpoints) ? race.checkpoints : [];
   const barriers = checkpoints.map((checkpoint) => assessCheckpoint(race, checkpoint, estimate));
   const assessed = barriers.filter((barrier) => barrier.status !== STATUS.INSUFFICIENT);
-  const status = assessed.length ? worstStatus(assessed.map((barrier) => barrier.status)) : STATUS.INSUFFICIENT;
-  const critical = barriers.find((barrier) => barrier.status === STATUS.CRITICAL)
-    ?? barriers.find((barrier) => barrier.status === STATUS.IMPORTANT_GAP)
-    ?? barriers[0];
+  const incomplete = barriers.filter((barrier) => barrier.status === STATUS.INSUFFICIENT);
+  const status = assessed.length && !incomplete.length
+    ? worstStatus(assessed.map((barrier) => barrier.status))
+    : STATUS.INSUFFICIENT;
+  const critical = [...assessed].sort((a, b) => STATUS_RANK[b.status] - STATUS_RANK[a.status])[0] ?? barriers[0];
+  const estimatedCount = barriers.filter((barrier) => barrier.estimatedElapsedMinutes !== null).length;
+  const missingElevation = barriers.some((barrier) => barrier.missingReason === 'missing_checkpoint_elevation_gain');
+  let explanation;
+  let recommendation;
+  if (!barriers.length) {
+    explanation = 'La course ne publie pas de barrière exploitable.';
+    recommendation = 'Vérifier les barrières publiées par l’organisation avant la course.';
+  } else if (!estimate) {
+    explanation = 'Aucune référence trail récente et suffisamment comparable ne permet d’estimer les passages.';
+    recommendation = 'Ajouter une référence trail récente avec distance, durée et D+.';
+  } else if (!estimatedCount && missingElevation) {
+    explanation = 'Une référence trail comparable est disponible, mais le D+ cumulé aux points de contrôle manque. Les passages intermédiaires ne peuvent pas être estimés précisément.';
+    recommendation = 'Compléter le D+ cumulé des points de contrôle, idéalement à partir du GPX.';
+  } else if (incomplete.length) {
+    explanation = 'Certains passages sont estimés depuis une référence trail récente et comparable, mais des points de contrôle restent incomplets.';
+    recommendation = missingElevation
+      ? 'Compléter le D+ cumulé des points de contrôle, idéalement à partir du GPX.'
+      : 'Compléter les données des points de contrôle avant de valider toutes les barrières.';
+  } else {
+    explanation = 'Les passages sont estimés depuis une référence trail récente et comparable; ils restent indicatifs.';
+    recommendation = status === STATUS.VALIDATED
+      ? 'Reproduire l’allure cible avec les arrêts et la nutrition prévus.'
+      : 'Valider sur trail une allure avec arrêts offrant une marge positive aux barrières.';
+  }
   return {
     id: 'barriers',
     label: 'Respect des barrières horaires',
@@ -131,14 +182,8 @@ function assessBarriers(profile, race, estimate) {
     current: estimate ? `Référence trail : ${estimate.reference.name || formatNumber(estimate.reference.distanceKm) + ' km'}` : 'Données insuffisantes',
     requirement: barriers.length ? `${barriers.length} barrière${barriers.length > 1 ? 's' : ''} publiée${barriers.length > 1 ? 's' : ''}` : 'Aucune barrière exploitable',
     gap: critical?.marginMinutes === null || critical?.marginMinutes === undefined ? 'Données insuffisantes' : formatMinutesAsHoursMinutes(critical.marginMinutes, { signed: true }),
-    explanation: barriers.length
-      ? estimate ? 'Les passages sont estimés depuis une référence trail récente et comparable; ils restent indicatifs.' : 'Les allures minimales sont disponibles, mais aucune référence trail récente et comparable ne permet une estimation sérieuse.'
-      : 'La course ne publie pas de barrière exploitable.',
-    recommendation: status === STATUS.VALIDATED
-      ? 'Reproduire l’allure cible avec les arrêts et la nutrition prévus.'
-      : status === STATUS.INSUFFICIENT
-        ? 'Ajouter une référence trail récente avec distance, durée et D+ pour tester les barrières.'
-        : 'Valider sur trail une allure avec arrêts offrant une marge positive aux barrières.',
+    explanation,
+    recommendation,
     indicators: [],
     barriers,
   };
@@ -146,7 +191,14 @@ function assessBarriers(profile, race, estimate) {
 
 function assessCheckpoint(race, checkpoint, estimate) {
   const pace = calculateMinimumCheckpointPace(checkpoint?.distanceKm, checkpoint?.elapsedLimitMinutes);
-  const cumulativeGain = numberOrNull(checkpoint?.elevationGainFromStartM);
+  const suppliedGain = numberOrNull(checkpoint?.elevationGainFromStartM);
+  const finishGain = suppliedGain === null && isFinishCheckpoint(race, checkpoint)
+    ? numberOrNull(race?.elevationGainM)
+    : null;
+  const cumulativeGain = suppliedGain ?? finishGain;
+  const elevationGainSource = suppliedGain !== null
+    ? checkpoint?.elevationGainFromStartSource ?? 'official_checkpoint'
+    : finishGain !== null ? 'official_race_total' : null;
   let estimatedElapsedMinutes = null;
   if (pace && estimate && cumulativeGain !== null) {
     const checkpointEffort = calculateKmEffort(checkpoint.distanceKm, cumulativeGain);
@@ -154,19 +206,34 @@ function assessCheckpoint(race, checkpoint, estimate) {
   }
   const marginMinutes = estimatedElapsedMinutes === null ? null : Number(checkpoint.elapsedLimitMinutes) - estimatedElapsedMinutes;
   const status = marginMinutes === null ? STATUS.INSUFFICIENT : barrierStatus(marginMinutes, Number(checkpoint.elapsedLimitMinutes));
+  const missingReason = estimatedElapsedMinutes !== null
+    ? null
+    : !pace ? 'missing_checkpoint_timing'
+      : !estimate ? 'missing_comparable_trail_reference'
+        : cumulativeGain === null ? 'missing_checkpoint_elevation_gain' : 'unavailable_estimate';
   return {
     name: checkpoint?.name ?? 'Point de contrôle',
     distanceKm: numberOrNull(checkpoint?.distanceKm),
     cutoffTime: cutoffClock(race, checkpoint),
     elapsedLimitMinutes: numberOrNull(checkpoint?.elapsedLimitMinutes),
+    elevationGainFromStartM: cumulativeGain,
+    elevationGainFromStartSource: elevationGainSource,
     requiredMinutesPerKm: pace?.minutesPerKm ?? null,
     requiredSpeedKmh: pace?.speedKmh ?? null,
     estimatedElapsedMinutes,
     estimatedTime: estimatedElapsedMinutes === null ? null : passageClock(race, estimatedElapsedMinutes),
     marginMinutes,
     reliability: estimatedElapsedMinutes === null ? null : estimate.reliability,
+    missingReason,
     status,
   };
+}
+
+function isFinishCheckpoint(race, checkpoint) {
+  const raceDistance = numberOrNull(race?.distanceKm);
+  const checkpointDistance = numberOrNull(checkpoint?.distanceKm);
+  if (raceDistance === null || raceDistance <= 0 || checkpointDistance === null) return false;
+  return Math.abs(checkpointDistance - raceDistance) <= Math.max(0.5, raceDistance * 0.01);
 }
 
 function assessLongExperience(profile, race, estimate, factor) {
@@ -270,7 +337,7 @@ export function deriveVerdict(axes) {
   return 'accessible_now';
 }
 
-export function assessConfidence(profile, race, now = new Date(), estimate = estimateTrailPerformance(profile, race, now)) {
+export function assessConfidence(profile, race, now = new Date(), estimate = estimateTrailPerformance(profile, race, now), axes = assessAxes(profile, race, estimate)) {
   const reasons = [];
   const missing = [];
   const groups = [
@@ -308,10 +375,26 @@ export function assessConfidence(profile, race, now = new Date(), estimate = est
   if (maximumAidSpacing(race) !== null) score += 4;
   else missing.push('Espacement des ravitaillements indisponible');
 
-  if (score >= T.confidence.high) reasons.push('Profil récent et données course bien documentées.');
-  else if (score >= T.confidence.medium) reasons.push('Diagnostic exploitable, avec plusieurs limites signalées.');
+  const rawLevel = score >= T.confidence.high ? 'high' : score >= T.confidence.medium ? 'medium' : 'low';
+  const insufficientAxes = axes.filter((axis) => axis.status === STATUS.INSUFFICIENT);
+  const cappedForInsufficientAxes = insufficientAxes.length >= 2 && rawLevel === 'high';
+  const level = cappedForInsufficientAxes ? 'medium' : rawLevel;
+  if (cappedForInsufficientAxes) {
+    const ids = new Set(insufficientAxes.map((axis) => axis.id));
+    reasons.push(ids.has('barriers') && ids.has('technical_autonomy')
+      ? 'Bonne confiance sur l’endurance et le dénivelé, mais limitée sur les barrières horaires et la technicité.'
+      : 'Profil exploitable, mais plusieurs axes clés restent limités par les données disponibles.');
+  } else if (level === 'high') reasons.push('Profil récent et données course bien documentées.');
+  else if (level === 'medium') reasons.push('Diagnostic exploitable, avec plusieurs limites signalées.');
   else reasons.push('Diagnostic indicatif : plusieurs entrées importantes manquent.');
-  return { score: Math.min(100, score), level: score >= T.confidence.high ? 'high' : score >= T.confidence.medium ? 'medium' : 'low', reasons, missing };
+  return {
+    score: Math.min(100, score),
+    rawLevel,
+    level,
+    insufficientAxisCount: insufficientAxes.length,
+    reasons,
+    missing,
+  };
 }
 
 function indicator(label, currentValue, targetValue, unit) {

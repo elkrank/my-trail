@@ -178,25 +178,27 @@ export function createProfileRepository(storage = globalThis.localStorage) {
   };
 }
 
-export function parseDurationInput(value) {
-  if (value === null || value === undefined || String(value).trim() === '') return null;
-  const text = String(value).trim();
-  if (/^\d+(?:[.,]\d+)?$/.test(text)) return Number(text.replace(',', '.')) * 60;
-  const parts = text.split(':').map(Number);
-  if (parts.some((part) => !Number.isFinite(part)) || parts.length < 2 || parts.length > 3) return NaN;
-  const [hours, minutes, seconds = 0] = parts;
-  if (minutes >= 60 || seconds >= 60) return NaN;
-  return hours * 60 + minutes + seconds / 60;
+export function parseDurationInput(hoursValue, minutesValue) {
+  const hoursText = hoursValue === null || hoursValue === undefined ? '' : String(hoursValue).trim();
+  const minutesText = minutesValue === null || minutesValue === undefined ? '' : String(minutesValue).trim();
+  if (!hoursText && !minutesText) return null;
+  if ((hoursText && !/^\d+$/.test(hoursText)) || (minutesText && !/^\d+$/.test(minutesText))) return NaN;
+
+  const hours = hoursText ? Number(hoursText) : 0;
+  const minutes = minutesText ? Number(minutesText) : 0;
+  if (!Number.isSafeInteger(hours) || !Number.isSafeInteger(minutes) || minutes > 59) return NaN;
+
+  const totalMinutes = hours * 60 + minutes;
+  return totalMinutes <= PROFILE_LIMITS.durationMinutes ? totalMinutes : NaN;
 }
 
 export function formatDurationInput(minutes) {
-  if (minutes === null || minutes === undefined || minutes === '') return '';
-  if (!Number.isFinite(Number(minutes))) return '';
-  const totalSeconds = Math.round(Number(minutes) * 60);
-  const hours = Math.floor(totalSeconds / 3600);
-  const mins = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-  return seconds
-    ? `${hours}:${String(mins).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
-    : `${hours}:${String(mins).padStart(2, '0')}`;
+  if (minutes === null || minutes === undefined || minutes === '' || !Number.isFinite(Number(minutes))) {
+    return { hours: '', minutes: '' };
+  }
+  const totalMinutes = Math.round(Number(minutes));
+  return {
+    hours: Math.floor(totalMinutes / 60),
+    minutes: totalMinutes % 60,
+  };
 }

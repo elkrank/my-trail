@@ -2149,6 +2149,12 @@ input:focus {
   font-size: 0.88rem;
 }
 
+.course-table td small {
+  display: block;
+  margin-top: 3px;
+  color: var(--text-secondary);
+}
+
 .course-table .is-approximate {
   color: #875c10;
   font-weight: 700;
@@ -2391,6 +2397,24 @@ input:focus {
   background: var(--surface-green);
 }
 
+.past-edition-warning {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin: 18px 0;
+  padding: 14px 17px;
+  border: 1px solid color-mix(in srgb, var(--orange) 45%, var(--border));
+  border-left: 4px solid var(--orange);
+  border-radius: 10px;
+  background: var(--surface-orange);
+  color: var(--text-main);
+}
+
+.past-edition-warning strong {
+  color: #8a4517;
+  white-space: nowrap;
+}
+
 .selected-profile-race span,
 .selected-profile-race small,
 .profile-section-heading p,
@@ -2482,6 +2506,48 @@ input:focus {
   outline: 3px solid color-mix(in srgb, var(--orange) 35%, transparent);
   outline-offset: 2px;
   border-color: var(--orange);
+}
+
+.duration-inputs {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.duration-part {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.profile-field .duration-part input {
+  width: 5.25rem;
+  min-width: 4.5rem;
+  min-height: 44px;
+}
+
+.duration-part small {
+  flex: 0 0 auto;
+  font-weight: 650;
+}
+
+.profile-field input[readonly] {
+  background: var(--surface-muted);
+  color: var(--text-secondary);
+}
+
+.profile-field input[aria-invalid="true"] {
+  border-color: #b84b43;
+  box-shadow: 0 0 0 1px #b84b43;
+}
+
+.profile-field .profile-field-error {
+  color: #7d2520;
+  font-size: 0.875rem;
+  font-weight: 650;
 }
 
 .input-with-unit {
@@ -2807,6 +2873,9 @@ input:focus {
 }
 
 @media (max-width: 560px) {
+  .past-edition-warning {
+    display: grid;
+  }
   .is-profile-page .page {
     width: calc(100% - 20px);
     max-width: calc(100% - 20px);
@@ -2846,5 +2915,13 @@ input:focus {
 
   .profile-form-actions .button {
     width: 100%;
+  }
+
+  .duration-inputs {
+    gap: 9px;
+  }
+
+  .profile-field .duration-part input {
+    width: 4.75rem;
   }
 }

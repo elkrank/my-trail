@@ -190,6 +190,10 @@ test('slug endpoint exposes the enriched detail contract and rejects unknown slu
   assert.equal(response.body.race.raceType, 'trail');
   assert.equal(response.body.race.rules.personalAssistanceAllowed, false);
   assert.equal(response.body.race.aidStations[0].distanceKm, 2);
+  assert.equal(response.body.race.checkpoints[0].elevationGainFromStartM, 20);
+  assert.equal(response.body.race.checkpoints[0].elevationGainFromStartSource, 'gpx_estimate');
+  assert.equal(response.body.race.checkpoints[1].elevationGainFromStartM, 20);
+  assert.equal(response.body.race.checkpoints[1].elevationGainFromStartSource, 'official_race_total');
   assert.equal(response.body.race.sourceFamilies.course.length, 1);
   assert.equal(response.body.race.difficultyScoreVersion, 'v1');
   assert.equal(missing.status, 404);

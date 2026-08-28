@@ -47,11 +47,16 @@ function raceEntry(overrides = {}) {
   };
 }
 
-async function importRepositoryWithDataset(payload) {
+async function importRepositoryWithDataset(payload, { files = {} } = {}) {
   const root = await mkdtemp(path.join(tmpdir(), 'trailcompare-repository-'));
   const dataDir = path.join(root, '2026');
   await mkdir(dataDir, { recursive: true });
   await writeFile(path.join(dataDir, 'races.json'), JSON.stringify(payload), 'utf8');
+  for (const [relativePath, contents] of Object.entries(files)) {
+    const filePath = path.join(root, relativePath);
+    await mkdir(path.dirname(filePath), { recursive: true });
+    await writeFile(filePath, typeof contents === 'string' ? contents : JSON.stringify(contents), 'utf8');
+  }
 
   const previousDataRoot = process.env.TRAILCOMPARE_DATA_ROOT;
   process.env.TRAILCOMPARE_DATA_ROOT = root;
@@ -94,6 +99,41 @@ test('repository numeric normalization keeps missing values as null', async () =
   assert.equal(race.timeLimitMinutes, null);
   assert.equal(race.registration.priceEur, 42);
   assert.equal(race.registration.maxParticipants, null);
+});
+
+test('repository exposes cumulative checkpoint gain estimated dynamically from GPX with provenance', async () => {
+  const routeAsset = {
+    segments: [[
+      { lat: 45, lon: 6, ele: 100, distanceKm: 0 },
+      { lat: 45.1, lon: 6.1, ele: 102, distanceKm: 5 },
+      { lat: 45.2, lon: 6.2, ele: 110, distanceKm: 10 },
+      { lat: 45.3, lon: 6.3, ele: 106, distanceKm: 15 },
+      { lat: 45.4, lon: 6.4, ele: 120, distanceKm: 20 },
+    ]],
+  };
+  const { getRaceBySlug } = await importRepositoryWithDataset({
+    generatedAt: '2026-08-14T00:00:00.000Z',
+    status: 'test',
+    events: [],
+    races: [raceEntry({
+      race: { id: 'gpx-checkpoints' },
+      edition: {
+        distanceKm: 20,
+        elevationGainM: 50,
+        gpx: { status: 'available', hasElevation: true, routeAsset: 'generated/routes/test.json' },
+        checkpoints: [
+          { name: 'Intermédiaire', distanceKm: 10.2, cutoffElapsedMinutes: 120 },
+          { name: 'Arrivée', distanceKm: 20, cutoffElapsedMinutes: 240 },
+        ],
+      },
+    })],
+  }, { files: { 'generated/routes/test.json': routeAsset } });
+
+  const race = await getRaceBySlug('gpx-checkpoints-2026');
+  assert.equal(race.checkpoints[0].elevationGainFromStartM, 10);
+  assert.equal(race.checkpoints[0].elevationGainFromStartSource, 'gpx_estimate');
+  assert.equal(race.checkpoints[1].elevationGainFromStartM, 50);
+  assert.equal(race.checkpoints[1].elevationGainFromStartSource, 'official_race_total');
 });
 
 test('repository exposes a stable slug and normalizes optional detail families with provenance', async () => {

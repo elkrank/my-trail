@@ -1,7 +1,11 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { assessGpxElevationQuality } from '../scrapers/common/gpx.mjs';
+import {
+  addCumulativeElevationGains,
+  assessGpxElevationQuality,
+  resolveDataAssetPath,
+} from '../scrapers/common/gpx.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -9,6 +13,7 @@ const dataRoot = process.env.TRAILCOMPARE_DATA_ROOT ?? path.join(__dirname, '..'
 const racesPath = process.env.TRAILCOMPARE_DATASET_PATH ?? path.join(dataRoot, '2026', 'races.json');
 
 let cache = null;
+const routeAssetCache = new Map();
 
 async function loadDataset() {
   if (cache) return cache;
@@ -98,6 +103,9 @@ function normalizeCheckpoints(raceId, checkpoints) {
       personalAssistanceAllowed: checkpoint.personalAssistanceAllowed,
       elevationM: numberOrNull(checkpoint.elevationM),
       elevationGainFromStartM: numberOrNull(checkpoint.elevationGainFromStartM),
+      elevationGainFromStartSource: numberOrNull(checkpoint.elevationGainFromStartM) === null
+        ? null
+        : textOrNull(checkpoint.elevationGainFromStartSource) ?? 'official_checkpoint',
       latitude: coordinateOrNull(checkpoint.latitude ?? checkpoint.lat, -90, 90),
       longitude: coordinateOrNull(checkpoint.longitude ?? checkpoint.lon ?? checkpoint.lng, -180, 180),
     }));
@@ -172,14 +180,14 @@ export async function listRaces() {
 export async function getRaceById(id) {
   const dataset = await loadDataset();
   const race = dataset.races.find((candidate) => candidate.id === Number(id));
-  return race ? publicRace(race, { includeDetails: true }) : null;
+  return race ? publicDetailedRace(race) : null;
 }
 
 export async function getRaceBySlug(slug) {
   if (typeof slug !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return null;
   const dataset = await loadDataset();
   const race = dataset.races.find((candidate) => candidate.slug === slug);
-  return race ? publicRace(race, { includeDetails: true }) : null;
+  return race ? publicDetailedRace(race) : null;
 }
 
 export async function listRaceSlugs() {
@@ -190,16 +198,12 @@ export async function listRaceSlugs() {
 export async function listCheckpointsForRace(raceId) {
   const dataset = await loadDataset();
   const race = dataset.races.find((candidate) => candidate.id === Number(raceId));
-  return race ? race.checkpoints : [];
+  return race ? enrichCheckpointsWithGpx(race) : [];
 }
 
 export async function getRaceWithCheckpoints(id) {
   const race = await getRaceById(id);
-  if (!race) return null;
-  return {
-    ...race,
-    checkpoints: await listCheckpointsForRace(id),
-  };
+  return race ?? null;
 }
 
 export async function getDatasetInfo() {
@@ -214,6 +218,72 @@ export async function getDatasetInfo() {
 
 export function getDataRoot() {
   return dataRoot;
+}
+
+async function publicDetailedRace(race) {
+  const output = publicRace(race, { includeDetails: true });
+  output.checkpoints = await enrichCheckpointsWithGpx(race);
+  return output;
+}
+
+async function enrichCheckpointsWithGpx(race) {
+  const officialGain = numberOrNull(race.elevationGainM);
+  const raceDistance = numberOrNull(race.distanceKm);
+  const checkpoints = race.checkpoints.map((checkpoint) => {
+    if (checkpoint.elevationGainFromStartM !== null) return { ...checkpoint };
+    if (officialGain !== null && isFinishCheckpoint(checkpoint.distanceKm, raceDistance)) {
+      return {
+        ...checkpoint,
+        elevationGainFromStartM: officialGain,
+        elevationGainFromStartSource: 'official_race_total',
+      };
+    }
+    return { ...checkpoint };
+  });
+  if (race.gpx?.status !== 'available' || !race.gpx.routeAsset || race.gpx.hasElevation === false) return checkpoints;
+
+  let asset;
+  try {
+    asset = await loadRouteAsset(race.gpx.routeAsset);
+  } catch {
+    return checkpoints;
+  }
+  const rawSegments = Array.isArray(asset?.segments) ? asset.segments : [];
+  const elevationCount = rawSegments.flat().filter((point) => Number.isFinite(point?.ele)).length;
+  if (elevationCount < 2) return checkpoints;
+  const hasCumulativeGain = rawSegments.some((segment) => segment.some((point) => numberOrNull(point?.elevationGainFromStartM) !== null));
+  const segments = hasCumulativeGain ? rawSegments : addCumulativeElevationGains(rawSegments);
+  const points = segments.flat().filter((point) =>
+    numberOrNull(point?.distanceKm) !== null && numberOrNull(point?.elevationGainFromStartM) !== null,
+  );
+  if (!points.length) return checkpoints;
+
+  return checkpoints.map((checkpoint) => {
+    if (checkpoint.elevationGainFromStartM !== null) return checkpoint;
+    const nearest = points.reduce((best, point) => (
+      Math.abs(Number(point.distanceKm) - checkpoint.distanceKm) < Math.abs(Number(best.distanceKm) - checkpoint.distanceKm)
+        ? point
+        : best
+    ), points[0]);
+    return {
+      ...checkpoint,
+      elevationGainFromStartM: Math.round(Number(nearest.elevationGainFromStartM)),
+      elevationGainFromStartSource: 'gpx_estimate',
+    };
+  });
+}
+
+async function loadRouteAsset(relativePath) {
+  if (!routeAssetCache.has(relativePath)) {
+    const assetPath = resolveDataAssetPath(dataRoot, relativePath);
+    routeAssetCache.set(relativePath, readFile(assetPath, 'utf8').then(JSON.parse));
+  }
+  return routeAssetCache.get(relativePath);
+}
+
+function isFinishCheckpoint(checkpointDistance, raceDistance) {
+  if (checkpointDistance === null || raceDistance === null || raceDistance <= 0) return false;
+  return Math.abs(checkpointDistance - raceDistance) <= Math.max(0.5, raceDistance * 0.01);
 }
 
 function numberOrNull(value) {

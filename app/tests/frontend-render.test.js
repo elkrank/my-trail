@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
-import { STATUS } from '../public/profile-config.js';
-import { compareRunnerToRace, formatMinutesAsHoursMinutes } from '../public/profile-comparison.js';
+import { PROFILE_LIMITS, STATUS } from '../public/profile-config.js';
+import { compareRunnerToRace, formatMinutesAsHoursMinutes, getPastEditionInfo } from '../public/profile-comparison.js';
 import { createProfileRepository, emptyProfile, formatDurationInput, parseDurationInput, ProfileValidationError } from '../public/profile-repository.js';
 
 const appSource = (await readFile(new URL('../public/app.js', import.meta.url), 'utf8')).replace(/^import .*;\r?\n/gm, '');
@@ -155,8 +155,10 @@ async function renderApp({ races, comparison = null, hash = '', pathname = '/', 
     URLSearchParams,
     console,
     STATUS,
+    PROFILE_LIMITS,
     compareRunnerToRace,
     formatMinutesAsHoursMinutes,
+    getPastEditionInfo,
     createProfileRepository,
     emptyProfile,
     formatDurationInput,
@@ -392,6 +394,268 @@ test('profile route renders an optional-data form without fetching the race list
   assert.match(html, /Références de performance/);
   assert.match(html, /Expérience trail/);
   assert.match(html, /Terminer dans les délais/);
+});
+
+test('profile duration component renders separate numeric fields in all three locations', async () => {
+  const { context } = await renderApp({ races: [raceFixture()], pathname: '/profil', storage: storageStub() });
+  const template = vm.runInContext('profileFormTemplate', context);
+  const profile = emptyProfile();
+  profile.training.longRun.durationMinutes = 150;
+  profile.performances = [{ id: 'trail-ref', type: 'trail', distanceKm: 80, durationMinutes: 1110, elevationGainM: 3000, date: '2026-06-01' }];
+  profile.experience.longestEffortMinutes = 1815;
+  const html = template(profile);
+
+  assert.match(html, /name="longRunDuration-hours"[^>]*type="number"[^>]*inputmode="numeric"[^>]*value="2"/);
+  assert.match(html, /name="longRunDuration-minutes"[^>]*max="59"[^>]*value="30"/);
+  assert.match(html, /name="performance-duration-hours"[^>]*value="18"/);
+  assert.match(html, /name="performance-duration-minutes"[^>]*value="30"/);
+  assert.match(html, /name="longestEffortDuration-hours"[^>]*value="30"/);
+  assert.match(html, /name="longestEffortDuration-minutes"[^>]*value="15"/);
+  assert.match(html, /aria-label="Heures"/);
+  assert.match(html, /aria-label="Minutes"/);
+  assert.doesNotMatch(html, /type="time"|placeholder="h:mm"|name="performance-duration"(?:\s|>)/);
+});
+
+test('profile form reads hours and minutes from the three duration groups', async () => {
+  const { context } = await renderApp({ races: [raceFixture()], pathname: '/profil', storage: storageStub() });
+  const readForm = vm.runInContext('readProfileForm', context);
+  const durationField = (hours, minutes) => ({
+    querySelector(selector) {
+      if (selector === '[data-duration-part="hours"]') return { value: hours };
+      if (selector === '[data-duration-part="minutes"]') return { value: minutes };
+      return null;
+    },
+  });
+  const performanceDuration = durationField('18', '30');
+  const performanceRow = {
+    querySelector(selector) {
+      const values = {
+        '[data-performance-field="id"]': 'reference-1',
+        '[data-performance-field="type"]': 'trail',
+        '[name="performance-distance"]': '80',
+        '[name="performance-elevation"]': '3000',
+        '[name="performance-date"]': '2026-06-01',
+        '[name="performance-name"]': 'Ultra test',
+      };
+      if (selector === '[data-duration-field]') return performanceDuration;
+      return Object.hasOwn(values, selector) ? { value: values[selector] } : null;
+    },
+  };
+  const longRunDuration = durationField('2', '30');
+  const longestEffortDuration = durationField('30', '15');
+  const form = {
+    elements: { namedItem() { return { value: '' }; } },
+    querySelectorAll(selector) { return selector === '[data-performance-row]' ? [performanceRow] : []; },
+    querySelector(selector) {
+      if (selector === '[data-duration-key="training.longRun.durationMinutes"]') return longRunDuration;
+      if (selector === '[data-duration-key="experience.longestEffortMinutes"]') return longestEffortDuration;
+      if (selector === '[name="goal"]:checked') return { value: 'finish_cutoffs' };
+      return null;
+    },
+  };
+
+  const result = readForm(form);
+  assert.equal(result.training.longRun.durationMinutes, 150);
+  assert.equal(result.performances[0].durationMinutes, 1110);
+  assert.equal(result.experience.longestEffortMinutes, 1815);
+});
+
+test('six minute performance renders and toggles both duration parts as read only', async () => {
+  const { context, elements } = await renderApp({ races: [raceFixture()], pathname: '/profil', storage: storageStub() });
+  const rowTemplate = vm.runInContext('performanceRowTemplate', context);
+  const html = rowTemplate({ type: 'six_minute_test' }, 0);
+  assert.match(html, /name="performance-duration-hours"[^>]*value="0"[^>]*readonly/);
+  assert.match(html, /name="performance-duration-minutes"[^>]*value="6"[^>]*readonly/);
+
+  const hours = { value: '', readOnly: false };
+  const minutes = { value: '', readOnly: false };
+  const row = {
+    querySelector(selector) {
+      if (selector === '[data-duration-part="hours"]') return hours;
+      if (selector === '[data-duration-part="minutes"]') return minutes;
+      return null;
+    },
+  };
+  const type = {
+    value: 'six_minute_test',
+    dataset: { performanceField: 'type' },
+    closest(selector) { return selector === '[data-performance-row]' ? row : null; },
+  };
+  elements['#profile-content'].listeners.change({ target: type });
+  assert.deepEqual({ hours: hours.value, minutes: minutes.value }, { hours: '0', minutes: '6' });
+  assert.equal(hours.readOnly, true);
+  assert.equal(minutes.readOnly, true);
+
+  type.value = 'trail';
+  elements['#profile-content'].listeners.change({ target: type });
+  assert.equal(hours.readOnly, false);
+  assert.equal(minutes.readOnly, false);
+});
+
+test('duration validation is shown under the group and clears a stale saved status', async () => {
+  const errorSummary = htmlStub();
+  errorSummary.hidden = true;
+  const { elements } = await renderApp({
+    races: [raceFixture()],
+    pathname: '/profil',
+    storage: storageStub(),
+    extraElements: { '#profile-errors': errorSummary },
+  });
+  const durationField = (hoursValue, minutesValue, key) => {
+    const hours = elementStub({ value: hoursValue });
+    const minutes = elementStub({ value: minutesValue });
+    const error = elementStub();
+    error.hidden = true;
+    return {
+      dataset: { durationKey: key },
+      hours,
+      minutes,
+      error,
+      closest() { return null; },
+      querySelector(selector) {
+        if (selector === '[data-duration-part="hours"]') return hours;
+        if (selector === '[data-duration-part="minutes"]') return minutes;
+        if (selector === '.profile-field-error') return error;
+        return null;
+      },
+      querySelectorAll(selector) { return selector === 'input' ? [hours, minutes] : []; },
+    };
+  };
+  const longRun = durationField('2', '60', 'training.longRun.durationMinutes');
+  const longestEffort = durationField('', '', 'experience.longestEffortMinutes');
+  const form = {
+    id: 'runner-profile-form',
+    elements: { namedItem() { return { value: '' }; } },
+    querySelector(selector) {
+      if (selector === '[data-duration-key="training.longRun.durationMinutes"]') return longRun;
+      if (selector === '[data-duration-key="experience.longestEffortMinutes"]') return longestEffort;
+      return null;
+    },
+    querySelectorAll(selector) {
+      if (selector === '[data-performance-row]') return [];
+      if (selector === '[data-duration-field]') return [longRun, longestEffort];
+      return [];
+    },
+  };
+
+  elements['#profile-status'].textContent = 'Profil enregistré sur cet appareil.';
+  elements['#toast'].textContent = 'Profil enregistré.';
+  elements['#toast'].classList.add('is-visible');
+  elements['#profile-content'].listeners.submit({ target: form, preventDefault() {} });
+
+  assert.equal(elements['#profile-status'].textContent, '');
+  assert.equal(elements['#toast'].textContent, '');
+  assert.equal(elements['#toast'].classList.contains('is-visible'), false);
+  assert.equal(longRun.hours['aria-invalid'], 'true');
+  assert.equal(longRun.minutes['aria-invalid'], 'true');
+  assert.equal(longRun.error.hidden, false);
+  assert.match(longRun.error.textContent, /0 et 59/);
+  assert.equal(errorSummary.hidden, false);
+  assert.match(errorSummary.innerHTML, /0 et 59/);
+});
+
+test('reactive duration validation clears only the corrected error and hides an empty summary', async () => {
+  const errorSummary = htmlStub();
+  const { context, elements } = await renderApp({
+    races: [raceFixture()],
+    pathname: '/profil',
+    storage: storageStub(),
+    extraElements: { '#profile-errors': errorSummary },
+  });
+  const showErrors = vm.runInContext('showProfileErrors', context);
+
+  const hours = elementStub({ value: '2' });
+  const minutes = elementStub({ value: '60' });
+  const localError = elementStub();
+  localError.hidden = true;
+  const field = {
+    dataset: { durationKey: 'training.longRun.durationMinutes' },
+    closest() { return null; },
+    querySelector(selector) {
+      if (selector === '[data-duration-part="hours"]') return hours;
+      if (selector === '[data-duration-part="minutes"]') return minutes;
+      if (selector === '.profile-field-error') return localError;
+      return null;
+    },
+    querySelectorAll(selector) { return selector === 'input' ? [hours, minutes] : []; },
+  };
+  const form = {
+    querySelectorAll(selector) {
+      if (selector === '[data-duration-field]') return [field];
+      if (selector === '[data-performance-row]') return [];
+      return [];
+    },
+  };
+  minutes.matches = (selector) => selector === '[data-duration-part]';
+  minutes.closest = (selector) => selector === '[data-duration-field]' ? field : selector === '#runner-profile-form' ? form : null;
+
+  showErrors({
+    'training.longRun.durationMinutes': 'Durée invalide.',
+    goal: 'Sélectionnez un objectif.',
+  }, form);
+  assert.equal(minutes['aria-invalid'], 'true');
+  assert.match(errorSummary.innerHTML, /Sélectionnez un objectif/);
+
+  minutes.value = '30';
+  elements['#profile-content'].listeners.input({ target: minutes });
+  assert.equal(Object.hasOwn(hours, 'aria-invalid'), false);
+  assert.equal(Object.hasOwn(minutes, 'aria-invalid'), false);
+  assert.equal(localError.hidden, true);
+  assert.equal(localError.textContent, '');
+  assert.doesNotMatch(errorSummary.innerHTML, /durée|0 et 59/i);
+  assert.match(errorSummary.innerHTML, /Sélectionnez un objectif/);
+  assert.equal(errorSummary.hidden, false);
+
+  minutes.value = '60';
+  showErrors({ 'training.longRun.durationMinutes': 'Durée invalide.' }, form);
+  minutes.value = '30';
+  elements['#profile-content'].listeners.input({ target: minutes });
+  assert.equal(errorSummary.hidden, true);
+  assert.equal(errorSummary.innerHTML, '');
+});
+
+test('past-edition warning appears on course and personalized comparison without blocking it', async () => {
+  const { context } = await renderApp({ races: [raceFixture()] });
+  const courseTemplate = vm.runInContext('courseDetailTemplate', context);
+  const diagnosisTemplate = vm.runInContext('diagnosticTemplate', context);
+  const pastRace = raceFixture({ date: '2000-04-19', edition: '2099' });
+  const courseHtml = courseTemplate(pastRace);
+  const diagnosisHtml = diagnosisTemplate(emptyProfile(), pastRace);
+
+  for (const html of [courseHtml, diagnosisHtml]) {
+    assert.match(html, /Édition passée/);
+    assert.match(html, /édition 2000/);
+    assert.match(html, /Le parcours, les barrières et le règlement peuvent évoluer/);
+  }
+  assert.match(courseHtml, /Comparer les exigences avec mon profil/);
+  assert.match(diagnosisHtml, /COMPARAISON PERSONNALISÉE/);
+
+  const futureHtml = courseTemplate(raceFixture({ date: '2999-04-19' }));
+  const missingHtml = courseTemplate(raceFixture({ date: null }));
+  const invalidHtml = courseTemplate(raceFixture({ date: 'date-invalide' }));
+  assert.doesNotMatch(futureHtml, /Édition passée/);
+  assert.doesNotMatch(missingHtml, /Édition passée/);
+  assert.doesNotMatch(invalidHtml, /Édition passée/);
+});
+
+test('barrier table explains missing cumulative gain and labels GPX provenance', async () => {
+  const { context } = await renderApp({ races: [raceFixture()] });
+  const template = vm.runInContext('barriersTemplate', context);
+  const html = template([
+    {
+      name: 'GPX', distanceKm: 40, elevationGainFromStartM: 800, elevationGainFromStartSource: 'gpx_estimate',
+      cutoffTime: { hour: '12:00' }, elapsedLimitMinutes: 360, requiredMinutesPerKm: 9, requiredSpeedKmh: 6.7,
+      estimatedTime: { hour: '11:30' }, reliability: 'medium', marginMinutes: 30, missingReason: null,
+    },
+    {
+      name: 'Incomplet', distanceKm: 60, elevationGainFromStartM: null, elevationGainFromStartSource: null,
+      cutoffTime: { hour: '15:00' }, elapsedLimitMinutes: 540, requiredMinutesPerKm: 9, requiredSpeedKmh: 6.7,
+      estimatedTime: null, reliability: null, marginMinutes: null, missingReason: 'missing_checkpoint_elevation_gain',
+    },
+  ]);
+  assert.match(html, /Estimation calculée depuis le GPX/);
+  assert.equal((html.match(/D\+ cumulé manquant/g) ?? []).length, 2);
+  assert.doesNotMatch(html, /Données insuffisantes/);
 });
 
 test('profile route reloads a stored profile and renders the selected race diagnosis', async () => {

@@ -861,7 +861,7 @@ export function analyzeGpxBuffer(buffer) {
     throw gpxError("GPX_INVALID", "GPX has no usable track or route points");
   }
 
-  const segments = addCumulativeDistances(rawSegments);
+  const segments = addCumulativeElevationGains(addCumulativeDistances(rawSegments));
   const points = segments.flat();
   const elevation = computeElevation(points);
   const distanceKm = points.at(-1)?.distanceKm ?? 0;
@@ -911,6 +911,17 @@ export function buildRouteAsset({ parsed, sourceUrl, downloadUrl, localFile, sha
     elevationProfile,
     computed: parsed.computed,
   };
+}
+
+export function addCumulativeElevationGains(segments) {
+  const accumulator = createElevationAccumulator();
+  return segments.map((segment) => segment.map((point) => {
+    const progress = accumulator.add(point.ele);
+    return {
+      ...point,
+      elevationGainFromStartM: progress.elevationCount ? progress.gainM : null,
+    };
+  }));
 }
 
 export function extractGpxFromZip(buffer) {
@@ -1422,16 +1433,9 @@ function computeElevation(points) {
     };
   }
 
-  let gainM = 0;
-  let lossM = 0;
-  let anchor = elevations[0];
-  for (const elevation of elevations.slice(1)) {
-    const delta = elevation - anchor;
-    if (Math.abs(delta) < ELEVATION_NOISE_THRESHOLD_M) continue;
-    if (delta > 0) gainM += delta;
-    else lossM += Math.abs(delta);
-    anchor = elevation;
-  }
+  const accumulator = createElevationAccumulator();
+  points.forEach((point) => accumulator.add(point.ele));
+  const { gainM, lossM } = accumulator.snapshot();
 
   return {
     hasElevation: true,
@@ -1439,6 +1443,34 @@ function computeElevation(points) {
     lossM,
     minElevationM: Math.min(...elevations),
     maxElevationM: Math.max(...elevations),
+  };
+}
+
+function createElevationAccumulator() {
+  let gainM = 0;
+  let lossM = 0;
+  let anchor = null;
+  let elevationCount = 0;
+  return {
+    add(value) {
+      if (!Number.isFinite(value)) return { gainM, lossM, elevationCount };
+      const elevation = Number(value);
+      elevationCount += 1;
+      if (anchor === null) {
+        anchor = elevation;
+        return { gainM, lossM, elevationCount };
+      }
+      const delta = elevation - anchor;
+      if (Math.abs(delta) >= ELEVATION_NOISE_THRESHOLD_M) {
+        if (delta > 0) gainM += delta;
+        else lossM += Math.abs(delta);
+        anchor = elevation;
+      }
+      return { gainM, lossM, elevationCount };
+    },
+    snapshot() {
+      return { gainM, lossM, elevationCount };
+    },
   };
 }
 
@@ -1538,6 +1570,7 @@ function publicPoint(point) {
     lon: round(point.lon, 6),
     ele: Number.isFinite(point.ele) ? round(point.ele, 1) : null,
     distanceKm: round(point.distanceKm, 3),
+    elevationGainFromStartM: Number.isFinite(point.elevationGainFromStartM) ? round(point.elevationGainFromStartM, 1) : null,
   };
 }
 

@@ -81,6 +81,15 @@
         },
         "checkpoints": [
           {
+            "name": "Midpoint",
+            "distanceKm": 0.91,
+            "elevationGainFromStartM": null,
+            "cutoffDateTime": "2026-08-12T09:00:00",
+            "cutoffElapsedMinutes": 60,
+            "aidStation": false,
+            "personalAssistanceAllowed": false
+          },
+          {
             "name": "Finish",
             "distanceKm": 2,
             "elevationGainFromStartM": null,

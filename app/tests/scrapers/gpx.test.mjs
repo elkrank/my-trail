@@ -36,6 +36,7 @@ test("parses a valid GPX and computes distance and elevation with noise threshol
   assert.equal(parsed.computed.elevationLossM, 6);
   assert.equal(parsed.computed.minElevationM, 1000);
   assert.equal(parsed.computed.maxElevationM, 1020);
+  assert.deepEqual(parsed.points.map((point) => point.elevationGainFromStartM), [0, 10, 10, 26]);
 });
 
 test("accepts a GPX without elevation and leaves elevation metrics null", async () => {
@@ -143,6 +144,7 @@ test("builds compact frontend route assets", async () => {
   assert.equal(asset.segments[0].length, 4);
   assert.equal(asset.elevationProfile.length, 4);
   assert.equal(asset.computed.distanceKm, parsed.computed.distanceKm);
+  assert.deepEqual(asset.segments[0].map((point) => point.elevationGainFromStartM), [0, 10, 10, 26]);
 });
 
 test("detects Pacevisor links from an official page and resolves the public GPX URL", async () => {
